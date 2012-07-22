@@ -48,6 +48,7 @@
 
 
 - (id)initWithURL:(NSURL *)URL delegate:(id<TapItAdBrowserControllerDelegate>)delegate;
+- (void)buildUI;
 
 // Navigation methods.
 - (IBAction)back;

@@ -50,25 +50,63 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 
 - (id)initWithURL:(NSURL *)URL delegate:(id<TapItAdBrowserControllerDelegate>)delegate
 {
-	if (self = [super initWithNibName:@"TapItAdBrowserController" bundle:nil])
+	if (self = [super init])
 	{
 		_delegate = delegate;
 		_URL = [URL copy];
-//        NSLog(@"Loading url in internal browser: %@", _URL);
 		
-		_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-		_webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
-		UIViewAutoresizingFlexibleHeight;
-		_webView.delegate = self;
-		_webView.scalesPageToFit = YES;
-		
-		_spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
-		[_spinner sizeToFit];
-		_spinner.hidesWhenStopped = YES;
-
-//        [self processTapItClickTrackingRedirect:_URL];
+        [self buildUI];
 	}
 	return self;
+}
+
+
+- (void)buildUI {
+    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _webView.delegate = self;
+    _webView.scalesPageToFit = YES;
+    
+    _spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
+    [_spinner sizeToFit];
+    _spinner.hidesWhenStopped = YES;
+    
+    _backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(back)];
+    _backButton.enabled = YES;
+    _backButton.imageInsets = UIEdgeInsetsZero;
+    UIBarButtonItem *spacer1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    _forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(forward)];
+    UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    UIBarButtonItem *spacer3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    _safariButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(safari)];
+    UIBarButtonItem *spacer4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    _spinnerItem = [[UIBarButtonItem alloc] initWithCustomView:_spinner];
+    UIBarButtonItem *spacer5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(done)];
+    _doneButton.style = UIBarButtonItemStyleDone;
+    
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+//    toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    [items addObject:_backButton];
+    [items addObject:[spacer1 autorelease]];
+    [items addObject:_forwardButton];
+    [items addObject:[spacer2 autorelease]];
+    [items addObject:_refreshButton];
+    [items addObject:[spacer3 autorelease]];
+    [items addObject:_safariButton];
+    [items addObject:[spacer4 autorelease]];
+    [items addObject:_spinnerItem];
+    [items addObject:[spacer5 autorelease]];
+    [items addObject:_doneButton];
+    toolbar.items = items;
+    [items release];
+    [self.view addSubview:toolbar];
+    [toolbar release];
+    
+    [self.view addSubview:_webView];
 }
 
 
