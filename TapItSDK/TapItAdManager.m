@@ -89,7 +89,8 @@
 
 - (void)processServerResponse {
     NSError *error = nil;
-    NSDictionary *deserializedData = [self.currentRequest.rawResults objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
+    NSString *jsonString = self.currentRequest.rawResults;
+    NSDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
     if (error) {
         NSString *errStr;
         if (!self.currentRequest.rawResults) {
@@ -113,6 +114,7 @@
         [delegate adView:nil didFailToReceiveAdWithError:error];
         return;
     }
+    
     NSString *adType = [deserializedData objectForKey:@"type"]; // html banner ormma offerwall video
     NSString *adHeight = [deserializedData objectForKey:@"adHeight"];
     int height = [adHeight intValue];
@@ -125,6 +127,10 @@
         [adType isEqualToString:@"html"] ||
         [adType isEqualToString:@"text"]) {
         adView = [[TapItAdView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        adView.tapitDelegate = self;
+        [adView loadData:deserializedData];
+    } else if ([adType isEqualToString:@"dialog"]) {
+        [self.delegate didReceiveData:deserializedData];
 //    } else if ([adType isEqualToString:@"offerwall"]) {
 //        //TODO: implement me!
 //        adView = nil;
@@ -140,9 +146,6 @@
         [delegate adView:nil didFailToReceiveAdWithError:error];
         return;
     }
-    
-    adView.tapitDelegate = self;
-    [adView loadData:deserializedData];
 }
 
 #pragma mark -

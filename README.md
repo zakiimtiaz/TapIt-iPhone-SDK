@@ -3,7 +3,20 @@ TapIt iOS SDK
 
 Version 2.0 (Beta)
 
+Get the code:
+=============
 
+This project includes JSONKit as a git submodule.  Make sure you pull down submodules when cloning:
+
+````
+git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
+````
+-- or for older versions of git --
+````
+git clone https://github.com/tapit/TapIt-iPhone-SDK.git
+git submodule init
+git submodule update
+````
 
 Usage:
 ======

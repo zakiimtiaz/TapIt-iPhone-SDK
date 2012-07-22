@@ -11,11 +11,15 @@
 #import "TapItAdDelegates.h"
 
 @class TapItBannerAdView;
+@class TapItDialogAd;
 
-@interface FirstViewController : UIViewController <TapItBannerAdViewDelegate, CLLocationManagerDelegate> {
+@interface FirstViewController : UIViewController <TapItBannerAdViewDelegate, TapItDialogAdDelegate, CLLocationManagerDelegate> {
     IBOutlet TapItBannerAdView *tapitAd;
+    TapItDialogAd *tapitDialogAd;
 }
 
 @property (retain, nonatomic) CLLocationManager *locationManager;
+
+-(IBAction)showDialogAd:(id)sender;
 
 @end

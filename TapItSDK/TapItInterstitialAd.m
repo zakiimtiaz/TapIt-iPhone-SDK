@@ -53,7 +53,7 @@
 
 - (BOOL)loadInterstitialForRequest:(TapItRequest *)request {
     self.adRequest = request;
-    [self.adRequest setCustomParameter:@"2" forKey:@"adtype"];
+    [self.adRequest setCustomParameter:TAPIT_AD_TYPE_INTERSTITIAL forKey:@"adtype"];
     [self.adManager fireAdRequest:self.adRequest];
     return YES;
 }
@@ -116,9 +116,6 @@
     if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdWillLoad:)]) {
         [self.delegate tapitInterstitialAdWillLoad:self];
     }
-}
-
-- (void)didReceiveResponse:(TapItAdView *)adView {
 }
 
 - (void)didLoadAdView:(TapItAdView *)theAdView {

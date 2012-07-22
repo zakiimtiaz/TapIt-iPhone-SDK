@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "TapIt.h"
+#import "TapItDialogAd.h"
 
 #define ZONE_ID @"3644"
 
@@ -38,6 +39,10 @@
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     [request updateLocation:self.locationManager.location];
     [tapitAd startServingAdsForRequest:request];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.locationManager stopMonitoringSignificantLocationChanges];
 }
 
 - (void)viewDidUnload
@@ -105,8 +110,49 @@
 }
 
 #pragma mark -
+#pragma mark TapItDialogAd Example code
+
+- (IBAction)showDialogAd:(id)sender {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Dialog ads only show in test mode for now...
+    TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
+    tapitDialogAd = [[TapItDialogAd alloc] initWithRequest:request];
+    tapitDialogAd.delegate = self;
+    [tapitDialogAd showAsAlert];
+//    [tapitDialogAd showAsActionSheet];
+}
+
+- (void)tapitDialogAd:(TapItDialogAd *)dialogAd didFailWithError:(NSError *)error {
+    NSLog(@"Error showing dialog ad: %@", error);
+}
+
+- (void)tapitDialogWasDeclined:(TapItDialogAd *)dialogAd {
+    NSLog(@"Dialog ad was DECLINED!");
+}
+
+- (void)tapitDialogAdDidLoad:(TapItDialogAd *)dialogAd {
+    NSLog(@"Dialog ad loaded!");
+}
+
+- (BOOL)tapitDialogAdActionShouldBegin:(TapItDialogAd *)dialogAd willLeaveApplication:(BOOL)willLeave {
+    return YES;
+}
+
+- (void)tapitDialogAdActionDidFinish:(TapItDialogAd *)dialogAd {
+    NSLog(@"Dialog ad Action finished!");
+}
+
+
+
+
+#pragma mark -
 
 - (void)dealloc {
+    if (tapitDialogAd) {
+        [tapitDialogAd release]; tapitDialogAd = nil;
+    }
+    if (tapitAd) {
+        [tapitAd release]; tapitAd = nil;
+    }
     [self.locationManager stopMonitoringSignificantLocationChanges];
     self.locationManager = nil;
     [super dealloc];

@@ -143,3 +143,61 @@
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd;
 
 @end
+
+
+
+@class TapItDialogAd;
+
+@protocol TapItDialogAdDelegate <NSObject>
+@required
+
+- (void)tapitDialogAd:(TapItDialogAd *)dialogAd didFailWithError:(NSError *)error;
+
+@optional
+
+/**
+ Called after a dialog ad is declined
+ 
+ @param dialogAd The dialog ad that was declined.
+ */
+- (void)tapitDialogWasDeclined:(TapItDialogAd *)dialogAd;
+
+/**
+ Called after the advertisement loads its content.
+ 
+ @param dialogAd The ad object that loaded a new advertisement.
+ */
+- (void)tapitDialogAdDidLoad:(TapItDialogAd *)dialogAd;
+
+/**
+ Called before a dialog executes an action.
+ 
+ @param dialogAd The dialog ad that the user tapped.
+ @param willLeave YES if another application will be launched to execute the action; NO if the action is going to be executed inside your appliaction.
+ 
+ @return Your delegate returns YES if the action should execute; NO to prevent the banner action from executing.
+ 
+ When the user taps a presented advertisement, the ad’s delegate is called to inform your application that the user wants to interact with the ad. 
+ To allow the action to be triggered, your method should return YES; to suppress the action, your method returns NO. Your application should almost 
+ always allow actions to be triggered; preventing actions may alter the advertisements your application sees and reduce the revenue your application earns through TapIt.
+ 
+ If the value of the willLeave parameter is YES and your delegate allows the advertisement to execute its action, then your application is moved to 
+ the background shortly after the call to this method completes.
+ 
+ If the value of the willLeave parameter is NO, the advertisement’s interactive experience will run inside your application. To accomodate the advertisement, 
+ your application should disable activities that require user interaction as well as disabling any tasks or behaviors that may interfere with the advertisement. 
+ For example, a game might pause its game play and turn off sound effects until the user finishes interacting with the advertisement. Further, while the 
+ action is running, your application should also be prepared to respond to low-memory warnings by disposing of objects it can easily recreate after the 
+ advertisement completes its action.
+ 
+ */
+- (BOOL)tapitDialogAdActionShouldBegin:(TapItDialogAd *)dialogAd willLeaveApplication:(BOOL)willLeave;
+
+/**
+ Called after a banner view finishes executing an action that covered your application's user interface.
+ 
+ @param interstitialAd The full-screen ad that finished executing an action.
+ */
+- (void)tapitDialogAdActionDidFinish:(TapItDialogAd *)dialogAd;
+
+@end

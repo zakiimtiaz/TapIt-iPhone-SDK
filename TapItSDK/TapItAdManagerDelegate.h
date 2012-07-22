@@ -20,7 +20,7 @@
 - (void)adViewActionDidFinish:(TapItAdView *)adView;
 
 @optional
-- (void)didReceiveResponse:(TapItAdView *)adView;
+- (void)didReceiveData:(NSDictionary *)data;
 
 - (void)timerElapsed;
 @end
