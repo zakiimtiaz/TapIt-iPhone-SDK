@@ -7,10 +7,10 @@
 //
 
 #import "TapItLightboxAdViewController.h"
-#import "TapItAdBrowserController.h"
+#import "TapItBrowserController.h"
 #import "TapItAdView.h"
 
-@interface TapItLightboxAdViewController () <TapItAdBrowserControllerDelegate>
+@interface TapItLightboxAdViewController ()
 
 - (void)closeTapped:(id)sender;
 
@@ -52,10 +52,6 @@
     [self.view addSubview:closeButton];
         
     self.navigationBarHidden = YES;
-    NSString *callToAction = (NSString *)[self.adView.data objectForKey:@"calltoaction"];
-    if(callToAction == nil) {
-        callToAction = @"Get More Info";
-    }
 }
 
 - (void)closeTapped:(id)sender {
@@ -75,25 +71,6 @@
 }
 
 #pragma mark -
-
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    BOOL shouldLoad = YES;
-    if (self.tapitDelegate) {
-        if ([self.tapitDelegate respondsToSelector:@selector(tapitInterstitialAdActionDidFinish:)]) {
-            shouldLoad = [self.tapitDelegate tapitInterstitialAdActionShouldBegin:nil willLeaveApplication:NO]; //TODO pass an accurate "willLeaveApplication" value
-        }
-    }
-    if (shouldLoad) {
-        [self openURLInFullscreenBrowser:request.URL];
-    }
-    else {
-        [self dismissModalViewControllerAnimated:self.animated];
-    }
-    return NO;
-}
-
-
 
 - (void)dealloc
 {

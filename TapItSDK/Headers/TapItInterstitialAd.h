@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "TapItAdDelegates.h"
 #import "TapItConstants.h"
+#import "TapItBrowserController.h"
 
 @class TapItRequest;
-@class UIViewController;
 
-@interface TapItInterstitialAd : NSObject <TapItInterstitialAdDelegate>
+@interface TapItInterstitialAd : NSObject <TapItInterstitialAdDelegate, TapItBrowserControllerDelegate>
 
 @property (assign, nonatomic) id<TapItInterstitialAdDelegate> delegate;
 
 @property (assign, nonatomic) BOOL animated;
-@property (assign, nonatomic) TapItInterstitialControlType controlType;
+//@property (assign, nonatomic) TapItInterstitialControlType controlType;
 @property (assign, nonatomic) TapItAdType allowedAdTypes;
 @property (readonly) BOOL loaded;
 

@@ -58,7 +58,7 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    
+//    NSLog(@"webViewDidStartLoad: %@", webView);
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -81,6 +81,7 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+//    NSLog(@"shouldStartLoadWithRequest: %@", request.URL.absoluteURL);
     if (!self.isLoaded) {
         // first time loading, let the ad load
         return YES;
@@ -99,7 +100,11 @@
         }
         
         BOOL shouldLeaveApp = NO; //TODO: figure how to answer this correctly, while taking into account redirects...
+        //TODO figure out how to stop this from getting fired for each redirect!!!
         BOOL shouldLoad = [self.tapitDelegate adActionShouldBegin:request.URL willLeaveApplication:shouldLeaveApp];
+        if(!shouldLoad) {
+//            NSLog(@"Canceling");
+        }
         return shouldLoad;
     }
 }

@@ -11,35 +11,40 @@
  */
 
 #import "TapItInterstitialAd.h"
+#import "TapIt.h"
 #import "TapItAdManager.h"
 #import "TapItBannerAdView.h"
 #import "TapItInterstitialAdViewController.h"
-#import "TapItActionSheetAdViewController.h"
+//#import "TapItActionSheetAdViewController.h"
 #import "TapItLightboxAdViewController.h"
-#import "TapItRequest.h"
+#import "TapItBrowserController.h"
 
-@interface TapItInterstitialAd() <TapItAdManagerDelegate> {
-    BOOL isLoaded;
-    BOOL prevStatusBarHiddenState;
-}
+@interface TapItInterstitialAd() <TapItAdManagerDelegate> 
+
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdView *adView;
 @property (retain, nonatomic) TapItAdManager *adManager;
 @property (retain, nonatomic) TapItBannerAdView *bannerView;
 @property (retain, nonatomic) UIView *presentingView;
+@property (retain, nonatomic) TapItLightboxAdViewController *adController;
+@property (retain, nonatomic) TapItBrowserController *browserController;
 
 @end
 
-@implementation TapItInterstitialAd
+@implementation TapItInterstitialAd {
+    BOOL isLoaded;
+    BOOL prevStatusBarHiddenState;
+}
 
-@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, controlType, bannerView, presentingView, animated;
+@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, adController, browserController;
+//@synthesize controlType;
 
 - (id)init {
     self = [super init];
     if (self) {
         self.adManager = [[[TapItAdManager alloc] init] autorelease];
         self.adManager.delegate = self;
-        self.controlType = TapItActionSheetControlType;
+//        self.controlType = TapItLightboxControlType;
         self.allowedAdTypes = TapItFullscreenAdType|TapItOfferWallType|TapItVideoAdType;
         self.animated = YES;
         isLoaded = NO;
@@ -62,52 +67,22 @@
     UIApplication *app = [UIApplication sharedApplication];
     prevStatusBarHiddenState = app.statusBarHidden;
     [app setStatusBarHidden:YES];
-    TapItInterstitialAdViewController *adController;
-    if (self.controlType == TapItActionSheetControlType) {
-        adController = (TapItInterstitialAdViewController *)[[TapItActionSheetAdViewController alloc] init];
-    }
-    else {
-        adController = (TapItInterstitialAdViewController *)[[TapItLightboxAdViewController alloc] init];
-    }
-    adController.adView = self.adView;
-    adController.animated = self.animated;
-//    adController.tapitDelegate = self.delegate;
-    adController.tapitDelegate = self;
-    self.adView.delegate = adController;
-    
-    [controller presentModalViewController:adController animated:YES];
-    [adController release];
-}
 
-//- (void)presentInView:(UIView *)view {
-//    //TODO: this code needs to be re-done
-//    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-//    bgView.backgroundColor = [UIColor blackColor];
-//    [bgView addSubview:self.adView];
-//    [self.adView setCenter:bgView.center];
-//    [view addSubview:bgView];
-//    
-//    self.presentingView = view;
-//    
-//    switch (self.controlType) {
-//        case TapItLightboxControlType:
-//            [self addLightboxControlsToView:bgView];
-//            break;
-//        case TapItActionSheetControlType:
-//            [self addActionSheetControlsToView:bgView];
-//        default:
-//            break;
+//    if (self.controlType == TapItActionSheetControlType) {
+//        adController = (TapItInterstitialAdViewController *)[[TapItActionSheetAdViewController alloc] init];
 //    }
-//    [bgView release];
-//}
-//
-//- (void)addActionSheetControlsToView:(UIView *)view {
-//    //TODO: implement me
-//}
-//                      
-//- (void)addLightboxControlsToView:(UIView *)view {
-//    //TODO: implement me
-//}
+//    else {
+        self.adController = [[TapItLightboxAdViewController alloc] init];
+//    }
+    self.adController.adView = self.adView;
+    self.adController.animated = self.animated;
+//    adController.tapitDelegate = self.delegate;
+    self.adController.tapitDelegate = self;
+//    self.adView.delegate = adController; //TODO Why did I do this?
+    
+    [controller presentModalViewController:self.adController animated:YES];
+    [self.adController release];
+}
 
 #pragma mark -
 #pragma mark TapItAdManagerDelegate methods
@@ -131,23 +106,17 @@
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
-    BOOL shouldLoad = YES;
     if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdActionShouldBegin:willLeaveApplication:)]) {
-        shouldLoad = [self.delegate tapitInterstitialAdActionShouldBegin:self willLeaveApplication:willLeave];
-    }
-    
-    if (shouldLoad && self.presentingView) {
-        //TODO: move this code into a [adView expandToFrame:] call?
-        [UIView animateWithDuration:0.5 animations:^{
-            [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.adView cache:YES];
-            self.adView.frame = self.presentingView.frame;
+        BOOL shouldLoad = [self.delegate tapitInterstitialAdActionShouldBegin:self willLeaveApplication:willLeave];
+        if (shouldLoad) {
+            [self openURLInFullscreenBrowser:actionUrl];
+            return NO; // pass off control to the full screen browser
         }
-        completion:^(BOOL finished){}
-        ];
-        
-        
+        return shouldLoad;
     }
-    return shouldLoad;
+    else {
+        return YES;
+    }
 }
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
@@ -221,10 +190,69 @@
 
 
 
+#pragma mark -
+#pragma mark TapItBrowserController methods
 
+//- (void)openURLInFullscreenBrowser:(NSURL *)url {
+//    BOOL shouldLoad = [self.tapitDelegate tapitInterstitialAdActionShouldBegin:nil willLeaveApplication:NO];
+//    if (!shouldLoad) {
+//        id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
+//        [self dismissViewControllerAnimated:self.animated completion:^{
+//            [tDel tapitInterstitialAdDidUnload:nil];
+//            [tDel release];
+//        }];
+//        return;
+//    }
+//    
+//    // Present ad browser.
+//    self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+////    [self presentModalViewController:browserController animated:self.animated];
+////    [self presentModalViewController:browserController animated:NO];
+////    [browserController release];
+//}
 
+#pragma mark -
+#pragma mark TapItBrowserController methods
 
+- (void)openURLInFullscreenBrowser:(NSURL *)url {
+//    NSLog(@"Banner->openURLInFullscreenBrowser: %@", url);
+    self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+    self.browserController.delegate = self;
+    [self.browserController loadUrl:url];
+    [self.adController showLoading];
 
+    self.adController.closeButton.hidden = YES;
+}
+
+- (BOOL)browserControllerShouldLoad:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
+//    NSLog(@"************* browserControllerShouldLoad:willLeaveApp:%d, (%@)", willLeaveApp, theBrowserController.url);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionShouldBegin:willLeaveApplication:)]) {
+        [self.delegate tapitInterstitialAdActionShouldBegin:self willLeaveApplication:willLeaveApp];
+    }
+    return YES;
+}
+
+- (void)browserControllerLoaded:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
+//    NSLog(@"************* browserControllerLoaded:willLeaveApp:");
+    [self.adController dismissViewControllerAnimated:NO completion:^{
+        if (!willLeaveApp) {
+            [self.browserController showFullscreenBrowserAnimated:NO];
+        }
+    }];
+    self.adController = nil;
+}
+
+- (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
+//    NSLog(@"************* browserControllerDismissed:");
+    [self tapitInterstitialAdDidUnload:self];
+}
+
+- (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
+//    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
+    [self.adController hideLoading];
+}
+
+#pragma mark -
 
 
 - (void)timerElapsed {

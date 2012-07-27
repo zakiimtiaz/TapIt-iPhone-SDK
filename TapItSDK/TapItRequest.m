@@ -60,7 +60,7 @@
     NSLog(@"TapIt Request: %@", urlStr);
 #endif
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSURLRequest *req = [[[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:30.0] autorelease];
+    NSURLRequest *req = [[[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.0] autorelease];
     return req;
     
 }

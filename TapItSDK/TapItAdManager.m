@@ -14,7 +14,6 @@
 #import "TapItRequest.h"
 #import "TapItAppTracker.h"
 #import "JSONKit.h"
-#import "TapItAdBrowserController.h"
 
 @interface TapItRequest () 
 @property (retain, nonatomic) NSString *rawResults;
@@ -90,7 +89,7 @@
 - (void)processServerResponse {
     NSError *error = nil;
     NSString *jsonString = self.currentRequest.rawResults;
-    NSDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
+    NSMutableDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
     if (error) {
         NSString *errStr;
         if (!self.currentRequest.rawResults) {
@@ -168,6 +167,7 @@
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
     // pass the message on down the receiver chain
+//    NSLog(@"AdManager->adActionShouldBegin: %@", actionUrl);
     return [delegate adActionShouldBegin:actionUrl willLeaveApplication:willLeave];
 }
 

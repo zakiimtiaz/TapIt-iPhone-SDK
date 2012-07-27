@@ -26,6 +26,9 @@
 - (void)updateLocation:(CLLocation *)location;
 - (void)cancelAds;
 
+- (void)pause;
+- (void)resume;
+
 - (void)repositionToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 
 @end

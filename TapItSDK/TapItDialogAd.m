@@ -9,16 +9,17 @@
 #import "TapItPrivateConstants.h"
 #import "TapItDialogAd.h"
 #import "TapItAdManager.h"
-#import "TapItAdBrowserController.h"
+#import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
 
-@interface TapItDialogAd () <TapItAdManagerDelegate, TapItAdBrowserControllerDelegate> {
+@interface TapItDialogAd () <TapItAdManagerDelegate> {
     BOOL isAlertType;
 }
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdManager *adManager;
 @property (retain, nonatomic) NSString *clickUrl;
+@property (retain, nonatomic) TapItBrowserController *browserController;
 
 - (void)performRequest;
 - (void)displayAlertWithData:(NSDictionary *)data;
@@ -28,7 +29,7 @@
 
 @implementation TapItDialogAd
 
-@synthesize delegate, adRequest, adManager, clickUrl;
+@synthesize delegate, adRequest, adManager, clickUrl, browserController;
 
 - (id)initWithRequest:(TapItRequest *)request {
     self = [super init];
@@ -49,7 +50,7 @@
 }
 
 - (void)displayAlertWithData:(NSDictionary *)data {
-    NSString *title = [data objectForKey:@"title"];
+    NSString *title = [data objectForKey:@"adtitle"];
     NSString *callToAction = [data objectForKey:@"calltoaction"];
     NSString *declineString = [data objectForKey:@"declinestring"];
 
@@ -68,7 +69,7 @@
 }
 
 - (void)displayActionSheetWithData:(NSDictionary *)data {
-    NSString *title = [data objectForKey:@"title"];
+    NSString *title = [data objectForKey:@"adtitle"];
     NSString *callToAction = [data objectForKey:@"calltoaction"];
     NSString *declineString = [data objectForKey:@"declinestring"];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
@@ -84,7 +85,7 @@
 
 #pragma mark -
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSLog(@"UIAlertView: dismissed with button: %d", buttonIndex);
+//    NSLog(@"UIAlertView: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 1) { // second button is the call to action...
         [self performAdAction];
     }
@@ -96,7 +97,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"UIActionSheet: dismissed with button: %d", buttonIndex);
+//    NSLog(@"UIActionSheet: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 0) { // top button is the call to action...
         [self performAdAction];
     }
@@ -113,31 +114,17 @@
 }
 
 - (void)performAdAction {
-    NSLog(@"Performing Action!!!");
     [self openURLInFullscreenBrowser:[NSURL URLWithString:self.clickUrl]];
 }
 
 #pragma mark -
-#pragma mark TapItAdBrowserController Delegate methods
+#pragma mark TapItBrowserController Delegate methods
 
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
-    // Present ad browser.
-    TapItAdBrowserController *browserController = [[TapItAdBrowserController alloc] initWithURL:url delegate:self];
-    UIViewController *theDelegate = (UIViewController *)self.delegate; //TODO probably a bad assumption...
-    if (theDelegate) {
-        [theDelegate presentModalViewController:browserController animated:YES];
-    }
-    [browserController release];
+    self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+    [self.browserController loadUrl:url];
 }
 
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController {
-    [self dismissBrowserController:browserController animated:YES];
-}
-
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController animated:(BOOL)isAnimated {
-    [browserController dismissModalViewControllerAnimated:YES];
-	[self.delegate tapitDialogAdActionDidFinish:self];
-}
 
 #pragma mark -
 #pragma mark TapItAdManager Delegate methods
@@ -170,8 +157,9 @@
 }
 
 - (void)didReceiveData:(NSDictionary *)data {
-    NSLog(@"Received data: %@", data);
+//    NSLog(@"Received data: %@", data);
     self.clickUrl = [data objectForKey:@"clickurl"];
+//    self.clickUrl = @"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#";
     if (isAlertType) {
         [self displayAlertWithData:data];
     }
@@ -191,6 +179,7 @@
     self.adRequest = nil;
     self.adManager = nil;
     self.clickUrl = nil;
+    self.browserController = nil;
     [super dealloc];
 }
 @end

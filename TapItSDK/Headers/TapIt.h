@@ -15,5 +15,6 @@
 #import "TapItRequest.h"
 #import "TapItBannerAdView.h"
 #import "TapItInterstitialAd.h"
+#import "TapItDialogAd.h"
 
 #endif

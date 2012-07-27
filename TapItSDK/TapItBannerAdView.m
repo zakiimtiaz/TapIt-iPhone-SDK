@@ -13,18 +13,20 @@
 #import "TapItAppTracker.h"
 #import "TapItAdManager.h"
 #import "TapItPrivateConstants.h"
-#import "TapItAdBrowserController.h"
+#import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
-@interface TapItBannerAdView () <TapItAdManagerDelegate, TapItAdBrowserControllerDelegate> {
+@interface TapItBannerAdView () <TapItAdManagerDelegate, TapItBrowserControllerDelegate> {
     NSTimer *timer;
     BOOL isServingAds;
+    UIActivityIndicatorView *loadingSpinner;
 }
 
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdView *adView;
 @property (retain, nonatomic) TapItAdManager *adManager;
 @property (assign, nonatomic) CGRect originalFrame;
+@property (retain, nonatomic) TapItBrowserController *browserController;
 
 - (void)commonInit;
 - (void)openURLInFullscreenBrowser:(NSURL *)url;
@@ -39,7 +41,7 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection;
+@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
@@ -49,6 +51,10 @@
     self.adManager = [[[TapItAdManager alloc] init] autorelease];
     self.adManager.delegate = self;
     isServingAds = NO;
+    loadingSpinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
+    loadingSpinner.center = self.center;
+    [loadingSpinner sizeToFit];
+    loadingSpinner.hidesWhenStopped = YES;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -72,6 +78,10 @@
     [self.adManager fireAdRequest:self.adRequest];
     isServingAds = YES;
     return YES;
+}
+
+- (void)resume {
+    [self requestAnotherAd];
 }
 
 - (void)repositionToInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -193,8 +203,8 @@
 //        maskLayer.path = path.CGPath;
 //        self.layer.mask = maskLayer;
 
-        UIViewAnimationTransition trans = UIViewAnimationTransitionCurlDown; //(nil != self.adView ? [self getRandomTransition] : UIViewAnima
-        [UIView animateWithDuration:1
+        UIViewAnimationTransition trans = (nil != self.adView ? [self getRandomTransition] : UIViewAnimationTransitionCurlDown);
+        [UIView animateWithDuration:2
                               delay:0.0
                             options:UIViewAnimationOptionTransitionNone
                          animations:^{
@@ -208,6 +218,7 @@
     }
     else {
         [self addSubview:self.adView];
+        [self addSubview:loadingSpinner];
         [oldAd removeFromSuperview];
     }
     
@@ -233,6 +244,7 @@
         BOOL shouldLoad = [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:willLeave];
         if (shouldLoad) {
             [self openURLInFullscreenBrowser:actionUrl];
+            return NO; // pass off control to the full screen browser
         }
         return shouldLoad;
     }
@@ -258,32 +270,42 @@
     [adManager cancelAdRequests];
 }
 
+- (void)pause {
+    [self cancelAds];
+}
+
 #pragma mark -
 
 - (UIViewAnimationTransition)getRandomTransition {
     int transIdx = random() % 5;
     switch (transIdx) {
         case 0:
+//            NSLog(@"UIViewAnimationTransitionCurlUp");
             return UIViewAnimationTransitionCurlUp;
             break;
             
         case 1:
+//            NSLog(@"UIViewAnimationTransitionCurlDown");
             return UIViewAnimationTransitionCurlDown;
             break;
             
         case 2:
+//            NSLog(@"UIViewAnimationTransitionFlipFromLeft");
             return UIViewAnimationTransitionFlipFromLeft;
             break;
             
         case 3:
+//            NSLog(@"UIViewAnimationTransitionFlipFromRight");
             return UIViewAnimationTransitionFlipFromRight;
             break;
             
         case 4:
+//            NSLog(@"UIViewAnimationTransitionNone");
             return UIViewAnimationTransitionNone;
             break;
             
         default:
+//            NSLog(@"UIViewAnimationTransitionNone");
             return UIViewAnimationTransitionNone;
             break;
     }
@@ -334,28 +356,58 @@
     return (UIViewController *)self.delegate;
 }
 
+
+- (void)showLoading {
+    [self addSubview:loadingSpinner];
+    [loadingSpinner startAnimating];
+}
+
+- (void)hideLoading {
+    [loadingSpinner stopAnimating];
+    [loadingSpinner removeFromSuperview];
+}
+
 #pragma mark -
-#pragma mark TapItAdBrowserController methods
+#pragma mark TapItBrowserController methods
 
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
-    // Present ad browser.
-    TapItAdBrowserController *browserController = [[TapItAdBrowserController alloc] initWithURL:url delegate:self];
-    UIViewController *theDelegate = [self getDelegate];
-    if (theDelegate) {
-        [theDelegate presentModalViewController:browserController animated:YES];
+//    NSLog(@"Banner->openURLInFullscreenBrowser: %@", url);
+    [self stopTimer];
+    self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+    self.browserController.delegate = self;
+    [self.browserController loadUrl:url];
+    [self showLoading];
+}
+
+- (BOOL)browserControllerShouldLoad:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
+//    NSLog(@"************* browserControllerShouldLoad:willLeaveApp:%d, (%@)", willLeaveApp, theBrowserController.url);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionShouldBegin:willLeaveApplication:)]) {
+        [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:willLeaveApp];
     }
-    [browserController release];
+    return YES;
 }
 
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController {
-    [self dismissBrowserController:browserController animated:YES];
+- (void)browserControllerLoaded:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
+//    NSLog(@"************* browserControllerLoaded:willLeaveApp:");
+    [self hideLoading];
+    if (!willLeaveApp) {
+        [self.browserController showFullscreenBrowser];
+    }
 }
 
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController animated:(BOOL)isAnimated {
-    [browserController dismissModalViewControllerAnimated:YES];
-	[self.delegate tapitBannerAdViewActionDidFinish:self];
+- (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
+//    NSLog(@"************* browserControllerDismissed:");
+    [self hideLoading];
+    [self requestAnotherAd];
+    //TODO Implement me
+}
+
+- (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
+//    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
+    [self hideLoading];
     [self requestAnotherAd];
 }
+
 
 #pragma mark -
 #pragma mark geotargeting code
@@ -381,7 +433,7 @@
     self.adRequest = nil;
     self.adManager = nil;
     self.delegate = nil;
-    
+//    self.browserController = nil;
     [super dealloc];
 }
 @end

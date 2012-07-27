@@ -7,14 +7,16 @@
 //
 
 #import "TapItInterstitialAdViewController.h"
-#import "TapItAdBrowserController.h"
+#import "TapItBrowserController.h"
 #import "TapItAdView.h"
 
 @interface TapItInterstitialAdViewController ()
-
 @end
 
-@implementation TapItInterstitialAdViewController
+@implementation TapItInterstitialAdViewController {
+    UIActivityIndicatorView *loadingSpinner;
+}
+
 @synthesize animated, adView, tapitDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -22,6 +24,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        loadingSpinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        [loadingSpinner sizeToFit];
+        loadingSpinner.hidesWhenStopped = YES;
     }
     return self;
 }
@@ -37,6 +42,18 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+- (void)showLoading {
+    loadingSpinner.center = self.view.center;
+    [self.view addSubview:loadingSpinner];
+    [loadingSpinner startAnimating];
+}
+
+- (void)hideLoading {
+    [loadingSpinner stopAnimating];
+    [loadingSpinner removeFromSuperview];
+}
+
 
 
 #pragma mark -
@@ -83,41 +100,6 @@
     else {
         [self.adView setFrame:CGRectMake(x, y, w, h)];
     }
-}
-
-#pragma mark -
-#pragma mark TapItAdBrowserController methods
-
-- (void)openURLInFullscreenBrowser:(NSURL *)url {
-    BOOL shouldLoad = [self.tapitDelegate tapitInterstitialAdActionShouldBegin:nil willLeaveApplication:NO];
-    if (!shouldLoad) {
-        id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
-        [self dismissViewControllerAnimated:self.animated completion:^{
-            [tDel tapitInterstitialAdDidUnload:nil];
-            [tDel release];
-        }];
-        return;
-    }
-    
-    // Present ad browser.
-    TapItAdBrowserController *browserController = [[TapItAdBrowserController alloc] initWithURL:url delegate:self];
-    [self presentModalViewController:browserController animated:self.animated];
-    [browserController release];
-}
-
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController {
-    id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
-    [self dismissBrowserController:browserController animated:self.animated];
-    [tDel tapitInterstitialAdDidUnload:nil];
-    [tDel release];
-}
-
-- (void)dismissBrowserController:(TapItAdBrowserController *)browserController animated:(BOOL)isAnimated {
-    id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
-    [self.presentingViewController dismissViewControllerAnimated:self.animated completion:^{
-        [tDel tapitInterstitialAdActionDidFinish:nil];
-        [tDel release];
-    }];
 }
 
 @end

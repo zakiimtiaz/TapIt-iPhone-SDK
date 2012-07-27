@@ -8,18 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "TapItAdDelegates.h"
-#import "TapItAdBrowserController.h"
+#import "TapItBrowserController.h"
 
 @class TapItAdView;
 @class TapItAdBrowserController;
 
-@interface TapItInterstitialAdViewController : UINavigationController <UIActionSheetDelegate, UIWebViewDelegate, TapItAdBrowserControllerDelegate> {
-}
+@interface TapItInterstitialAdViewController : UINavigationController <UIActionSheetDelegate, UIWebViewDelegate> 
 
 @property (retain, nonatomic) TapItAdView *adView;
 @property (assign, nonatomic) id<TapItInterstitialAdDelegate> tapitDelegate;
 @property (assign, nonatomic) BOOL animated;
 
-- (void)openURLInFullscreenBrowser:(NSURL *)url;
+//- (void)openURLInFullscreenBrowser:(NSURL *)url;
+
+- (void)showLoading;
+- (void)hideLoading;
 
 @end
