@@ -3,7 +3,7 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 7/3/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import "TapItInterstitialAdViewController.h"

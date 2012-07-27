@@ -3,7 +3,7 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 7/2/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import "TapItLightboxAdViewController.h"
@@ -40,7 +40,7 @@
     [self.view addSubview:(UIView *)self.adView];
     self.view.backgroundColor = [UIColor blackColor];
     
-    UIImage *closeButtonBackground = [UIImage imageNamed:@"interstitial_close_button.png"];
+    UIImage *closeButtonBackground = [UIImage imageNamed:@"TapIt.bundle/interstitial_close_button.png"];
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.closeButton.frame = CGRectMake(0, 0, 44, 44);
     self.closeButton.imageView.contentMode = UIViewContentModeCenter;

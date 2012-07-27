@@ -3,7 +3,7 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 4/12/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 /**
@@ -29,7 +29,10 @@
 @end
 
 
-@implementation TapItAdManager
+@implementation TapItAdManager {
+    NSMutableData *connectionData;
+}
+
 /**
  * handles requesting and producing ad view blocks
  */
@@ -38,7 +41,9 @@
 
 - (TapItAdManager *)init {
     if (self = [super init]) {
-        self.params = [[[NSMutableDictionary alloc] initWithCapacity:10] autorelease];
+        NSMutableDictionary *cparms = [[NSMutableDictionary alloc] initWithCapacity:10];
+        self.params = cparms;
+        [cparms release];
     }
     
     return self;
@@ -180,7 +185,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self setCurrentConnection:nil];
-    [connectionData release];
+    [connectionData release]; connection = nil;
 
     NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }

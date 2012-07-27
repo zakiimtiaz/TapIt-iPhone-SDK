@@ -3,17 +3,18 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 7/20/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "TapItAdDelegates.h"
 
 @class TapItRequest;
 
-@interface TapItDialogAd : NSObject <UIActionSheetDelegate>
+@interface TapItAlertAd : NSObject <UIActionSheetDelegate>
 
-@property (assign, nonatomic) id<TapItDialogAdDelegate> delegate;
+@property (assign, nonatomic) id<TapItAlertAdDelegate> delegate;
 
 - (id)initWithRequest:(TapItRequest *)request;
 

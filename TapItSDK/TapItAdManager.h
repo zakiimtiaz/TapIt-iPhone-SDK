@@ -3,7 +3,7 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 4/12/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,9 +14,7 @@
 @class TapItRequest;
 
 
-@interface TapItAdManager : NSObject <TapItAdManagerDelegate> {
-    NSMutableData *connectionData;
-}
+@interface TapItAdManager : NSObject <TapItAdManagerDelegate>
 
 @property (assign, nonatomic) id<TapItAdManagerDelegate> delegate;
 @property (copy, nonatomic) NSDictionary *params;

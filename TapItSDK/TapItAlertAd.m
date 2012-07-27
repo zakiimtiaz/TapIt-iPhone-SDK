@@ -3,17 +3,17 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 7/20/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import "TapItPrivateConstants.h"
-#import "TapItDialogAd.h"
+#import "TapItAlertAd.h"
 #import "TapItAdManager.h"
 #import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
 
-@interface TapItDialogAd () <TapItAdManagerDelegate> {
+@interface TapItAlertAd () <TapItAdManagerDelegate> {
     BOOL isAlertType;
 }
 @property (retain, nonatomic) TapItRequest *adRequest;
@@ -27,7 +27,7 @@
 - (void)performAdAction;
 @end
 
-@implementation TapItDialogAd
+@implementation TapItAlertAd
 
 @synthesize delegate, adRequest, adManager, clickUrl, browserController;
 
@@ -90,8 +90,8 @@
         [self performAdAction];
     }
     else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitDialogWasDeclined:)]) {
-            [self.delegate tapitDialogWasDeclined:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAlertAdWasDeclined:)]) {
+            [self.delegate tapitAlertAdWasDeclined:self];
         }
     }
 }
@@ -102,8 +102,8 @@
         [self performAdAction];
     }
     else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitDialogWasDeclined:)]) {
-            [self.delegate tapitDialogWasDeclined:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAlertAdWasDeclined:)]) {
+            [self.delegate tapitAlertAdWasDeclined:self];
         }
     }
 }
@@ -138,21 +138,21 @@
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(tapitDialogAd:didFailWithError:)]) {
-        [self.delegate tapitDialogAd:self didFailWithError:error];
+    if ([self.delegate respondsToSelector:@selector(tapitAlertAd:didFailWithError:)]) {
+        [self.delegate tapitAlertAd:self didFailWithError:error];
     }
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
-    if ([self.delegate respondsToSelector:@selector(tapitDialogAdActionShouldBegin:willLeaveApplication:)]) {
-        return [self.delegate tapitDialogAdActionShouldBegin:self willLeaveApplication:willLeave];
+    if ([self.delegate respondsToSelector:@selector(tapitAlertAdActionShouldBegin:willLeaveApplication:)]) {
+        return [self.delegate tapitAlertAdActionShouldBegin:self willLeaveApplication:willLeave];
     }
     return YES;
 }
 
 - (void)adViewActionDidFinish:(TapItAdView *)adView {
-    if ([self.delegate respondsToSelector:@selector(tapitDialogAdActionDidFinish:)]) {
-        [self.delegate tapitDialogAdActionDidFinish:self];
+    if ([self.delegate respondsToSelector:@selector(tapitAlertAdActionDidFinish:)]) {
+        [self.delegate tapitAlertAdActionDidFinish:self];
     }    
 }
 
@@ -167,8 +167,8 @@
         [self displayActionSheetWithData:data];
     }
     
-    if ([self.delegate respondsToSelector:@selector(tapitDialogAdDidLoad:)]) {
-        [self.delegate tapitDialogAdDidLoad:self];
+    if ([self.delegate respondsToSelector:@selector(tapitAlertAdDidLoad:)]) {
+        [self.delegate tapitAlertAdDidLoad:self];
     }    
 }
 

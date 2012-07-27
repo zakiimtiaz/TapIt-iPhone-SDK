@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0 (Beta)
+Version 2.0.1 (Beta)
 
 Get the code:
 =============
@@ -27,6 +27,23 @@ QuartsCore.framework
 CoreLocation.framework
 CoreTelephony.framework
 ````
+
+Alert Ad Usage
+--------------
+Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken the app within the app store.
+
+````objective-c
+TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
+TapItAlergAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
+// present as a UIAlertView
+[tapitAlertAd showAsAlert];
+
+// -- OR --
+
+// alternatively present as a UIActionSheet
+//[tapitAlertAd showAsActionSheet];
+````
+
 
 Banner Usage
 ------------

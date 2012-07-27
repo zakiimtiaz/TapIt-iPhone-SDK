@@ -3,13 +3,13 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 4/13/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #ifndef TapIt_iOS_Sample_TapItConstants_h
 #define TapIt_iOS_Sample_TapItConstants_h
 
-#define TAPIT_VERSION @"2.0.0"
+#define TAPIT_VERSION @"2.0.1"
 
 enum {
     TapItBannerAdType       = 0x01,

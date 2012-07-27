@@ -3,10 +3,12 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 7/26/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "TapItAdDelegates.h"
 
 @protocol TapItBrowserControllerDelegate;
 
@@ -19,13 +21,4 @@
 - (void)showFullscreenBrowser;
 - (void)showFullscreenBrowserAnimated:(BOOL)animated;
 
-@end
-
-
-@protocol TapItBrowserControllerDelegate <NSObject>
-@required
-- (void)browserControllerFailedToLoad:(TapItBrowserController *)browserController withError:(NSError *)error;
-- (BOOL)browserControllerShouldLoad:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
-- (void)browserControllerLoaded:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
-- (void)browserControllerDismissed:(TapItBrowserController *)browserController;
 @end

@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "AlertAdDemoController.h"
 #import "TapIt.h"
-#import "TapItDialogAd.h"
+#import "TapItAlertAd.h"
 
 #define ZONE_ID @"3644"
 
@@ -37,7 +37,7 @@
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
     [request updateLocation:myAppDelegate.locationManager.location];
-    tapitDialogAd = [[TapItDialogAd alloc] initWithRequest:request];
+    tapitDialogAd = [[TapItAlertAd alloc] initWithRequest:request];
     tapitDialogAd.delegate = self;
     UIButton *button = (UIButton *)sender;
     if (button.tag == 1) {
@@ -46,25 +46,26 @@
     else {
         [tapitDialogAd showAsAlert];
     }
+//    [tapitDialogAd release];
 }
 
-- (void)tapitDialogAd:(TapItDialogAd *)dialogAd didFailWithError:(NSError *)error {
+- (void)tapitAlertAd:(TapItAlertAd *)dialogAd didFailWithError:(NSError *)error {
     NSLog(@"Error showing dialog ad: %@", error);
 }
 
-- (void)tapitDialogWasDeclined:(TapItDialogAd *)dialogAd {
+- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)dialogAd {
     NSLog(@"Dialog ad was DECLINED!");
 }
 
-- (void)tapitDialogAdDidLoad:(TapItDialogAd *)dialogAd {
+- (void)tapitAlertAdDidLoad:(TapItAlertAd *)dialogAd {
     NSLog(@"Dialog ad loaded!");
 }
 
-- (BOOL)tapitDialogAdActionShouldBegin:(TapItDialogAd *)dialogAd willLeaveApplication:(BOOL)willLeave {
+- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)dialogAd willLeaveApplication:(BOOL)willLeave {
     return YES;
 }
 
-- (void)tapitDialogAdActionDidFinish:(TapItDialogAd *)dialogAd {
+- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)dialogAd {
     NSLog(@"Dialog ad Action finished!");
 }
 

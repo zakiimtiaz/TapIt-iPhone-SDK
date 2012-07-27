@@ -3,13 +3,12 @@
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 4/11/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "BannerAdController.h"
 #import "TapIt.h"
-#import "TapItDialogAd.h"
 
 #define ZONE_ID @"3644"
 

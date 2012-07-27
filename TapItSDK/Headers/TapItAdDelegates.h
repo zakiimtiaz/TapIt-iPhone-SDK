@@ -1,6 +1,6 @@
 //
-//  TapItAdMobileViewDelegate.h
-//  TapItAdMobile
+//  TapItAdDelegates.h
+//  TapIt iOS SDK
 //
 //  Copyright 2012 TapIt! All rights reserved.
 //
@@ -50,7 +50,6 @@
  interface to show the advertising action. Although your application continues to run normally, your implementation of this method should disable 
  activities that require user interaction while the action is executing. For example, a game might pause its game play until the user finishes 
  watching the advertisement.
- 
  */
 - (BOOL)tapitBannerAdViewActionShouldBegin:(TapItBannerAdView *)bannerView willLeaveApplication:(BOOL)willLeave;
 
@@ -62,6 +61,7 @@
 - (void)tapitBannerAdViewActionDidFinish:(TapItBannerAdView *)bannerView;
 
 @end
+
 
 
 
@@ -131,7 +131,6 @@
  For example, a game might pause its game play and turn off sound effects until the user finishes interacting with the advertisement. Further, while the 
  action is running, your application should also be prepared to respond to low-memory warnings by disposing of objects it can easily recreate after the 
  advertisement completes its action.
- 
  */
 - (BOOL)tapitInterstitialAdActionShouldBegin:(TapItInterstitialAd *)interstitialAd willLeaveApplication:(BOOL)willLeave;
 
@@ -145,34 +144,41 @@
 @end
 
 
+@class TapItAlertAd;
 
-@class TapItDialogAd;
-
-@protocol TapItDialogAdDelegate <NSObject>
-@required
-
-- (void)tapitDialogAd:(TapItDialogAd *)dialogAd didFailWithError:(NSError *)error;
-
+@protocol TapItAlertAdDelegate <NSObject>
 @optional
 
 /**
- Called after a dialog ad is declined
+ Called when an alert ad fails to load a new advertisement. (required)
  
- @param dialogAd The dialog ad that was declined.
+ @param alertAd The alert ad that received the error.
+ @param error The error object that describes the problem.
+ 
+ Although the error message informs your application about why the error occurred, normally your application does not need to display the error to the user.
+ 
+ When an error occurs, your delegate should release the ad object.
  */
-- (void)tapitDialogWasDeclined:(TapItDialogAd *)dialogAd;
+- (void)tapitAlertAd:(TapItAlertAd *)alertAd didFailWithError:(NSError *)error;
 
 /**
- Called after the advertisement loads its content.
+ Called after a alert ad is declined
  
- @param dialogAd The ad object that loaded a new advertisement.
+ @param alertAd The alert ad that was declined.
  */
-- (void)tapitDialogAdDidLoad:(TapItDialogAd *)dialogAd;
+- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)alertAd;
 
 /**
- Called before a dialog executes an action.
+ Called after the alert ad is displayed
  
- @param dialogAd The dialog ad that the user tapped.
+ @param alertAd The ad object that loaded a new advertisement.
+ */
+- (void)tapitAlertAdDidLoad:(TapItAlertAd *)alertAd;
+
+/**
+ Called before a alert ad executes an action.
+ 
+ @param alertAd The alert ad that the user tapped.
  @param willLeave YES if another application will be launched to execute the action; NO if the action is going to be executed inside your appliaction.
  
  @return Your delegate returns YES if the action should execute; NO to prevent the banner action from executing.
@@ -189,15 +195,27 @@
  For example, a game might pause its game play and turn off sound effects until the user finishes interacting with the advertisement. Further, while the 
  action is running, your application should also be prepared to respond to low-memory warnings by disposing of objects it can easily recreate after the 
  advertisement completes its action.
- 
  */
-- (BOOL)tapitDialogAdActionShouldBegin:(TapItDialogAd *)dialogAd willLeaveApplication:(BOOL)willLeave;
+- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)alertAd willLeaveApplication:(BOOL)willLeave;
 
 /**
- Called after a banner view finishes executing an action that covered your application's user interface.
+ Called after a alert ad finishes executing an action that covered your application's user interface.
  
- @param interstitialAd The full-screen ad that finished executing an action.
+ @param alertAd The alert ad that finished executing an action.
  */
-- (void)tapitDialogAdActionDidFinish:(TapItDialogAd *)dialogAd;
+- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)alertAd;
 
+@end
+
+
+
+
+@class TapItBrowserController;
+
+@protocol TapItBrowserControllerDelegate <NSObject>
+@required
+- (void)browserControllerFailedToLoad:(TapItBrowserController *)browserController withError:(NSError *)error;
+- (BOOL)browserControllerShouldLoad:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
+- (void)browserControllerLoaded:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
+- (void)browserControllerDismissed:(TapItBrowserController *)browserController;
 @end
