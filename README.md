@@ -3,10 +3,12 @@ TapIt iOS SDK
 
 Version 2.0.1 (Beta)
 
+This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
+
 Get the code:
 =============
 
-This project includes JSONKit as a git submodule.  Make sure you pull down submodules when cloning:
+This project includes JSONKit and Reachability as a git submodules.  Make sure you pull down submodules when cloning:
 
 ````
 git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
@@ -44,6 +46,8 @@ TapItAlergAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
 //[tapitAlertAd showAsActionSheet];
 ````
 
+For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AlertAdDemoController.m
+
 
 Banner Usage
 ------------
@@ -70,7 +74,7 @@ self.tapitAd.delegate = self; // notify me of the banner ad's state changes
 [self.tapitAd cancelAds];
 ````
 
-For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/FirstViewController.m
+For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/BannerAdController.m
 
 
 Listen for location updates
@@ -122,7 +126,7 @@ TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
     [self.interstitialAd presentFromViewController:self];
 }
 ````
-For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/SecondViewController.m
+For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/InterstitialController.m
 
 Include in paged navigation
     
@@ -144,4 +148,6 @@ if( self.interstitialAd.isLoaded ) {
 }
 ````
 
-For details on the delegate methods called by the TapIt! iOS SDK, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapItSDK/Headers/TapItAdDelegates.h
+Delegate Callbacks
+------------------
+TapIt! ad units follow the delegate pattern to notify your app of state changes.  For details on the delegate methods called by the TapIt! iOS SDK, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapItSDK/Headers/TapItAdDelegates.h
