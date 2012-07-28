@@ -42,7 +42,7 @@
 }
 
 #pragma mark -
-#pragma mark DialogAd Methods
+#pragma mark AlertAd Methods
 
 - (void)showAsAlert {
     isAlertType = YES;
@@ -109,7 +109,7 @@
 }
 
 - (void)performRequest {
-    [self.adRequest setCustomParameter:TAPIT_AD_TYPE_DIALOG forKey:@"adtype"];
+    [self.adRequest setCustomParameter:TAPIT_AD_TYPE_ALERT forKey:@"adtype"];
     [self.adManager fireAdRequest:self.adRequest];
 }
 

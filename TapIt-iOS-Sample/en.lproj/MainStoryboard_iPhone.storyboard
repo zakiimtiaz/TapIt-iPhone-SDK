@@ -67,7 +67,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showDialogAd:" destination="XET-oZ-vCv" eventType="touchUpInside" id="O2g-lc-VuH"/>
+                                    <action selector="showAlertAd:" destination="XET-oZ-vCv" eventType="touchUpInside" id="I9W-He-Nlh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LOK-yb-962">
@@ -82,7 +82,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showDialogAd:" destination="XET-oZ-vCv" eventType="touchUpInside" id="2kf-fx-W1R"/>
+                                    <action selector="showAlertAd:" destination="XET-oZ-vCv" eventType="touchUpInside" id="9bK-3a-ZXW"/>
                                 </connections>
                             </button>
                         </subviews>

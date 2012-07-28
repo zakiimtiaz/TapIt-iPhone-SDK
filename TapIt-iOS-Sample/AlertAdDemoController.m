@@ -30,51 +30,51 @@
 }
 
 #pragma mark -
-#pragma mark TapItDialogAd Example code
+#pragma mark TapItAlertAd Example code
 
-- (IBAction)showDialogAd:(id)sender {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Dialog ads only show in test mode for now...
+- (IBAction)showAlertAd:(id)sender {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Alert ads only show in test mode for now...
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
     [request updateLocation:myAppDelegate.locationManager.location];
-    tapitDialogAd = [[TapItAlertAd alloc] initWithRequest:request];
-    tapitDialogAd.delegate = self;
+    tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
+    tapitAlertAd.delegate = self;
     UIButton *button = (UIButton *)sender;
     if (button.tag == 1) {
-        [tapitDialogAd showAsActionSheet];
+        [tapitAlertAd showAsActionSheet];
     }
     else {
-        [tapitDialogAd showAsAlert];
+        [tapitAlertAd showAsAlert];
     }
-//    [tapitDialogAd release];
+//    [tapitAlertAd release];
 }
 
-- (void)tapitAlertAd:(TapItAlertAd *)dialogAd didFailWithError:(NSError *)error {
-    NSLog(@"Error showing dialog ad: %@", error);
+- (void)tapitAlertAd:(TapItAlertAd *)alertAd didFailWithError:(NSError *)error {
+    NSLog(@"Error showing alert ad: %@", error);
 }
 
-- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)dialogAd {
-    NSLog(@"Dialog ad was DECLINED!");
+- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)alertAd {
+    NSLog(@"Alert ad was DECLINED!");
 }
 
-- (void)tapitAlertAdDidLoad:(TapItAlertAd *)dialogAd {
-    NSLog(@"Dialog ad loaded!");
+- (void)tapitAlertAdDidLoad:(TapItAlertAd *)alertAd {
+    NSLog(@"Alert ad loaded!");
 }
 
-- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)dialogAd willLeaveApplication:(BOOL)willLeave {
+- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)alertAd willLeaveApplication:(BOOL)willLeave {
     return YES;
 }
 
-- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)dialogAd {
-    NSLog(@"Dialog ad Action finished!");
+- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)alertAd {
+    NSLog(@"Alert ad Action finished!");
 }
 
 
 #pragma mark -
 
 - (void)dealloc {
-    if (tapitDialogAd) {
-        [tapitDialogAd release]; tapitDialogAd = nil;
+    if (tapitAlertAd) {
+        [tapitAlertAd release]; tapitAlertAd = nil;
     }
     [super dealloc];
 }

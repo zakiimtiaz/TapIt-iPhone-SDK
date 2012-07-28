@@ -133,7 +133,7 @@
         adView = [[TapItAdView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         adView.tapitDelegate = self;
         [adView loadData:deserializedData];
-    } else if ([adType isEqualToString:@"dialog"]) {
+    } else if ([adType isEqualToString:@"alert"]) {
         [self.delegate didReceiveData:deserializedData];
 //    } else if ([adType isEqualToString:@"offerwall"]) {
 //        //TODO: implement me!

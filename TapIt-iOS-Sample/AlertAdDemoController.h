@@ -13,11 +13,11 @@
 @class TapItAlertAd;
 
 @interface AlertAdDemoController : UIViewController <TapItAlertAdDelegate> {
-    TapItAlertAd *tapitDialogAd;
+    TapItAlertAd *tapitAlertAd;
 }
 
 //@property (retain, nonatomic) CLLocationManager *locationManager;
 
--(IBAction)showDialogAd:(id)sender;
+-(IBAction)showAlertAd:(id)sender;
 
 @end
