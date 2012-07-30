@@ -22,7 +22,7 @@ git submodule update
 
 Usage:
 ======
-Copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.  The following frameworks are required:
+The TapIt! SDK's are distributed as source to minimise integration difficulties, and to increase transparency.  To install, simply copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.  The following frameworks are required:
 ````
 SystemConfiguration.framework
 QuartsCore.framework
