@@ -35,7 +35,8 @@ Alert Ad Usage
 Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken the app within the app store.
 
 ````objective-c
-TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
+NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Alert ads only show in test mode during the beta...
+TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID" andCustomParameters:params];
 TapItAlergAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
 // present as a UIAlertView
 [tapitAlertAd showAsAlert];
