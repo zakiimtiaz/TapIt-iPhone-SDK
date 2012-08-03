@@ -11,7 +11,9 @@
 #import "TapIt.h"
 #import "TapItAlertAd.h"
 
-#define ZONE_ID @"3644"
+// This is the zone id for the AlertAd Example
+// go to http://ads.tapit.com/ to get your's
+#define ZONE_ID @"7980"
 
 
 @interface AlertAdDemoController ()
@@ -33,7 +35,9 @@
 #pragma mark TapItAlertAd Example code
 
 - (IBAction)showAlertAd:(id)sender {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Alert ads only show in test mode for now...
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+//                            @"test", @"mode", // enable test mode to test alert ads in your app
+                            nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
     [request updateLocation:myAppDelegate.locationManager.location];

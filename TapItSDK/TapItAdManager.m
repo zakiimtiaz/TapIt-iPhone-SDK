@@ -134,7 +134,9 @@
         adView.tapitDelegate = self;
         [adView loadData:deserializedData];
     } else if ([adType isEqualToString:@"alert"]) {
-        [self.delegate didReceiveData:deserializedData];
+        if ([self.delegate respondsToSelector:@selector(didReceiveData:)]) {
+            [self.delegate didReceiveData:deserializedData];
+        }
 //    } else if ([adType isEqualToString:@"offerwall"]) {
 //        //TODO: implement me!
 //        adView = nil;

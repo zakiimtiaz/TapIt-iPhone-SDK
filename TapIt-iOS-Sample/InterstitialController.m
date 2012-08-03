@@ -11,8 +11,9 @@
 #import "TapIt.h"
 
 
-//#define ZONE_ID @"3644"
-#define ZONE_ID @"7216"
+// This is the zone id for the Interstitial Example
+// go to http://ads.tapit.com/ to get your's
+#define ZONE_ID @"7271"
 
 @interface InterstitialController ()
 
@@ -62,7 +63,7 @@
     self.interstitialAd.delegate = self;
     self.interstitialAd.animated = YES;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:  
-//                            @"test", @"mode", 
+//                            @"test", @"mode", // enable test mode to test banner ads in your app
                             nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);

@@ -10,7 +10,9 @@
 #import "BannerAdController.h"
 #import "TapIt.h"
 
-#define ZONE_ID @"3644"
+// This is the zone id for the BannerAd Example
+// go to http://ads.tapit.com/ to get your's
+#define ZONE_ID @"7268"
 
 
 @interface BannerAdController ()
@@ -25,8 +27,7 @@
     
     tapitAd.delegate = self;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:  
-                                @"test", @"mode", 
-//                                @"5", TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL,
+//                                @"test", @"mode", // enable test mode to test banner ads in your app
                                 nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
