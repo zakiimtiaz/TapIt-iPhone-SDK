@@ -3,7 +3,7 @@ TapIt iOS SDK
 
 Version 2.0 (Beta)
 
-For a complete sample cocos2d application, see https://github.com/tapit/...TODO_NEED_FINAL_URL...
+For a complete sample cocos2d application, see https://github.com/tapit/TapIt-iPhone-SDK/tree/master/cocos2d/TapIt-iOS-cocos2d-2x-Sample
 
 Usage:
 ======
