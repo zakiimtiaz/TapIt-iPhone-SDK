@@ -5,6 +5,9 @@ Version 2.0.1 (Beta)
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
+***Cocos2d users go here: https://github.com/tapit/TapIt-iPhone-SDK/tree/master/cocos2d***
+
+
 Get the code:
 =============
 
