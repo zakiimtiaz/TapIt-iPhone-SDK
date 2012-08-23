@@ -111,7 +111,6 @@
 
 - (void)dealloc {
     [tapitRequest release], tapitRequest = nil;
-    
     [super dealloc];
 }
 

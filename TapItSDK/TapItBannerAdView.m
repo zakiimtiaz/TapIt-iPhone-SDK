@@ -41,7 +41,7 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController;
+@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController, presentingController;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
@@ -375,6 +375,9 @@
     [self stopTimer];
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
     self.browserController.delegate = self;
+    if(self.presentingController) {
+        self.browserController.presentingController = self.presentingController;
+    }
     [self.browserController loadUrl:url];
     [self showLoading];
 }

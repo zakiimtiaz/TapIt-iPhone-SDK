@@ -19,7 +19,7 @@
 @property (assign, nonatomic) BOOL animated;
 @property (readonly) BOOL isServingAds;
 @property (assign) TapItBannerHideDirection hideDirection;
-
+@property (assign, nonatomic) UIViewController *presentingController;
 @property NSUInteger locationPrecision;
 
 - (BOOL)startServingAdsForRequest:(TapItRequest *)request;

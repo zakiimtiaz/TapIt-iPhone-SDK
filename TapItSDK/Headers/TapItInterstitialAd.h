@@ -21,6 +21,7 @@
 //@property (assign, nonatomic) TapItInterstitialControlType controlType;
 @property (assign, nonatomic) TapItAdType allowedAdTypes;
 @property (readonly) BOOL loaded;
+@property (assign, nonatomic) UIViewController *presentingController;
 
 - (BOOL)loadInterstitialForRequest:(TapItRequest *)request;
 

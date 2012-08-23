@@ -25,7 +25,7 @@
     BOOL prevStatusBarHiddenState;
 }
 
-@synthesize delegate, url;
+@synthesize delegate, url, presentingController;
 
 static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 + (void)initialize 
@@ -71,9 +71,15 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
         prevStatusBarHiddenState = app.statusBarHidden;
         [app setStatusBarHidden:YES];
 
-        UIWindow* window = [UIApplication sharedApplication].keyWindow;
-        presentingController = [window.rootViewController retain];
-        [presentingController presentViewController:self animated:animated completion:nil];
+        if(!self.presentingController) {
+            UIWindow* window = [UIApplication sharedApplication].keyWindow;
+            self.presentingController = [window.rootViewController retain];
+        }
+        
+        //        [container setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
+        
+        
+        [self.presentingController presentViewController:self animated:animated completion:nil];
         _isShowing = YES;
     }
 }
@@ -86,8 +92,8 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
     UIApplication *app = [UIApplication sharedApplication];
     [app setStatusBarHidden:prevStatusBarHiddenState];
 
-    [presentingController dismissViewControllerAnimated:animated completion:completion];
-    [presentingController release]; presentingController = nil;
+    [self.presentingController dismissViewControllerAnimated:animated completion:completion];
+    [self.presentingController release]; self.presentingController = nil;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
         [self.delegate browserControllerDismissed:self];

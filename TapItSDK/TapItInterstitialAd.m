@@ -36,7 +36,7 @@
     BOOL prevStatusBarHiddenState;
 }
 
-@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, adController, browserController;
+@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, adController, browserController, presentingController;
 //@synthesize controlType;
 
 - (id)init {
@@ -80,6 +80,8 @@
     self.adController.tapitDelegate = self;
 //    self.adView.delegate = adController; //TODO Why did I do this?
     
+    self.presentingController = controller;
+
     [controller presentModalViewController:self.adController animated:YES];
     [self.adController release];
 }
@@ -217,6 +219,7 @@
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
 //    NSLog(@"Banner->openURLInFullscreenBrowser: %@", url);
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+    self.browserController.presentingController = self.presentingController;
     self.browserController.delegate = self;
     [self.browserController loadUrl:url];
     [self.adController showLoading];

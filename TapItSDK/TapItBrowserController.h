@@ -16,6 +16,7 @@
 
 @property (assign, nonatomic) id<TapItBrowserControllerDelegate> delegate;
 @property (readonly) NSURL *url;
+@property (assign, nonatomic) UIViewController *presentingController;
 
 - (void)loadUrl:(NSURL *)url;
 - (void)showFullscreenBrowser;

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E2620" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
         <!--Banner Ad Controller - Banners-->
@@ -77,6 +76,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="showAlertAd:" destination="wt7-t0-B2c" eventType="touchUpInside" id="qP5-xC-WB1"/>
                                     <action selector="showDialogAd:" destination="zmN-hb-C0i" eventType="touchUpInside" id="HPc-uS-a4g"/>
                                 </connections>
                             </button>
@@ -92,6 +92,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="showAlertAd:" destination="wt7-t0-B2c" eventType="touchUpInside" id="q0s-Qm-ydP"/>
                                     <action selector="showDialogAd:" destination="10" eventType="touchUpInside" id="dI2-HQ-EG5"/>
                                 </connections>
                             </button>
@@ -196,7 +197,7 @@
         <class className="AlertAdDemoController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertAdDemoController.h"/>
             <relationships>
-                <relationship kind="action" name="showDialogAd:"/>
+                <relationship kind="action" name="showAlertAd:"/>
             </relationships>
         </class>
         <class className="BannerAdController" superclassName="UIViewController">
