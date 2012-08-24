@@ -35,19 +35,12 @@ CoreTelephony.framework
 
 AdPrompt Usage
 --------------
-Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken the app within the app store.
+Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken to app store.
 
 ````objective-c
-NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil]; // Alert ads only show in test mode during the beta...
-TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID" andCustomParameters:params];
-TapItAlergAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
-// present as a UIAlertView
+TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
+TapItAlertAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
 [tapitAlertAd showAsAlert];
-
-// -- OR --
-
-// alternatively present as a UIActionSheet
-//[tapitAlertAd showAsActionSheet];
 ````
 
 For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AlertAdDemoController.m
