@@ -33,7 +33,7 @@ CoreLocation.framework
 CoreTelephony.framework
 ````
 
-Alert Ad Usage
+AdPrompt Usage
 --------------
 Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken the app within the app store.
 
