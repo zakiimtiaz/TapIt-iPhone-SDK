@@ -1,18 +1,36 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.1 (Beta)
+Version 2.0.1
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
 ***Cocos2d users go here: https://github.com/tapit/TapIt-iPhone-SDK/tree/master/cocos2d***
 
 
-Get the code:
-=============
+Usage:
+------
+To install, unzip the sdk archive(https://github.com/tapit/TapIt-iPhone-SDK/raw/master/dist/TapItSDK.zip) into your Xcode project.
+
+Add the following frameworks are required:
+````
+SystemConfiguration.framework
+QuartsCore.framework
+CoreLocation.framework
+CoreTelephony.framework
+````
+
+Add the ```-ObjC``` flag to ```Other Linker Flags```:
+![Other Linker Flags](https://raw.github.com/tapit/TapIt-iPhone-SDK/master/Docs/assets/ios-linker-flags.png)
+
+You're all set!  Scroll down for implementation instructions.
+
+
+Or, get the code:
+=================
+You can also compile the TapIt! SDK directly into your app.  Simply clone this repository(see intructions below), then copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.
 
 This project includes JSONKit and Reachability as a git submodules.  Make sure you pull down submodules when cloning:
-
 ````
 git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
 ````
@@ -21,16 +39,6 @@ git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
 git clone https://github.com/tapit/TapIt-iPhone-SDK.git
 git submodule init
 git submodule update
-````
-
-Usage:
-======
-The TapIt! SDK's are distributed as source to minimise integration difficulties, and to increase transparency.  To install, simply copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.  The following frameworks are required:
-````
-SystemConfiguration.framework
-QuartsCore.framework
-CoreLocation.framework
-CoreTelephony.framework
 ````
 
 AdPrompt Usage
