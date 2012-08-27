@@ -24,6 +24,7 @@
 
 - (BOOL)startServingAdsForRequest:(TapItRequest *)request;
 - (void)updateLocation:(CLLocation *)location;
+- (void)hide;
 - (void)cancelAds;
 
 - (void)pause;

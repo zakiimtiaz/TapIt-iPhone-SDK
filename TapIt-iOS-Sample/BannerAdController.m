@@ -11,36 +11,78 @@
 #import "TapIt.h"
 
 // This is the zone id for the BannerAd Example
-// go to http://ads.tapit.com/ to get your's
-#define ZONE_ID @"7268"
+// go to http://ads.tapit.com/ to get one for your app.
+#define ZONE_ID @"7268" // for example use only, don't use this zone in your app!
 
-
-@interface BannerAdController ()
-
-@end
 
 @implementation BannerAdController
+
+@synthesize tapitAd;
+
+/**
+ * this is the easiest way to add banner ads to your app.
+ */
+- (void)initBannerSimple {
+    // init banner and add to your view
+    self.tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    [self.view addSubview:self.tapitAd];
+    
+    // kick off banner rotation!
+    [self.tapitAd startServingAdsForRequest:[TapItRequest requestWithAdZone:ZONE_ID]];
+}
+
+/**
+ * a more advanced example that shows how to:
+ * - enable ad lifecycle notifications(see TapItBannerAdViewDelegate methods section below)
+ * - turn on test mode
+ * - enable gps based geo-targeting
+ */
+- (void)initBannerAdvanced {
+    // init banner and add to your view
+    self.tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    [self.view addSubview:self.tapitAd];
+    
+    // get notifiactions of ad lifecycle events (will load, did load, error, etc...)
+    self.tapitAd.delegate = self;
+    
+    // set the parent controller for modal browser that loads when user taps ad
+//    self.tapitAd.presentingController = self; // only needed if tapping banner doesn't load modal browser properly
+    
+    // customize the request...
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+//                            @"test", @"mode", // enable test mode to test banner ads in your app
+                            nil];
+    TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
+    
+    // this is how you enable location updates... NOTE: only enable if your app has a good reason to know the users location (apple will reject your app if not)
+    AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
+    [request updateLocation:myAppDelegate.locationManager.location];
+    
+    // kick off banner rotation!
+    [self.tapitAd startServingAdsForRequest:request];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // easiest way to get banners displaying in your app...
+    [self initBannerSimple];
     
-    tapitAd.delegate = self;
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:  
-//                                @"test", @"mode", // enable test mode to test banner ads in your app
-                                nil];
-    TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
-    AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
-    [request updateLocation:myAppDelegate.locationManager.location];
-    [tapitAd startServingAdsForRequest:request];
+//    // - OR - the more advanced way... (use simple or advanced, but not both)
+//    [self initBannerAdvanced];
+}
+
+- (IBAction)hideBanner:(id)sender {
+    [self.tapitAd hide];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [tapitAd resume];
+    [self.tapitAd resume];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [tapitAd pause];
+    [self.tapitAd pause];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -54,7 +96,8 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [tapitAd repositionToInterfaceOrientation:toInterfaceOrientation];
+    // notify banner of orientation changes
+    [self.tapitAd repositionToInterfaceOrientation:toInterfaceOrientation];
 }
 
 #pragma mark -
@@ -91,9 +134,7 @@
 #pragma mark -
 
 - (void)dealloc {
-    if (tapitAd) {
-        [tapitAd release]; tapitAd = nil;
-    }
+    self.tapitAd = nil;
     [super dealloc];
 }
 

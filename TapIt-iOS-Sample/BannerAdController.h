@@ -12,8 +12,8 @@
 
 @class TapItBannerAdView;
 
-@interface BannerAdController : UIViewController <TapItBannerAdViewDelegate> {
-    IBOutlet TapItBannerAdView *tapitAd;
-}
+@interface BannerAdController : UIViewController <TapItBannerAdViewDelegate>
+
+@property (retain, nonatomic) TapItBannerAdView *tapitAd;
 
 @end

@@ -56,7 +56,8 @@
     [self setDefaultParams];
     NSString *urlStr = [NSString stringWithFormat:@"%@?%@",
                         TAPIT_AD_SERVER_URL,
-                        [self.parameters queryStringWithAllowedKeys:[TapItRequest allowedServerVariables]]
+                        [QueryStringBuilder queryStringFromDictionary:self.parameters withAllowedKeys:[TapItRequest allowedServerVariables]]
+//                        [self.parameters queryStringWithAllowedKeys:[TapItRequest allowedServerVariables]]
                         ];
 #ifdef DEBUG
     NSLog(@"TapIt Request: %@", urlStr);

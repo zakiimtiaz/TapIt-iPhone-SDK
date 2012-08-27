@@ -53,10 +53,6 @@
 #pragma mark -
 #pragma mark Button handling
 
-- (IBAction)showInterstitial:(id)sender {
-    [self.interstitialAd presentFromViewController:self];
-}
-
 - (IBAction)loadInterstitial:(id)sender {
     [self updateUIWithState:StateLoading];
     self.interstitialAd = [[[TapItInterstitialAd alloc] init] autorelease];
@@ -77,6 +73,10 @@
     [activityIndicator setHidden:(state != StateLoading)];
 }
 
+- (IBAction)showInterstitial:(id)sender {
+    [self.interstitialAd presentFromViewController:self];
+}
+
 #pragma mark -
 #pragma mark TapItInterstitialAdDelegate methods
 
@@ -87,6 +87,8 @@
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
     NSLog(@"Ad did unload");
+    [self updateUIWithState:StateNone];
+    self.interstitialAd = nil; // don't reuse interstitial ad!
 }
 
 - (void)tapitInterstitialAdWillLoad:(TapItInterstitialAd *)interstitialAd {

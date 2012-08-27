@@ -142,7 +142,7 @@
     return hiddenFrame;
 }
 
-- (IBAction)hide {
+- (void)hide {
     if (!self.adView) {
         // no ad, hide the container
         self.alpha = 0.0;
@@ -240,17 +240,18 @@
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
+    BOOL shouldLoad = YES;
     if ([self.delegate respondsToSelector:@selector(tapitBannerAdViewActionShouldBegin:willLeaveApplication:)]) {
-        BOOL shouldLoad = [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:willLeave];
-        if (shouldLoad) {
-            [self openURLInFullscreenBrowser:actionUrl];
-            return NO; // pass off control to the full screen browser
-        }
-        return shouldLoad;
+        // app has something to say about allowing tap to proceed...
+        shouldLoad = [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:willLeave];
     }
-    else {
-        return YES;
+    
+    if (shouldLoad) {
+        [self openURLInFullscreenBrowser:actionUrl];
     }
+    
+    // we've handled the action, don't allow the button press to propagate...
+    return NO;
 }
 
 - (void)adViewActionDidFinish:(TapItAdView *)adView {

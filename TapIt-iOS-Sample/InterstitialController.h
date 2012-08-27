@@ -11,6 +11,7 @@
 
 
 enum {
+    StateNone       = 0,
     StateLoading    = 1,
     StateError      = 2,
     StateReady      = 3,
