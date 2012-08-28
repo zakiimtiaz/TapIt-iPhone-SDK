@@ -401,6 +401,9 @@
 
 - (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
 //    NSLog(@"************* browserControllerDismissed:");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+        [self.delegate tapitBannerAdViewActionDidFinish:self];
+    }
     [self hideLoading];
     [self requestAnotherAd];
     //TODO Implement me
