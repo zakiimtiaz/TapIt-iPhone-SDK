@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItInterstitialAd.m"
-         timestampString = "365041782.561815"
+         timestampString = "367392212.638751"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
          landmarkName = "-adActionShouldBegin:willLeaveApplication:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItInterstitialAd.m"
-         timestampString = "365041782.561815"
+         timestampString = "367392212.638751"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "235"
-         endingLineNumber = "235"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
          landmarkName = "-browserControllerLoaded:willLeaveApp:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItInterstitialAd.m"
-         timestampString = "365041782.561815"
+         timestampString = "367392212.638751"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-tapitInterstitialAdDidUnload:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -53,19 +53,6 @@
          startingLineNumber = "161"
          endingLineNumber = "161"
          landmarkName = "-didReceiveData:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "TapItSDK/TapItAdManager.m"
-         timestampString = "365099978.058143"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-processServerResponse"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
