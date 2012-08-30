@@ -68,12 +68,7 @@
     prevStatusBarHiddenState = app.statusBarHidden;
     [app setStatusBarHidden:YES];
 
-//    if (self.controlType == TapItActionSheetControlType) {
-//        adController = (TapItInterstitialAdViewController *)[[TapItActionSheetAdViewController alloc] init];
-//    }
-//    else {
-        self.adController = [[TapItLightboxAdViewController alloc] init];
-//    }
+    adController = [[TapItLightboxAdViewController alloc] init];
     self.adController.adView = self.adView;
     self.adController.animated = self.animated;
 //    adController.tapitDelegate = self.delegate;
@@ -83,7 +78,6 @@
     self.presentingController = controller;
 
     [controller presentModalViewController:self.adController animated:YES];
-    [self.adController release];
 }
 
 #pragma mark -

@@ -84,7 +84,6 @@
 
 - (void)presentInterstitialFromRootViewController:(UIViewController *)rootViewController {
     [tapitInterstitial presentFromViewController:rootViewController];
-    [connector adapterWillPresentInterstitial:self];
 }
 
 - (void)dealloc {

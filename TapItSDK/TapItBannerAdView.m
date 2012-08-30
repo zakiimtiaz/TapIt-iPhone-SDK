@@ -261,6 +261,7 @@
 }
 
 - (void)requestAnotherAd {
+    [self cancelAds];
     [self startServingAdsForRequest:self.adRequest];
 }
 
@@ -406,7 +407,6 @@
     }
     [self hideLoading];
     [self requestAnotherAd];
-    //TODO Implement me
 }
 
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {

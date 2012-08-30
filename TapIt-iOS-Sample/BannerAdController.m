@@ -24,9 +24,9 @@
  */
 - (void)initBannerSimple {
     // init banner and add to your view
-    self.tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     [self.view addSubview:self.tapitAd];
-    
+
     // kick off banner rotation!
     [self.tapitAd startServingAdsForRequest:[TapItRequest requestWithAdZone:ZONE_ID]];
 }
@@ -39,7 +39,7 @@
  */
 - (void)initBannerAdvanced {
     // init banner and add to your view
-    self.tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     [self.view addSubview:self.tapitAd];
     
     // get notifiactions of ad lifecycle events (will load, did load, error, etc...)

@@ -11,31 +11,21 @@
 
 #define TAPIT_VERSION @"2.0.1"
 
-enum {
+typedef enum {
     TapItBannerAdType       = 0x01,
     TapItFullscreenAdType   = 0x02,
     TapItVideoAdType        = 0x04,
     TapItOfferWallType      = 0x08,
-};
-typedef NSUInteger TapItAdType;
+} TapItAdType;
 
 
-enum {
-    TapItNoneControlType        = 0x00,
-    TapItLightboxControlType    = 0x01,
-    TapItActionSheetControlType = 0x02,
-};
-typedef NSUInteger TapItInterstitialControlType;
-
-
-enum {
+typedef enum {
     TapItBannerHideNone,
     TapItBannerHideLeft,
     TapItBannerHideRight,
     TapItBannerHideUp,
     TapItBannerHideDown,
-};
-typedef NSUInteger TapItBannerHideDirection;
+} TapItBannerHideDirection;
 
 #define TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL @"RotateBannerInterval"
 #define TAPIT_PARAM_KEY_BANNER_ERROR_TIMEOUT_INTERVAL @"ErrorRetryInterval"

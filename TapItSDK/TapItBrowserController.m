@@ -73,7 +73,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 
         if(!self.presentingController) {
             UIWindow* window = [UIApplication sharedApplication].keyWindow;
-            self.presentingController = [window.rootViewController retain];
+            self.presentingController = window.rootViewController;
         }
         
         //        [container setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
@@ -92,8 +92,11 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
     UIApplication *app = [UIApplication sharedApplication];
     [app setStatusBarHidden:prevStatusBarHiddenState];
 
+    [_webView stopLoading];
+    _webView.delegate = nil;
+
     [self.presentingController dismissViewControllerAnimated:animated completion:completion];
-    [self.presentingController release]; self.presentingController = nil;
+    self.presentingController = nil;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
         [self.delegate browserControllerDismissed:self];
@@ -223,6 +226,10 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 
  navigationType:(UIWebViewNavigationType)navigationType 
 {
+    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
+    if (url) {
+        [url release]; url = nil;
+    }
     url = [request.URL retain];
     BOOL shouldProceed = YES;
     BOOL shouldLeave = [self shouldLeaveAppToServeRequest:request];
@@ -298,6 +305,8 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 }
 
 - (void)dealloc {
+    [_webView stopLoading];
+    _webView.delegate = nil;
     [_webView release]; _webView = nil;
 	[_backButton release]; _backButton = nil;
 	[_forwardButton release]; _forwardButton = nil;
@@ -307,7 +316,6 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 	[_spinner release]; _spinner = nil;
 	[_spinnerItem release]; _spinnerItem = nil;
 	[_actionSheet release]; _actionSheet = nil;
-    [presentingController release]; presentingController = nil;
     [url release]; url = nil;
     
     [super dealloc];
