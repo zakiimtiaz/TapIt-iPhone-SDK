@@ -7,7 +7,7 @@
 
 #import "TapItMediationAdMob.h"
 #import "GADAdSize.h"
-#import "Tapit.h"
+#import "TapIt.h"
 
 @implementation TapItMediationAdMob
 
@@ -60,12 +60,12 @@
     CGRect adFrame = CGRectMake(0, 0, cgAdSize.width, cgAdSize.height);
     tapitAd = [[TapItBannerAdView alloc] initWithFrame:adFrame];
     NSString *zoneId = [connector publisherId];
-    NSLog(@"zoneid: %@", zoneId);
+    tapitAd.presentingController = [connector viewControllerForPresentingModalView];
+    tapitAd.shouldReloadAfterTap = NO;
     TapItRequest *adRequest = [TapItRequest requestWithAdZone:zoneId];
     [adRequest setCustomParameter:@"999999" forKey:TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL]; // don't rotate banner
     tapitAd.delegate = self;
     [tapitAd startServingAdsForRequest:adRequest];
-    NSLog(@"getBannerWithSize done!");
 }
 
 - (void)stopBeingDelegate {
@@ -123,7 +123,15 @@
         [connector adapter:self clickDidOccurInBanner:bannerView];
         [connector adapterWillPresentFullScreenModal:self];
     }
+    if (willLeave) {
+        [connector adapterWillLeaveApplication:self];
+    }
     return YES;
+}
+
+- (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView {
+//    NSLog(@"Banner is almost done covering your app, about to be back to normal!");
+    [connector adapterWillDismissFullScreenModal:self];
 }
 
 - (void)tapitBannerAdViewActionDidFinish:(TapItBannerAdView *)bannerView {

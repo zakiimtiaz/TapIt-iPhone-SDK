@@ -12,6 +12,11 @@
 		<key>TapIt.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>TapIt_without_libs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
 	</dict>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>5596594215B4C7150002620D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55CF02D615EFDEAC00DBB5A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

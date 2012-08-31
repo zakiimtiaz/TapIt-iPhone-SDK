@@ -239,6 +239,12 @@
     self.adController = nil;
 }
 
+-(void)browserControllerWillDismiss:(TapItBrowserController *)browserController {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionWillFinish:)]) {
+        [self.delegate tapitInterstitialAdActionWillFinish:self];
+    }
+}
+
 - (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
 //    NSLog(@"************* browserControllerDismissed:");
     [self tapitInterstitialAdDidUnload:self];
@@ -246,6 +252,9 @@
 
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
 //    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+        [self.delegate tapitInterstitialAdActionDidFinish:self];
+    }
     [self.adController hideLoading];
 }
 

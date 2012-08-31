@@ -54,6 +54,13 @@
 - (BOOL)tapitBannerAdViewActionShouldBegin:(TapItBannerAdView *)bannerView willLeaveApplication:(BOOL)willLeave;
 
 /**
+ Called before a banner view finishes executing an action that covered your application's user interface.
+ 
+ @param bannerView The banner view that will finish executing an action.
+ */
+- (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView;
+
+/**
  Called after a banner view finishes executing an action that covered your application's user interface.
 
  @param bannerView The banner view that finished executing an action.
@@ -133,6 +140,13 @@
  advertisement completes its action.
  */
 - (BOOL)tapitInterstitialAdActionShouldBegin:(TapItInterstitialAd *)interstitialAd willLeaveApplication:(BOOL)willLeave;
+
+/**
+ Called just before uncovering your app after once a cover action has occured.
+ 
+ @param interstitialAd The full-screen ad that finished executing an action and will soon oncover your app.
+ */
+- (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd;
 
 /**
  Called after a banner view finishes executing an action that covered your application's user interface.
@@ -217,5 +231,6 @@
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)browserController withError:(NSError *)error;
 - (BOOL)browserControllerShouldLoad:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
 - (void)browserControllerLoaded:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp;
+- (void)browserControllerWillDismiss:(TapItBrowserController *)browserController;
 - (void)browserControllerDismissed:(TapItBrowserController *)browserController;
 @end

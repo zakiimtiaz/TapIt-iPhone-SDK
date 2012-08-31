@@ -12,13 +12,15 @@ Usage:
 ------
 To install, unzip the sdk archive(https://github.com/tapit/TapIt-iPhone-SDK/raw/master/dist/TapItSDK.zip) into your Xcode project.
 
-Add the following frameworks are required:
+The following frameworks are required:
 ````
 SystemConfiguration.framework
 QuartsCore.framework
-CoreLocation.framework
 CoreTelephony.framework
+CoreLocation.framework - Optional *
 ````
+* Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services...  Geo-targeting ads is not a good reason(at least to Apple...).
+
 
 Add the ```-ObjC``` flag to ```Other Linker Flags```:
 ![Other Linker Flags](https://raw.github.com/tapit/TapIt-iPhone-SDK/master/Docs/assets/ios-linker-flags.png)
@@ -46,6 +48,9 @@ AdPrompt Usage
 Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken to app store.
 
 ````objective-c
+// in your .m file
+#import "TapIt.h"
+...
 TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
 TapItAlertAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
 [tapitAlertAd showAsAlert];
@@ -57,10 +62,16 @@ For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/maste
 Banner Usage
 ------------
 ````objective-c
+// in your .h file
+@class TapItBannerAdView; // forward class declaration
+
 @property (retain, nonatomic) TapItBannerAdView *tapitAd;
 
 ...
 
+// in your .m file
+#import "TapIt.h"
+...
 // if not passing in any params:
 TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
 
@@ -114,10 +125,16 @@ Interstitial Usage
 ------------------
 Show modally
 ````objective-c
+// in your .h file
+@class TapItInterstitialAd; // forward class declaration
+...
 @property (retain, nonatomic) TapItInterstitialAd *interstitialAd;
 
 ...
 
+// in your .m file
+#import "TapIt.h"
+...
 // init and load interstitial
 self.interstitialAd = [[[TapItInterstitialAd alloc] init] autorelease];
 self.interstitialAd.delegate = self; // notify me of the interstitial's state changes

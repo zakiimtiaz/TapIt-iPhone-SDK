@@ -95,6 +95,10 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
     [_webView stopLoading];
     _webView.delegate = nil;
 
+    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerWillDismiss:)]) {
+        [self.delegate browserControllerWillDismiss:self];
+    }
+
     [self.presentingController dismissViewControllerAnimated:animated completion:completion];
     self.presentingController = nil;
     
@@ -226,7 +230,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 
  navigationType:(UIWebViewNavigationType)navigationType 
 {
-    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
+//    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
     if (url) {
         [url release]; url = nil;
     }

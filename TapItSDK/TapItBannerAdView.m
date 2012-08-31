@@ -33,7 +33,6 @@
 - (UIViewAnimationTransition)getRandomTransition;
 
 //- (void)setFrameOffscreen;
-- (IBAction)hide;
 - (void)startBannerRotationTimerForNormalOrError:(BOOL)isError; //TODO make this read better
 
 @end
@@ -41,13 +40,14 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController, presentingController;
+@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
     self.hideDirection = TapItBannerHideNone;
     [self hide]; // hide the ad view until we have an ad to place in it
     self.animated = YES; //default value
+    self.shouldReloadAfterTap = YES;
     self.adManager = [[[TapItAdManager alloc] init] autorelease];
     self.adManager.delegate = self;
     isServingAds = NO;
@@ -400,19 +400,37 @@
     }
 }
 
+- (void)browserControllerWillDismiss:(TapItBrowserController *)theBrowserController {
+//    NSLog(@"************* browserControllerWillDismiss:");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+        [self.delegate tapitBannerAdViewActionDidFinish:self];
+    }
+    [self hideLoading];
+    if (self.shouldReloadAfterTap) {
+        [self requestAnotherAd];
+    }
+}
+
 - (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
 //    NSLog(@"************* browserControllerDismissed:");
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
         [self.delegate tapitBannerAdViewActionDidFinish:self];
     }
     [self hideLoading];
-    [self requestAnotherAd];
+    if (self.shouldReloadAfterTap) {
+        [self requestAnotherAd];
+    }
 }
 
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
 //    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+        [self.delegate tapitBannerAdViewActionDidFinish:self];
+    }
     [self hideLoading];
-    [self requestAnotherAd];
+    if (self.shouldReloadAfterTap) {
+        [self requestAnotherAd];
+    }
 }
 
 
