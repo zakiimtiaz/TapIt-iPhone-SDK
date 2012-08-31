@@ -72,17 +72,12 @@ Banner Usage
 // in your .m file
 #import "TapIt.h"
 ...
-// if not passing in any params:
-TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
+// init banner and add to your view
+tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+[self.view addSubview:self.tapitAd];
 
-// --OR--
-
-// for test mode
-NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"mode", nil];
-TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID" andCustomParameters:params];
-
-self.tapitAd.delegate = self; // notify me of the banner ad's state changes
-[self.tapitAd startServingAdsForRequest:request];
+// kick off banner rotation!
+[self.tapitAd startServingAdsForRequest:[TapItRequest requestWithAdZone:@"YOUR ZONE ID"]];
 
 ...
 
