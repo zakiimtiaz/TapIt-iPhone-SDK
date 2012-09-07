@@ -37,7 +37,6 @@
 - (IBAction)showAlertAd:(id)sender {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
 //                            @"test", @"mode", // enable test mode to test alert ads in your app
-                            @"74510", @"cid",
                             nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);

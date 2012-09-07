@@ -79,7 +79,9 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
         //        [container setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
         
         
-        [self.presentingController presentViewController:self animated:animated completion:nil];
+        NSLog(@"showFullscreenBrowserAnimated");
+//        [self.presentingController presentViewController:self animated:animated completion:nil];
+        [self.presentingController presentModalViewController:self animated:animated];
         _isShowing = YES;
     }
 }

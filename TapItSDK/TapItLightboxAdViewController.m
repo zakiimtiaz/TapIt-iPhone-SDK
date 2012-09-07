@@ -55,12 +55,18 @@
 }
 
 - (void)closeTapped:(id)sender {
+    NSLog(@"Close Tapped!");
     id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
-    [self dismissViewControllerAnimated:self.animated completion:^{
-        [tDel tapitInterstitialAdActionDidFinish:nil];
-        [tDel tapitInterstitialAdDidUnload:nil];
-        [tDel release];
-    }];
+    [self dismissModalViewControllerAnimated:self.animated];
+    [tDel tapitInterstitialAdActionDidFinish:nil];
+    [tDel tapitInterstitialAdDidUnload:nil];
+    [tDel release];
+
+    //    [self dismissViewControllerAnimated:self.animated completion:^{
+//        [tDel tapitInterstitialAdActionDidFinish:nil];
+//        [tDel tapitInterstitialAdDidUnload:nil];
+//        [tDel release];
+//    }];
 }
 
 - (void)viewDidUnload
