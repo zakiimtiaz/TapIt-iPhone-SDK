@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.1
+Version 2.0.2
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -45,18 +45,18 @@ git submodule update
 
 AdPrompt Usage
 --------------
-Alert ads are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken to app store.
+AdPrompts are a simple ad unit designed to have a native feel.  The user is given the option to download an app, and if they accept, they are taken to app store.
 
 ````objective-c
 // in your .m file
 #import "TapIt.h"
 ...
 TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
-TapItAlertAd *tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
-[tapitAlertAd showAsAlert];
+TapItAdPrompt *tapitAdPrompt = [[TapItAdPrompt alloc] initWithRequest:request];
+[tapitAdPrompt showAsAlert];
 ````
 
-For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AlertAdDemoController.m
+For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AdPromptDemoController.m
 
 
 Banner Usage

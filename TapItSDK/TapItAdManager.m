@@ -189,9 +189,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self setCurrentConnection:nil];
-    [connectionData release]; connection = nil;
+    [connectionData release]; connectionData = nil;
 
-    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+    [delegate adView:nil didFailToReceiveAdWithError:error];
+//    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
 

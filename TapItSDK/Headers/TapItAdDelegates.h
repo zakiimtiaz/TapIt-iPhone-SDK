@@ -158,41 +158,41 @@
 @end
 
 
-@class TapItAlertAd;
+@class TapItAdPrompt;
 
-@protocol TapItAlertAdDelegate <NSObject>
+@protocol TapItAdPromptDelegate <NSObject>
 @optional
 
 /**
- Called when an alert ad fails to load a new advertisement. (required)
+ Called when an AdPrompt fails to load a new advertisement. (required)
  
- @param alertAd The alert ad that received the error.
+ @param adPrompt The AdPrompt that received the error.
  @param error The error object that describes the problem.
  
  Although the error message informs your application about why the error occurred, normally your application does not need to display the error to the user.
  
  When an error occurs, your delegate should release the ad object.
  */
-- (void)tapitAlertAd:(TapItAlertAd *)alertAd didFailWithError:(NSError *)error;
+- (void)tapitAdPrompt:(TapItAdPrompt *)adPrompt didFailWithError:(NSError *)error;
 
 /**
- Called after a alert ad is declined
+ Called after an AdPrompt is declined
  
- @param alertAd The alert ad that was declined.
+ @param adPrompt The AdPrompt that was declined.
  */
-- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)alertAd;
+- (void)tapitAdPromptWasDeclined:(TapItAdPrompt *)adPrompt;
 
 /**
- Called after the alert ad is displayed
+ Called after the AdPrompt is displayed
  
- @param alertAd The ad object that loaded a new advertisement.
+ @param adPrompt The AdPrompt that loaded a new advertisement.
  */
-- (void)tapitAlertAdDidLoad:(TapItAlertAd *)alertAd;
+- (void)tapitAdPromptDidLoad:(TapItAdPrompt *)adPrompt;
 
 /**
- Called before a alert ad executes an action.
+ Called before an AdPrompt executes an action.
  
- @param alertAd The alert ad that the user tapped.
+ @param adPrompt The AdPrompt that the user tapped.
  @param willLeave YES if another application will be launched to execute the action; NO if the action is going to be executed inside your appliaction.
  
  @return Your delegate returns YES if the action should execute; NO to prevent the banner action from executing.
@@ -210,14 +210,14 @@
  action is running, your application should also be prepared to respond to low-memory warnings by disposing of objects it can easily recreate after the 
  advertisement completes its action.
  */
-- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)alertAd willLeaveApplication:(BOOL)willLeave;
+- (BOOL)tapitAdPromptActionShouldBegin:(TapItAdPrompt *)adPrompt willLeaveApplication:(BOOL)willLeave;
 
 /**
- Called after a alert ad finishes executing an action that covered your application's user interface.
+ Called after a AdPrompt finishes executing an action that covered your application's user interface.
  
- @param alertAd The alert ad that finished executing an action.
+ @param adPrompt The AdPrompt that finished executing an action.
  */
-- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)alertAd;
+- (void)tapitAdPromptActionDidFinish:(TapItAdPrompt *)adPrompt;
 
 @end
 

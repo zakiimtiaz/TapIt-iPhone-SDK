@@ -12,9 +12,9 @@
 
 @class TapItRequest;
 
-@interface TapItAlertAd : NSObject <UIActionSheetDelegate>
+@interface TapItAdPrompt : NSObject <UIActionSheetDelegate>
 
-@property (assign, nonatomic) id<TapItAlertAdDelegate> delegate;
+@property (assign, nonatomic) id<TapItAdPromptDelegate> delegate;
 
 - (id)initWithRequest:(TapItRequest *)request;
 

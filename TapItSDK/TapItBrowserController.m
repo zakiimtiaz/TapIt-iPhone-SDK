@@ -85,10 +85,6 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 }
 
 - (void)closeFullscreenBrowserAnimated:(BOOL)animated {
-    [self closeFullscreenBrowserAnimated:animated completion:nil];
-}
-
-- (void)closeFullscreenBrowserAnimated:(BOOL)animated completion:(void (^)(void))completion {
     UIApplication *app = [UIApplication sharedApplication];
     [app setStatusBarHidden:prevStatusBarHiddenState];
 
@@ -99,7 +95,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
         [self.delegate browserControllerWillDismiss:self];
     }
 
-    [self.presentingController dismissViewControllerAnimated:animated completion:completion];
+    [self.presentingController dismissModalViewControllerAnimated:animated];
     self.presentingController = nil;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
@@ -196,13 +192,15 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 }	
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex 
-{	
+{
 	if (buttonIndex == 0) 
 	{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerShouldLoad:willLeaveApp:)]) {
+            [self.delegate browserControllerShouldLoad:self willLeaveApp:YES];
+        }
 		// Open in Safari.
-        [self closeFullscreenBrowserAnimated:NO completion:^{
-            [[UIApplication sharedApplication] openURL:_webView.request.URL];
-        }];
+        [self closeFullscreenBrowserAnimated:NO];
+        [[UIApplication sharedApplication] openURL:_webView.request.URL];
 	}
     _actionSheet = nil;
 }

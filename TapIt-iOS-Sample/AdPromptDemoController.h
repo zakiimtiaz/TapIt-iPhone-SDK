@@ -10,10 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "TapItAdDelegates.h"
 
-@class TapItAlertAd;
+@class TapItAdPrompt;
 
-@interface AlertAdDemoController : UIViewController <TapItAlertAdDelegate> {
-    TapItAlertAd *tapitAlertAd;
+@interface AdPromptDemoController : UIViewController <TapItAdPromptDelegate> {
+    TapItAdPrompt *tapitAdPrompt;
 }
 
 //@property (retain, nonatomic) CLLocationManager *locationManager;

@@ -67,10 +67,10 @@
     [super viewDidLoad];
 
     // easiest way to get banners displaying in your app...
-    [self initBannerSimple];
+//    [self initBannerSimple];
     
 //    // - OR - the more advanced way... (use simple or advanced, but not both)
-//    [self initBannerAdvanced];
+    [self initBannerAdvanced];
 }
 
 - (IBAction)hideBanner:(id)sender {
@@ -114,7 +114,7 @@
 }
 
 - (void)tapitBannerAdView:(TapItBannerAdView *)bannerView didFailToReceiveAdWithError:(NSError *)error {
-    NSLog(@"Banner failed to load, try a different ad network...");
+    NSLog(@"Banner failed to load with the following error: %@", error);
     // Banner view will hide automatically if docking is enabled
     // if disabled, you'll want to hide bannerView
 }

@@ -7,20 +7,20 @@
 //
 
 #import "AppDelegate.h"
-#import "AlertAdDemoController.h"
+#import "AdPromptDemoController.h"
 #import "TapIt.h"
-#import "TapItAlertAd.h"
+#import "TapItAdPrompt.h"
 
 // This is the zone id for the AlertAd Example
 // go to http://ads.tapit.com/ to get your's
 #define ZONE_ID @"7980"
 
 
-@interface AlertAdDemoController ()
+@interface AdPromptDemoController ()
 
 @end
 
-@implementation AlertAdDemoController
+@implementation AdPromptDemoController
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -37,48 +37,51 @@
 - (IBAction)showAlertAd:(id)sender {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
 //                            @"test", @"mode", // enable test mode to test alert ads in your app
+                            @"74510", @"cid",
                             nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
     [request updateLocation:myAppDelegate.locationManager.location];
-    tapitAlertAd = [[TapItAlertAd alloc] initWithRequest:request];
-    tapitAlertAd.delegate = self;
+    tapitAdPrompt = [[TapItAdPrompt alloc] initWithRequest:request];
+    tapitAdPrompt.delegate = self;
     UIButton *button = (UIButton *)sender;
     if (button.tag == 1) {
-        [tapitAlertAd showAsActionSheet];
+        [tapitAdPrompt showAsActionSheet];
     }
     else {
-        [tapitAlertAd showAsAlert];
+        [tapitAdPrompt showAsAlert];
     }
 //    [tapitAlertAd release];
 }
 
-- (void)tapitAlertAd:(TapItAlertAd *)alertAd didFailWithError:(NSError *)error {
-    NSLog(@"Error showing alert ad: %@", error);
+- (void)tapitAdPrompt:(TapItAdPrompt *)adPrompt didFailWithError:(NSError *)error {
+    NSLog(@"Error showing AdPrompt: %@", error);
 }
 
-- (void)tapitAlertAdWasDeclined:(TapItAlertAd *)alertAd {
-    NSLog(@"Alert ad was DECLINED!");
+- (void)tapitAdPromptWasDeclined:(TapItAdPrompt *)adPrompt {
+    NSLog(@"AdPrompt was DECLINED!");
 }
 
-- (void)tapitAlertAdDidLoad:(TapItAlertAd *)alertAd {
-    NSLog(@"Alert ad loaded!");
+- (void)tapitAdPromptDidLoad:(TapItAdPrompt *)adPrompt {
+    NSLog(@"AdPrompt loaded!");
 }
 
-- (BOOL)tapitAlertAdActionShouldBegin:(TapItAlertAd *)alertAd willLeaveApplication:(BOOL)willLeave {
+- (BOOL)tapitAdPromptActionShouldBegin:(TapItAdPrompt *)adPrompt willLeaveApplication:(BOOL)willLeave {
+    NSString *strWillLeave = willLeave ? @"Leaving app" : @"loading internally";
+    NSLog(@"AdPrompt was accepted, loading app/advertisement... %@", strWillLeave);
     return YES;
 }
 
-- (void)tapitAlertAdActionDidFinish:(TapItAlertAd *)alertAd {
-    NSLog(@"Alert ad Action finished!");
+- (void)tapitAdPromptActionDidFinish:(TapItAdPrompt *)adPrompt {
+    NSLog(@"AdPrompt Action finished!");
 }
 
 
 #pragma mark -
 
 - (void)dealloc {
-    if (tapitAlertAd) {
-        [tapitAlertAd release]; tapitAlertAd = nil;
+    if (tapitAdPrompt) {
+        [tapitAdPrompt release]; tapitAdPrompt = nil;
     }
     [super dealloc];
 }

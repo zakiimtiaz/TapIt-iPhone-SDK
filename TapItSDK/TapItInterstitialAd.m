@@ -116,8 +116,8 @@
 }
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
-    UIApplication *app = [UIApplication sharedApplication];
-    [app setStatusBarHidden:prevStatusBarHiddenState];
+//    UIApplication *app = [UIApplication sharedApplication];
+//    [app setStatusBarHidden:prevStatusBarHiddenState];
 
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdDidUnload:)]) {
@@ -231,15 +231,14 @@
 
 - (void)browserControllerLoaded:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
 //    NSLog(@"************* browserControllerLoaded:willLeaveApp:");
-    [self.adController dismissViewControllerAnimated:NO completion:^{
-        if (!willLeaveApp) {
-            [self.browserController showFullscreenBrowserAnimated:NO];
-        }
-    }];
+    [self.adController dismissModalViewControllerAnimated:NO];
+    [self.browserController showFullscreenBrowserAnimated:NO];
     self.adController = nil;
 }
 
 -(void)browserControllerWillDismiss:(TapItBrowserController *)browserController {
+    UIApplication *app = [UIApplication sharedApplication];
+    [app setStatusBarHidden:prevStatusBarHiddenState];
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionWillFinish:)]) {
         [self.delegate tapitInterstitialAdActionWillFinish:self];
     }

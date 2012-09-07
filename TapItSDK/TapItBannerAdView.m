@@ -232,7 +232,7 @@
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(adView:didFailToReceiveAdWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(tapitBannerAdView:didFailToReceiveAdWithError:)]) {
         [self.delegate tapitBannerAdView:self didFailToReceiveAdWithError:error];
     }
     [self hide];

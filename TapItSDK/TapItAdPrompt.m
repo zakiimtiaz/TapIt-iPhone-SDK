@@ -7,13 +7,13 @@
 //
 
 #import "TapItPrivateConstants.h"
-#import "TapItAlertAd.h"
+#import "TapItAdPrompt.h"
 #import "TapItAdManager.h"
 #import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
 
-@interface TapItAlertAd () <TapItAdManagerDelegate> {
+@interface TapItAdPrompt () <TapItAdManagerDelegate, TapItBrowserControllerDelegate> {
     BOOL isAlertType;
 }
 @property (retain, nonatomic) TapItRequest *adRequest;
@@ -27,7 +27,7 @@
 - (void)performAdAction;
 @end
 
-@implementation TapItAlertAd
+@implementation TapItAdPrompt
 
 @synthesize delegate, adRequest, adManager, clickUrl, browserController;
 
@@ -87,11 +87,17 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 //    NSLog(@"UIAlertView: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 1) { // second button is the call to action...
-        [self performAdAction];
+        BOOL performAction = YES;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
+            performAction = [self.delegate tapitAdPromptActionShouldBegin:self willLeaveApplication:NO];
+        }
+        if (performAction) {
+            [self performAdAction];
+        }
     }
     else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAlertAdWasDeclined:)]) {
-            [self.delegate tapitAlertAdWasDeclined:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptWasDeclined:)]) {
+            [self.delegate tapitAdPromptWasDeclined:self];
         }
     }
 }
@@ -99,11 +105,17 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 //    NSLog(@"UIActionSheet: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 0) { // top button is the call to action...
-        [self performAdAction];
+        BOOL performAction = YES;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
+            performAction = [self.delegate tapitAdPromptActionShouldBegin:self willLeaveApplication:NO];
+        }
+        if (performAction) {
+            [self performAdAction];
+        }
     }
     else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAlertAdWasDeclined:)]) {
-            [self.delegate tapitAlertAdWasDeclined:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptWasDeclined:)]) {
+            [self.delegate tapitAdPromptWasDeclined:self];
         }
     }
 }
@@ -122,8 +134,41 @@
 
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
+    self.browserController.delegate = self;
     [self.browserController loadUrl:url];
 }
+
+- (void)browserControllerFailedToLoad:(TapItBrowserController *)browserController withError:(NSError *)error {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPrompt:didFailWithError:)]) {
+        [self.delegate tapitAdPrompt:self didFailWithError:error];
+    }
+}
+
+- (BOOL)browserControllerShouldLoad:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp {
+    BOOL shouldLoad = YES;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
+        shouldLoad = [self.delegate tapitAdPromptActionShouldBegin:self willLeaveApplication:willLeaveApp];
+    }
+    return shouldLoad;
+}
+
+- (void)browserControllerLoaded:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp {
+    if (!willLeaveApp) {
+        [self.browserController showFullscreenBrowserAnimated:YES];
+    }
+}
+
+- (void)browserControllerWillDismiss:(TapItBrowserController *)browserController {
+    // noop
+}
+
+- (void)browserControllerDismissed:(TapItBrowserController *)browserController {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
+        [self.delegate tapitAdPromptActionDidFinish:self];
+    }
+}
+
+
 
 
 #pragma mark -
@@ -138,21 +183,21 @@
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(tapitAlertAd:didFailWithError:)]) {
-        [self.delegate tapitAlertAd:self didFailWithError:error];
+    if ([self.delegate respondsToSelector:@selector(tapitAdPrompt:didFailWithError:)]) {
+        [self.delegate tapitAdPrompt:self didFailWithError:error];
     }
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
-    if ([self.delegate respondsToSelector:@selector(tapitAlertAdActionShouldBegin:willLeaveApplication:)]) {
-        return [self.delegate tapitAlertAdActionShouldBegin:self willLeaveApplication:willLeave];
+    if ([self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
+        return [self.delegate tapitAdPromptActionShouldBegin:self willLeaveApplication:willLeave];
     }
     return YES;
 }
 
 - (void)adViewActionDidFinish:(TapItAdView *)adView {
-    if ([self.delegate respondsToSelector:@selector(tapitAlertAdActionDidFinish:)]) {
-        [self.delegate tapitAlertAdActionDidFinish:self];
+    if ([self.delegate respondsToSelector:@selector(tapitAdPromptActionDidFinish:)]) {
+        [self.delegate tapitAdPromptActionDidFinish:self];
     }    
 }
 
@@ -167,8 +212,8 @@
         [self displayActionSheetWithData:data];
     }
     
-    if ([self.delegate respondsToSelector:@selector(tapitAlertAdDidLoad:)]) {
-        [self.delegate tapitAlertAdDidLoad:self];
+    if ([self.delegate respondsToSelector:@selector(tapitAdPromptDidLoad:)]) {
+        [self.delegate tapitAdPromptDidLoad:self];
     }    
 }
 
