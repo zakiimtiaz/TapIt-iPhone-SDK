@@ -168,6 +168,10 @@
     return YES;
 }
 
+//- (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd {
+//        // noop
+//}
+
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd {
 //    NSLog(@"Ad action did finish");
     [connector adapterDidDismissInterstitial:self];

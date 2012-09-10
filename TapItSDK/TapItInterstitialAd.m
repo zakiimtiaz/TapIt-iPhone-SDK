@@ -15,7 +15,6 @@
 #import "TapItAdManager.h"
 #import "TapItBannerAdView.h"
 #import "TapItInterstitialAdViewController.h"
-//#import "TapItActionSheetAdViewController.h"
 #import "TapItLightboxAdViewController.h"
 #import "TapItBrowserController.h"
 
@@ -37,14 +36,12 @@
 }
 
 @synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, adController, browserController, presentingController;
-//@synthesize controlType;
 
 - (id)init {
     self = [super init];
     if (self) {
         self.adManager = [[[TapItAdManager alloc] init] autorelease];
         self.adManager.delegate = self;
-//        self.controlType = TapItLightboxControlType;
         self.allowedAdTypes = TapItFullscreenAdType|TapItOfferWallType|TapItVideoAdType;
         self.animated = YES;
         isLoaded = NO;
@@ -71,9 +68,7 @@
     adController = [[TapItLightboxAdViewController alloc] init];
     self.adController.adView = self.adView;
     self.adController.animated = self.animated;
-//    adController.tapitDelegate = self.delegate;
     self.adController.tapitDelegate = self;
-//    self.adView.delegate = adController; //TODO Why did I do this?
     
     self.presentingController = controller;
 
@@ -207,9 +202,6 @@
 ////    [browserController release];
 //}
 
-#pragma mark -
-#pragma mark TapItBrowserController methods
-
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
 //    NSLog(@"Banner->openURLInFullscreenBrowser: %@", url);
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
@@ -246,12 +238,15 @@
 
 - (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
 //    NSLog(@"************* browserControllerDismissed:");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionDidFinish:)]) {
+        [self.delegate tapitInterstitialAdActionDidFinish:self];
+    }
     [self tapitInterstitialAdDidUnload:self];
 }
 
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
 //    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionDidFinish:)]) {
         [self.delegate tapitInterstitialAdActionDidFinish:self];
     }
     [self.adController hideLoading];

@@ -402,8 +402,8 @@
 
 - (void)browserControllerWillDismiss:(TapItBrowserController *)theBrowserController {
 //    NSLog(@"************* browserControllerWillDismiss:");
-    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
-        [self.delegate tapitBannerAdViewActionDidFinish:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionWillFinish:)]) {
+        [self.delegate tapitBannerAdViewActionWillFinish:self];
     }
     [self hideLoading];
     if (self.shouldReloadAfterTap) {

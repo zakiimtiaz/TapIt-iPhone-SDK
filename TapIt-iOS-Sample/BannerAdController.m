@@ -120,10 +120,15 @@
 }
 
 - (BOOL)tapitBannerAdViewActionShouldBegin:(TapItBannerAdView *)bannerView willLeaveApplication:(BOOL)willLeave {
-    NSLog(@"Banner was tapped, your UI will be covered up.");
+    NSLog(@"Banner was tapped, your UI will be covered up. %@", (willLeave ? @" !!LEAVING APP!!" : @""));
     // minimise app footprint for a better ad experience.
     // e.g. pause game, duck music, pause network access, reduce memory footprint, etc...
     return YES;
+}
+
+- (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView {
+    NSLog(@"tapitBannerAdViewActionWillFinish");
+    
 }
 
 - (void)tapitBannerAdViewActionDidFinish:(TapItBannerAdView *)bannerView {

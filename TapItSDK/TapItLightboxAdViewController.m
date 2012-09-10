@@ -55,7 +55,6 @@
 }
 
 - (void)closeTapped:(id)sender {
-    NSLog(@"Close Tapped!");
     id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
     [self dismissModalViewControllerAnimated:self.animated];
     [tDel tapitInterstitialAdActionDidFinish:nil];
