@@ -75,6 +75,7 @@
 
 - (BOOL)startServingAdsForRequest:(TapItRequest *)request {
     self.adRequest = request;
+    [self.adRequest setCustomParameter:TAPIT_AD_TYPE_BANNER forKey:@"adtype"];
     [self.adManager fireAdRequest:self.adRequest];
     isServingAds = YES;
     return YES;
