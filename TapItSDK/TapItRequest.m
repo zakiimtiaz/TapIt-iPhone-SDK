@@ -78,6 +78,7 @@
                                   @"w",
                                   @"ua",
                                   @"udid",
+                                  @"ifa",
                                   @"format",
                                   @"ip",
                                   @"mode",
@@ -87,6 +88,7 @@
                                   @"cid",
                                   @"carrier",
                                   @"client",
+                                  @"mediation",
                                   @"version",
                                   @"connection_speed",
                                   //TODO finish this list...
@@ -141,6 +143,10 @@
     [self setCustomParameter:self.adZone forKey:@"zone"];
     [self setCustomParameter:@"json" forKey:@"format"];
     [self setCustomParameter:[tracker deviceUDID] forKey:@"udid"];
+    NSString *ifa = [tracker deviceIFA];
+    if (ifa) {
+        [self setCustomParameter:ifa forKey:@"ifa"];
+    }
     [self setCustomParameter:TAPIT_VERSION forKey:@"version"];
     [self setCustomParameter:@"iOS-SDK" forKey:@"client"];
     [self setCustomParameter:[NSString stringWithFormat:@"%d", connType] forKey:@"connection_speed"];

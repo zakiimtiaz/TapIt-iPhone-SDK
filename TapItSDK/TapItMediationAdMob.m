@@ -9,6 +9,8 @@
 #import "GADAdSize.h"
 #import "TapIt.h"
 
+#define MEDIATION_STRING @"admob-1.0.0"
+
 @implementation TapItMediationAdMob
 
 @synthesize tapitAd, tapitInterstitial;
@@ -25,14 +27,14 @@
     self = [super init];
     if (self != nil) {
         connector = c;
-        bannerClicks = 0;
+        redirectCount = 0;
     }
     return self;
 }
 
 - (void)getInterstitial {
     tapitInterstitial = [[TapItInterstitialAd alloc] init];
-    tapitInterstitial.delegate = self; // notify me of the interstitial's state changes
+    tapitInterstitial.delegate = self;
     NSString *zoneId = [connector publisherId];
     TapItRequest *request = [TapItRequest requestWithAdZone:zoneId];
     [tapitInterstitial loadInterstitialForRequest:request];
@@ -42,8 +44,7 @@
     if (!GADAdSizeEqualToSize(adSize, kGADAdSizeBanner) &&
         !GADAdSizeEqualToSize(adSize, kGADAdSizeFullBanner) &&
         !GADAdSizeEqualToSize(adSize, kGADAdSizeLeaderboard) &&
-        !GADAdSizeEqualToSize(adSize, kGADAdSizeMediumRectangle) &&
-        !GADAdSizeEqualToSize(adSize, kGADAdSizeSkyscraper)) {
+        !GADAdSizeEqualToSize(adSize, kGADAdSizeMediumRectangle)) {
         NSString *errorDesc = [NSString stringWithFormat:
                                @"Invalid ad type %@, not going to get ad.",
                                NSStringFromGADAdSize(adSize)];
@@ -64,6 +65,7 @@
     tapitAd.shouldReloadAfterTap = NO;
     TapItRequest *adRequest = [TapItRequest requestWithAdZone:zoneId];
     [adRequest setCustomParameter:@"999999" forKey:TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL]; // don't rotate banner
+    [adRequest setCustomParameter:MEDIATION_STRING forKey:@"mediation"];
     tapitAd.delegate = self;
     [tapitAd startServingAdsForRequest:adRequest];
 }
@@ -97,29 +99,24 @@
 #pragma mark TapItBannerAdViewDelegate methods
 
 - (void)tapitBannerAdViewWillLoadAd:(TapItBannerAdView *)bannerView {
-//    NSLog(@"Banner is about to check server for ad...");
+//    NSLog(@"tapitBannerAdViewWillLoadAd:");
     // no google equivilent... NOOP
 }
 
 - (void)tapitBannerAdViewDidLoadAd:(TapItBannerAdView *)bannerView {
-//    NSLog(@"Banner has been loaded...");
-    // Banner view will display automatically if docking is enabled
-    // if disabled, you'll want to show bannerView
+//    NSLog(@"tapitBannerAdViewDidLoadAd:");
     [connector adapter:self didReceiveAdView:bannerView];
 }
 
 - (void)tapitBannerAdView:(TapItBannerAdView *)bannerView didFailToReceiveAdWithError:(NSError *)error {
-//    NSLog(@"Banner failed to load, try a different ad network...");
-    // Banner view will hide automatically if docking is enabled
-    // if disabled, you'll want to hide bannerView
+//    NSLog(@"tapitBannerAdView:didFailToReceiveAdWithError:");
     [connector adapter:self didFailAd:error];
 }
 
 - (BOOL)tapitBannerAdViewActionShouldBegin:(TapItBannerAdView *)bannerView willLeaveApplication:(BOOL)willLeave {
-//    NSLog(@"Banner was tapped, your UI will be covered up.");
-    // minimise app footprint for a better ad experience.
-    // e.g. pause game, duck music, pause network access, reduce memory footprint, etc...
-    if (bannerClicks++ == 0) {
+//    NSLog(@"tapitBannerAdViewActionShouldBegin:willLeaveApplication:");
+    if (redirectCount++ == 0) {
+        // tapitBannerAdViewActionShouldBegin:willLeaveApplication: may be called multiple times... only report one click/load...
         [connector adapter:self clickDidOccurInBanner:bannerView];
         [connector adapterWillPresentFullScreenModal:self];
     }
@@ -130,13 +127,12 @@
 }
 
 - (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView {
-//    NSLog(@"Banner is almost done covering your app, about to be back to normal!");
+//    NSLog(@"tapitBannerAdViewActionWillFinish:");
     [connector adapterWillDismissFullScreenModal:self];
 }
 
 - (void)tapitBannerAdViewActionDidFinish:(TapItBannerAdView *)bannerView {
-//    NSLog(@"Banner is done covering your app, back to normal!");
-    // resume normal app functions
+//    NSLog(@"tapitBannerAdViewActionDidFinish:");
     [connector adapterDidDismissFullScreenModal:self];
 }
 
@@ -145,35 +141,45 @@
 #pragma mark TapItInterstitialAdDelegate methods
 
 - (void)tapitInterstitialAd:(TapItInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-//    NSLog(@"Error: %@", error.localizedDescription);
+//    NSLog(@"tapitInterstitialAd:didFailWithError:");
     [connector adapter:self didFailInterstitial:error];
 }
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"Ad did unload");
+    // no google equivilent... NOOP
+    // see tapitInterstitialAdActionWillFinish: and tapitInterstitialAdActionDidFinish:
+//    NSLog(@"tapitInterstitialAdDidUnload:");
 }
 
 - (void)tapitInterstitialAdWillLoad:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"Ad will load");
+    // no google equivilent... NOOP
+    // see tapitInterstitialAdDidLoad
+//    NSLog(@"tapitInterstitialAdWillLoad:");
 }
 
 - (void)tapitInterstitialAdDidLoad:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"Ad did load");
+//    NSLog(@"tapitInterstitialAdDidLoad:");
     [connector adapter:self didReceiveInterstitial:interstitialAd];
 }
 
 - (BOOL)tapitInterstitialAdActionShouldBegin:(TapItInterstitialAd *)interstitialAd willLeaveApplication:(BOOL)willLeave {
-//    NSLog(@"Ad action should begin");
-    [connector adapterWillPresentInterstitial:self];
+//    NSLog(@"tapitInterstitialAdActionShouldBegin:willLeaveApplication:");
+    if (redirectCount++ == 0) {
+        [connector adapterWillPresentInterstitial:self];
+    }
+    if (willLeave) {
+        [connector adapterWillLeaveApplication:self];
+    }
     return YES;
 }
 
-//- (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd {
-//        // noop
-//}
+- (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd {
+//    NSLog(@"tapitInterstitialAdActionWillFinish:");
+    [connector adapterWillDismissInterstitial:self];
+}
 
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"Ad action did finish");
+//    NSLog(@"tapitInterstitialAdActionDidFinish:");
     [connector adapterDidDismissInterstitial:self];
 }
 

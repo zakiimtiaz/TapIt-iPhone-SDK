@@ -15,7 +15,9 @@
     id<GADMAdNetworkConnector> connector;
     TapItBannerAdView *tapitAd;
     TapItInterstitialAd *tapitInterstitial;
-    int bannerClicks;
+    // used to suppress duplicate calls to adapterWillPresentInterstitial:, adapter:clickDidOccurInBanner, and adapterWillPresentFullScreenModal:
+    // (tapit sdk calls tapit[Interstitial|Banner]AdActionShouldBegin:willLeaveApplication: each time a http redirect occurs...)
+    int redirectCount;
 }
 
 @property (nonatomic, retain) UIView *tapitAd;

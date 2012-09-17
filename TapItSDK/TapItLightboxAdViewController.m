@@ -56,6 +56,7 @@
 
 - (void)closeTapped:(id)sender {
     id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
+    [tDel tapitInterstitialAdActionWillFinish:nil];
     [self dismissModalViewControllerAnimated:self.animated];
     [tDel tapitInterstitialAdActionDidFinish:nil];
     [tDel tapitInterstitialAdDidUnload:nil];

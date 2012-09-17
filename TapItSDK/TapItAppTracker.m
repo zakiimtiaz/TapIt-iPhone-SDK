@@ -28,6 +28,17 @@
 	}
 }
 
+- (NSString *)deviceIFA {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+    NSString *identifier;
+    if ([UIDevice instancesRespondToSelector:@selector(identifierForAdvertising)]) {
+        identifier = [[[UIDevice currentDevice] identifierForAdvertising] UUIDString];
+        return identifier;
+    }
+#endif
+    return nil;
+}
+
 - (NSString *)deviceUDID {
     return [OpenUDID value];
 }

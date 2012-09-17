@@ -168,6 +168,14 @@
     return YES;
 }
 
+- (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd {
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdActionWillFinish:)]) {
+            [self.delegate tapitInterstitialAdActionWillFinish:self];
+        }
+    }
+}
+
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd {
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdActionDidFinish:)]) {
