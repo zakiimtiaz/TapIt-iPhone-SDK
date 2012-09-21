@@ -95,7 +95,11 @@
     NSError *error = nil;
     NSString *jsonString = self.currentRequest.rawResults;
     
-    NSMutableDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
+    JSONDecoder *decoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *deserializedData = [decoder objectWithData:jsonData error:&error];
+    [decoder release];
+//    NSMutableDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
 //    NSMutableDictionary *deserializedData = [[JSONDecoder alloc] mutableObjectWithUTF8String:[jsonString UTF8String] length:[jsonString length] error:&error];
     if (error) {
         NSString *errStr;

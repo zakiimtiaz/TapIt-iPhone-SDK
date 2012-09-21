@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment version="1280" defaultVersion="1536" identifier="iOS"/>
+        <development version="4500" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Banner Ad Controller - Banners-->
         <scene sceneID="11">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="BannerAdController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="17">
                         <rect key="frame" x="0.0" y="20" width="768" height="955"/>
@@ -47,13 +47,13 @@
                         <outlet property="tapitAd" destination="Ira-Av-lv2" id="U4O-mY-tyN"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3041" y="150"/>
         </scene>
         <!--Ad Prompt Demo Controller - AdPrompts-->
         <scene sceneID="Juy-nx-HRJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zmN-hb-C0i" sceneMemberID="firstResponder"/>
                 <viewController id="wt7-t0-B2c" customClass="AdPromptDemoController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LQb-9x-jNi">
                         <rect key="frame" x="0.0" y="20" width="768" height="955"/>
@@ -102,13 +102,13 @@
                     <tabBarItem key="tabBarItem" title="AdPrompts" image="first" id="daL-fI-ttC"/>
                     <navigationItem key="navigationItem" id="o9d-n9-nGK"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zmN-hb-C0i" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3049" y="2438"/>
         </scene>
         <!--Interstitial Controller - Interstitials-->
         <scene sceneID="13">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
                 <viewController id="3" customClass="InterstitialController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16">
                         <rect key="frame" x="0.0" y="20" width="768" height="955"/>
@@ -165,13 +165,13 @@
                         <outlet property="showButton" destination="AwV-zs-raC" id="rIj-Gs-nCD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3042" y="1284"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
                 <tabBarController id="4" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
@@ -185,6 +185,7 @@
                         <segue destination="wt7-t0-B2c" kind="relationship" relationship="viewControllers" id="ZDk-Tq-HOU"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1903" y="1394"/>
         </scene>
@@ -202,9 +203,6 @@
         </class>
         <class className="BannerAdController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BannerAdController.h"/>
-            <relationships>
-                <relationship kind="action" name="hideBanner:"/>
-            </relationships>
         </class>
         <class className="InterstitialController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InterstitialController.h"/>

@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.2
+Version 2.0.3
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -19,11 +19,10 @@ QuartsCore.framework
 CoreTelephony.framework
 CoreLocation.framework - Optional *
 ````
-* Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services...  Geo-targeting ads is not a good reason(at least to Apple...).
+* Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
 
+** Xcode 4.5 users should also add ````AdSupport.framework```` to enable support for Apple's new unique identifier scheme **
 
-Add the ```-ObjC``` flag to ```Other Linker Flags```:
-![Other Linker Flags](https://raw.github.com/tapit/TapIt-iPhone-SDK/master/Docs/assets/ios-linker-flags.png)
 
 You're all set!  Scroll down for implementation instructions.
 

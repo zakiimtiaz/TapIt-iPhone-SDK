@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "55CF02D615EFDEAC00DBB5A5"
-               BuildableName = "libTapIt.a"
-               BlueprintName = "TapIt"
+               BlueprintIdentifier = "55DC8CB4160CE2C800558DC8"
+               BuildableName = "libTapIt_armv6.a"
+               BlueprintName = "TapIt-armv6"
                ReferencedContainer = "container:TapIt-iOS-Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

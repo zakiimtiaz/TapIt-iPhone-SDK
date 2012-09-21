@@ -31,8 +31,11 @@
 - (NSString *)deviceIFA {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
     NSString *identifier;
-    if ([UIDevice instancesRespondToSelector:@selector(identifierForAdvertising)]) {
-        identifier = [[[UIDevice currentDevice] identifierForAdvertising] UUIDString];
+    
+    Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
+    if(clsIdManager) {
+        id *idManager = [clsIdManager sharedManager];
+        identifier = [[idManager advertisingIdentifier] UUIDString];
         return identifier;
     }
 #endif
