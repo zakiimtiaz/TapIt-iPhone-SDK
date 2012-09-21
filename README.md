@@ -19,9 +19,9 @@ QuartsCore.framework
 CoreTelephony.framework
 CoreLocation.framework - Optional *
 ````
-* Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
+*Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
 
-** Xcode 4.5 users should also add ````AdSupport.framework```` to enable support for Apple's new unique identifier scheme **
+**Xcode 4.5 users should also include ````AdSupport.framework```` to enable support for Apple's new unique identifier scheme**
 
 
 You're all set!  Scroll down for implementation instructions.
