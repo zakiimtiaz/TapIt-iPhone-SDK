@@ -18,6 +18,9 @@
 
 //@property (retain, nonatomic) CLLocationManager *locationManager;
 
--(IBAction)showAlertAd:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *preloadButton;
+
+-(IBAction)preLoadAdPrompt:(id)sender;
+-(IBAction)showAdPrompt:(id)sender;
 
 @end

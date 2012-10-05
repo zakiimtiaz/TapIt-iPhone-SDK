@@ -15,6 +15,9 @@
 
 @interface TapItAdPrompt () <TapItAdManagerDelegate, TapItBrowserControllerDelegate> {
     BOOL isAlertType;
+    BOOL isLoaded;
+    BOOL displayImmediately;
+    NSDictionary *_data;
 }
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdManager *adManager;
@@ -22,8 +25,6 @@
 @property (retain, nonatomic) TapItBrowserController *browserController;
 
 - (void)performRequest;
-- (void)displayAlertWithData:(NSDictionary *)data;
-- (void)displayActionSheetWithData:(NSDictionary *)data;
 - (void)performAdAction;
 @end
 
@@ -31,12 +32,19 @@
 
 @synthesize delegate, adRequest, adManager, clickUrl, browserController;
 
+- (BOOL)loaded {
+    return isLoaded;
+}
+
 - (id)initWithRequest:(TapItRequest *)request {
     self = [super init];
     if (self) {
         self.adManager = [[[TapItAdManager alloc] init] autorelease];
         self.adManager.delegate = self;
         self.adRequest = request;
+        isLoaded = NO;
+        displayImmediately = NO;
+        _data = nil;
     }
     return self;
 }
@@ -44,15 +52,22 @@
 #pragma mark -
 #pragma mark AlertAd Methods
 
-- (void)showAsAlert {
-    isAlertType = YES;
+- (void)load {
     [self performRequest];
 }
 
-- (void)displayAlertWithData:(NSDictionary *)data {
-    NSString *title = [data objectForKey:@"adtitle"];
-    NSString *callToAction = [data objectForKey:@"calltoaction"];
-    NSString *declineString = [data objectForKey:@"declinestring"];
+- (void)showAsAlert {
+    if (!isLoaded) {
+        isAlertType = YES;
+        displayImmediately = YES;
+        [self load];
+        return;
+        // [self load] will bring us back here once data is available...
+    }
+    
+    NSString *title = [_data objectForKey:@"adtitle"];
+    NSString *callToAction = [_data objectForKey:@"calltoaction"];
+    NSString *declineString = [_data objectForKey:@"declinestring"];
 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
                                                     message:title 
@@ -61,17 +76,24 @@
                                           otherButtonTitles:callToAction, nil];
     [alert show];
     [alert release];
+    
+    if ([self.delegate respondsToSelector:@selector(tapitAdPromptWasDisplayed:)]) {
+        [self.delegate tapitAdPromptWasDisplayed:self];
+    }
 }
 
 - (void)showAsActionSheet {
-    isAlertType = NO;
-    [self performRequest];
-}
-
-- (void)displayActionSheetWithData:(NSDictionary *)data {
-    NSString *title = [data objectForKey:@"adtitle"];
-    NSString *callToAction = [data objectForKey:@"calltoaction"];
-    NSString *declineString = [data objectForKey:@"declinestring"];
+    if (!isLoaded) {
+        isAlertType = NO;
+        displayImmediately = YES;
+        [self load];
+        return;
+        // [self load] will bring us back here once data is available...
+    }
+    
+    NSString *title = [_data objectForKey:@"adtitle"];
+    NSString *callToAction = [_data objectForKey:@"calltoaction"];
+    NSString *declineString = [_data objectForKey:@"declinestring"];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
                                                     delegate:self 
                                            cancelButtonTitle:nil 
@@ -81,6 +103,10 @@
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     [actionSheet release];
+    
+    if ([self.delegate respondsToSelector:@selector(tapitAdPromptWasDisplayed:)]) {
+        [self.delegate tapitAdPromptWasDisplayed:self];
+    }
 }
 
 #pragma mark -
@@ -123,6 +149,7 @@
 - (void)performRequest {
     [self.adRequest setCustomParameter:TAPIT_AD_TYPE_ALERT forKey:@"adtype"];
     [self.adManager fireAdRequest:self.adRequest];
+    // didReceiveData: or adView:didFailToReceiveAdWithError: get called next...
 }
 
 - (void)performAdAction {
@@ -205,16 +232,23 @@
 //    NSLog(@"Received data: %@", data);
     self.clickUrl = [data objectForKey:@"clickurl"];
 //    self.clickUrl = @"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#";
-    if (isAlertType) {
-        [self displayAlertWithData:data];
-    }
-    else {
-        [self displayActionSheetWithData:data];
-    }
     
+    _data = [data retain];
+
+    isLoaded = YES;
+
     if ([self.delegate respondsToSelector:@selector(tapitAdPromptDidLoad:)]) {
         [self.delegate tapitAdPromptDidLoad:self];
-    }    
+    }
+    
+    if (displayImmediately) {
+        if (isAlertType) {
+            [self showAsAlert];
+        }
+        else {
+            [self showAsActionSheet];
+        }
+    }
 }
 
 #pragma mark -
@@ -225,6 +259,7 @@
     self.adManager = nil;
     self.clickUrl = nil;
     self.browserController = nil;
+    [_data release]; _data = nil;
     [super dealloc];
 }
 @end

@@ -15,8 +15,14 @@
 @interface TapItAdPrompt : NSObject <UIActionSheetDelegate>
 
 @property (assign, nonatomic) id<TapItAdPromptDelegate> delegate;
+@property (readonly) BOOL loaded;
 
 - (id)initWithRequest:(TapItRequest *)request;
+
+/**
+ * preload the AdPrompt, to be shown later...
+ */
+- (void)load;
 
 - (void)showAsAlert;
 - (void)showAsActionSheet;

@@ -183,11 +183,19 @@
 - (void)tapitAdPromptWasDeclined:(TapItAdPrompt *)adPrompt;
 
 /**
- Called after the AdPrompt is displayed
+ Called after the AdPrompt is loaded
  
  @param adPrompt The AdPrompt that loaded a new advertisement.
  */
 - (void)tapitAdPromptDidLoad:(TapItAdPrompt *)adPrompt;
+
+
+/**
+ Called after the AdPrompt is displayed
+ 
+ @param adPrompt The AdPrompt that was shown.
+ */
+- (void)tapitAdPromptWasDisplayed:(TapItAdPrompt *)adPrompt;
 
 /**
  Called before an AdPrompt executes an action.
