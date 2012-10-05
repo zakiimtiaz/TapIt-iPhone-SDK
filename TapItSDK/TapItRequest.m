@@ -74,16 +74,18 @@
     if (nil == allowedServerVariables) {
         allowedServerVariables = [[NSArray arrayWithObjects:
                                   @"zone",
-                                  @"h",
-                                  @"w",
-                                  @"ua",
+                                  @"h", // height
+                                  @"w", // width
+                                  @"o", // orientation == @"p" (portrait), or @"l" (landscape)
+                                  @"ua", // user agent
                                   @"udid",
-                                  @"ifa",
+                                  @"ifa", // id for advertising
+                                  @"ate", // advertising tracking enabled == 0 (disabled), 1 (enabled)
                                   @"format",
                                   @"ip",
-                                  @"mode",
-                                  @"lat",
-                                  @"long",
+                                  @"mode", // == @"test" for test mode, else production
+                                  @"lat", // latitude
+                                  @"long", // longitude
                                   @"adtype",
                                   @"cid",
                                   @"carrier",
@@ -91,7 +93,6 @@
                                   @"mediation",
                                   @"version",
                                   @"connection_speed",
-                                  //TODO finish this list...
                                   nil] retain];
     }
     
@@ -146,6 +147,10 @@
     NSString *ifa = [tracker deviceIFA];
     if (ifa) {
         [self setCustomParameter:ifa forKey:@"ifa"];
+    }
+    NSInteger advertisingTrackingEnabled = [tracker advertisingTrackingEnabled];
+    if (advertisingTrackingEnabled >= 0) {
+        [self setCustomParameter:[NSString stringWithFormat:@"%d", advertisingTrackingEnabled] forKey:@"ate"];
     }
     [self setCustomParameter:TAPIT_VERSION forKey:@"version"];
     [self setCustomParameter:@"iOS-SDK" forKey:@"client"];

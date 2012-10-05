@@ -42,6 +42,18 @@
     return nil;
 }
 
+- (NSInteger)advertisingTrackingEnabled {
+    NSInteger retval = -1; // data not available
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+    Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
+    if(clsIdManager) {
+        id *idManager = [clsIdManager sharedManager];
+        retval = (BOOL)[idManager isAdvertisingTrackingEnabled] ? 1 : 0; // 1 == enabled, 0 == disabled
+    }
+#endif
+    return retval;
+}
+
 - (NSString *)deviceUDID {
     return [OpenUDID value];
 }

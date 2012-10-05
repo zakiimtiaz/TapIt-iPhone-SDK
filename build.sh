@@ -1,5 +1,10 @@
 #! /bin/bash
 
+# WARNING - This script doesn't really work, it's still in the exeperimental phase... You probably shouldn't run me!
+
+# for this script to work, you need to install "Command Line Tools (OS X Mountain Lion) for Xcode - August 2012" from here: https://developer.apple.com/downloads/index.action?name=Xcode#
+
+# You may have to update these paths...
 CURR_XCODE_PATH=`xcode-select -print-path`
 XCODE_44_PATH='/Applications/Xcode.app/Contents/Developer'
 

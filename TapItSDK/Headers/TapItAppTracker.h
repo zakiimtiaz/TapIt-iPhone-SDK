@@ -16,6 +16,7 @@
 + (TapItAppTracker *)sharedAppTracker;
 
 - (NSString *)deviceIFA;
+- (NSInteger)advertisingTrackingEnabled;
 - (NSString *)deviceUDID;
 - (NSString *)userAgent;
 - (CLLocation *)location;

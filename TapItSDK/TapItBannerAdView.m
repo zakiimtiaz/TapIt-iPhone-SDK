@@ -76,6 +76,11 @@
 - (BOOL)startServingAdsForRequest:(TapItRequest *)request {
     self.adRequest = request;
     [self.adRequest setCustomParameter:TAPIT_AD_TYPE_BANNER forKey:@"adtype"];
+    CGRect frame = self.frame;
+    NSString *width = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.width];
+    NSString *height = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.height];
+    [self.adRequest setCustomParameter:width forKey:@"w"];
+    [self.adRequest setCustomParameter:height forKey:@"h"];
     [self.adManager fireAdRequest:self.adRequest];
     isServingAds = YES;
     return YES;
@@ -233,11 +238,11 @@
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
+    [self hide];
+    [self startBannerRotationTimerForNormalOrError:YES];
     if ([self.delegate respondsToSelector:@selector(tapitBannerAdView:didFailToReceiveAdWithError:)]) {
         [self.delegate tapitBannerAdView:self didFailToReceiveAdWithError:error];
     }
-    [self hide];
-    [self startBannerRotationTimerForNormalOrError:YES];
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {

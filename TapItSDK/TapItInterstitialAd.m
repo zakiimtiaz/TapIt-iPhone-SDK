@@ -56,6 +56,19 @@
 - (BOOL)loadInterstitialForRequest:(TapItRequest *)request {
     self.adRequest = request;
     [self.adRequest setCustomParameter:TAPIT_AD_TYPE_INTERSTITIAL forKey:@"adtype"];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    NSString *width = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.width];
+    NSString *height = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.height];
+    NSString *orientation;
+    UIInterfaceOrientation uiOrt = [[UIApplication sharedApplication] statusBarOrientation];
+    if (uiOrt == UIInterfaceOrientationPortrait || uiOrt == UIInterfaceOrientationPortraitUpsideDown) {
+        orientation = @"p";
+    } else {
+        orientation = @"l";
+    }
+    [self.adRequest setCustomParameter:width forKey:@"w"];
+    [self.adRequest setCustomParameter:height forKey:@"h"];
+    [self.adRequest setCustomParameter:orientation forKey:@"o"];
     [self.adManager fireAdRequest:self.adRequest];
     return YES;
 }

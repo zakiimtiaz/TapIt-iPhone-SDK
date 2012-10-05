@@ -7,7 +7,7 @@
 		<key>TapIt-armv6.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>TapIt-iOS-Sample.xcscheme</key>
 		<dict>
@@ -27,6 +27,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>551C24D7161E4AEC000A6F9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5594981E15366E4100D6495D</key>
 		<dict>
 			<key>primary</key>
