@@ -9,7 +9,7 @@
 #import "TapItPrivateConstants.h"
 #import "TapItAppTracker.h"
 #import "OpenUDID.h"
-#import "Reachability.h"
+#import "TapItReachability.h"
 
 @interface TapItAppTracker ()
     - (void)reportApplicationOpenInBackground;
@@ -102,7 +102,7 @@
  1 - Wifi network
  */
 - (NSInteger)networkConnectionType {
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    TapItReachability *reachability = [TapItReachability reachabilityForInternetConnection];
     return reachability.isReachableViaWiFi;
 }
 

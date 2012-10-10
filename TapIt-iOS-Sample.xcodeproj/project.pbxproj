@@ -70,7 +70,7 @@
 		55A64B5F1537E7F200AFDDFF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55ABC3F915A63AA200B13844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55ABC3F815A63AA200B13844 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55BEBE5B160A8CD500072ECD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEBE5A160A8CD500072ECD /* AdSupport.framework */; };
-		55C7004E15A767E700818F44 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* Reachability.m */; };
+		55C7004E15A767E700818F44 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
 		55C7005015A76AEB00818F44 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */; };
 		55CF02D815EFDEAC00DBB5A5 /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
 		55CF02D915EFDEAC00DBB5A5 /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
@@ -97,12 +97,12 @@
 		55CF02F015EFDEAC00DBB5A5 /* TapItConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 552E9A711538CDB400FD22C4 /* TapItConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55CF02F115EFDEAC00DBB5A5 /* TapItAdPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF615C2204000075FBE /* TapItAdPrompt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55CF02F215EFDEAC00DBB5A5 /* TapItRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF715C2204000075FBE /* TapItRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55CF030C15EFDED600DBB5A5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* Reachability.m */; };
+		55CF030C15EFDED600DBB5A5 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
 		55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55CF030F15EFDED600DBB5A5 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* OpenUDID.m */; };
 		55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
-		55DC8CB7160CE2C800558DC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* Reachability.m */; };
+		55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
 		55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55DC8CB9160CE2C800558DC8 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55DC8CBA160CE2C800558DC8 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* OpenUDID.m */; };
@@ -229,8 +229,8 @@
 		55A64B5D1537E7F200AFDDFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		55ABC3F815A63AA200B13844 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		55BEBE5A160A8CD500072ECD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		55C7004C15A767E700818F44 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
-		55C7004D15A767E700818F44 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		55C7004C15A767E700818F44 /* TapItReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItReachability.h; path = Reachability/TapItReachability.h; sourceTree = "<group>"; };
+		55C7004D15A767E700818F44 /* TapItReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TapItReachability.m; path = Reachability/TapItReachability.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55C74F6B15F0836D00981B79 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -524,8 +524,8 @@
 		55C7004A15A765EB00818F44 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				55C7004C15A767E700818F44 /* Reachability.h */,
-				55C7004D15A767E700818F44 /* Reachability.m */,
+				55C7004C15A767E700818F44 /* TapItReachability.h */,
+				55C7004D15A767E700818F44 /* TapItReachability.m */,
 			);
 			name = Reachability;
 			sourceTree = "<group>";
@@ -748,7 +748,7 @@
 				55A64B5F1537E7F200AFDDFF /* JSONKit.m in Sources */,
 				5581896315A258E800B14BCD /* TapItLightboxAdViewController.m in Sources */,
 				5521353415A3CBB10048179D /* TapItInterstitialAdViewController.m in Sources */,
-				55C7004E15A767E700818F44 /* Reachability.m in Sources */,
+				55C7004E15A767E700818F44 /* TapItReachability.m in Sources */,
 				558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */,
 				55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */,
 				5532FEBB15EC35AB00427E00 /* TapItMediationAdMob.m in Sources */,
@@ -778,7 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */,
-				55CF030C15EFDED600DBB5A5 /* Reachability.m in Sources */,
+				55CF030C15EFDED600DBB5A5 /* TapItReachability.m in Sources */,
 				55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */,
 				55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */,
 				55CF030F15EFDED600DBB5A5 /* OpenUDID.m in Sources */,
@@ -800,7 +800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */,
-				55DC8CB7160CE2C800558DC8 /* Reachability.m in Sources */,
+				55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */,
 				55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */,
 				55DC8CB9160CE2C800558DC8 /* NSDictionary+QueryStringBuilder.m in Sources */,
 				55DC8CBA160CE2C800558DC8 /* OpenUDID.m in Sources */,

@@ -1,6 +1,6 @@
 [submodule "Lib/JSONKit"]
 path = Lib/JSONKit
-url = git://github.com/johnezang/JSONKit.git
+url = git://github.com/tapit/JSONKit.git
 [submodule "Lib/Reachability"]
 	path = Lib/Reachability
-	url = https://github.com/tonymillion/Reachability.git
+	url = git@github.com:tapit/Reachability.git
