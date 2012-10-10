@@ -95,7 +95,7 @@
     NSError *error = nil;
     NSString *jsonString = self.currentRequest.rawResults;
     
-    JSONDecoder *decoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
+    TapItJSONDecoder *decoder = [[TapItJSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *deserializedData = [decoder objectWithData:jsonData error:&error];
     [decoder release];
