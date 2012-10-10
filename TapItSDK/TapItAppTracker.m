@@ -8,7 +8,7 @@
 
 #import "TapItPrivateConstants.h"
 #import "TapItAppTracker.h"
-#import "OpenUDID.h"
+#import "TapItOpenUDID.h"
 #import "TapItReachability.h"
 
 @interface TapItAppTracker ()
@@ -34,8 +34,8 @@
     
     Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
     if(clsIdManager) {
-        id *idManager = [clsIdManager sharedManager];
-        identifier = [[idManager advertisingIdentifier] UUIDString];
+        id idManager = [clsIdManager performSelector:@selector(sharedManager)];
+        identifier = [[idManager performSelector:@selector(advertisingIdentifier)] UUIDString];
         return identifier;
     }
 #endif
@@ -47,15 +47,15 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
     Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
     if(clsIdManager) {
-        id *idManager = [clsIdManager sharedManager];
-        retval = (BOOL)[idManager isAdvertisingTrackingEnabled] ? 1 : 0; // 1 == enabled, 0 == disabled
+        id idManager = [clsIdManager performSelector:@selector(sharedManager)];
+        retval = (BOOL)[idManager performSelector:@selector(isAdvertisingTrackingEnabled)] ? 1 : 0; // 1 == enabled, 0 == disabled
     }
 #endif
     return retval;
 }
 
 - (NSString *)deviceUDID {
-    return [OpenUDID value];
+    return [TapItOpenUDID value];
 }
 
 - (NSString *)userAgent {
