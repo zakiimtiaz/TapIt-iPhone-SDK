@@ -133,7 +133,7 @@
 }
 
 - (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView {
-    NSLog(@"tapitBannerAdViewActionWillFinish");
+    NSLog(@"Banner is about to be dismissed, get ready!");
     
 }
 

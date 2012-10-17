@@ -23,17 +23,21 @@
     BOOL _isShowing;
     NSURL *url;
     BOOL prevStatusBarHiddenState;
+    
+    UIViewController *theControllerToPresent;
 }
 
 @synthesize delegate, url, presentingController;
 
 static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
+static Class inAppStoreVCClass;
 + (void)initialize 
 {
 	// Schemes that should be handled by the in-app browser.
 	BROWSER_SCHEMES = [[NSArray arrayWithObjects:
 						@"http",
 						@"https",
+                        @"about",
 						nil] retain];
 	
 	// Hosts that should be handled by the OS.
@@ -42,12 +46,21 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 					  @"maps.google.com",
                       @"itunes.apple.com",
 					  nil] retain];
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+    inAppStoreVCClass = NSClassFromString(@"SKStoreProductViewController");
+#else
+    inAppStoreVCClass = nil;
+#endif
 }
 
 - (id)init {
 	if (self = [super init])
 	{
         _isShowing = NO;
+        UIWindow* window = [UIApplication sharedApplication].keyWindow;
+        self.presentingController = window.rootViewController;
+        theControllerToPresent = [self retain];
         [self buildUI];
 	}
 	return self;
@@ -58,6 +71,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
     // test urls...
 //    theUrl = [NSURL URLWithString:@"http://www.tapit.com/"]; 
 //    theUrl = [NSURL URLWithString:@"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#"];
+//    theUrl = [NSURL URLWithString:@"https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8"];
     [_webView loadRequest:[NSURLRequest requestWithURL:theUrl]];
 }
 
@@ -81,7 +95,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
         
 //        NSLog(@"showFullscreenBrowserAnimated");
 //        [self.presentingController presentViewController:self animated:animated completion:nil];
-        [self.presentingController presentModalViewController:self animated:animated];
+        [self.presentingController presentModalViewController:theControllerToPresent animated:animated];
         _isShowing = YES;
     }
 }
@@ -231,42 +245,109 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
  navigationType:(UIWebViewNavigationType)navigationType 
 {
 //    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
+    BOOL shouldProceed = YES;
+
     if (url) {
         [url release]; url = nil;
     }
     url = [request.URL retain];
-    BOOL shouldProceed = YES;
-    BOOL shouldLeave = [self shouldLeaveAppToServeRequest:request];
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerShouldLoad:willLeaveApp:)]) {
-        // Give the app the choice to proceed to load this url or not...
-        shouldProceed = [self.delegate browserControllerShouldLoad:self willLeaveApp:shouldLeave];
-    }
-    
-    if (shouldProceed) {
-        if (shouldLeave) {
-            if ([[UIApplication sharedApplication] canOpenURL:request.URL]) {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
-                    [self.delegate browserControllerLoaded:self willLeaveApp:YES];
-                }
-                [self closeFullscreenBrowserAnimated:NO];
-                [[UIApplication sharedApplication] openURL:request.URL];
-            }
-            else {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerFailedToLoad:withError:)]) {
-                    NSString *errStr = [NSString stringWithFormat:@"Couldn't open URL: %@", request.URL.absoluteString];
-                    NSDictionary *details = [NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey];
-                    NSError *err = [NSError errorWithDomain:NSPOSIXErrorDomain code:500 userInfo:details];
 
-                    [self.delegate browserControllerFailedToLoad:self withError:err];
-                }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+    NSNumber *appIdentifier = [self appIdentifierFromStoreUrl:request.URL];
+    if (appIdentifier) {
+        // show interalStore
+        [self loadInAppStoreForApp:(NSNumber *)appIdentifier];
+        // stop the request
+        shouldProceed = NO; // url handled by system, nothing more to do here...
+    }
+    else
+#endif
+    if ([self shouldLeaveAppToServeRequest:request]) {
+        // yield to OS
+        if ([[UIApplication sharedApplication] canOpenURL:request.URL]) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                [self.delegate browserControllerLoaded:self willLeaveApp:YES];
             }
-            shouldProceed = NO; // url handled by system, nothing more to do here...
+            [self closeFullscreenBrowserAnimated:NO];
+            [[UIApplication sharedApplication] openURL:request.URL];
         }
+        else {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerFailedToLoad:withError:)]) {
+                NSString *errStr = [NSString stringWithFormat:@"Couldn't open URL: %@", request.URL.absoluteString];
+                NSDictionary *details = [NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey];
+                NSError *err = [NSError errorWithDomain:NSPOSIXErrorDomain code:500 userInfo:details];
+                
+                [self.delegate browserControllerFailedToLoad:self withError:err];
+            }
+        }
+        // stop the request
+        shouldProceed = NO; // url handled by system, nothing more to do here...
+    }
+    else {
+        // noop - continue processing
     }
     
     return shouldProceed;
 }
+
+- (NSNumber *)appIdentifierFromStoreUrl:(NSURL *)storeUrl {
+    NSNumber *retVal = nil;
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+        // example: https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8
+        BOOL isStoreLink = [@"itunes.apple.com" isEqualToString:storeUrl.host];
+
+        if (isStoreLink && inAppStoreVCClass) {
+            NSArray *components = [[storeUrl pathComponents] retain];
+            if ([components count] == 5 && [@"app" isEqualToString:[components objectAtIndex:2]]) {
+                //TODO: is the "app" test necessary?
+                NSString *idStr = [components objectAtIndex:4];
+                NSInteger intId = [[idStr substringFromIndex:2] integerValue];
+                retVal = [NSNumber numberWithInteger:intId];
+            }
+            
+            [components release];
+        }
+    #endif
+    return retVal;
+}
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+-(void)loadInAppStoreForApp:(NSNumber *)appIdentifier {
+    SKStoreProductViewController *store = [[inAppStoreVCClass alloc] init];
+    store.delegate = (id<SKStoreProductViewControllerDelegate>)self;
+    NSDictionary *params = @{@"id": appIdentifier}; // SKStoreProductParameterITunesItemIdentifier
+    [store loadProductWithParameters:params completionBlock:^(BOOL wasSuccessful, NSError *error){
+        if (wasSuccessful) {
+            theControllerToPresent = [store retain];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+            }
+            else {
+                NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+            }
+        }
+        else {
+            [self.delegate browserControllerFailedToLoad:self withError:error];
+        }
+    }];
+}
+
+-(void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    NSLog(@"time to dismiss the store controller");
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerWillDismiss:)]) {
+        [self.delegate browserControllerWillDismiss:self];
+    }
+    
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    self.presentingController = nil;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
+        [self.delegate browserControllerDismissed:self];
+    }
+}
+#endif
 
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
@@ -321,7 +402,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 	[_spinnerItem release]; _spinnerItem = nil;
 	[_actionSheet release]; _actionSheet = nil;
     [url release]; url = nil;
-    
+    [theControllerToPresent release]; theControllerToPresent = nil;
     [super dealloc];
 }
 @end
