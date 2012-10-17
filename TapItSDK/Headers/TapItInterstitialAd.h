@@ -18,6 +18,7 @@
 @property (assign, nonatomic) id<TapItInterstitialAdDelegate> delegate;
 
 @property (assign, nonatomic) BOOL animated;
+@property (assign, nonatomic) BOOL autoReposition;
 //@property (assign, nonatomic) TapItInterstitialControlType controlType;
 @property (assign, nonatomic) TapItAdType allowedAdTypes;
 @property (readonly) BOOL loaded;

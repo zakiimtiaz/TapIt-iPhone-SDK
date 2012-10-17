@@ -17,7 +17,7 @@
     UIActivityIndicatorView *loadingSpinner;
 }
 
-@synthesize animated, adView, tapitDelegate;
+@synthesize animated, autoReposition, adView, tapitDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +27,7 @@
         loadingSpinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         [loadingSpinner sizeToFit];
         loadingSpinner.hidesWhenStopped = YES;
+        self.autoReposition = YES;
     }
     return self;
 }
@@ -70,6 +71,10 @@
 }
 
 - (void)repositionToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    if (!self.autoReposition) {
+        return;
+    }
+    
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIApplication *application = [UIApplication sharedApplication];
     if (UIInterfaceOrientationIsLandscape(orientation))

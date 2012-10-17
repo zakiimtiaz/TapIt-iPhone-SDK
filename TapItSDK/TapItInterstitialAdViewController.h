@@ -18,6 +18,7 @@
 @property (retain, nonatomic) TapItAdView *adView;
 @property (assign, nonatomic) id<TapItInterstitialAdDelegate> tapitDelegate;
 @property (assign, nonatomic) BOOL animated;
+@property (assign, nonatomic) BOOL autoReposition;
 
 //- (void)openURLInFullscreenBrowser:(NSURL *)url;
 

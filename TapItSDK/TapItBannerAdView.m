@@ -40,7 +40,7 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
+@synthesize originalFrame, adView, adRequest, adManager, animated, autoReposition, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
@@ -55,6 +55,7 @@
     loadingSpinner.center = self.center;
     [loadingSpinner sizeToFit];
     loadingSpinner.hidesWhenStopped = YES;
+    self.autoReposition = YES;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -91,6 +92,10 @@
 }
 
 - (void)repositionToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    if (!self.autoReposition) {
+        // don't reposition banner, someone else will do it...
+        return;
+    }
     
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIApplication *application = [UIApplication sharedApplication];
@@ -104,7 +109,7 @@
         size.height -= MIN(application.statusBarFrame.size.width, application.statusBarFrame.size.height);
     }
     
-    CGFloat x = 0, y = 0;
+    CGFloat x = 0, y = self.originalFrame.origin.y;
     CGFloat w = self.adView.frame.size.width, h = self.adView.frame.size.height;
 
     x = size.width/2 - self.adView.frame.size.width/2;

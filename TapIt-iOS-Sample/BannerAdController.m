@@ -24,7 +24,10 @@
  */
 - (void)initBannerSimple {
     // init banner and add to your view
-    tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    if (!tapitAd) {
+        // don't re-define if we used IB to init the banner...
+        tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    }
     [self.view addSubview:self.tapitAd];
 
     // kick off banner rotation!
@@ -39,7 +42,10 @@
  */
 - (void)initBannerAdvanced {
     // init banner and add to your view
-    tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    if (!tapitAd) {
+        // don't re-define if we used IB to init the banner...
+        tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    }
     [self.view addSubview:self.tapitAd];
     
     // get notifiactions of ad lifecycle events (will load, did load, error, etc...)
@@ -65,7 +71,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // easiest way to get banners displaying in your app...
 //    [self initBannerSimple];
     

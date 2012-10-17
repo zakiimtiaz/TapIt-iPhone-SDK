@@ -35,7 +35,7 @@
     BOOL prevStatusBarHiddenState;
 }
 
-@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, adController, browserController, presentingController;
+@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, autoReposition, adController, browserController, presentingController;
 
 - (id)init {
     self = [super init];
@@ -45,6 +45,7 @@
         self.allowedAdTypes = TapItFullscreenAdType|TapItOfferWallType|TapItVideoAdType;
         self.animated = YES;
         isLoaded = NO;
+        self.autoReposition = YES;
     }
     return self;
 }
@@ -81,6 +82,7 @@
     adController = [[TapItLightboxAdViewController alloc] init];
     self.adController.adView = self.adView;
     self.adController.animated = self.animated;
+    self.adController.autoReposition = self.autoReposition;
     self.adController.tapitDelegate = self;
     
     self.presentingController = controller;
