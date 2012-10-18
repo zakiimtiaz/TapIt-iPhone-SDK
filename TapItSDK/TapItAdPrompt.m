@@ -12,10 +12,18 @@
 #import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
+typedef enum {
+    TapItAdPromptStateNew,
+    TapItAdPromptStateLoading,
+    TapItAdPromptStateLoaded,
+    TapItAdPromptStateShown,
+    TapItAdPromptStateError,
+} TapItAdPromptState;
+
 
 @interface TapItAdPrompt () <TapItAdManagerDelegate, TapItBrowserControllerDelegate> {
     BOOL isAlertType;
-    BOOL isLoaded;
+    TapItAdPromptState state;
     BOOL displayImmediately;
     NSDictionary *_data;
 }
@@ -33,7 +41,7 @@
 @synthesize delegate, adRequest, adManager, clickUrl, browserController;
 
 - (BOOL)loaded {
-    return isLoaded;
+    return (state > TapItAdPromptStateLoaded && state != TapItAdPromptStateError);
 }
 
 - (id)initWithRequest:(TapItRequest *)request {
@@ -42,7 +50,7 @@
         self.adManager = [[[TapItAdManager alloc] init] autorelease];
         self.adManager.delegate = self;
         self.adRequest = request;
-        isLoaded = NO;
+        state = TapItAdPromptStateNew;
         displayImmediately = NO;
         _data = nil;
     }
@@ -53,11 +61,32 @@
 #pragma mark AlertAd Methods
 
 - (void)load {
+    if (state >= TapItAdPromptStateLoading) {
+        if (state >= TapItAdPromptStateShown) {
+            NSLog(@"Re-use of AdPrompt object is dissalowed.  Please instantiate a new AdPrompt.");
+        }
+        else if (state == TapItAdPromptStateLoading) {
+            NSLog(@"AdPrompt is currently loading, ignoring");
+        }
+        else {
+            NSLog(@"AdPrompt was already loaded, ignoring");
+        }
+        return;
+    }
+    state = TapItAdPromptStateLoading;
     [self performRequest];
 }
 
 - (void)showAsAlert {
-    if (!isLoaded) {
+    if (state >= TapItAdPromptStateShown) {
+        NSLog(@"Re-use of AdPrompt object is dissalowed.  Please instantiate a new AdPrompt.");
+        return;
+    }
+    else if (state == TapItAdPromptStateLoading) {
+        NSLog(@"AdPrompt is currently loading. Please check adPrompt.loaded before showing");
+        return;
+    }
+    else if (state == TapItAdPromptStateNew) {
         isAlertType = YES;
         displayImmediately = YES;
         [self load];
@@ -76,6 +105,7 @@
                                           otherButtonTitles:callToAction, nil];
     [alert show];
     [alert release];
+    state = TapItAdPromptStateShown;
     
     if ([self.delegate respondsToSelector:@selector(tapitAdPromptWasDisplayed:)]) {
         [self.delegate tapitAdPromptWasDisplayed:self];
@@ -83,7 +113,15 @@
 }
 
 - (void)showAsActionSheet {
-    if (!isLoaded) {
+    if (state >= TapItAdPromptStateShown) {
+        NSLog(@"Re-use of AdPrompt object is dissalowed.  Please instantiate a new AdPrompt.");
+        return;
+    }
+    else if (state == TapItAdPromptStateLoading) {
+        NSLog(@"AdPrompt is currently loading. Please check adPrompt.loaded before showing");
+        return;
+    }
+    else if (state == TapItAdPromptStateNew) {
         isAlertType = NO;
         displayImmediately = YES;
         [self load];
@@ -103,6 +141,7 @@
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     [actionSheet release];
+    state = TapItAdPromptStateShown;
     
     if ([self.delegate respondsToSelector:@selector(tapitAdPromptWasDisplayed:)]) {
         [self.delegate tapitAdPromptWasDisplayed:self];
@@ -210,6 +249,7 @@
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
+    state = TapItAdPromptStateError;
     if ([self.delegate respondsToSelector:@selector(tapitAdPrompt:didFailWithError:)]) {
         [self.delegate tapitAdPrompt:self didFailWithError:error];
     }
@@ -233,9 +273,13 @@
     self.clickUrl = [data objectForKey:@"clickurl"];
 //    self.clickUrl = @"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#";
     
+    if (_data) {
+        // this shouldn't be possible, but just in case...
+        [_data release]; _data = nil;
+    }
     _data = [data retain];
 
-    isLoaded = YES;
+    state = TapItAdPromptStateLoaded;
 
     if ([self.delegate respondsToSelector:@selector(tapitAdPromptDidLoad:)]) {
         [self.delegate tapitAdPromptDidLoad:self];
