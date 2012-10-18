@@ -40,7 +40,7 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, autoReposition, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
+@synthesize originalFrame, adView, adRequest, adManager, animated, autoReposition, showLoadingOverlay, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
@@ -56,6 +56,7 @@
     [loadingSpinner sizeToFit];
     loadingSpinner.hidesWhenStopped = YES;
     self.autoReposition = YES;
+    self.showLoadingOverlay = NO;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -391,6 +392,7 @@
     if(self.presentingController) {
         self.browserController.presentingController = self.presentingController;
     }
+    self.browserController.showLoadingOverlay = self.showLoadingOverlay;
     [self.browserController loadUrl:url];
     [self showLoading];
 }

@@ -19,6 +19,7 @@
 
 @property (assign, nonatomic) BOOL animated;
 @property (assign, nonatomic) BOOL autoReposition;
+@property (assign, nonatomic) BOOL showLoadingOverlay;
 //@property (assign, nonatomic) TapItInterstitialControlType controlType;
 @property (assign, nonatomic) TapItAdType allowedAdTypes;
 @property (readonly) BOOL loaded;

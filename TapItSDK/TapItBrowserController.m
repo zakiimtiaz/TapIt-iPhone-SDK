@@ -19,6 +19,10 @@
 	UIBarButtonItem *_spinnerItem;
 	UIActionSheet *_actionSheet;
     
+    UIView *_hudView;
+	UIActivityIndicatorView *_preloadingSpinner;
+    UILabel *_hudCaption;
+    
     UIViewController *presentingController;
     BOOL _isShowing;
     NSURL *url;
@@ -27,7 +31,7 @@
     UIViewController *theControllerToPresent;
 }
 
-@synthesize delegate, url, presentingController;
+@synthesize delegate, url, presentingController, showLoadingOverlay;
 
 static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 static Class inAppStoreVCClass;
@@ -73,6 +77,46 @@ static Class inAppStoreVCClass;
 //    theUrl = [NSURL URLWithString:@"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#"];
 //    theUrl = [NSURL URLWithString:@"https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8"];
     [_webView loadRequest:[NSURLRequest requestWithURL:theUrl]];
+    
+    [self buildAndShowLoadingOverlay];
+}
+
+
+- (void)buildAndShowLoadingOverlay {
+    if (!self.showLoadingOverlay) {
+        return;
+    }
+    _hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 170, 170)];
+    _hudView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    _hudView.clipsToBounds = YES;
+    _hudView.layer.cornerRadius = 10.0;
+    
+    _preloadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _preloadingSpinner.frame = CGRectMake(65, 55, _preloadingSpinner.bounds.size.width, _preloadingSpinner.bounds.size.height);
+    [_hudView addSubview:_preloadingSpinner];
+    [_preloadingSpinner startAnimating];
+    
+    _hudCaption = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    _hudCaption.backgroundColor = [UIColor clearColor];
+    _hudCaption.textColor = [UIColor whiteColor];
+    _hudCaption.adjustsFontSizeToFitWidth = YES;
+    _hudCaption.textAlignment = UITextAlignmentCenter;
+    _hudCaption.font=[_hudCaption.font fontWithSize:20];
+    _hudCaption.text = @"Loading...";
+    [_hudView addSubview:_hudCaption];
+    
+    _hudView.center = presentingController.view.center;
+    
+    [presentingController.view addSubview:_hudView];
+}
+
+- (void)hideLoadingOverlay {
+    if (_hudView) {
+        [_hudView removeFromSuperview];
+    }
+    [_hudCaption release]; _hudCaption = nil;
+    [_preloadingSpinner release]; _preloadingSpinner = nil;
+    [_hudView release]; _hudView = nil;
 }
 
 - (void)showFullscreenBrowser {
@@ -96,6 +140,7 @@ static Class inAppStoreVCClass;
 //        NSLog(@"showFullscreenBrowserAnimated");
 //        [self.presentingController presentViewController:self animated:animated completion:nil];
         [self.presentingController presentModalViewController:theControllerToPresent animated:animated];
+        [self hideLoadingOverlay];
         _isShowing = YES;
     }
 }
@@ -264,6 +309,8 @@ static Class inAppStoreVCClass;
 #endif
     if ([self shouldLeaveAppToServeRequest:request]) {
         // yield to OS
+        [self hideLoadingOverlay];
+        
         if ([[UIApplication sharedApplication] canOpenURL:request.URL]) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
                 [self.delegate browserControllerLoaded:self willLeaveApp:YES];
@@ -403,6 +450,10 @@ static Class inAppStoreVCClass;
 	[_actionSheet release]; _actionSheet = nil;
     [url release]; url = nil;
     [theControllerToPresent release]; theControllerToPresent = nil;
+    [_hudCaption release]; _hudCaption = nil;
+    [_preloadingSpinner release]; _preloadingSpinner = nil;
+    [_hudView release]; _hudView = nil;
+
     [super dealloc];
 }
 @end

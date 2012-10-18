@@ -27,8 +27,8 @@
     if (!tapitAd) {
         // don't re-define if we used IB to init the banner...
         tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        [self.view addSubview:self.tapitAd];
     }
-    [self.view addSubview:self.tapitAd];
 
     // kick off banner rotation!
     [self.tapitAd startServingAdsForRequest:[TapItRequest requestWithAdZone:ZONE_ID]];
@@ -45,12 +45,15 @@
     if (!tapitAd) {
         // don't re-define if we used IB to init the banner...
         tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        [self.view addSubview:self.tapitAd];
     }
-    [self.view addSubview:self.tapitAd];
     
     // get notifiactions of ad lifecycle events (will load, did load, error, etc...)
     self.tapitAd.delegate = self;
-    
+
+    // BETA: show a loading overlay when ad is pressed
+    self.tapitAd.showLoadingOverlay = YES;
+
     // set the parent controller for modal browser that loads when user taps ad
 //    self.tapitAd.presentingController = self; // only needed if tapping banner doesn't load modal browser properly
     

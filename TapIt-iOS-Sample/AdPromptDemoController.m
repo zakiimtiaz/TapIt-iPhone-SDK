@@ -45,6 +45,9 @@
     [request updateLocation:myAppDelegate.locationManager.location];
     tapitAdPrompt = [[TapItAdPrompt alloc] initWithRequest:request];
     tapitAdPrompt.delegate = self;
+
+    // BETA: show a loading overlay when ad is pressed
+    tapitAdPrompt.showLoadingOverlay = YES;
 }
 
 - (IBAction)preLoadAdPrompt:(id)sender {

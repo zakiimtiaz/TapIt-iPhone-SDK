@@ -16,6 +16,7 @@
 
 @property (assign, nonatomic) id<TapItAdPromptDelegate> delegate;
 @property (readonly) BOOL loaded;
+@property (assign) BOOL showLoadingOverlay;
 
 - (id)initWithRequest:(TapItRequest *)request;
 

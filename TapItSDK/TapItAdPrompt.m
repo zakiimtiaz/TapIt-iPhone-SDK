@@ -38,7 +38,7 @@ typedef enum {
 
 @implementation TapItAdPrompt
 
-@synthesize delegate, adRequest, adManager, clickUrl, browserController;
+@synthesize delegate, adRequest, adManager, clickUrl, browserController, showLoadingOverlay;
 
 - (BOOL)loaded {
     return (state > TapItAdPromptStateLoaded && state != TapItAdPromptStateError);
@@ -201,6 +201,7 @@ typedef enum {
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
     self.browserController.delegate = self;
+    self.browserController.showLoadingOverlay = self.showLoadingOverlay;
     [self.browserController loadUrl:url];
 }
 

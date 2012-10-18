@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
     #import <StoreKit/StoreKit.h>
 #endif
@@ -21,6 +22,7 @@
 @property (assign, nonatomic) id<TapItBrowserControllerDelegate> delegate;
 @property (readonly) NSURL *url;
 @property (assign, nonatomic) UIViewController *presentingController;
+@property (assign) BOOL showLoadingOverlay;
 
 - (void)loadUrl:(NSURL *)url;
 - (void)showFullscreenBrowser;

@@ -35,7 +35,7 @@
     BOOL prevStatusBarHiddenState;
 }
 
-@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, autoReposition, adController, browserController, presentingController;
+@synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, autoReposition, showLoadingOverlay, adController, browserController, presentingController;
 
 - (id)init {
     self = [super init];
@@ -46,6 +46,7 @@
         self.animated = YES;
         isLoaded = NO;
         self.autoReposition = YES;
+        self.showLoadingOverlay = NO;
     }
     return self;
 }
@@ -140,13 +141,6 @@
     // This method should always be overridden by child class
 }
 
-
-
-
-
-
-
-
 - (void)tapitInterstitialAd:(TapItInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
     isLoaded = NO;
     if (self.delegate) {
@@ -230,6 +224,7 @@
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
     self.browserController.presentingController = self.presentingController;
     self.browserController.delegate = self;
+    self.browserController.showLoadingOverlay = self.showLoadingOverlay;
     [self.browserController loadUrl:url];
     [self.adController showLoading];
 

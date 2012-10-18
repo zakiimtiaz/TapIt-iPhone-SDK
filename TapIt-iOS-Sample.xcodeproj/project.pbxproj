@@ -21,6 +21,7 @@
 		55716B0C15C31D1A00075FBE /* TapIt.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55716B0B15C31D1A00075FBE /* TapIt.bundle */; };
 		55716B5C15C3214200075FBE /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
 		55716B6415C3265400075FBE /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
+		5577B12B162F5C1200652A9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DC617D162E15620073E4B0 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5581896315A258E800B14BCD /* TapItLightboxAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581896215A258E800B14BCD /* TapItLightboxAdViewController.m */; };
 		55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
 		558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
@@ -101,6 +102,7 @@
 		55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55CF030F15EFDED600DBB5A5 /* TapItOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* TapItOpenUDID.m */; };
+		55DC6181162E30570073E4B0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DC617D162E15620073E4B0 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
 		55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
@@ -234,6 +236,7 @@
 		55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55C74F6B15F0836D00981B79 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DC617D162E15620073E4B0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_armv6.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55DC8CDE160CE6FA00558DC8 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPromptDemoController.m; sourceTree = "<group>"; };
@@ -244,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5577B12B162F5C1200652A9C /* StoreKit.framework in Frameworks */,
 				558F516E161E063700A2A4FE /* AdSupport.framework in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
 				5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */,
@@ -276,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DC6181162E30570073E4B0 /* StoreKit.framework in Frameworks */,
 				55BEBE5B160A8CD500072ECD /* AdSupport.framework in Frameworks */,
 				55CF02E315EFDEAC00DBB5A5 /* UIKit.framework in Frameworks */,
 				55CF02E415EFDEAC00DBB5A5 /* CoreTelephony.framework in Frameworks */,
@@ -350,6 +355,7 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
+				55DC617D162E15620073E4B0 /* StoreKit.framework */,
 				55DC8CDE160CE6FA00558DC8 /* build.sh */,
 				55BEBE5A160A8CD500072ECD /* AdSupport.framework */,
 				5528EECB15FFBB51009ED3A4 /* LICENSE */,
