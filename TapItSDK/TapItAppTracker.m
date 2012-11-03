@@ -29,7 +29,7 @@
 }
 
 - (NSString *)deviceIFA {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+#ifndef DISABLE_NEW_FEATURES
     NSString *identifier;
     
     Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
@@ -44,7 +44,7 @@
 
 - (NSInteger)advertisingTrackingEnabled {
     NSInteger retval = -1; // data not available
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+#ifndef DISABLE_NEW_FEATURES
     Class clsIdManager = NSClassFromString(@"ASIdentifierManager");
     if(clsIdManager) {
         id idManager = [clsIdManager performSelector:@selector(sharedManager)];

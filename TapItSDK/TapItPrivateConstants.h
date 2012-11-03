@@ -12,8 +12,10 @@
 #import "TapItConstants.h"
 
 
-#define TAPIT_AD_SERVER_URL                                 @"http://r.tapit.com/adrequest.php"
 #define TAPIT_REPORTING_SERVER_URL                          @"http://a.tapit.com"
+#define TAPIT_AD_SERVER_BASE_URL                            @"http://r.tapit.com"
+#define TAPIT_AD_SERVER_URL                                 [NSString stringWithFormat:@"%@/adrequest.php", TAPIT_AD_SERVER_BASE_URL]
+#define TAPIT_CLICK_SERVER_BASE_URL                         @"http://c.tapit.com"
 
 #define TAPIT_PARAM_VALUE_BANNER_ROTATE_INTERVAL            120
 #define TAPIT_PARAM_VALUE_BANNER_ERROR_TIMEOUT_INTERVAL     30

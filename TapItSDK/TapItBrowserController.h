@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+#ifndef DISABLE_NEW_FEATURES
     #import <StoreKit/StoreKit.h>
 #endif
 

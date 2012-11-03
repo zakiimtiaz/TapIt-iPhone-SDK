@@ -52,7 +52,6 @@
     self.adManager.delegate = self;
     isServingAds = NO;
     loadingSpinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
-    loadingSpinner.center = self.center;
     [loadingSpinner sizeToFit];
     loadingSpinner.hidesWhenStopped = YES;
     self.autoReposition = YES;
@@ -372,13 +371,18 @@
 
 
 - (void)showLoading {
-    [self addSubview:loadingSpinner];
-    [loadingSpinner startAnimating];
+    if(!self.showLoadingOverlay) {
+        [self addSubview:loadingSpinner];
+        loadingSpinner.center = self.center;
+        [loadingSpinner startAnimating];
+    }
 }
 
 - (void)hideLoading {
-    [loadingSpinner stopAnimating];
-    [loadingSpinner removeFromSuperview];
+    if (!self.showLoadingOverlay) {
+        [loadingSpinner stopAnimating];
+        [loadingSpinner removeFromSuperview];
+    }
 }
 
 #pragma mark -

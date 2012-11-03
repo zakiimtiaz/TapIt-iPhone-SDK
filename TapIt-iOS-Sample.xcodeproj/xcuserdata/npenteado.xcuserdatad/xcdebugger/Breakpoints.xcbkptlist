@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItMediationAdMob.m"
-         timestampString = "371067249.401485"
+         timestampString = "372904287.067036"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
+         startingLineNumber = "112"
+         endingLineNumber = "112"
          landmarkName = "-tapitBannerAdView:didFailToReceiveAdWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,25 +21,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItMediationAdMob.m"
-         timestampString = "371068620.323973"
+         timestampString = "372904287.067036"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "93"
-         endingLineNumber = "93"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "TapIt-iOS-Sample/BannerAdController.m"
-         timestampString = "372212874.890043"
+         filePath = "TapItSDK/TapItBannerAdView.m"
+         timestampString = "373494003.849861"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
-         landmarkName = "-tapitBannerAdViewActionWillFinish:"
+         startingLineNumber = "415"
+         endingLineNumber = "415"
+         landmarkName = "-browserControllerLoaded:willLeaveApp:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TapItSDK/TapItBrowserController.m"
+         timestampString = "373597197.477557"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "598"
+         endingLineNumber = "598"
+         landmarkName = "-webViewDidFinishLoad:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -47,12 +60,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TapItSDK/TapItBrowserController.m"
-         timestampString = "372212684.053592"
+         timestampString = "373597197.477557"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
-         landmarkName = "-showLoadingOverlay"
+         startingLineNumber = "487"
+         endingLineNumber = "487"
+         landmarkName = "-loadInAppStoreForApp:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TapItSDK/TapItBrowserController.m"
+         timestampString = "373595867.904424"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
+         landmarkName = "-showFullscreenBrowserAnimated:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

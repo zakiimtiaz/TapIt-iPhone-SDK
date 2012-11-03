@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 TapIt!. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "TapItBrowserController.h"
+#import "TapItPrivateConstants.h"
+#import "TapItAppTracker.h"
 
 @implementation TapItBrowserController {
 	UIWebView *_webView;
@@ -26,6 +29,7 @@
     UIViewController *presentingController;
     BOOL _isShowing;
     NSURL *url;
+    BOOL statusBarVisibilityChanged;
     BOOL prevStatusBarHiddenState;
     
     UIViewController *theControllerToPresent;
@@ -41,7 +45,7 @@ static Class inAppStoreVCClass;
 	BROWSER_SCHEMES = [[NSArray arrayWithObjects:
 						@"http",
 						@"https",
-                        @"about",
+                        @"about", // blank screen
 						nil] retain];
 	
 	// Hosts that should be handled by the OS.
@@ -51,7 +55,7 @@ static Class inAppStoreVCClass;
                       @"itunes.apple.com",
 					  nil] retain];
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+#ifndef DISABLE_NEW_FEATURES
     inAppStoreVCClass = NSClassFromString(@"SKStoreProductViewController");
 #else
     inAppStoreVCClass = nil;
@@ -62,6 +66,8 @@ static Class inAppStoreVCClass;
 	if (self = [super init])
 	{
         _isShowing = NO;
+        statusBarVisibilityChanged = NO;
+        prevStatusBarHiddenState = NO;
         UIWindow* window = [UIApplication sharedApplication].keyWindow;
         self.presentingController = window.rootViewController;
         theControllerToPresent = [self retain];
@@ -70,38 +76,83 @@ static Class inAppStoreVCClass;
 	return self;
 }
 
+/**
+ * removes the advalidate.php hop, going straight to adclick.php
+ */
+- (void)rewriteUrl:(NSURL **)theUrl {
+    NSString *urlString = [*theUrl absoluteString];
+    NSString *testString = [NSString stringWithFormat:@"%@/advalidate.php?", TAPIT_CLICK_SERVER_BASE_URL];
+    NSRange range = [urlString rangeOfString:testString];
+    if (range.location != NSNotFound) {
+        NSString *queryString = [urlString substringFromIndex:range.length];
+        NSString *updatedUrlString = [NSString stringWithFormat:@"%@/adclick.php?%@", TAPIT_CLICK_SERVER_BASE_URL, queryString];
+        *theUrl = [NSURL URLWithString:updatedUrlString];
+        NSLog(@"Re-writing url to: %@", *theUrl);
+    }
+}
 
 - (void)loadUrl:(NSURL *)theUrl {
     // test urls...
-//    theUrl = [NSURL URLWithString:@"http://www.tapit.com/"]; 
+//    theUrl = [NSURL URLWithString:@"http://www.tapit.com/"];
 //    theUrl = [NSURL URLWithString:@"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#"];
 //    theUrl = [NSURL URLWithString:@"https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8"];
+    
+    NSLog(@"Loading URL: %@", theUrl);
+//    [self rewriteUrl:&theUrl];
+    NSLog(@"New URL: %@", theUrl);
     [_webView loadRequest:[NSURLRequest requestWithURL:theUrl]];
     
     [self buildAndShowLoadingOverlay];
 }
 
+- (void)hideStatusBar {
+//    UIApplication *app = [UIApplication sharedApplication];
+//    BOOL currentState = app.statusBarHidden;
+//    if (!currentState) {
+//        app.statusBarHidden = YES;
+//        prevStatusBarHiddenState = currentState;
+//        statusBarVisibilityChanged = YES;
+//    }
+}
+
+- (void)resetStatusBar {
+//    if (statusBarVisibilityChanged) {
+//        UIApplication *app = [UIApplication sharedApplication];
+//        app.statusBarHidden = prevStatusBarHiddenState;
+//        statusBarVisibilityChanged = NO;
+//    }
+}
 
 - (void)buildAndShowLoadingOverlay {
     if (!self.showLoadingOverlay) {
         return;
     }
-    _hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 170, 170)];
+    int boxSize = 120;
+    int fontSize = 16;
+    int spinnerY = 30;
+    int captionY = 85;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        boxSize = 170;
+        fontSize = 20;
+        spinnerY = 55;
+        captionY = 115;
+    }
+    _hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, boxSize, boxSize)];
     _hudView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     _hudView.clipsToBounds = YES;
     _hudView.layer.cornerRadius = 10.0;
     
     _preloadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _preloadingSpinner.frame = CGRectMake(65, 55, _preloadingSpinner.bounds.size.width, _preloadingSpinner.bounds.size.height);
+    _preloadingSpinner.frame = CGRectMake((boxSize/2)-(_preloadingSpinner.bounds.size.width/2), spinnerY, _preloadingSpinner.bounds.size.width, _preloadingSpinner.bounds.size.height);
     [_hudView addSubview:_preloadingSpinner];
     [_preloadingSpinner startAnimating];
     
-    _hudCaption = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    _hudCaption = [[UILabel alloc] initWithFrame:CGRectMake(0, captionY, boxSize, 22)];
     _hudCaption.backgroundColor = [UIColor clearColor];
     _hudCaption.textColor = [UIColor whiteColor];
     _hudCaption.adjustsFontSizeToFitWidth = YES;
     _hudCaption.textAlignment = UITextAlignmentCenter;
-    _hudCaption.font=[_hudCaption.font fontWithSize:20];
+    _hudCaption.font=[_hudCaption.font fontWithSize:fontSize];
     _hudCaption.text = @"Loading...";
     [_hudView addSubview:_hudCaption];
     
@@ -119,15 +170,23 @@ static Class inAppStoreVCClass;
     [_hudView release]; _hudView = nil;
 }
 
+
+- (BOOL)cancelPendingAnimations {
+    BOOL animating = [[UIApplication sharedApplication] isIgnoringInteractionEvents];
+    if(animating) {
+        [theControllerToPresent.view.layer removeAllAnimations];
+    }
+    return animating;
+}
+
+
 - (void)showFullscreenBrowser {
     [self showFullscreenBrowserAnimated:YES];
 }
 
 - (void)showFullscreenBrowserAnimated:(BOOL)animated {
     if (!_isShowing) {
-        UIApplication *app = [UIApplication sharedApplication];
-        prevStatusBarHiddenState = app.statusBarHidden;
-        [app setStatusBarHidden:YES];
+        [self hideStatusBar];
 
         if(!self.presentingController) {
             UIWindow* window = [UIApplication sharedApplication].keyWindow;
@@ -146,21 +205,76 @@ static Class inAppStoreVCClass;
 }
 
 - (void)closeFullscreenBrowserAnimated:(BOOL)animated {
-    UIApplication *app = [UIApplication sharedApplication];
-    [app setStatusBarHidden:prevStatusBarHiddenState];
+    [self closeFullscreenBrowserAnimated:animated completion:^{
+        self.presentingController = nil;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
+            [self.delegate browserControllerDismissed:self];
+        }
+    }];
+}
 
-    [_webView stopLoading];
-    _webView.delegate = nil;
-
-    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerWillDismiss:)]) {
-        [self.delegate browserControllerWillDismiss:self];
-    }
-
-    [self.presentingController dismissModalViewControllerAnimated:animated];
-    self.presentingController = nil;
+- (void)closeFullscreenBrowserAnimated:(BOOL)animated completion:(void(^)())completionBlock {
+    void (^closeWhenReady)();
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerDismissed:)]) {
-        [self.delegate browserControllerDismissed:self];
+    closeWhenReady = ^(void){
+        [self resetStatusBar];
+        
+        [_webView stopLoading];
+        _webView.delegate = nil;
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerWillDismiss:)]) {
+            [self.delegate browserControllerWillDismiss:self];
+        }
+        
+        if ([self.presentingController respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
+            // iOS 5 and above
+            [self _modernCloseFullscreenBrowserAnimated:animated completion:completionBlock];
+        }
+        else {
+            // for iOS < 5.0
+            [self _legacyCloseFullscreenBrowserAnimated:animated completion:completionBlock];
+        }
+    };
+    
+    BOOL wasAnimating = [self cancelPendingAnimations];
+    
+    if (!wasAnimating) {
+        closeWhenReady();
+    }
+    else {
+        int64_t delayInMillis = 50.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInMillis * NSEC_PER_MSEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), closeWhenReady);
+    }
+}
+
+- (void)_modernCloseFullscreenBrowserAnimated:(BOOL)animated completion:(void(^)())completionBlock {
+    [self.presentingController dismissViewControllerAnimated:animated completion:^{
+        if (completionBlock) {
+            completionBlock();
+        }
+    }];
+}
+
+- (void)_legacyCloseFullscreenBrowserAnimated:(BOOL)animated completion:(void(^)())completionBlock {
+    [self.presentingController dismissModalViewControllerAnimated:animated];
+    if (completionBlock) {
+        // poll to see when close is done, then fire the completion block
+        void (^closeWhenReady)();
+        void (^__block __unsafe_unretained closeWhenReady_Recursive)();
+        closeWhenReady_Recursive = closeWhenReady = [^(void) {
+            if([[UIApplication sharedApplication] isIgnoringInteractionEvents]==TRUE) {
+                int64_t delayInMillis = 50.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInMillis * NSEC_PER_MSEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), closeWhenReady_Recursive);
+                [self cancelPendingAnimations];
+                return;
+            }
+            
+            completionBlock();
+        } copy]; // close of block scope
+        closeWhenReady();
+        [closeWhenReady release];
     }
 }
 
@@ -289,7 +403,7 @@ static Class inAppStoreVCClass;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 
  navigationType:(UIWebViewNavigationType)navigationType 
 {
-//    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
+    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
     BOOL shouldProceed = YES;
 
     if (url) {
@@ -297,9 +411,10 @@ static Class inAppStoreVCClass;
     }
     url = [request.URL retain];
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+#ifndef DISABLE_NEW_FEATURES
     NSNumber *appIdentifier = [self appIdentifierFromStoreUrl:request.URL];
     if (appIdentifier) {
+        [self resetStatusBar];
         // show interalStore
         [self loadInAppStoreForApp:(NSNumber *)appIdentifier];
         // stop the request
@@ -310,7 +425,8 @@ static Class inAppStoreVCClass;
     if ([self shouldLeaveAppToServeRequest:request]) {
         // yield to OS
         [self hideLoadingOverlay];
-        
+        [self resetStatusBar];
+
         if ([[UIApplication sharedApplication] canOpenURL:request.URL]) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
                 [self.delegate browserControllerLoaded:self willLeaveApp:YES];
@@ -339,17 +455,18 @@ static Class inAppStoreVCClass;
 
 - (NSNumber *)appIdentifierFromStoreUrl:(NSURL *)storeUrl {
     NSNumber *retVal = nil;
-    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+    #ifndef DISABLE_NEW_FEATURES
         // example: https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8
+        // alt example: itms-apps://itunes.apple.com/app/id559353119?mt=8
         BOOL isStoreLink = [@"itunes.apple.com" isEqualToString:storeUrl.host];
 
         if (isStoreLink && inAppStoreVCClass) {
             NSArray *components = [[storeUrl pathComponents] retain];
-            if ([components count] == 5 && [@"app" isEqualToString:[components objectAtIndex:2]]) {
-                //TODO: is the "app" test necessary?
-                NSString *idStr = [components objectAtIndex:4];
-                NSInteger intId = [[idStr substringFromIndex:2] integerValue];
-                retVal = [NSNumber numberWithInteger:intId];
+            for (NSString *frag in components) {
+                if ([frag rangeOfString:@"id"].location == 0) {
+                    NSInteger intId = [[frag substringFromIndex:2] integerValue];
+                    retVal = [NSNumber numberWithInteger:intId];
+                }
             }
             
             [components release];
@@ -358,19 +475,91 @@ static Class inAppStoreVCClass;
     return retVal;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
+
+
+#ifndef DISABLE_NEW_FEATURES
 -(void)loadInAppStoreForApp:(NSNumber *)appIdentifier {
     SKStoreProductViewController *store = [[inAppStoreVCClass alloc] init];
     store.delegate = (id<SKStoreProductViewControllerDelegate>)self;
     NSDictionary *params = @{@"id": appIdentifier}; // SKStoreProductParameterITunesItemIdentifier
     [store loadProductWithParameters:params completionBlock:^(BOOL wasSuccessful, NSError *error){
+        
         if (wasSuccessful) {
-            theControllerToPresent = [store retain];
-            if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
-                [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+            if (_isShowing) {
+                [self buildAndShowLoadingOverlay];
+                [self closeFullscreenBrowserAnimated:NO completion:^{
+                    [theControllerToPresent release];
+                    theControllerToPresent = nil;
+                    _isShowing = NO;
+
+                    theControllerToPresent = [store retain];
+
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                        [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+                    }
+                    else {
+                        NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+                    }
+                }];
             }
             else {
-                NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+                // notify that we should display app store...
+                theControllerToPresent = [store retain];
+
+                if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                    [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+                }
+                else {
+                    NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+                }
+            }
+        }
+        else {
+            [self.delegate browserControllerFailedToLoad:self withError:error];
+        }
+    }];
+}
+
+-(void)loadInAppStoreForApp_OLD:(NSNumber *)appIdentifier {
+    SKStoreProductViewController *store = [[inAppStoreVCClass alloc] init];
+    store.delegate = (id<SKStoreProductViewControllerDelegate>)self;
+    NSDictionary *params = @{@"id": appIdentifier}; // SKStoreProductParameterITunesItemIdentifier
+    [store loadProductWithParameters:params completionBlock:^(BOOL wasSuccessful, NSError *error){
+        
+        if (wasSuccessful) {
+            if (_isShowing) {
+                // internal browser is already showing, close it first
+                [self closeFullscreenBrowserAnimated:NO completion:^{
+                    [self buildAndShowLoadingOverlay];
+                    [theControllerToPresent release];
+                    theControllerToPresent = nil;
+                    _isShowing = NO;
+                    
+                    //                    myBlock(presentingController);
+                    theControllerToPresent = [store retain];
+                    
+                    [presentingController dismissViewControllerAnimated:NO completion:^{
+                        if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                            [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+                        }
+                        else {
+                            NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+                        }
+                    }];
+                }];
+            }
+            else {
+                //                myBlock(presentingController);
+                theControllerToPresent = [store retain];
+                
+                [self.presentingController dismissViewControllerAnimated:NO completion:^{
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerLoaded:willLeaveApp:)]) {
+                        [self.delegate browserControllerLoaded:self willLeaveApp:NO];
+                    }
+                    else {
+                        NSLog(@"TapItBrowserControllerDelegate wasn't defined... couldn't show internal app store!");
+                    }
+                }];
             }
         }
         else {

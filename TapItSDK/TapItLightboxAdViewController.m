@@ -42,7 +42,13 @@
     
     UIImage *closeButtonBackground = [UIImage imageNamed:@"TapIt.bundle/interstitial_close_button.png"];
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.closeButton.frame = CGRectMake(0, 0, 44, 44);
+    NSInteger buttonY = 0;
+    UIApplication *app = [UIApplication sharedApplication];
+    if (!app.statusBarHidden) {
+        buttonY = 22;
+    }
+    
+    self.closeButton.frame = CGRectMake(0, buttonY, 44, 44);
     self.closeButton.imageView.contentMode = UIViewContentModeCenter;
     [self.closeButton setImage:closeButtonBackground forState:UIControlStateNormal];
     

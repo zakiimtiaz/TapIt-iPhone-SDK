@@ -33,6 +33,7 @@
 @implementation TapItInterstitialAd {
     BOOL isLoaded;
     BOOL prevStatusBarHiddenState;
+    BOOL statusBarVisibilityChanged;
 }
 
 @synthesize delegate, adRequest, adView, adManager, allowedAdTypes, bannerView, presentingView, animated, autoReposition, showLoadingOverlay, adController, browserController, presentingController;
@@ -47,6 +48,8 @@
         isLoaded = NO;
         self.autoReposition = YES;
         self.showLoadingOverlay = NO;
+        prevStatusBarHiddenState = NO;
+        statusBarVisibilityChanged = NO;
     }
     return self;
 }
@@ -55,12 +58,27 @@
     return isLoaded;
 }
 
+- (void)hideStatusBar {
+//    UIApplication *app = [UIApplication sharedApplication];
+//    BOOL currentState = app.statusBarHidden;
+//    if (!currentState) {
+//        app.statusBarHidden = YES;
+//        prevStatusBarHiddenState = currentState;
+//        statusBarVisibilityChanged = YES;
+//    }
+}
+
+- (void)resetStatusBar {
+//    if (statusBarVisibilityChanged) {
+//        UIApplication *app = [UIApplication sharedApplication];
+//        app.statusBarHidden = prevStatusBarHiddenState;
+//        statusBarVisibilityChanged = NO;
+//    }
+}
+
 - (BOOL)loadInterstitialForRequest:(TapItRequest *)request {
     self.adRequest = request;
     [self.adRequest setCustomParameter:TAPIT_AD_TYPE_INTERSTITIAL forKey:@"adtype"];
-//    CGRect frame = [[UIScreen mainScreen] bounds];
-//    NSString *width = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.width];
-//    NSString *height = [NSString stringWithFormat:@"%d", (NSInteger)frame.size.height];
     NSString *orientation;
     UIInterfaceOrientation uiOrt = [[UIApplication sharedApplication] statusBarOrientation];
     if (uiOrt == UIInterfaceOrientationPortrait || uiOrt == UIInterfaceOrientationPortraitUpsideDown) {
@@ -68,17 +86,13 @@
     } else {
         orientation = @"l";
     }
-//    [self.adRequest setCustomParameter:width forKey:@"w"];
-//    [self.adRequest setCustomParameter:height forKey:@"h"];
     [self.adRequest setCustomParameter:orientation forKey:@"o"];
     [self.adManager fireAdRequest:self.adRequest];
     return YES;
 }
 
 - (void)presentFromViewController:(UIViewController *)controller {
-    UIApplication *app = [UIApplication sharedApplication];
-    prevStatusBarHiddenState = app.statusBarHidden;
-    [app setStatusBarHidden:YES];
+    [self hideStatusBar];
 
     adController = [[TapItLightboxAdViewController alloc] init];
     self.adController.adView = self.adView;
@@ -127,8 +141,7 @@
 }
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
-//    UIApplication *app = [UIApplication sharedApplication];
-//    [app setStatusBarHidden:prevStatusBarHiddenState];
+    [self resetStatusBar];
 
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdDidUnload:)]) {
@@ -247,8 +260,7 @@
 }
 
 -(void)browserControllerWillDismiss:(TapItBrowserController *)browserController {
-    UIApplication *app = [UIApplication sharedApplication];
-    [app setStatusBarHidden:prevStatusBarHiddenState];
+    [self resetStatusBar];
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitInterstitialAdActionWillFinish:)]) {
         [self.delegate tapitInterstitialAdActionWillFinish:self];
     }

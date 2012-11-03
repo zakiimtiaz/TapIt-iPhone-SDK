@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		55202BFC1537A04A00B2244E /* TapItAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202BFB1537A04A00B2244E /* TapItAdManager.m */; };
 		55202C031537C59C00B2244E /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
+		5520DA681632078A0032C3AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5521353415A3CBB10048179D /* TapItInterstitialAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521353315A3CBB00048179D /* TapItInterstitialAdViewController.m */; };
 		552396CC15AC8EF2000E69CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
 		5528EECC15FFBB51009ED3A4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5528EECB15FFBB51009ED3A4 /* LICENSE */; };
+		552A79701641EEBF00C0BEB2 /* TapItURLConnectionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 552A796E1641EEBF00C0BEB2 /* TapItURLConnectionManager.h */; };
+		552A79711641EEBF00C0BEB2 /* TapItURLConnectionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 552A796E1641EEBF00C0BEB2 /* TapItURLConnectionManager.h */; };
 		552EF86B15A2B572009898D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
 		5532FEBB15EC35AB00427E00 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62F815B6389E00570F4A /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -21,12 +24,11 @@
 		55716B0C15C31D1A00075FBE /* TapIt.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55716B0B15C31D1A00075FBE /* TapIt.bundle */; };
 		55716B5C15C3214200075FBE /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
 		55716B6415C3265400075FBE /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
-		5577B12B162F5C1200652A9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DC617D162E15620073E4B0 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5581896315A258E800B14BCD /* TapItLightboxAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581896215A258E800B14BCD /* TapItLightboxAdViewController.m */; };
 		55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
 		558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
 		558F516D161E013F00A2A4FE /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
-		558F516E161E063700A2A4FE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEBE5A160A8CD500072ECD /* AdSupport.framework */; };
+		558F516E161E063700A2A4FE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEBE5A160A8CD500072ECD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5594982415366E4100D6495D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982315366E4100D6495D /* UIKit.framework */; };
 		5594982615366E4100D6495D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982515366E4100D6495D /* Foundation.framework */; };
 		5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982715366E4100D6495D /* CoreGraphics.framework */; };
@@ -102,7 +104,6 @@
 		55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55CF030F15EFDED600DBB5A5 /* TapItOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* TapItOpenUDID.m */; };
-		55DC6181162E30570073E4B0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DC617D162E15620073E4B0 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
 		55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
@@ -136,6 +137,7 @@
 		55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */; };
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55F9A37B1616601200A41AE6 /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEDF15EC3A6400427E00 /* AdMobController.m */; };
+		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,10 +147,13 @@
 		55202BFB1537A04A00B2244E /* TapItAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TapItAdManager.m; path = TapItSDK/TapItAdManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		55202C011537C59C00B2244E /* NSDictionary+QueryStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+QueryStringBuilder.h"; sourceTree = "<group>"; };
 		55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+QueryStringBuilder.m"; sourceTree = "<group>"; };
+		5520DA65163207600032C3AD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5521353215A3CBB00048179D /* TapItInterstitialAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItInterstitialAdViewController.h; path = TapItSDK/TapItInterstitialAdViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5521353315A3CBB00048179D /* TapItInterstitialAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TapItInterstitialAdViewController.m; path = TapItSDK/TapItInterstitialAdViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		552396CB15AC8EF2000E69CC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5528EECB15FFBB51009ED3A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		552A796E1641EEBF00C0BEB2 /* TapItURLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItURLConnectionManager.h; path = TapItSDK/TapItURLConnectionManager.h; sourceTree = "<group>"; };
+		552A796F1641EEBF00C0BEB2 /* TapItURLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapItURLConnectionManager.m; path = TapItSDK/TapItURLConnectionManager.m; sourceTree = "<group>"; };
 		552E9A701538CA0A00FD22C4 /* TapItAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItAdManagerDelegate.h; path = TapItSDK/TapItAdManagerDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		552E9A711538CDB400FD22C4 /* TapItConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItConstants.h; path = TapItSDK/Headers/TapItConstants.h; sourceTree = "<group>"; };
 		552EF86A15A2B572009898D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -236,7 +241,6 @@
 		55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55C74F6B15F0836D00981B79 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		55DC617D162E15620073E4B0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_armv6.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55DC8CDE160CE6FA00558DC8 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPromptDemoController.m; sourceTree = "<group>"; };
@@ -247,9 +251,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5577B12B162F5C1200652A9C /* StoreKit.framework in Frameworks */,
+				55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */,
 				558F516E161E063700A2A4FE /* AdSupport.framework in Frameworks */,
-				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
 				5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */,
 				552396CC15AC8EF2000E69CC /* CoreTelephony.framework in Frameworks */,
 				55C7005015A76AEB00818F44 /* SystemConfiguration.framework in Frameworks */,
@@ -259,6 +262,7 @@
 				5594982615366E4100D6495D /* Foundation.framework in Frameworks */,
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
 				558F516D161E013F00A2A4FE /* libGoogleAdMobAds.a in Frameworks */,
+				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55DC6181162E30570073E4B0 /* StoreKit.framework in Frameworks */,
+				5520DA681632078A0032C3AD /* StoreKit.framework in Frameworks */,
 				55BEBE5B160A8CD500072ECD /* AdSupport.framework in Frameworks */,
 				55CF02E315EFDEAC00DBB5A5 /* UIKit.framework in Frameworks */,
 				55CF02E415EFDEAC00DBB5A5 /* CoreTelephony.framework in Frameworks */,
@@ -355,7 +359,7 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
-				55DC617D162E15620073E4B0 /* StoreKit.framework */,
+				5520DA65163207600032C3AD /* StoreKit.framework */,
 				55DC8CDE160CE6FA00558DC8 /* build.sh */,
 				55BEBE5A160A8CD500072ECD /* AdSupport.framework */,
 				5528EECB15FFBB51009ED3A4 /* LICENSE */,
@@ -457,6 +461,8 @@
 				55880AFF15C1B00A00D9381C /* TapItBrowserController.m */,
 				5532FEB915EC35AB00427E00 /* TapItMediationAdMob.h */,
 				5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */,
+				552A796E1641EEBF00C0BEB2 /* TapItURLConnectionManager.h */,
+				552A796F1641EEBF00C0BEB2 /* TapItURLConnectionManager.m */,
 			);
 			name = TapItSDK;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				55CF02F015EFDEAC00DBB5A5 /* TapItConstants.h in Headers */,
 				55CF02F115EFDEAC00DBB5A5 /* TapItAdPrompt.h in Headers */,
 				55CF02F215EFDEAC00DBB5A5 /* TapItRequest.h in Headers */,
+				552A79701641EEBF00C0BEB2 /* TapItURLConnectionManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +588,7 @@
 				55DC8CD4160CE2C800558DC8 /* TapItConstants.h in Headers */,
 				55DC8CD5160CE2C800558DC8 /* TapItAdPrompt.h in Headers */,
 				55DC8CD6160CE2C800558DC8 /* TapItRequest.h in Headers */,
+				552A79711641EEBF00C0BEB2 /* TapItURLConnectionManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1157,10 @@
 				DSTROOT = /tmp/TapIt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DISABLE_NEW_FEATURES=1",
+				);
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1156,6 +1168,7 @@
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TapIt_armv6;
 				SDKROOT = iphoneos;
@@ -1172,6 +1185,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "DISABLE_NEW_FEATURES=1";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1179,6 +1193,7 @@
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TapIt_armv6;
 				SDKROOT = iphoneos;
@@ -1194,6 +1209,7 @@
 				DSTROOT = /tmp/TapIt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "DISABLE_NEW_FEATURES=1";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1201,6 +1217,7 @@
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TapIt_armv6;
 				SDKROOT = iphoneos;

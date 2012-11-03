@@ -9,7 +9,7 @@
 #import "GADAdSize.h"
 #import "TapIt.h"
 
-#define MEDIATION_STRING @"admob-1.0.0"
+#define MEDIATION_STRING @"admob-1.0.1"
 
 @implementation TapItMediationAdMob
 
@@ -37,6 +37,7 @@
     tapitInterstitial.delegate = self;
     NSString *zoneId = [connector publisherId];
     TapItRequest *request = [TapItRequest requestWithAdZone:zoneId];
+    [request setCustomParameter:MEDIATION_STRING forKey:@"mediation"];
     [tapitInterstitial loadInterstitialForRequest:request];
 }
 

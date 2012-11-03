@@ -94,6 +94,7 @@
 - (void)processServerResponse {
     NSError *error = nil;
     NSString *jsonString = self.currentRequest.rawResults;
+    NSLog(@"TapIt: response: %@", jsonString);
     
     TapItJSONDecoder *decoder = [[TapItJSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
