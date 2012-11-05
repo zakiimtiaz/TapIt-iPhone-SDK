@@ -127,16 +127,18 @@
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
+    BOOL shouldLoad = YES;
     if ([self.delegate respondsToSelector:@selector(tapitInterstitialAdActionShouldBegin:willLeaveApplication:)]) {
-        BOOL shouldLoad = [self.delegate tapitInterstitialAdActionShouldBegin:self willLeaveApplication:willLeave];
-        if (shouldLoad) {
-            [self openURLInFullscreenBrowser:actionUrl];
-            return NO; // pass off control to the full screen browser
-        }
-        return shouldLoad;
+        shouldLoad = [self.delegate tapitInterstitialAdActionShouldBegin:self willLeaveApplication:willLeave];
+    }
+    
+    if (shouldLoad) {
+        [self openURLInFullscreenBrowser:actionUrl];
+        return NO; // pass off control to the full screen browser
     }
     else {
-        return YES;
+        // app decided not to allow the click to proceed... Not sure why you'd want to do this...
+        return NO;
     }
 }
 

@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.6
+Version 2.0.7
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
