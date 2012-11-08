@@ -21,8 +21,11 @@ CoreLocation.framework - Optional *
 ````
 *Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
 
-**Xcode 4.5 users should also include ````AdSupport.framework```` to enable support for Apple's new unique identifier scheme**
-
+**Xcode 4.5 users should also include the following frameworks to enable support for new iOS6 features**
+````
+AdSupport.framework - enable support for Apple's new unique identifier scheme
+StoreKit.framework - enable use of SKStoreProductViewController, displays app store ads without leaving your app
+````
 
 You're all set!  Scroll down for implementation instructions.
 
