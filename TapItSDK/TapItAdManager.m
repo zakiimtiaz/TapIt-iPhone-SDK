@@ -31,6 +31,7 @@
 
 @implementation TapItAdManager {
     NSMutableData *connectionData;
+    TapItAdView *loadingAdView;
 }
 
 /**
@@ -133,13 +134,12 @@
     int width = [adWidth intValue];
 
     // generate an adView based on json object
-    TapItAdView *adView;
-    if ([adType isEqualToString:@"banner"] || 
+    if ([adType isEqualToString:@"banner"] ||
         [adType isEqualToString:@"html"] ||
         [adType isEqualToString:@"text"]) {
-        adView = [[TapItAdView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-        adView.tapitDelegate = self;
-        [adView loadData:deserializedData];
+        loadingAdView = [[TapItAdView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        loadingAdView.tapitDelegate = self;
+        [loadingAdView loadData:deserializedData];
     } else if ([adType isEqualToString:@"alert"]) {
         if ([self.delegate respondsToSelector:@selector(didReceiveData:)]) {
             [self.delegate didReceiveData:deserializedData];
@@ -172,11 +172,19 @@
 - (void)didLoadAdView:(TapItAdView *)adView {
     // pass the message on down the receiver chain
     [delegate didLoadAdView:adView];
+    if (adView == loadingAdView) {
+        // control of adView was passed on to someone else
+        [loadingAdView release], loadingAdView = nil;
+    }
 }
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
     // pass the message on down the receiver chain
     [delegate adView:adView didFailToReceiveAdWithError:error];
+    if (adView == loadingAdView) {
+        // adView never materialized. throwing away our reference
+        [loadingAdView release], loadingAdView = nil;
+    }
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
@@ -197,30 +205,15 @@
     [connectionData release]; connectionData = nil;
 
     [delegate adView:nil didFailToReceiveAdWithError:error];
-//    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
-
-//#pragma mark -
-//#pragma mark Timer methods
-//
-//- (void)startTimerForSeconds:(NSTimeInterval)seconds {
-//    timer = [[NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(timerElapsed) userInfo:nil repeats:NO] retain];
-//}
-//
-//- (void)timerElapsed {
-//    if ([delegate respondsToSelector:@selector(timerElapsed)]) {
-//        [delegate timerElapsed];
-//    }
-//}
-//
-//- (void)stopTimer {
-//    [timer invalidate];
-//    [timer release], timer = nil;
-//}
-
-
 - (void)cancelAdRequests {
+    if (loadingAdView) {
+        [loadingAdView stopLoading];
+        loadingAdView.tapitDelegate = nil;
+        [loadingAdView release], loadingAdView = nil;
+    }
+    
     if (currentConnection) {
         [currentConnection cancel];
         [currentConnection release], currentConnection = nil;

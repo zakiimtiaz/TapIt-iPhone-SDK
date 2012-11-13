@@ -86,6 +86,10 @@
     [self.tapitAd hide];
 }
 
+- (IBAction)cancelLoad:(id)sender {
+    [self.tapitAd cancelAds];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.tapitAd resume];
 }

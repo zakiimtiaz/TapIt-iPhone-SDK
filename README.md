@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.7
+Version 2.0.8
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -84,6 +84,7 @@ tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 ...
 
 // We don't want to show ads any more...
+[self.tapitAd hide];
 [self.tapitAd cancelAds];
 ````
 

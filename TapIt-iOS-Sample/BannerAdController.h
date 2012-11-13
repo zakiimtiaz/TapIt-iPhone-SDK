@@ -14,6 +14,6 @@
 
 @interface BannerAdController : UIViewController <TapItBannerAdViewDelegate>
 
-@property (retain, nonatomic) TapItBannerAdView *tapitAd;
+@property (retain, nonatomic) IBOutlet TapItBannerAdView *tapitAd;
 
 @end
