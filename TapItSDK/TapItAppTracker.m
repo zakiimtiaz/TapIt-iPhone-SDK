@@ -86,11 +86,19 @@
     CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *c = [netinfo subscriberCellularProvider];
     NSString *cName = c.carrierName;
-    if (!cName) {
-        cName = @"unkown";
-    }
+//    if (!cName) {
+//        cName = @"unknown";
+//    }
     [netinfo release];
     return cName;
+}
+
+- (NSString *)carrierId {
+    CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *c = [netinfo subscriberCellularProvider];
+    NSString *cNId = c.mobileNetworkCode;
+    [netinfo release];
+    return cNId;
 }
 
 - (CLLocation *)location {

@@ -22,6 +22,7 @@
 - (CLLocation *)location;
 - (NSInteger)networkConnectionType;
 - (NSString *)carrier;
+- (NSString *)carrierId;
 
 - (void)reportApplicationOpen;
 

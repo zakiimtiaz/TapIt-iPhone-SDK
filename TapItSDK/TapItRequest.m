@@ -87,6 +87,7 @@
                                   @"adtype",
                                   @"cid",
                                   @"carrier",
+                                  @"carrier_id",
                                   @"client",
                                   @"mediation",
                                   @"version",
@@ -153,7 +154,15 @@
     [self setCustomParameter:TAPIT_VERSION forKey:@"version"];
     [self setCustomParameter:@"iOS-SDK" forKey:@"client"];
     [self setCustomParameter:[NSString stringWithFormat:@"%d", connType] forKey:@"connection_speed"];
-    [self setCustomParameter:[tracker carrier] forKey:@"carrier"];
+
+    NSString *carrierName = [tracker carrier];
+    if (carrierName) {
+        [self setCustomParameter:carrierName forKey:@"carrier"];
+    }
+    NSString *carrierId = [tracker carrierId];
+    if (carrierId) {
+        [self setCustomParameter:carrierId forKey:@"carrier_id"];
+    }
     [self setCustomParameter:[tracker userAgent] forKey:@"ua"];
 }
 
