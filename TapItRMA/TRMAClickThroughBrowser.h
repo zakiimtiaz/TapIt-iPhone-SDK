@@ -22,7 +22,7 @@
 @end
 
 // This class is used to display clickthrough links in the app.
-@interface TRMAClickThroughBrowser : UIViewController<UIWebViewDelegate>
+@interface TRMAClickThroughBrowser : UIViewController<UIWebViewDelegate, UIActionSheetDelegate>
 
 /// Enables displaying any click through in an in-app browser.
 //

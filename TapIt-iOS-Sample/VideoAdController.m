@@ -121,7 +121,7 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
     if(CGRectGetHeight([UIScreen mainScreen].bounds) == 568) {
         //iphone 5
         CGRect frame = _console.frame;
-        frame.size.height += 176;
+        frame.size.height += 88;    
         _console.frame = frame;
     }
     
