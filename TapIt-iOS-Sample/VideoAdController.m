@@ -66,8 +66,8 @@
 @synthesize landscapeVC     = _landscapeVC;
 
 // Replace with your valid ZoneId here.
-NSString *const kZoneId         = @"22219";
-NSString *const kTestCreativeId = @"113559";
+NSString *const kZoneId         = @"22219";     
+NSString *const kTestCreativeId = @"113559";    //@"128681";
 
 // The content URL to play
 NSString *const kTestAppContentUrl_HLS = @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
@@ -163,7 +163,6 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
     // Create a click tracking view
     self.clickTrackingView = [[[TRMAClickTrackingUIView alloc] initWithFrame:frame] autorelease];
     [_clickTrackingView setDelegate:self];
-    [_videoView addSubview:_clickTrackingView];
 }
 
 // Set up Ad Player but don't add it to the video view.
@@ -183,6 +182,9 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
         _adView.hidden = YES;
         adPlayerLayer.frame = _adView.layer.bounds;
         [_adView.layer addSublayer:adPlayerLayer];
+
+        _clickTrackingView.frame = frame;
+        [_videoView addSubview:_clickTrackingView];
     }
     else {
         self.adView = nil;
@@ -196,6 +198,9 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
         CGRect frame = CGRectMake(0, 0, CGRectGetHeight(window.frame), CGRectGetWidth(window.frame));
         adPlayerLayer.frame = frame;
         [_landscapeVC.view.layer addSublayer:adPlayerLayer];
+        
+        _clickTrackingView.frame = frame;
+        [_landscapeVC.view addSubview:_clickTrackingView];
     }
 }
 
