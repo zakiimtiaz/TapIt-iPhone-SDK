@@ -44,4 +44,5 @@
 /// this object.
 @property (nonatomic, assign) id<TRMAClickTrackingUIViewDelegate> delegate;
 
+
 @end

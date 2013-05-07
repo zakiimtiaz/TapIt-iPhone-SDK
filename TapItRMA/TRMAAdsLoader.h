@@ -66,4 +66,5 @@
 /// object.
 @property(nonatomic, assign) NSObject<TRMAAdsLoaderDelegate> *delegate;
 
+
 @end

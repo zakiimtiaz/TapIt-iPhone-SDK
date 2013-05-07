@@ -29,5 +29,6 @@ typedef enum {
 /// information is not available.
 @property(readonly, retain) NSString *mediaUrl;
 
+
 @end
 

@@ -177,4 +177,5 @@ extern NSString * const TRMAVastNonLinearEventNotification;
 /// deallocating this object.
 @property(nonatomic, assign) NSObject<TRMAVideoAdsManagerDelegate> *delegate;
 
+
 @end

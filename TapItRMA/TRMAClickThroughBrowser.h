@@ -37,4 +37,5 @@
 /// Disables displaying any click through in an in-app browser.
 + (void)disableInAppBrowser;
 
+
 @end

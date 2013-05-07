@@ -145,7 +145,6 @@
 		5D15DF4B1735ADED0099986D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF491735ADED0099986D /* Default-Portrait@2x~ipad.png */; };
 		5D15DF4E1735B49D0099986D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF4C1735B49D0099986D /* Default-Landscape~ipad.png */; };
 		5D15DF4F1735B49D0099986D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF4D1735B49D0099986D /* Default-Portrait~ipad.png */; };
-		5D15DF7917361DE10099986D /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D15DF7617361AB00099986D /* libTapItRMA.a */; };
 		5D3E34141725C66500A8CA89 /* fourth.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E34121725C66500A8CA89 /* fourth.png */; };
 		5D3E34151725C66500A8CA89 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E34131725C66500A8CA89 /* third.png */; };
 		5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E34171725EC3A00A8CA89 /* VideoAdController.m */; };
@@ -273,7 +272,6 @@
 		5D15DF491735ADED0099986D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D15DF4C1735B49D0099986D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5D15DF4D1735B49D0099986D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		5D15DF7617361AB00099986D /* libTapItRMA.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItRMA.a; sourceTree = "<group>"; };
 		5D3E34121725C66500A8CA89 /* fourth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fourth.png; sourceTree = "<group>"; };
 		5D3E34131725C66500A8CA89 /* third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third.png; sourceTree = "<group>"; };
 		5D3E34161725EC3A00A8CA89 /* VideoAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoAdController.h; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D15DF7917361DE10099986D /* libTapItRMA.a in Frameworks */,
 				5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */,
 				5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */,
 				55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */,
@@ -545,7 +542,6 @@
 		5594985F153671A600D6495D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5D15DF7617361AB00099986D /* libTapItRMA.a */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
 				55A64B591537E7F200AFDDFF /* JSONKit */,

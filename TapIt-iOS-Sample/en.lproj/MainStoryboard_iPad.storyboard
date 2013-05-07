@@ -331,7 +331,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="1mN-5R-0qN" userLabel="console">
-                                <rect key="frame" x="13" y="609" width="742" height="334"/>
+                                <rect key="frame" x="13" y="609" width="742" height="335"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -473,7 +473,6 @@
                 <relationship kind="action" name="onResetState"/>
                 <relationship kind="action" name="onUnloadAds"/>
                 <relationship kind="action" name="playHeadValueChanged:"/>
-                <relationship kind="action" name="vastUrlValueChanged:"/>
                 <relationship kind="outlet" name="adRequestButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="browserSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="console" candidateClass="UITextView"/>

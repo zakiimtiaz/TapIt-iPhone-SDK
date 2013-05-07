@@ -41,6 +41,7 @@
 					<bytes key="NSWhite">MAA</bytes>
 				</object>
 				<bool key="IBUIAutoresizesSubviews">NO</bool>
+				<bool key="IBUIMultipleTouchEnabled">YES</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>

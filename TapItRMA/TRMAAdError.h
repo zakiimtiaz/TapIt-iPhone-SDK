@@ -73,4 +73,5 @@ typedef enum {
 /// occured during ad loading or ad playing.
 @property (nonatomic, readonly) TRMAErrorType errorType;
 
+
 @end
