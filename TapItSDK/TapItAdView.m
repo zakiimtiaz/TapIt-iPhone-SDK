@@ -11,7 +11,7 @@
 
 @implementation TapItAdView
 
-@synthesize tapitRequest, tapitDelegate, isLoaded, wasAdActionShouldBeginMessageFired, data;
+@synthesize tapitRequest, tapitDelegate, isLoaded, wasAdActionShouldBeginMessageFired;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -48,11 +48,10 @@
 }
 
 - (void)loadData:(NSDictionary *)adData {
-    self.data = adData;
-    NSString *adWidth = [self.data objectForKey:@"adWidth"];
+    NSString *adWidth = [adData objectForKey:@"adWidth"];
 
     NSString *width = [NSString stringWithFormat:@"width:%@px; margin:0 auto; text-align:center", adWidth];
-    NSString *adHtml = [self.data objectForKey:@"html"];
+    NSString *adHtml = [adData objectForKey:@"html"];
     NSString *htmlData = [NSString stringWithFormat:@"<html><head><style type=\"text/css\">body {margin:0; padding:0;}</style></head><body><div style=\"%@\">%@</div></body></html>", width, adHtml];
     [super loadHTMLString:htmlData baseURL:nil];
 }

@@ -17,7 +17,6 @@
 @property (assign, nonatomic) id<TapItAdManagerDelegate> tapitDelegate;
 @property (assign, nonatomic) BOOL isLoaded;
 @property (assign, nonatomic) BOOL wasAdActionShouldBeginMessageFired;
-@property (retain, nonatomic) NSDictionary *data;
 
 - (void)setScrollable:(BOOL)scrollable;
 //- (void)loadHTMLString:(NSString *)string;
