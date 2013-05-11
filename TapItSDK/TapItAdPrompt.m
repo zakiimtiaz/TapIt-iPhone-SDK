@@ -25,11 +25,13 @@ typedef enum {
     BOOL isAlertType;
     TapItAdPromptState state;
     BOOL displayImmediately;
-    NSDictionary *_data;
 }
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdManager *adManager;
 @property (retain, nonatomic) NSString *clickUrl;
+@property (retain, nonatomic) NSString *title;
+@property (retain, nonatomic) NSString *callToAction;
+@property (retain, nonatomic) NSString *declineString;
 @property (retain, nonatomic) TapItBrowserController *browserController;
 
 - (void)performRequest;
@@ -38,7 +40,7 @@ typedef enum {
 
 @implementation TapItAdPrompt
 
-@synthesize delegate, adRequest, adManager, clickUrl, browserController, showLoadingOverlay;
+@synthesize delegate, adRequest, adManager, clickUrl, title, callToAction, declineString, browserController, showLoadingOverlay;
 
 - (BOOL)loaded {
     return (state > TapItAdPromptStateLoaded && state != TapItAdPromptStateError);
@@ -52,7 +54,6 @@ typedef enum {
         self.adRequest = request;
         state = TapItAdPromptStateNew;
         displayImmediately = NO;
-        _data = nil;
     }
     return self;
 }
@@ -87,22 +88,23 @@ typedef enum {
         return;
     }
     else if (state == TapItAdPromptStateNew) {
+        [self retain];
         isAlertType = YES;
         displayImmediately = YES;
         [self load];
         return;
         // [self load] will bring us back here once data is available...
     }
-    
-    NSString *title = [_data objectForKey:@"adtitle"];
-    NSString *callToAction = [_data objectForKey:@"calltoaction"];
-    NSString *declineString = [_data objectForKey:@"declinestring"];
-
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                    message:title 
+    else if (!displayImmediately) {
+        // was pre-loaded so we haven't yet self retained... do so now
+        [self retain];
+    }
+        
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:self.title
                                                    delegate:self 
-                                          cancelButtonTitle:declineString
-                                          otherButtonTitles:callToAction, nil];
+                                          cancelButtonTitle:self.declineString
+                                          otherButtonTitles:self.callToAction, nil];
     [alert show];
     [alert release];
     state = TapItAdPromptStateShown;
@@ -122,21 +124,23 @@ typedef enum {
         return;
     }
     else if (state == TapItAdPromptStateNew) {
+        [self retain];
         isAlertType = NO;
         displayImmediately = YES;
         [self load];
         return;
         // [self load] will bring us back here once data is available...
     }
+    else if (!displayImmediately) {
+        // was pre-loaded so we haven't yet self retained... do so now
+        [self retain];
+    }
     
-    NSString *title = [_data objectForKey:@"adtitle"];
-    NSString *callToAction = [_data objectForKey:@"calltoaction"];
-    NSString *declineString = [_data objectForKey:@"declinestring"];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:self.title
                                                     delegate:self 
                                            cancelButtonTitle:nil 
                                       destructiveButtonTitle:nil 
-                                           otherButtonTitles:callToAction, declineString, nil];
+                                           otherButtonTitles:self.callToAction, self.declineString, nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -164,7 +168,9 @@ typedef enum {
         if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptWasDeclined:)]) {
             [self.delegate tapitAdPromptWasDeclined:self];
         }
+        [self release];
     }
+    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -182,7 +188,9 @@ typedef enum {
         if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptWasDeclined:)]) {
             [self.delegate tapitAdPromptWasDeclined:self];
         }
+        [self release];
     }
+    
 }
 
 - (void)performRequest {
@@ -209,6 +217,7 @@ typedef enum {
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPrompt:didFailWithError:)]) {
         [self.delegate tapitAdPrompt:self didFailWithError:error];
     }
+    [self release];
 }
 
 - (BOOL)browserControllerShouldLoad:(TapItBrowserController *)browserController willLeaveApp:(BOOL)willLeaveApp {
@@ -233,6 +242,7 @@ typedef enum {
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
         [self.delegate tapitAdPromptActionDidFinish:self];
     }
+    [self release];
 }
 
 
@@ -254,6 +264,10 @@ typedef enum {
     if ([self.delegate respondsToSelector:@selector(tapitAdPrompt:didFailWithError:)]) {
         [self.delegate tapitAdPrompt:self didFailWithError:error];
     }
+    if (displayImmediately) {
+        // we didn't preload, release our internal retain
+        [self release];
+    }
 }
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
@@ -266,7 +280,8 @@ typedef enum {
 - (void)adViewActionDidFinish:(TapItAdView *)adView {
     if ([self.delegate respondsToSelector:@selector(tapitAdPromptActionDidFinish:)]) {
         [self.delegate tapitAdPromptActionDidFinish:self];
-    }    
+    }
+    [self release];
 }
 
 - (void)didReceiveData:(NSDictionary *)data {
@@ -274,11 +289,9 @@ typedef enum {
     self.clickUrl = [data objectForKey:@"clickurl"];
 //    self.clickUrl = @"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#";
     
-    if (_data) {
-        // this shouldn't be possible, but just in case...
-        [_data release]; _data = nil;
-    }
-    _data = [data retain];
+    self.title = [data objectForKey:@"adtitle"];
+    self.callToAction = [data objectForKey:@"calltoaction"];
+    self.declineString = [data objectForKey:@"declinestring"];
 
     state = TapItAdPromptStateLoaded;
 
@@ -303,8 +316,10 @@ typedef enum {
     self.adRequest = nil;
     self.adManager = nil;
     self.clickUrl = nil;
+    self.title = nil;
+    self.callToAction = nil;
+    self.declineString = nil;
     self.browserController = nil;
-    [_data release]; _data = nil;
     [super dealloc];
 }
 @end

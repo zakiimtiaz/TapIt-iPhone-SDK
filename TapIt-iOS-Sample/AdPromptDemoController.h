@@ -22,5 +22,6 @@
 
 -(IBAction)preLoadAdPrompt:(id)sender;
 -(IBAction)showAdPrompt:(id)sender;
+-(IBAction)simpleExample:(id)sender;
 
 @end

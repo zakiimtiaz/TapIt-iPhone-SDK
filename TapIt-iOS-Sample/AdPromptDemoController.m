@@ -33,12 +33,22 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+//    [self simpleExample];
+}
+
 #pragma mark -
 #pragma mark TapItAlertAd Example code
+- (void)simpleExample:(id)sender {
+    TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID];
+    TapItAdPrompt *prompt = [[[TapItAdPrompt alloc] initWithRequest:request] autorelease];
+    [prompt showAsAlert];
+}
+
 
 - (void)loadAdPrompt {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            //                            @"test", @"mode", // enable test mode to test alert ads in your app
+//                            @"test", @"mode", // enable test mode to test alert ads in your app
                             nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);

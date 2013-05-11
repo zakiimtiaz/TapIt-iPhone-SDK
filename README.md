@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 2.0.8
+Version 2.1.0
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -21,9 +21,9 @@ CoreLocation.framework - Optional *
 ````
 *Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
 
-**Xcode 4.5 users should also include the following frameworks to enable support for new iOS6 features**
+**Xcode 4.5+ users should also include the following frameworks to enable support for new iOS6 features**
 ````
-AdSupport.framework - enable support for Apple's new unique identifier scheme
+AdSupport.framework - enable support for Apple's IDFA
 StoreKit.framework - enable use of SKStoreProductViewController, displays app store ads without leaving your app
 ````
 
@@ -54,8 +54,8 @@ AdPrompts are a simple ad unit designed to have a native feel.  The user is give
 #import "TapIt.h"
 ...
 TapItRequest *request = [TapItRequest requestWithAdZone:@"YOUR ZONE ID"];
-TapItAdPrompt *tapitAdPrompt = [[TapItAdPrompt alloc] initWithRequest:request];
-[tapitAdPrompt showAsAlert];
+TapItAdPrompt *prompt = [[[TapItAdPrompt alloc] initWithRequest:request] autorelease];
+[prompt showAsAlert];
 ````
 
 For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AdPromptDemoController.m
