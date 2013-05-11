@@ -147,14 +147,10 @@
 		5D15DF4F1735B49D0099986D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF4D1735B49D0099986D /* Default-Portrait~ipad.png */; };
 		5D3E34141725C66500A8CA89 /* fourth.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E34121725C66500A8CA89 /* fourth.png */; };
 		5D3E34151725C66500A8CA89 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E34131725C66500A8CA89 /* third.png */; };
-		5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E34171725EC3A00A8CA89 /* VideoAdController.m */; };
 		5D3E341E1725EE6300A8CA89 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E341A1725EE6300A8CA89 /* pause.png */; };
 		5D3E341F1725EE6300A8CA89 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E341B1725EE6300A8CA89 /* play.png */; };
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
-		5DB08690172FABB700D5C8D3 /* FullScreenVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */; };
-		5DB08692172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */; };
-		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
 		5DB0869A17309C6800D5C8D3 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0869617309C6800D5C8D3 /* icon@2x.png */; };
 		5DB0869B17309C6800D5C8D3 /* icon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0869717309C6800D5C8D3 /* icon58x58.png */; };
 		5DB0869C17309C6800D5C8D3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0869817309C6800D5C8D3 /* icon.png */; };
@@ -274,23 +270,10 @@
 		5D15DF4D1735B49D0099986D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		5D3E34121725C66500A8CA89 /* fourth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fourth.png; sourceTree = "<group>"; };
 		5D3E34131725C66500A8CA89 /* third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third.png; sourceTree = "<group>"; };
-		5D3E34161725EC3A00A8CA89 /* VideoAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoAdController.h; sourceTree = "<group>"; };
-		5D3E34171725EC3A00A8CA89 /* VideoAdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoAdController.m; sourceTree = "<group>"; };
 		5D3E341A1725EE6300A8CA89 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		5D3E341B1725EE6300A8CA89 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		5D3E342D172612F800A8CA89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		5DB08674172F324200D5C8D3 /* TRMAAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdError.h; path = TapItRMA/TRMAAdError.h; sourceTree = "<group>"; };
-		5DB08675172F324200D5C8D3 /* TRMAAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAd.h; path = TapItRMA/TRMAAd.h; sourceTree = "<group>"; };
-		5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAVideoAdsManager.h; path = TapItRMA/TRMAVideoAdsManager.h; sourceTree = "<group>"; };
-		5DB08679172F324200D5C8D3 /* TRMAClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAClickTrackingUIView.h; path = TapItRMA/TRMAClickTrackingUIView.h; sourceTree = "<group>"; };
-		5DB0867A172F324200D5C8D3 /* TRMAClickThroughBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAClickThroughBrowser.h; path = TapItRMA/TRMAClickThroughBrowser.h; sourceTree = "<group>"; };
-		5DB0867B172F324200D5C8D3 /* TRMAAdsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdsRequest.h; path = TapItRMA/TRMAAdsRequest.h; sourceTree = "<group>"; };
-		5DB0867C172F324200D5C8D3 /* TRMAAdsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdsLoader.h; path = TapItRMA/TRMAAdsLoader.h; sourceTree = "<group>"; };
-		5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPad.xib; sourceTree = "<group>"; };
-		5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPhone.xib; sourceTree = "<group>"; };
-		5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenVC.h; sourceTree = "<group>"; };
-		5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenVC.m; sourceTree = "<group>"; };
 		5DB0869617309C6800D5C8D3 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		5DB0869717309C6800D5C8D3 /* icon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58x58.png; sourceTree = "<group>"; };
 		5DB0869817309C6800D5C8D3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -417,7 +400,6 @@
 				55C74F6B15F0836D00981B79 /* README.txt */,
 				5572AABA15997D1000D3E5A6 /* README.md */,
 				5594985F153671A600D6495D /* Lib */,
-				5DB08671172F31EA00D5C8D3 /* TapItRMA */,
 				5594984E15366E4900D6495D /* TapItSDK */,
 				5594982915366E4100D6495D /* TapIt-iOS-Sample */,
 				5596594515B4C7150002620D /* TapIt */,
@@ -464,8 +446,6 @@
 				5D15DF371735A9E20099986D /* Images */,
 				55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */,
 				55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */,
-				5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */,
-				5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */,
 				5594982A15366E4100D6495D /* Supporting Files */,
 				5594983215366E4100D6495D /* AppDelegate.h */,
 				5594983315366E4100D6495D /* AppDelegate.m */,
@@ -477,10 +457,6 @@
 				55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */,
 				5532FEDE15EC3A6400427E00 /* AdMobController.h */,
 				5532FEDF15EC3A6400427E00 /* AdMobController.m */,
-				5D3E34161725EC3A00A8CA89 /* VideoAdController.h */,
-				5D3E34171725EC3A00A8CA89 /* VideoAdController.m */,
-				5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */,
-				5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */,
 			);
 			path = "TapIt-iOS-Sample";
 			sourceTree = "<group>";
@@ -625,20 +601,6 @@
 				5D3E341A1725EE6300A8CA89 /* pause.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		5DB08671172F31EA00D5C8D3 /* TapItRMA */ = {
-			isa = PBXGroup;
-			children = (
-				5DB08675172F324200D5C8D3 /* TRMAAd.h */,
-				5DB08674172F324200D5C8D3 /* TRMAAdError.h */,
-				5DB0867B172F324200D5C8D3 /* TRMAAdsRequest.h */,
-				5DB0867C172F324200D5C8D3 /* TRMAAdsLoader.h */,
-				5DB08679172F324200D5C8D3 /* TRMAClickTrackingUIView.h */,
-				5DB0867A172F324200D5C8D3 /* TRMAClickThroughBrowser.h */,
-				5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */,
-			);
-			name = TapItRMA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -808,8 +770,6 @@
 				5D3E34151725C66500A8CA89 /* third.png in Resources */,
 				5D3E341E1725EE6300A8CA89 /* pause.png in Resources */,
 				5D3E341F1725EE6300A8CA89 /* play.png in Resources */,
-				5DB08690172FABB700D5C8D3 /* FullScreenVC_iPad.xib in Resources */,
-				5DB08692172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib in Resources */,
 				5DB0869A17309C6800D5C8D3 /* icon@2x.png in Resources */,
 				5DB0869B17309C6800D5C8D3 /* icon58x58.png in Resources */,
 				5DB0869C17309C6800D5C8D3 /* icon.png in Resources */,
@@ -883,8 +843,6 @@
 				55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */,
 				5532FEBB15EC35AB00427E00 /* TapItMediationAdMob.m in Sources */,
 				55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */,
-				5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */,
-				5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
