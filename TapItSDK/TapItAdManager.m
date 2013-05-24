@@ -65,7 +65,7 @@
         connectionData = [[NSMutableData data] retain];
     }
     else {
-        NSLog(@"Couldn't create a request connection: %@", self.currentRequest);
+        TILog(@"Couldn't create a request connection: %@", self.currentRequest);
     }
 }
 
@@ -95,14 +95,13 @@
 - (void)processServerResponse {
     NSError *error = nil;
     NSString *jsonString = self.currentRequest.rawResults;
-    NSLog(@"TapIt: response: %@", jsonString);
+    NSLog(@"TapIt response: %@", jsonString);
     
     TapItJSONDecoder *decoder = [[TapItJSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *deserializedData = [decoder objectWithData:jsonData error:&error];
+    NSDictionary *deserializedData = [decoder objectWithData:jsonData error:&error];
     [decoder release];
-//    NSMutableDictionary *deserializedData = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionStrict error:&error];
-//    NSMutableDictionary *deserializedData = [[JSONDecoder alloc] mutableObjectWithUTF8String:[jsonString UTF8String] length:[jsonString length] error:&error];
+
     if (error) {
         NSString *errStr;
         if (!self.currentRequest.rawResults) {
@@ -117,16 +116,17 @@
         [delegate adView:nil didFailToReceiveAdWithError:error];
         return;
     }
-//    NSLog(@"JSON Data: %@", deserializedData);
+//    TILog(@"JSON Data: %@", deserializedData);
     NSString *errorMsg = [deserializedData objectForKey:@"error"];
     if (errorMsg) {
-//        NSLog(@"Server Returned JSON error: %@", errorMsg);
+//        TILog(@"Server Returned JSON error: %@", errorMsg);
         NSDictionary *details = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:400 userInfo:details];
         [delegate adView:nil didFailToReceiveAdWithError:error];
         return;
     }
     
+//    NSString *adType = [NSString stringWithString:[deserializedData objectForKey:@"type"]]; // html banner ormma offerwall video
     NSString *adType = [deserializedData objectForKey:@"type"]; // html banner ormma offerwall video
     NSString *adHeight = [deserializedData objectForKey:@"adHeight"];
     int height = [adHeight intValue];
@@ -159,6 +159,7 @@
         [delegate adView:nil didFailToReceiveAdWithError:error];
         return;
     }
+//    [deserializedData autorelease];
 }
 
 #pragma mark -
@@ -189,7 +190,7 @@
 
 - (BOOL)adActionShouldBegin:(NSURL *)actionUrl willLeaveApplication:(BOOL)willLeave {
     // pass the message on down the receiver chain
-//    NSLog(@"AdManager->adActionShouldBegin: %@", actionUrl);
+//    TILog(@"AdManager->adActionShouldBegin: %@", actionUrl);
     return [delegate adActionShouldBegin:actionUrl willLeaveApplication:willLeave];
 }
 

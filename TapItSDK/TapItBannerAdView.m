@@ -16,17 +16,29 @@
 #import "TapItBrowserController.h"
 #import "TapItRequest.h"
 
-@interface TapItBannerAdView () <TapItAdManagerDelegate, TapItBrowserControllerDelegate> {
+@interface TapItBannerAdView () <TapItAdManagerDelegate, TapItBrowserControllerDelegate, TapItMraidDelegate> {
     NSTimer *timer;
     BOOL isServingAds;
+    BOOL isLoading;
     UIActivityIndicatorView *loadingSpinner;
+    
+    
+    
+    
+    UIViewController *vc;
 }
 
 @property (retain, nonatomic) TapItRequest *adRequest;
 @property (retain, nonatomic) TapItAdView *adView;
+@property (retain, nonatomic) TapItAdView *secondAdView;
 @property (retain, nonatomic) TapItAdManager *adManager;
 @property (assign, nonatomic) CGRect originalFrame;
+@property (assign, nonatomic) CGAffineTransform originalTransform;
+@property (assign, nonatomic) UIView *originalSuperView;
 @property (retain, nonatomic) TapItBrowserController *browserController;
+@property (retain, nonatomic) UIButton *closeButton;
+
+
 
 - (void)commonInit;
 - (void)openURLInFullscreenBrowser:(NSURL *)url;
@@ -40,22 +52,23 @@
 
 @implementation TapItBannerAdView
 
-@synthesize originalFrame, adView, adRequest, adManager, animated, autoReposition, showLoadingOverlay, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
+@synthesize originalFrame, originalTransform, adView, secondAdView, adRequest, adManager, originalSuperView, animated, autoReposition, showLoadingOverlay, delegate, hideDirection, browserController, presentingController, shouldReloadAfterTap;
 
 - (void)commonInit {
     self.originalFrame = [self frame];
     self.hideDirection = TapItBannerHideNone;
     [self hide]; // hide the ad view until we have an ad to place in it
-    self.animated = YES; //default value
-    self.shouldReloadAfterTap = YES;
+//    self.animated = YES; //default value
     self.adManager = [[[TapItAdManager alloc] init] autorelease];
     self.adManager.delegate = self;
     isServingAds = NO;
+    isLoading = NO;
     loadingSpinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
     [loadingSpinner sizeToFit];
     loadingSpinner.hidesWhenStopped = YES;
     self.autoReposition = YES;
-    self.showLoadingOverlay = NO;
+    self.showLoadingOverlay = YES;
+    vc = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -84,19 +97,30 @@
     [self.adRequest setCustomParameter:height forKey:@"h"];
     [self.adManager fireAdRequest:self.adRequest];
     isServingAds = YES;
+    isLoading = YES;
     return YES;
 }
 
 - (void)resume {
-    [self requestAnotherAd];
+    if (!isLoading) {
+        [self requestAnotherAd];
+    }
 }
 
 - (void)repositionToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    if (self.originalSuperView) {
+        // adview is attached to window, do orientation transforms manually
+        [self.adView repositionToInterfaceOrientation:orientation];
+        return;
+    }
+    
     if (!self.autoReposition) {
         // don't reposition banner, someone else will do it...
         return;
     }
     
+    //TODO notify AdView of orientation change
+
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIApplication *application = [UIApplication sharedApplication];
     if (UIInterfaceOrientationIsLandscape(orientation))
@@ -169,10 +193,10 @@
         maskLayer.path = path.CGPath;
         self.layer.mask = maskLayer;
         
-        UIViewAnimationTransition trans = UIViewAnimationTransitionNone;
+        UIViewAnimationOptions optns = UIViewAnimationOptionCurveEaseOut;
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options:trans
+                            options:optns
                          animations:^{
                              if (self.hideDirection == TapItBannerHideNone) {
                                  self.alpha = 0.0;
@@ -181,6 +205,7 @@
                          }
                          completion:^(BOOL finished){ 
                              self.alpha = 0.0;
+                             [self.adView setIsVisible:NO];
                          }
          ];
     }
@@ -188,6 +213,7 @@
         // just move it
         self.adView.frame = avFrame;
         self.alpha = 0.0;
+        [self.adView setIsVisible:NO];
     }
 }
 #pragma mark -
@@ -199,21 +225,14 @@
     }
 }
 
-//TODO: move animation code into a more appropriate place
-//TODO: implement more transitions such as slide, fade, etc...
 - (void)didLoadAdView:(TapItAdView *)theAdView {
     TapItAdView *oldAd = [self.adView retain];
     self.alpha = 1.0;
     self.adView = theAdView;
+    self.adView.mraidDelegate = self;
+    [self.adView setIsVisible:YES];
     
     if (self.animated) {
-//        // mask the ad area so we can slide it away
-//        // mask should be reset here, just in case the ad size changes
-//        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-//        UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.adView.frame.size.width, self.adView.frame.size.height)
-//        maskLayer.path = path.CGPath;
-//        self.layer.mask = maskLayer;
-
         UIViewAnimationTransition trans = (nil != self.adView ? [self getRandomTransition] : UIViewAnimationTransitionCurlDown);
         [UIView animateWithDuration:2
                               delay:0.0
@@ -233,6 +252,7 @@
         [oldAd removeFromSuperview];
     }
     
+    isLoading = NO;
     [self startBannerRotationTimerForNormalOrError:NO];
     
     if ([self.delegate respondsToSelector:@selector(tapitBannerAdViewDidLoadAd:)]) {
@@ -244,6 +264,7 @@
 
 - (void)adView:(TapItAdView *)adView didFailToReceiveAdWithError:(NSError*)error {
     [self hide];
+    isLoading = NO;
     [self startBannerRotationTimerForNormalOrError:YES];
     if ([self.delegate respondsToSelector:@selector(tapitBannerAdView:didFailToReceiveAdWithError:)]) {
         [self.delegate tapitBannerAdView:self didFailToReceiveAdWithError:error];
@@ -272,8 +293,11 @@
 }
 
 - (void)requestAnotherAd {
+//    [self mraidClose];
     [self cancelAds];
-    [self startServingAdsForRequest:self.adRequest];
+    if(!isLoading) {
+        [self startServingAdsForRequest:self.adRequest];
+    }
 }
 
 - (void)cancelAds {
@@ -281,10 +305,221 @@
     isServingAds = NO;
     [self stopTimer];
     [adManager cancelAdRequests];
+    isLoading = NO;
 }
 
 - (void)pause {
     [self cancelAds];
+    isServingAds = YES;
+}
+
+#pragma mark -
+#pragma mark MRAID delegate methods
+
+- (NSDictionary *)mraidQueryState {
+    NSDictionary *state = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"inline", @"placementType",
+                           nil];
+    return state;
+}
+
+- (UIViewController *)mraidPresentingViewController {
+    return self.presentingController;
+}
+
+- (void)mraidAllowOrientationChange:(BOOL)isOrientationChangeAllowed andForceOrientation:(TapItMraidForcedOrientation)forcedOrientation {
+    
+}
+
+- (void)mraidResize:(CGRect)frame withUrl:(NSURL *)url isModal:(BOOL)isModal useCustomClose:(BOOL)useCustomClose {
+    // isModal == YES: going full screen, NO: partial screen resize... detach and go UIWindow mode
+    
+    [self stopTimer];
+    if ([TAPIT_MRAID_STATE_EXPANDED isEqualToString:self.adView.mraidState]) {
+        // can't resize an expanded ad...
+        return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionShouldBegin:willLeaveApplication:)]) {
+        [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:NO];
+    }
+    
+    if (url) {
+        // load content as a two part creative
+        TapItAdView *sav = [[TapItAdView alloc] initWithFrame:self.adView.frame];
+        self.secondAdView = sav;
+        [sav release];
+
+        NSURLRequest *urlreq = [[NSURLRequest alloc] initWithURL:url];
+        [self.secondAdView loadRequest:urlreq];
+        [urlreq release];
+    }
+    
+    TapItAdView *theView = self.secondAdView ? self.secondAdView : self.adView;
+
+    UIWindow *keyWindow = TapItKeyWindow();
+    if (theView.superview != keyWindow) {
+        // move adview onto UIWindow
+        CGRect transFrame = [keyWindow convertRect:self.adView.bounds fromView:self.adView];
+        theView.frame = transFrame;
+        [theView removeFromSuperview];
+        [keyWindow addSubview:theView];
+
+    }
+
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         if (UIInterfaceOrientationIsPortrait(TapItInterfaceOrientation())) {
+                             theView.frame = frame;
+                         }
+                         else {
+                             CGRect translatedFrame = CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
+                             theView.frame = translatedFrame;
+                         }
+                     }
+                     completion:^(BOOL finished) {
+                         if (isModal) {
+                             [self mraidGoFullscreenUseCustomClose:useCustomClose];
+                         }
+                         else {
+                             self.adView.mraidState = TAPIT_MRAID_STATE_RESIZED;
+                             [self.adView syncMraidState];
+                             [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
+                         }
+                     }
+     ];
+}
+
+- (void)mraidGoFullscreenUseCustomClose:(BOOL)useCustomClose {
+    // move adView from UIWindow into a VC, then push VC onto stack w/o animations
+    if (!vc) {
+        TapItAdView *theView;
+        if(self.secondAdView) {
+            // two part creative mode...
+            theView = self.secondAdView;
+        }
+        else {
+            theView = self.adView;
+        }
+    
+        vc = [[UIViewController alloc] init];
+        vc.view = theView;
+        
+        //TODO: support iOS 4.x
+        [self.presentingController presentViewController:vc animated:NO completion:^{
+            self.adView.mraidState = TAPIT_MRAID_STATE_EXPANDED;
+            [self.adView syncMraidState];
+            [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
+
+            if (!useCustomClose) {
+                [self showCloseButton];
+            }
+        }];
+    }
+}
+
+- (void)mraidOpen:(NSString *)urlStr {
+    BOOL shouldLoad = YES;
+    if ([self.delegate respondsToSelector:@selector(tapitBannerAdViewActionShouldBegin:willLeaveApplication:)]) {
+        // app has something to say about allowing tap to proceed...
+        shouldLoad = [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:NO];
+    }
+
+    if (shouldLoad) {
+        [self openURLInFullscreenBrowser:[NSURL URLWithString:urlStr]];
+    }
+    else {
+        if (self.adView.isMRAID) {
+            [self.adView fireMraidEvent:@"error" withParams:@"[\"Application declined to open browser\", \"open\"]"];
+        }
+    }
+}
+
+- (void)mraidUseCustomCloseButton:(BOOL)useCustomCloseButton {
+    if (useCustomCloseButton) {
+        [self hideCloseButton];
+    }
+    else {
+        [self showCloseButton];
+    }
+}
+
+- (void)mraidClose {
+    
+    if([@"default" isEqualToString:self.adView.mraidState]) {
+        // transition to hidden state
+        [self hide];
+        self.adView.mraidState = TAPIT_MRAID_STATE_HIDDEN;
+    }
+    else {
+        // transition to default state
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionWillFinish:)]) {
+            [self.delegate tapitBannerAdViewActionWillFinish:self];
+        }
+        
+        [self hideCloseButton];
+        
+        if (vc) {
+            [vc dismissViewControllerAnimated:NO completion:^{
+                [vc release]; vc = nil;
+            }];
+        }
+        
+        if (self.secondAdView) {
+            self.secondAdView = nil;
+        }
+        else {
+            // re-attach the ad view to the banneradview container
+            [self.adView removeFromSuperview];
+            [self addSubview:self.adView];
+            self.adView.frame = self.bounds;
+        }
+        self.adView.mraidState = TAPIT_MRAID_STATE_DEFAULT;
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
+            [self.delegate tapitBannerAdViewActionDidFinish:self];
+        }
+        
+        [self startBannerRotationTimerForNormalOrError:YES];
+    }
+    
+    [self.adView syncMraidState];
+    [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
+}
+
+- (void)closeTapped:(id)sender {
+    TILog(@"close tapped!");
+    [self mraidClose];
+}
+
+- (void)showCloseButton {
+    if (!self.closeButton) {
+
+        UIImage *closeButtonBackground = [UIImage imageNamed:@"TapIt.bundle/interstitial_close_button.png"];
+        self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        self.closeButton.imageView.contentMode = UIViewContentModeCenter;
+        [self.closeButton setImage:closeButtonBackground forState:UIControlStateNormal];
+        
+        [self.closeButton addTarget:self action:@selector(closeTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.adView addSubview:self.closeButton];
+        self.closeButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+
+        CGRect appFrame = TapItApplicationFrame(TapItInterfaceOrientation());
+        self.closeButton.frame = CGRectMake(appFrame.size.width - 50, 0, 50, 50);
+    }
+
+    [self bringSubviewToFront:self.closeButton];
+}
+
+- (void)hideCloseButton {
+    if (!self.closeButton) {
+        return;
+    }
+    [self.closeButton removeFromSuperview];
+    self.closeButton = nil;
 }
 
 #pragma mark -
@@ -293,32 +528,26 @@
     int transIdx = random() % 5;
     switch (transIdx) {
         case 0:
-//            NSLog(@"UIViewAnimationTransitionCurlUp");
             return UIViewAnimationTransitionCurlUp;
             break;
             
         case 1:
-//            NSLog(@"UIViewAnimationTransitionCurlDown");
             return UIViewAnimationTransitionCurlDown;
             break;
             
         case 2:
-//            NSLog(@"UIViewAnimationTransitionFlipFromLeft");
             return UIViewAnimationTransitionFlipFromLeft;
             break;
             
         case 3:
-//            NSLog(@"UIViewAnimationTransitionFlipFromRight");
             return UIViewAnimationTransitionFlipFromRight;
             break;
             
         case 4:
-//            NSLog(@"UIViewAnimationTransitionNone");
             return UIViewAnimationTransitionNone;
             break;
             
         default:
-//            NSLog(@"UIViewAnimationTransitionNone");
             return UIViewAnimationTransitionNone;
             break;
     }
@@ -389,7 +618,7 @@
 #pragma mark TapItBrowserController methods
 
 - (void)openURLInFullscreenBrowser:(NSURL *)url {
-//    NSLog(@"Banner->openURLInFullscreenBrowser: %@", url);
+    TILog(@"Banner->openURLInFullscreenBrowser: %@", url);
     [self stopTimer];
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
     self.browserController.delegate = self;
@@ -402,7 +631,7 @@
 }
 
 - (BOOL)browserControllerShouldLoad:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
-//    NSLog(@"************* browserControllerShouldLoad:willLeaveApp:%d, (%@)", willLeaveApp, theBrowserController.url);
+//    TILog(@"************* browserControllerShouldLoad:willLeaveApp:%d, (%@)", willLeaveApp, theBrowserController.url);
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionShouldBegin:willLeaveApplication:)]) {
         [self.delegate tapitBannerAdViewActionShouldBegin:self willLeaveApplication:willLeaveApp];
     }
@@ -410,7 +639,7 @@
 }
 
 - (void)browserControllerLoaded:(TapItBrowserController *)theBrowserController willLeaveApp:(BOOL)willLeaveApp {
-//    NSLog(@"************* browserControllerLoaded:willLeaveApp:");
+//    TILog(@"************* browserControllerLoaded:willLeaveApp:");
     [self hideLoading];
     if (!willLeaveApp) {
         [self.browserController showFullscreenBrowser];
@@ -418,36 +647,36 @@
 }
 
 - (void)browserControllerWillDismiss:(TapItBrowserController *)theBrowserController {
-//    NSLog(@"************* browserControllerWillDismiss:");
+//    TILog(@"************* browserControllerWillDismiss:");
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionWillFinish:)]) {
         [self.delegate tapitBannerAdViewActionWillFinish:self];
     }
     [self hideLoading];
-    if (self.shouldReloadAfterTap) {
-        [self requestAnotherAd];
-    }
+//    if (self.shouldReloadAfterTap) {
+//        [self requestAnotherAd];
+//    }
 }
 
 - (void)browserControllerDismissed:(TapItBrowserController *)theBrowserController {
-//    NSLog(@"************* browserControllerDismissed:");
+//    TILog(@"************* browserControllerDismissed:");
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
         [self.delegate tapitBannerAdViewActionDidFinish:self];
     }
     [self hideLoading];
-    if (self.shouldReloadAfterTap) {
-        [self requestAnotherAd];
-    }
+//    if (self.shouldReloadAfterTap) {
+//        [self requestAnotherAd];
+//    }
 }
 
 - (void)browserControllerFailedToLoad:(TapItBrowserController *)theBrowserController withError:(NSError *)error {
-//    NSLog(@"************* browserControllerFailedToLoad:withError: %@", error);
+//    TILog(@"************* browserControllerFailedToLoad:withError: %@", error);
     if (self.delegate && [self.delegate respondsToSelector:@selector(tapitBannerAdViewActionDidFinish:)]) {
         [self.delegate tapitBannerAdViewActionDidFinish:self];
     }
     [self hideLoading];
-    if (self.shouldReloadAfterTap) {
-        [self requestAnotherAd];
-    }
+//    if (self.shouldReloadAfterTap) {
+//        [self requestAnotherAd];
+//    }
 }
 
 
@@ -470,6 +699,7 @@
 #pragma mark -
 
 - (void)dealloc {
+    [vc release]; vc = nil;
     [self cancelAds];
     self.adView = nil;
     self.adRequest = nil;

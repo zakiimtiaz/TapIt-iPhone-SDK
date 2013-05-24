@@ -87,19 +87,19 @@ static Class inAppStoreVCClass;
         NSString *queryString = [urlString substringFromIndex:range.length];
         NSString *updatedUrlString = [NSString stringWithFormat:@"%@/adclick.php?%@", TAPIT_CLICK_SERVER_BASE_URL, queryString];
         *theUrl = [NSURL URLWithString:updatedUrlString];
-        NSLog(@"Re-writing url to: %@", *theUrl);
+        TILog(@"Re-writing url to: %@", *theUrl);
     }
 }
 
 - (void)loadUrl:(NSURL *)theUrl {
     // test urls...
-//    theUrl = [NSURL URLWithString:@"http://www.tapit.com/"];
+    theUrl = [NSURL URLWithString:@"http://www.tapit.com/"];
 //    theUrl = [NSURL URLWithString:@"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#"];
 //    theUrl = [NSURL URLWithString:@"https://itunes.apple.com/ua/app/dont-touch/id372842596?mt=8"];
     
-    NSLog(@"Loading URL: %@", theUrl);
+//    TILog(@"Loading URL: %@", theUrl);
 //    [self rewriteUrl:&theUrl];
-    NSLog(@"New URL: %@", theUrl);
+//    TILog(@"New URL: %@", theUrl);
     [_webView loadRequest:[NSURLRequest requestWithURL:theUrl]];
     
     [self buildAndShowLoadingOverlay];
@@ -196,7 +196,7 @@ static Class inAppStoreVCClass;
         //        [container setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
         
         
-//        NSLog(@"showFullscreenBrowserAnimated");
+//        TILog(@"showFullscreenBrowserAnimated");
 //        [self.presentingController presentViewController:self animated:animated completion:nil];
         [self.presentingController presentModalViewController:theControllerToPresent animated:animated];
         [self hideLoadingOverlay];
@@ -403,7 +403,7 @@ static Class inAppStoreVCClass;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 
  navigationType:(UIWebViewNavigationType)navigationType 
 {
-    NSLog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
+    TILog(@"webView:shouldStartLoadWithRequest:navigationType: %@", request);
     BOOL shouldProceed = YES;
 
     if (url) {
@@ -570,7 +570,7 @@ static Class inAppStoreVCClass;
 
 -(void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
 {
-    NSLog(@"time to dismiss the store controller");
+    TILog(@"time to dismiss the store controller");
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(browserControllerWillDismiss:)]) {
         [self.delegate browserControllerWillDismiss:self];
@@ -594,7 +594,7 @@ static Class inAppStoreVCClass;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView 
 {
-//    NSLog(@"Finished loading %@", webView.request);
+//    TILog(@"Finished loading %@", webView.request);
 	_refreshButton.enabled = YES;
 	_safariButton.enabled = YES;	
 	_backButton.enabled = _webView.canGoBack;

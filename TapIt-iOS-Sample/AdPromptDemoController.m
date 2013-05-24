@@ -1,5 +1,5 @@
 //
-//  AlertAdDemoController.m
+//  AdPromptDemoController
 //  TapIt-iOS-Sample
 //
 //  Created by Nick Penteado on 4/11/12.
@@ -11,7 +11,7 @@
 #import "TapIt.h"
 #import "TapItAdPrompt.h"
 
-// This is the zone id for the AlertAd Example
+// This is the zone id for the AdPrompt Example
 // go to http://ads.tapit.com/ to get your's
 #define ZONE_ID @"7980"
 
@@ -38,7 +38,7 @@
 }
 
 #pragma mark -
-#pragma mark TapItAlertAd Example code
+#pragma mark TapItAdPrompt Example code
 - (void)simpleExample:(id)sender {
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID];
     TapItAdPrompt *prompt = [[[TapItAdPrompt alloc] initWithRequest:request] autorelease];
@@ -48,7 +48,7 @@
 
 - (void)loadAdPrompt {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-//                            @"test", @"mode", // enable test mode to test alert ads in your app
+//                            @"test", @"mode", // enable test mode to test AdPrompts in your app
                             nil];
     TapItRequest *request = [TapItRequest requestWithAdZone:ZONE_ID andCustomParameters:params];
     AppDelegate *myAppDelegate = (AppDelegate *)([[UIApplication sharedApplication] delegate]);
@@ -56,7 +56,6 @@
     tapitAdPrompt = [[TapItAdPrompt alloc] initWithRequest:request];
     tapitAdPrompt.delegate = self;
 
-    // BETA: show a loading overlay when ad is pressed
     tapitAdPrompt.showLoadingOverlay = YES;
 }
 
@@ -77,7 +76,6 @@
     else {
         [tapitAdPrompt showAsAlert];
     }
-//    [tapitAlertAd release];
 }
 
 - (void)tapitAdPrompt:(TapItAdPrompt *)adPrompt didFailWithError:(NSError *)error {

@@ -35,6 +35,7 @@
 - (void)getInterstitial {
     tapitInterstitial = [[TapItInterstitialAd alloc] init];
     tapitInterstitial.delegate = self;
+    tapitInterstitial.showLoadingOverlay = NO;
     NSString *zoneId = [connector publisherId];
     TapItRequest *request = [TapItRequest requestWithAdZone:zoneId];
     [request setCustomParameter:MEDIATION_STRING forKey:@"mediation"];
@@ -63,7 +64,8 @@
     tapitAd = [[TapItBannerAdView alloc] initWithFrame:adFrame];
     NSString *zoneId = [connector publisherId];
     tapitAd.presentingController = [connector viewControllerForPresentingModalView];
-    tapitAd.shouldReloadAfterTap = NO;
+//    tapitAd.shouldReloadAfterTap = NO;
+    tapitAd.showLoadingOverlay = NO;
     TapItRequest *adRequest = [TapItRequest requestWithAdZone:zoneId];
     [adRequest setCustomParameter:@"999999" forKey:TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL]; // don't rotate banner
     [adRequest setCustomParameter:MEDIATION_STRING forKey:@"mediation"];
@@ -100,22 +102,22 @@
 #pragma mark TapItBannerAdViewDelegate methods
 
 - (void)tapitBannerAdViewWillLoadAd:(TapItBannerAdView *)bannerView {
-//    NSLog(@"tapitBannerAdViewWillLoadAd:");
+//    TILog(@"tapitBannerAdViewWillLoadAd:");
     // no google equivilent... NOOP
 }
 
 - (void)tapitBannerAdViewDidLoadAd:(TapItBannerAdView *)bannerView {
-//    NSLog(@"tapitBannerAdViewDidLoadAd:");
+//    TILog(@"tapitBannerAdViewDidLoadAd:");
     [connector adapter:self didReceiveAdView:bannerView];
 }
 
 - (void)tapitBannerAdView:(TapItBannerAdView *)bannerView didFailToReceiveAdWithError:(NSError *)error {
-//    NSLog(@"tapitBannerAdView:didFailToReceiveAdWithError:");
+//    TILog(@"tapitBannerAdView:didFailToReceiveAdWithError:");
     [connector adapter:self didFailAd:error];
 }
 
 - (BOOL)tapitBannerAdViewActionShouldBegin:(TapItBannerAdView *)bannerView willLeaveApplication:(BOOL)willLeave {
-//    NSLog(@"tapitBannerAdViewActionShouldBegin:willLeaveApplication:");
+//    TILog(@"tapitBannerAdViewActionShouldBegin:willLeaveApplication:");
     if (redirectCount++ == 0) {
         // tapitBannerAdViewActionShouldBegin:willLeaveApplication: may be called multiple times... only report one click/load...
         [connector adapter:self clickDidOccurInBanner:bannerView];
@@ -128,12 +130,12 @@
 }
 
 - (void)tapitBannerAdViewActionWillFinish:(TapItBannerAdView *)bannerView {
-//    NSLog(@"tapitBannerAdViewActionWillFinish:");
+//    TILog(@"tapitBannerAdViewActionWillFinish:");
     [connector adapterWillDismissFullScreenModal:self];
 }
 
 - (void)tapitBannerAdViewActionDidFinish:(TapItBannerAdView *)bannerView {
-//    NSLog(@"tapitBannerAdViewActionDidFinish:");
+//    TILog(@"tapitBannerAdViewActionDidFinish:");
     [connector adapterDidDismissFullScreenModal:self];
 }
 
@@ -142,29 +144,29 @@
 #pragma mark TapItInterstitialAdDelegate methods
 
 - (void)tapitInterstitialAd:(TapItInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-//    NSLog(@"tapitInterstitialAd:didFailWithError:");
+//    TILog(@"tapitInterstitialAd:didFailWithError:");
     [connector adapter:self didFailInterstitial:error];
 }
 
 - (void)tapitInterstitialAdDidUnload:(TapItInterstitialAd *)interstitialAd {
     // no google equivilent... NOOP
     // see tapitInterstitialAdActionWillFinish: and tapitInterstitialAdActionDidFinish:
-//    NSLog(@"tapitInterstitialAdDidUnload:");
+//    TILog(@"tapitInterstitialAdDidUnload:");
 }
 
 - (void)tapitInterstitialAdWillLoad:(TapItInterstitialAd *)interstitialAd {
     // no google equivilent... NOOP
     // see tapitInterstitialAdDidLoad
-//    NSLog(@"tapitInterstitialAdWillLoad:");
+//    TILog(@"tapitInterstitialAdWillLoad:");
 }
 
 - (void)tapitInterstitialAdDidLoad:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"tapitInterstitialAdDidLoad:");
+//    TILog(@"tapitInterstitialAdDidLoad:");
     [connector adapter:self didReceiveInterstitial:interstitialAd];
 }
 
 - (BOOL)tapitInterstitialAdActionShouldBegin:(TapItInterstitialAd *)interstitialAd willLeaveApplication:(BOOL)willLeave {
-//    NSLog(@"tapitInterstitialAdActionShouldBegin:willLeaveApplication:");
+//    TILog(@"tapitInterstitialAdActionShouldBegin:willLeaveApplication:");
     if (redirectCount++ == 0) {
         [connector adapterWillPresentInterstitial:self];
     }
@@ -175,12 +177,12 @@
 }
 
 - (void)tapitInterstitialAdActionWillFinish:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"tapitInterstitialAdActionWillFinish:");
+//    TILog(@"tapitInterstitialAdActionWillFinish:");
     [connector adapterWillDismissInterstitial:self];
 }
 
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd {
-//    NSLog(@"tapitInterstitialAdActionDidFinish:");
+//    TILog(@"tapitInterstitialAdActionDidFinish:");
     [connector adapterDidDismissInterstitial:self];
 }
 

@@ -54,6 +54,7 @@ typedef enum {
         self.adRequest = request;
         state = TapItAdPromptStateNew;
         displayImmediately = NO;
+        self.showLoadingOverlay = YES;
     }
     return self;
 }
@@ -106,6 +107,7 @@ typedef enum {
                                           cancelButtonTitle:self.declineString
                                           otherButtonTitles:self.callToAction, nil];
     [alert show];
+    [self retain];
     [alert release];
     state = TapItAdPromptStateShown;
     
@@ -154,7 +156,7 @@ typedef enum {
 
 #pragma mark -
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-//    NSLog(@"UIAlertView: dismissed with button: %d", buttonIndex);
+//    TILog(@"UIAlertView: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 1) { // second button is the call to action...
         BOOL performAction = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
@@ -170,11 +172,10 @@ typedef enum {
         }
         [self release];
     }
-    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    NSLog(@"UIActionSheet: dismissed with button: %d", buttonIndex);
+//    TILog(@"UIActionSheet: dismissed with button: %d", buttonIndex);
     if (buttonIndex == 0) { // top button is the call to action...
         BOOL performAction = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(tapitAdPromptActionShouldBegin:willLeaveApplication:)]) {
@@ -285,8 +286,7 @@ typedef enum {
 }
 
 - (void)didReceiveData:(NSDictionary *)data {
-//    NSLog(@"Received data: %@", data);
-    self.clickUrl = [data objectForKey:@"clickurl"];
+    self.clickUrl = [NSString stringWithString:[data objectForKey:@"clickurl"]];
 //    self.clickUrl = @"http://itunes.apple.com/us/app/tiny-village/id453126021?mt=8#";
     
     self.title = [data objectForKey:@"adtitle"];

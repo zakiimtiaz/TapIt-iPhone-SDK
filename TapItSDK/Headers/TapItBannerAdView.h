@@ -19,7 +19,7 @@
 @property (assign, nonatomic) BOOL animated;
 @property (assign, nonatomic) BOOL autoReposition;
 @property (assign, nonatomic) BOOL showLoadingOverlay;
-@property (assign, nonatomic) BOOL shouldReloadAfterTap;
+@property (assign, nonatomic) BOOL shouldReloadAfterTap DEPRECATED_ATTRIBUTE;
 @property (readonly) BOOL isServingAds;
 @property (assign) TapItBannerHideDirection hideDirection;
 @property (assign, nonatomic) UIViewController *presentingController;
