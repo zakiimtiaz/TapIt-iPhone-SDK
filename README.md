@@ -194,6 +194,8 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 
     [self setUpAdsLoader];
     [self setUpAdPlayer];
+    
+    NSLog(@"SDK Version: %@", [TRMAAd getSDKVersionString]);
 }
 
 - (void)viewDidUnload
