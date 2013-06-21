@@ -14,7 +14,6 @@
 		552396CC15AC8EF2000E69CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
 		5528EECC15FFBB51009ED3A4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5528EECB15FFBB51009ED3A4 /* LICENSE */; };
 		552EF86B15A2B572009898D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
-		5532FEBB15EC35AB00427E00 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62F815B6389E00570F4A /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62FA15B638A800570F4A /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55716AF815C311F200075FBE /* TapItAdPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF615C2204000075FBE /* TapItAdPrompt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,7 +24,6 @@
 		5581896315A258E800B14BCD /* TapItLightboxAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581896215A258E800B14BCD /* TapItLightboxAdViewController.m */; };
 		55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
 		558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
-		558F516D161E013F00A2A4FE /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		558F516E161E063700A2A4FE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEBE5A160A8CD500072ECD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5594982415366E4100D6495D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982315366E4100D6495D /* UIKit.framework */; };
 		5594982615366E4100D6495D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982515366E4100D6495D /* Foundation.framework */; };
@@ -127,14 +125,12 @@
 		55DC8CD6160CE2C800558DC8 /* TapItRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF715C2204000075FBE /* TapItRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */; };
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
-		55F9A37B1616601200A41AE6 /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEDF15EC3A6400427E00 /* AdMobController.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
 		5D30D9AF1739B38A00A4FADD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
 		5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
 		5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */; };
 		5D30D9B21739B38A00A4FADD /* FullScreenVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */; };
 		5D30D9B31739B38A00A4FADD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5594982C15366E4100D6495D /* InfoPlist.strings */; };
-		5D3535621739AD8800660408 /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3535611739AD8800660408 /* libTapItRMA.a */; };
 		5D35358E1739AE9E00660408 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535781739AE9E00660408 /* Default-568h@2x.png */; };
 		5D35358F1739AE9E00660408 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */; };
 		5D3535901739AE9E00660408 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35357A1739AE9E00660408 /* Default-Landscape~ipad.png */; };
@@ -160,8 +156,27 @@
 		5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E34171725EC3A00A8CA89 /* VideoAdController.m */; };
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
+		5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */; };
+		5D8E68F51773F61A00BDE967 /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5D8E68EF1773E3BD00BDE967 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D3E34011725BB8100A8CA89;
+			remoteInfo = TapItRMA;
+		};
+		5D8E68F31773F60300BDE967 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D3E34001725BB8100A8CA89;
+			remoteInfo = TapItRMA;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		550C62F815B6389E00570F4A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -261,7 +276,6 @@
 		55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_armv6.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55DC8CDE160CE6FA00558DC8 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPromptDemoController.m; sourceTree = "<group>"; };
-		5D3535611739AD8800660408 /* libTapItRMA.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItRMA.a; sourceTree = "<group>"; };
 		5D3535781739AE9E00660408 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		5D35357A1739AE9E00660408 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -288,6 +302,9 @@
 		5D3E34171725EC3A00A8CA89 /* VideoAdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoAdController.m; sourceTree = "<group>"; };
 		5D3E342D172612F800A8CA89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplaneslowbitrate.m4v; sourceTree = "<group>"; };
+		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapItRMA.xcodeproj; path = "../../../TRMASDK (Video Ads)/trunk/TapItRMA.xcodeproj"; sourceTree = "<group>"; };
 		5DB08674172F324200D5C8D3 /* TRMAAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdError.h; path = TapItRMA/TRMAAdError.h; sourceTree = "<group>"; };
 		5DB08675172F324200D5C8D3 /* TRMAAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAd.h; path = TapItRMA/TRMAAd.h; sourceTree = "<group>"; };
 		5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAVideoAdsManager.h; path = TapItRMA/TRMAVideoAdsManager.h; sourceTree = "<group>"; };
@@ -306,6 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8E68F51773F61A00BDE967 /* libTapItRMA.a in Frameworks */,
 				5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */,
 				5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */,
 				55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */,
@@ -318,9 +336,7 @@
 				5594982415366E4100D6495D /* UIKit.framework in Frameworks */,
 				5594982615366E4100D6495D /* Foundation.framework in Frameworks */,
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
-				558F516D161E013F00A2A4FE /* libGoogleAdMobAds.a in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
-				5D3535621739AD8800660408 /* libTapItRMA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +433,7 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
+				5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */,
 				55DC8CDE160CE6FA00558DC8 /* build.sh */,
 				5528EECB15FFBB51009ED3A4 /* LICENSE */,
 				55C74F6B15F0836D00981B79 /* README.txt */,
@@ -445,6 +462,7 @@
 		5594982215366E4100D6495D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */,
 				5D3E34311726169700A8CA89 /* CoreMedia.framework */,
 				5520DA65163207600032C3AD /* StoreKit.framework */,
 				55BEBE5A160A8CD500072ECD /* AdSupport.framework */,
@@ -547,7 +565,6 @@
 		5594985F153671A600D6495D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5D3535611739AD8800660408 /* libTapItRMA.a */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
 				55A64B591537E7F200AFDDFF /* JSONKit */,
@@ -608,6 +625,7 @@
 		5D15DF371735A9E20099986D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */,
 				5D3535781739AE9E00660408 /* Default-568h@2x.png */,
 				5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */,
 				5D35357A1739AE9E00660408 /* Default-Landscape~ipad.png */,
@@ -632,6 +650,14 @@
 				5D35358D1739AE9E00660408 /* second@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		5D8E68EC1773E3BC00BDE967 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5DB08671172F31EA00D5C8D3 /* TapItRMA */ = {
@@ -710,6 +736,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5D8E68F41773F60300BDE967 /* PBXTargetDependency */,
 			);
 			name = "TapIt-iOS-Sample";
 			productName = "TapIt-iOS-Sample";
@@ -787,6 +814,12 @@
 			mainGroup = 5594981415366E4100D6495D;
 			productRefGroup = 5594982015366E4100D6495D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5D8E68EC1773E3BC00BDE967 /* Products */;
+					ProjectRef = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5594981E15366E4100D6495D /* TapIt-iOS-Sample */,
@@ -796,6 +829,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTapItRMA.a;
+			remoteRef = 5D8E68EF1773E3BD00BDE967 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5594981D15366E4100D6495D /* Resources */ = {
@@ -831,6 +874,7 @@
 				5D3535A11739AE9E00660408 /* first@2x.png in Resources */,
 				5D3535A21739AE9E00660408 /* second.png in Resources */,
 				5D3535A31739AE9E00660408 /* second@2x.png in Resources */,
+				5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,7 +914,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55F9A37B1616601200A41AE6 /* AdMobController.m in Sources */,
 				5594983015366E4100D6495D /* main.m in Sources */,
 				5594983415366E4100D6495D /* AppDelegate.m in Sources */,
 				5594983D15366E4200D6495D /* BannerAdController.m in Sources */,
@@ -889,7 +932,6 @@
 				55C7004E15A767E700818F44 /* TapItReachability.m in Sources */,
 				558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */,
 				55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */,
-				5532FEBB15EC35AB00427E00 /* TapItMediationAdMob.m in Sources */,
 				55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */,
 				5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */,
 				5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */,
@@ -958,6 +1000,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5D8E68F41773F60300BDE967 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TapItRMA;
+			targetProxy = 5D8E68F31773F60300BDE967 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5594982C15366E4100D6495D /* InfoPlist.strings */ = {

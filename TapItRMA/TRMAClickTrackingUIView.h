@@ -2,6 +2,8 @@
 //  TRMAClickTrackingUIView.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 //  Declares TRMAClickTrackingUIView instance that is set to track clicks on the
@@ -43,6 +45,5 @@
 /// events from the view. Remember to nil the delegate before deallocating
 /// this object.
 @property (nonatomic, assign) id<TRMAClickTrackingUIViewDelegate> delegate;
-
 
 @end

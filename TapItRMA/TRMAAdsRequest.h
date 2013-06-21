@@ -2,6 +2,8 @@
 //  TRMAAdsRequest.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 
@@ -29,6 +31,5 @@
 - (id)removeCustomParameterForKey:(NSString *)key;
 
 - (void)updateLocation:(CLLocation *)location;
-
 
 @end

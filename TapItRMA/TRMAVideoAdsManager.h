@@ -38,50 +38,43 @@ typedef enum {
 
 #pragma mark -
 #pragma mark TRMAVastEventNotifications
-/// \memberof TRMAVideoAdsManager
+
 /// Start Vast event broadcasted by the ads manager.
 //
 /// This happens when video ad starts to play.
 extern NSString * const TRMAVastEventStartNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// First quartile Vast event broadcasted by the ads manager.
 //
 /// This happens when ad crosses first quartile boundary.
 extern NSString * const TRMAVastEventFirstQuartileNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Midpoint Vast event broadcasted by the ads manager.
 //
 /// This happens when ad crosses midpoint boundary.
 extern NSString * const TRMAVastEventMidpointNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Third quartile Vast event broadcasted by the ads manager.
 //
 /// This happens when ad crosses third quartile boundary.
 extern NSString * const TRMAVastEventThirdQuartileNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Complete Vast event broadcasted by the ads manager.
 //
 /// This happens when video ad completes playing successfully.
 extern NSString * const TRMAVastEventCompleteNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Pause Vast event broadcasted by the Video ads manager.
 //
 /// This happens when video ad pauses.
 extern NSString * const TRMAVastEventPauseNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Click event broadcasted by the Video ads manager.
 //
 /// This happens when user clicks on the click tracking element overlayed on
 /// the video ad.
 extern NSString * const TRMAVastEventClickNotification;
 
-/// \memberof TRMAVideoAdsManager
 /// Rewind event broadcasted by the Video ads manager.
 //
 /// This happens when user rewinds the video ad.
@@ -97,42 +90,47 @@ extern NSString * const TRMAVastEventSkipNotification;
 //
 extern NSString * const TRMAVastImpressionNotification;
 
-/// Linear ad event broadcast by the Video ads manager.
+/// Linear ad createevent broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastLinearEventNotification;
+extern NSString * const TRMAVastEventCreativeViewNotification;
 
-/// Linear ad video click broadcast by the Video ads manager.
+/// Linear ad error event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastLinearVideoClickNotification;
+extern NSString * const TRMAVastEventLinearErrorNotification;
 
-/// Linear ad video custom click broadcast by the Video ads manager.
+/// Linear ad mute event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastLinearVideoCustomClickNotification;
+extern NSString * const TRMAVastEventMuteNotification;
 
-/// Linear ad icon view click broadcast by the Video ads manager.
+/// Linear ad unmute event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastLinearIconViewTrackNotification;
+extern NSString * const TRMAVastEventUnmuteNotification;
 
-/// Linear ad icon click broadcast by the Video ads manager.
+/// Linear ad resume event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastLinearIconClickNotification;
+extern NSString * const TRMAVastEventResumeNotification;
 
-/// Companion ad click broadcast by the Video ads manager.
+/// Linear ad fullscreen event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastCompanionClickNotification;
+extern NSString * const TRMAVastEventFullscreenNotification;
 
-/// Companion ad event broadcast by the Video ads manager.
+/// Linear ad expand event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastCompanionEventNotification;
+extern NSString * const TRMAVastEventExpandNotification;
 
-/// Nonlinear ad click broadcast by the Video ads manager.
+/// Linear ad collapse event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastNonLinearClickNotification;
+extern NSString * const TRMAVastEventCollapseNotification;
 
-/// Nonlinear ad event broadcast by the Video ads manager.
+/// Linear ad accept invitation event broadcast by the Video ads manager.
 //
-extern NSString * const TRMAVastNonLinearEventNotification;
+extern NSString * const TRMAVastEventAcceptInvitationLinearNotification;
 
+extern NSString * const TRMAVastEventAcceptInvitationNotification;
+
+extern NSString * const TRMAVastEventCloseNotification;
+
+extern NSString * const TRMAVastEventCloseLinearNotification;
 
 #pragma mark -
 
@@ -176,6 +174,5 @@ extern NSString * const TRMAVastNonLinearEventNotification;
 /// notifications from the ads manager. Remember to nil the delegate before
 /// deallocating this object.
 @property(nonatomic, assign) NSObject<TRMAVideoAdsManagerDelegate> *delegate;
-
 
 @end
