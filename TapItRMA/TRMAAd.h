@@ -31,5 +31,9 @@ typedef enum {
 /// information is not available.
 @property(readonly, retain) NSString *mediaUrl;
 
+
+// Returns the current version string of this SDK.
++(NSString *) getSDKVersionString;
+
 @end
 

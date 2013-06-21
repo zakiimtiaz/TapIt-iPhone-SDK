@@ -140,6 +140,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [self setUpAdPlayer];
     [self setUpAdsLoader];
     
+    [self logMessage:@"SDK Version: %@", [TRMAAd getSDKVersionString]];
 }
 
 - (void)setUpContentPlayer {
