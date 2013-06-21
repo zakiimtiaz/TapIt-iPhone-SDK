@@ -157,26 +157,9 @@
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */; };
-		5D8E68F51773F61A00BDE967 /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */; };
+		5D9D61FC1775110600E117CA /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9D61FB1775110600E117CA /* libTapItRMA.a */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5D8E68EF1773E3BD00BDE967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D3E34011725BB8100A8CA89;
-			remoteInfo = TapItRMA;
-		};
-		5D8E68F31773F60300BDE967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D3E34001725BB8100A8CA89;
-			remoteInfo = TapItRMA;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		550C62F815B6389E00570F4A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -304,7 +287,7 @@
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplaneslowbitrate.m4v; sourceTree = "<group>"; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapItRMA.xcodeproj; path = "../../../TRMASDK (Video Ads)/trunk/TapItRMA.xcodeproj"; sourceTree = "<group>"; };
+		5D9D61FB1775110600E117CA /* libTapItRMA.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItRMA.a; sourceTree = "<group>"; };
 		5DB08674172F324200D5C8D3 /* TRMAAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdError.h; path = TapItRMA/TRMAAdError.h; sourceTree = "<group>"; };
 		5DB08675172F324200D5C8D3 /* TRMAAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAd.h; path = TapItRMA/TRMAAd.h; sourceTree = "<group>"; };
 		5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAVideoAdsManager.h; path = TapItRMA/TRMAVideoAdsManager.h; sourceTree = "<group>"; };
@@ -323,7 +306,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D8E68F51773F61A00BDE967 /* libTapItRMA.a in Frameworks */,
 				5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */,
 				5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */,
 				55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */,
@@ -337,6 +319,7 @@
 				5594982615366E4100D6495D /* Foundation.framework in Frameworks */,
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
+				5D9D61FC1775110600E117CA /* libTapItRMA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +416,6 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
-				5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */,
 				55DC8CDE160CE6FA00558DC8 /* build.sh */,
 				5528EECB15FFBB51009ED3A4 /* LICENSE */,
 				55C74F6B15F0836D00981B79 /* README.txt */,
@@ -565,6 +547,7 @@
 		5594985F153671A600D6495D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5D9D61FB1775110600E117CA /* libTapItRMA.a */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
 				55A64B591537E7F200AFDDFF /* JSONKit */,
@@ -652,14 +635,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		5D8E68EC1773E3BC00BDE967 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5DB08671172F31EA00D5C8D3 /* TapItRMA */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,7 +711,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5D8E68F41773F60300BDE967 /* PBXTargetDependency */,
 			);
 			name = "TapIt-iOS-Sample";
 			productName = "TapIt-iOS-Sample";
@@ -814,12 +788,6 @@
 			mainGroup = 5594981415366E4100D6495D;
 			productRefGroup = 5594982015366E4100D6495D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5D8E68EC1773E3BC00BDE967 /* Products */;
-					ProjectRef = 5D8E68EB1773E3BC00BDE967 /* TapItRMA.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5594981E15366E4100D6495D /* TapIt-iOS-Sample */,
@@ -829,16 +797,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5D8E68F01773E3BD00BDE967 /* libTapItRMA.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTapItRMA.a;
-			remoteRef = 5D8E68EF1773E3BD00BDE967 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5594981D15366E4100D6495D /* Resources */ = {
@@ -1000,14 +958,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5D8E68F41773F60300BDE967 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TapItRMA;
-			targetProxy = 5D8E68F31773F60300BDE967 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5594982C15366E4100D6495D /* InfoPlist.strings */ = {
