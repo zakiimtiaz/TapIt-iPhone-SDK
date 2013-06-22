@@ -183,7 +183,7 @@ TapIt-iOS-Sample directory of the iOS SDK package.
 Essentially, what needs to be included in the code are as follows:
 Note: the following uses Automatic Reference Counting so there will not be any object releases shown.
 
-
+````objective-c
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -407,7 +407,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
     NSLog(@"Error encountered while playing:%@\n.",
                       [error localizedDescription]);
 }
-  
+````
 
 Delegate Callbacks
 ------------------
