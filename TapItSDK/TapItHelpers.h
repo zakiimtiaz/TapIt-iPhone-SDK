@@ -12,6 +12,7 @@
 
 UIInterfaceOrientation TapItInterfaceOrientation();
 UIWindow *TapItKeyWindow();
+UIViewController *TapItTopViewController();
 CGFloat TapItStatusBarHeight();
 CGRect TapItApplicationFrame(UIInterfaceOrientation orientation);
 CGRect TapItScreenBounds(UIInterfaceOrientation orientation);

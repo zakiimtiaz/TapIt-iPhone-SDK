@@ -18,6 +18,10 @@
 #import "TapItLightboxAdViewController.h"
 #import "TapItBrowserController.h"
 
+@interface TapItInterstitialAdViewController ()
+- (void)closeTapped:(id)sender;
+@end
+
 @interface TapItInterstitialAd() <TapItAdManagerDelegate, TapItMraidDelegate> 
 
 @property (retain, nonatomic) TapItRequest *adRequest;
@@ -181,7 +185,9 @@
 
 - (void)tapitInterstitialAdActionDidFinish:(TapItInterstitialAd *)interstitialAd {
     if (self.adView.isMRAID) {
-        [self mraidClose];
+        self.adView.mraidState = TAPIT_MRAID_STATE_HIDDEN;
+        [self.adView syncMraidState];
+        [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
     }
 
     if (self.delegate) {
@@ -208,9 +214,7 @@
 }
 
 - (void)mraidClose {
-    self.adView.mraidState = TAPIT_MRAID_STATE_HIDDEN;
-    [self.adView syncMraidState];
-    [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
+    [self.adController closeTapped:nil];
 }
 
 - (void)mraidAllowOrientationChange:(BOOL)isOrientationChangeAllowed andForceOrientation:(TapItMraidForcedOrientation)forcedOrientation {

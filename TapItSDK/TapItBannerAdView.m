@@ -37,6 +37,7 @@
 @property (assign, nonatomic) UIView *originalSuperView;
 @property (retain, nonatomic) TapItBrowserController *browserController;
 @property (retain, nonatomic) UIButton *closeButton;
+@property (retain, nonatomic) UIViewController *fullscreenVC;
 
 
 
@@ -336,6 +337,7 @@
     
     [self stopTimer];
     if ([TAPIT_MRAID_STATE_EXPANDED isEqualToString:self.adView.mraidState]) {
+        TILog(@"Trying to resize an expanded ad!");
         // can't resize an expanded ad...
         return;
     }
@@ -407,8 +409,14 @@
         vc = [[UIViewController alloc] init];
         vc.view = theView;
         
-        //TODO: support iOS 4.x
-        [self.presentingController presentViewController:vc animated:NO completion:^{
+        //TODO: support iOS 4.x        
+        UIViewController *pvc = self.presentingController;
+        if(!pvc) {
+            pvc = TapItTopViewController();
+        }
+        
+        [pvc presentViewController:vc animated:NO completion:^{
+            TILog(@"Presenting VC: %@ from %@", vc, self.presentingController);
             self.adView.mraidState = TAPIT_MRAID_STATE_EXPANDED;
             [self.adView syncMraidState];
             [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.adView.mraidState];
@@ -622,7 +630,10 @@
     [self stopTimer];
     self.browserController = [[[TapItBrowserController alloc] init] autorelease];
     self.browserController.delegate = self;
-    if(self.presentingController) {
+    if(vc) {
+        self.browserController.presentingController = vc;
+    }
+    else if(self.presentingController) {
         self.browserController.presentingController = self.presentingController;
     }
     self.browserController.showLoadingOverlay = self.showLoadingOverlay;

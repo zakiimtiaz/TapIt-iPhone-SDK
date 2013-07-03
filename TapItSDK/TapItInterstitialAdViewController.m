@@ -85,9 +85,11 @@
     id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
     [tDel tapitInterstitialAdActionWillFinish:nil];
     [self dismissModalViewControllerAnimated:self.animated];
-    [tDel tapitInterstitialAdActionDidFinish:nil];
-    [tDel tapitInterstitialAdDidUnload:nil];
-    [tDel release];
+    [self dismissViewControllerAnimated:self.animated completion:^{
+        [tDel tapitInterstitialAdActionDidFinish:nil];
+        [tDel tapitInterstitialAdDidUnload:nil];
+        [tDel release];
+    }];
     
     //    [self dismissViewControllerAnimated:self.animated completion:^{
     //        [tDel tapitInterstitialAdActionDidFinish:nil];

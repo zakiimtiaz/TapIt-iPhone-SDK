@@ -20,6 +20,34 @@ UIWindow *TapItKeyWindow()
     return [UIApplication sharedApplication].keyWindow;
 }
 
+UIViewController *TapItTopViewController()
+{
+    UIWindow* window = TapItKeyWindow();
+    UIViewController *top = window.rootViewController;
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 50000 // iOS 5.0+
+    if ([top respondsToSelector:@selector(presentedViewController)]) {
+        while (top.presentedViewController) {
+            top = top.presentedViewController;
+            
+            if ([top isKindOfClass:[UINavigationController class]]) {
+                if (((UINavigationController *)top).visibleViewController) {
+                    top = ((UINavigationController *)top).visibleViewController;
+                }
+            }
+            else if ([top isKindOfClass:[UITabBarController class]]) {
+                if (((UITabBarController *)top).selectedViewController) {
+                    top = ((UITabBarController *)top).selectedViewController;
+                }
+            }
+        }
+    }
+#endif
+
+    return top;
+}
+
+
 CGFloat TapItStatusBarHeight() {
     if ([UIApplication sharedApplication].statusBarHidden) {
         return 0.0;

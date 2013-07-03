@@ -148,6 +148,7 @@
 		55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */; };
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
+		55FEA8FE1780D4BE00EBFFB1 /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FEA8FD1780D4BE00EBFFB1 /* libTapItRMA.a */; };
 		5D15DF341735A6310099986D /* icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF331735A6310099986D /* icon114x114.png */; };
 		5D15DF431735AC500099986D /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF421735AC500099986D /* icon144x144.png */; };
 		5D15DF4A1735ADED0099986D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D15DF481735ADED0099986D /* Default-Landscape@2x~ipad.png */; };
@@ -276,6 +277,7 @@
 		55D070EE17502AAD007D3452 /* TapItAdMobStubs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TapItAdMobStubs.h; path = TapItSDK/Headers/TapItAdMobStubs.h; sourceTree = "<group>"; };
 		55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_armv6.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPromptDemoController.m; sourceTree = "<group>"; };
+		55FEA8FD1780D4BE00EBFFB1 /* libTapItRMA.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItRMA.a; sourceTree = "<group>"; };
 		5D15DF331735A6310099986D /* icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114x114.png; sourceTree = "<group>"; };
 		5D15DF421735AC500099986D /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = "<group>"; };
 		5D15DF481735ADED0099986D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
 				554D78F1174552B0008C1A9A /* libGoogleAdMobAds.a in Frameworks */,
+				55FEA8FE1780D4BE00EBFFB1 /* libTapItRMA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +542,7 @@
 		5594985F153671A600D6495D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				55FEA8FD1780D4BE00EBFFB1 /* libTapItRMA.a */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
 				55A64B591537E7F200AFDDFF /* JSONKit */,
@@ -1156,6 +1160,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1179,6 +1184,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1201,6 +1207,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1220,6 +1227,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1241,6 +1249,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1261,6 +1270,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1285,6 +1295,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
@@ -1310,6 +1321,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -1334,6 +1346,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

@@ -65,20 +65,39 @@
     NSString *adWidth = [NSString stringWithString:[adData objectForKey:@"adWidth"]];
 
     NSString *width = [NSString stringWithFormat:@"width:%@px; margin:0 auto; text-align:center", adWidth];
-    NSString *adHtml = [NSString stringWithString:[adData objectForKey:@"html"]];
-    NSRange range = [adHtml rangeOfString:@"mraid.js" options:NSCaseInsensitiveSearch];
-    if (range.location != NSNotFound) {
-        //TODO: imbed mraid.js in bundle?
-        adHtml = [NSString stringWithFormat:@"%@%@", @"<script type=\"text/javascript\" src=\"http://dev.tapit.com/~npenteado/mraid/mraid.js\"></script>", adHtml];
+    NSMutableString *adHtml = [NSMutableString stringWithString:[adData objectForKey:@"html"]];
+    NSRange range = [adHtml rangeOfString:@"\"mraid.js\"" options:NSCaseInsensitiveSearch];
+    if (range.location != NSNotFound || [adData objectForKey:@"mraid"]) {
         self.isMRAID = YES;
         self.interceptPageLoads = NO;
     }
     else {
         self.isMRAID = NO;
+        self.interceptPageLoads = YES;
+    }
+    
+    if (self.isMRAID) {
+        NSString *mraidUrlPath = [adData objectForKey:@"mraid_js"];
+        if (!mraidUrlPath) {
+            //            mraidUrlPath = [NSString stringWithFormat:@"\"%@/mraid/mraid.js\"", TAPIT_AD_SERVER_BASE_URL];
+            NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"TapIt" ofType:@"bundle"];
+            NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+            NSString *mraidPath = [bundle pathForResource:@"mraid" ofType:@"js"];
+            NSURL *mraidUrl = [NSURL fileURLWithPath:mraidPath];
+            mraidUrlPath = [NSString stringWithFormat:@"\"%@\"", [mraidUrl absoluteString]];
+        }
+        
+        if (range.location != NSNotFound) {
+            [adHtml replaceCharactersInRange:range withString:mraidUrlPath];
+        }
+        else {
+            adHtml = [NSString stringWithFormat:@"<script type=\"text/javascript\" src=%@></script>", mraidUrlPath];
+        }
     }
     TILog(@"MRAID is %@", (self.isMRAID ? @"ON" : @"OFF"));
     NSString *htmlData = [NSString stringWithFormat:@"<html><head><style type=\"text/css\">body {margin:0; padding:0;}</style></head><body><div style=\"%@\">%@</div></body></html>", width, adHtml];
-    NSURL *baseUrl = [NSURL URLWithString:TAPIT_AD_SERVER_BASE_URL];
+    TILog(@"MODIFIED HTML: %@", htmlData);
+    NSURL *baseUrl = nil; //[NSURL URLWithString:TAPIT_AD_SERVER_BASE_URL];
     [super loadHTMLString:htmlData baseURL:baseUrl];
 }
 
@@ -216,9 +235,9 @@
     command.adView = self;
     
     [command executeWithParams:params andDelegate:self.mraidDelegate];
-    if (![@"log" isEqualToString:commandStr]) {
-        [self syncMraidState];
-    }
+//    if (![@"log" isEqualToString:commandStr]) {
+//        [self syncMraidState];
+//    }
 }
 
 - (void)fireMraidEvent:(NSString *)eventName withParams:(NSString *)jsonString {
