@@ -56,12 +56,7 @@
         [self.closeButton setImage:closeButtonBackground forState:UIControlStateNormal];
         
         [self.closeButton addTarget:self action:@selector(closeTapped:) forControlEvents:UIControlEventTouchUpInside];
-//        if (self.adView.isMRAID) {
-//            [self.adView addSubview:self.closeButton];
-//        }
-//        else {
-            [self.adView.superview addSubview:self.closeButton];
-//        }
+        [self.adView.superview addSubview:self.closeButton];
         self.closeButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
         
         CGRect appFrame = TapItApplicationFrame(TapItInterfaceOrientation());
@@ -79,30 +74,15 @@
     self.closeButton = nil;
 }
 
-
-
 - (void)closeTapped:(id)sender {
     id<TapItInterstitialAdDelegate> tDel = [self.tapitDelegate retain];
     [tDel tapitInterstitialAdActionWillFinish:nil];
-    [self dismissModalViewControllerAnimated:self.animated];
     [self dismissViewControllerAnimated:self.animated completion:^{
         [tDel tapitInterstitialAdActionDidFinish:nil];
         [tDel tapitInterstitialAdDidUnload:nil];
         [tDel release];
     }];
-    
-    //    [self dismissViewControllerAnimated:self.animated completion:^{
-    //        [tDel tapitInterstitialAdActionDidFinish:nil];
-    //        [tDel tapitInterstitialAdDidUnload:nil];
-    //        [tDel release];
-    //    }];
 }
-
-
-
-
-
-
 
 - (void)viewDidUnload
 {

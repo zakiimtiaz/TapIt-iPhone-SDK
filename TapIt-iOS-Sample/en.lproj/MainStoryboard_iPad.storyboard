@@ -20,7 +20,7 @@
                                 <items/>
                             </toolbar>
                             <view contentMode="scaleToFill" id="Ira-Av-lv2" customClass="TapItBannerAdView">
-                                <rect key="frame" x="224" y="44" width="320" height="50"/>
+                                <rect key="frame" x="20" y="44" width="728" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -92,10 +92,9 @@
                                 </state>
                                 <connections>
                                     <action selector="showAdPrompt:" destination="wt7-t0-B2c" eventType="touchUpInside" id="en7-Rp-r3N"/>
-                                    <action selector="showDialogAd:" destination="zmN-hb-C0i" eventType="touchUpInside" id="HPc-uS-a4g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4tm-si-oc2">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4tm-si-oc2">
                                 <rect key="frame" x="328" y="504" width="112" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -108,7 +107,6 @@
                                 </state>
                                 <connections>
                                     <action selector="showAdPrompt:" destination="wt7-t0-B2c" eventType="touchUpInside" id="gmd-Sy-hKl"/>
-                                    <action selector="showDialogAd:" destination="10" eventType="touchUpInside" id="dI2-HQ-EG5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mpU-te-sMk">
