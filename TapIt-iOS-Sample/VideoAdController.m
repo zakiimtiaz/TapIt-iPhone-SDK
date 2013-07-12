@@ -8,7 +8,7 @@
 //
 
 #import "VideoAdController.h"
-#import "TRMAAd.h"
+#import "TVASTAd.h"
 
 @interface VideoAdController ()
 
@@ -140,7 +140,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [self setUpAdPlayer];
     [self setUpAdsLoader];
     
-    [self logMessage:@"SDK Version: %@", [TRMAAd getSDKVersionString]];
+    [self logMessage:@"SDK Version: %@", [TVASTAd getSDKVersionString]];
 }
 
 - (void)setUpContentPlayer {
@@ -162,7 +162,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(videoFrame), CGRectGetHeight(videoFrame));
     
     // Create a click tracking view
-    self.clickTrackingView = [[[TRMAClickTrackingUIView alloc] initWithFrame:frame] autorelease];
+    self.clickTrackingView = [[[TVASTClickTrackingUIView alloc] initWithFrame:frame] autorelease];
     [_clickTrackingView setDelegate:self];
 }
 
@@ -315,7 +315,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 }
 
 - (void)setUpAdsLoader {
-    self.adsLoader = [[[TRMAAdsLoader alloc] init] autorelease];
+    self.adsLoader = [[[TVASTAdsLoader alloc] init] autorelease];
     _adsLoader.delegate = self;
 }
 
@@ -336,11 +336,11 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 
 -(IBAction) browserSwitchChanged:(id)sender {
     if ([_browserSwitch isOn]) {
-        [TRMAClickThroughBrowser enableInAppBrowserWithViewController:self
+        [TVASTClickThroughBrowser enableInAppBrowserWithViewController:self
                                                              delegate:self];
     }
     else {
-        [TRMAClickThroughBrowser disableInAppBrowser];
+        [TVASTClickThroughBrowser disableInAppBrowser];
     }
 }
 
@@ -349,7 +349,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [self unloadAdsManager];
 
     // Create an adsRequest object and request ads from the ad server.
-    TRMAAdsRequest *request = [TRMAAdsRequest requestWithAdZone:kZoneId];
+    TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone:kZoneId];
     [request setCustomParameter:kTestCreativeId forKey:@"cid"];
     [request setCustomParameter:@"preroll" forKey:@"videotype"];
     [_adsLoader requestAdsWithRequestObject:request];
@@ -412,20 +412,20 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 }
 
 #pragma mark -
-#pragma mark TRMAClickTrackingUIViewDelegate implementation
+#pragma mark TVASTClickTrackingUIViewDelegate implementation
 
-- (void)clickTrackingView:(TRMAClickTrackingUIView *)view didReceiveTouchEvent:(UIEvent *)event {
+- (void)clickTrackingView:(TVASTClickTrackingUIView *)view didReceiveTouchEvent:(UIEvent *)event {
     [self logMessage:@"Ad view clicked on.\n"];
 }
 
 #pragma mark -
-#pragma mark TRMAAdsLoaderDelegate implementation
+#pragma mark TVASTAdsLoaderDelegate implementation
 
 // Sent when ads are successfully loaded from the ad servers
-- (void)adsLoader:(TRMAAdsLoader *)loader adsLoadedWithData:(TRMAAdsLoadedData *)adsLoadedData {
+- (void)adsLoader:(TVASTAdsLoader *)loader adsLoadedWithData:(TVASTAdsLoadedData *)adsLoadedData {
     [self logMessage:@"Ads have been loaded.\n"];
     
-    TRMAVideoAdsManager *adsManager = adsLoadedData.adsManager;
+    TVASTVideoAdsManager *adsManager = adsLoadedData.adsManager;
 
     if (adsManager) {
         self.videoAdsManager = adsManager;
@@ -435,42 +435,42 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
         _videoAdsManager.clickTrackingView = _clickTrackingView;
 
         if ([_browserSwitch isOn])
-            [TRMAClickThroughBrowser enableInAppBrowserWithViewController:nil delegate:self];
+            [TVASTClickThroughBrowser enableInAppBrowserWithViewController:nil delegate:self];
         else
-            [TRMAClickThroughBrowser disableInAppBrowser];
+            [TVASTClickThroughBrowser disableInAppBrowser];
 
         // set show ad full-screen or not.
         _videoAdsManager.showFullScreenAd = ([_maximizeSwitch isOn]);
         
         // Add notification observer for all VAST events.
-        [self addObserverForVastEvent:TRMAVastEventStartNotification];
-        [self addObserverForVastEvent:TRMAVastEventFirstQuartileNotification];
-        [self addObserverForVastEvent:TRMAVastEventMidpointNotification];
-        [self addObserverForVastEvent:TRMAVastEventThirdQuartileNotification];
-        [self addObserverForVastEvent:TRMAVastEventCompleteNotification];
-        [self addObserverForVastEvent:TRMAVastEventClickNotification];
-        [self addObserverForVastEvent:TRMAVastEventPauseNotification];
-        [self addObserverForVastEvent:TRMAVastEventRewindNotification];
-        [self addObserverForVastEvent:TRMAVastEventClickNotification];
-        [self addObserverForVastEvent:TRMAVastEventSkipNotification];
-        [self addObserverForVastEvent:TRMAVastEventCreativeViewNotification];
-        [self addObserverForVastEvent:TRMAVastEventLinearErrorNotification];
-        [self addObserverForVastEvent:TRMAVastEventMuteNotification];
-        [self addObserverForVastEvent:TRMAVastEventUnmuteNotification];
-        [self addObserverForVastEvent:TRMAVastEventResumeNotification];
-        [self addObserverForVastEvent:TRMAVastEventFullscreenNotification];
-        [self addObserverForVastEvent:TRMAVastEventExpandNotification];
-        [self addObserverForVastEvent:TRMAVastEventCollapseNotification];
-        [self addObserverForVastEvent:TRMAVastEventAcceptInvitationLinearNotification];
-        [self addObserverForVastEvent:TRMAVastEventAcceptInvitationNotification];
-        [self addObserverForVastEvent:TRMAVastEventCloseNotification];
-        [self addObserverForVastEvent:TRMAVastEventCloseLinearNotification];
+        [self addObserverForVastEvent:TVASTVastEventStartNotification];
+        [self addObserverForVastEvent:TVASTVastEventFirstQuartileNotification];
+        [self addObserverForVastEvent:TVASTVastEventMidpointNotification];
+        [self addObserverForVastEvent:TVASTVastEventThirdQuartileNotification];
+        [self addObserverForVastEvent:TVASTVastEventCompleteNotification];
+        [self addObserverForVastEvent:TVASTVastEventClickNotification];
+        [self addObserverForVastEvent:TVASTVastEventPauseNotification];
+        [self addObserverForVastEvent:TVASTVastEventRewindNotification];
+        [self addObserverForVastEvent:TVASTVastEventClickNotification];
+        [self addObserverForVastEvent:TVASTVastEventSkipNotification];
+        [self addObserverForVastEvent:TVASTVastEventCreativeViewNotification];
+        [self addObserverForVastEvent:TVASTVastEventLinearErrorNotification];
+        [self addObserverForVastEvent:TVASTVastEventMuteNotification];
+        [self addObserverForVastEvent:TVASTVastEventUnmuteNotification];
+        [self addObserverForVastEvent:TVASTVastEventResumeNotification];
+        [self addObserverForVastEvent:TVASTVastEventFullscreenNotification];
+        [self addObserverForVastEvent:TVASTVastEventExpandNotification];
+        [self addObserverForVastEvent:TVASTVastEventCollapseNotification];
+        [self addObserverForVastEvent:TVASTVastEventAcceptInvitationLinearNotification];
+        [self addObserverForVastEvent:TVASTVastEventAcceptInvitationNotification];
+        [self addObserverForVastEvent:TVASTVastEventCloseNotification];
+        [self addObserverForVastEvent:TVASTVastEventCloseLinearNotification];
         
         // Tell the adsManager to play the ad.
         [_videoAdsManager playWithAVPlayer:_adPlayer];
         
         // Show a few attributes of one of the loaded ads
-        TRMAAd *videoAd = [_videoAdsManager.ads objectAtIndex:0];
+        TVASTAd *videoAd = [_videoAdsManager.ads objectAtIndex:0];
         [self logMessage: [NSString stringWithFormat:@"VideoAdType: %d\n", videoAd.adType]];
         [self logMessage: [NSString stringWithFormat:@"VideoAdId: %@\n", videoAd.adId]];
         [self logMessage: [NSString stringWithFormat:@"VideoAdUrl: %@\n", videoAd.mediaUrl]];
@@ -481,13 +481,13 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 }
 
 // Set when ads loading failed.
-- (void)adsLoader:(TRMAAdsLoader *)loader failedWithErrorData:(TRMAAdLoadingErrorData *)errorData {
+- (void)adsLoader:(TVASTAdsLoader *)loader failedWithErrorData:(TVASTAdLoadingErrorData *)errorData {
     [self logMessage:@"Encountered Error: code:%d,message:%@\n", errorData.adError.code,
      [errorData.adError localizedDescription]];
 }
 
 #pragma mark -
-#pragma mark TRMAClickThroughBrowserDelegate implementation
+#pragma mark TVASTClickThroughBrowserDelegate implementation
 
 - (void)browserDidOpen {
     [self logMessage:@"In-app browser opened.\n"];
@@ -498,11 +498,11 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 }
 
 #pragma mark -
-#pragma mark TRMAVideoAdsManagerDelegate implementation
+#pragma mark TVASTVideoAdsManagerDelegate implementation
 
 // Called when content should be paused. This usually happens right before a
 // an ad is about to cover the content.
-- (void)contentResumeRequested:(TRMAVideoAdsManager *)adsManager {
+- (void)contentResumeRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content resume requested.\n"];
     
     // first, pause the ad player
@@ -533,7 +533,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 
 // Called when content should be resumed. This usually happens when an ad
 // finishes or collapses.
-- (void)contentPauseRequested:(TRMAVideoAdsManager *)adsManager {
+- (void)contentPauseRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content pause requested.\n"];
     
     // first, pause the content player
@@ -562,7 +562,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     _isVideoSkippable = NO;
 }
 
-- (void)didReportAdError:(TRMAAdError *)error {
+- (void)didReportAdError:(TVASTAdError *)error {
     [self logMessage:[NSString stringWithFormat:@"Error encountered while playing:%@\n.",
                       [error localizedDescription]]];
 }

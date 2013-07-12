@@ -157,7 +157,7 @@
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */; };
-		5D9D61FC1775110600E117CA /* libTapItRMA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9D61FB1775110600E117CA /* libTapItRMA.a */; };
+		5DADA57417907A7F0062EF01 /* libTapItVAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DADA57317907A7F0062EF01 /* libTapItVAST.a */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
 /* End PBXBuildFile section */
 
@@ -287,14 +287,14 @@
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplaneslowbitrate.m4v; sourceTree = "<group>"; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5D9D61FB1775110600E117CA /* libTapItRMA.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItRMA.a; sourceTree = "<group>"; };
-		5DB08674172F324200D5C8D3 /* TRMAAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdError.h; path = TapItRMA/TRMAAdError.h; sourceTree = "<group>"; };
-		5DB08675172F324200D5C8D3 /* TRMAAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAd.h; path = TapItRMA/TRMAAd.h; sourceTree = "<group>"; };
-		5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAVideoAdsManager.h; path = TapItRMA/TRMAVideoAdsManager.h; sourceTree = "<group>"; };
-		5DB08679172F324200D5C8D3 /* TRMAClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAClickTrackingUIView.h; path = TapItRMA/TRMAClickTrackingUIView.h; sourceTree = "<group>"; };
-		5DB0867A172F324200D5C8D3 /* TRMAClickThroughBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAClickThroughBrowser.h; path = TapItRMA/TRMAClickThroughBrowser.h; sourceTree = "<group>"; };
-		5DB0867B172F324200D5C8D3 /* TRMAAdsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdsRequest.h; path = TapItRMA/TRMAAdsRequest.h; sourceTree = "<group>"; };
-		5DB0867C172F324200D5C8D3 /* TRMAAdsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TRMAAdsLoader.h; path = TapItRMA/TRMAAdsLoader.h; sourceTree = "<group>"; };
+		5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTVideoAdsManager.h; path = TapItVAST/TVASTVideoAdsManager.h; sourceTree = "<group>"; };
+		5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTClickTrackingUIView.h; path = TapItVAST/TVASTClickTrackingUIView.h; sourceTree = "<group>"; };
+		5DADA563179077630062EF01 /* TVASTClickThroughBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTClickThroughBrowser.h; path = TapItVAST/TVASTClickThroughBrowser.h; sourceTree = "<group>"; };
+		5DADA564179077630062EF01 /* TVASTAdsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdsRequest.h; path = TapItVAST/TVASTAdsRequest.h; sourceTree = "<group>"; };
+		5DADA565179077630062EF01 /* TVASTAdsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdsLoader.h; path = TapItVAST/TVASTAdsLoader.h; sourceTree = "<group>"; };
+		5DADA566179077630062EF01 /* TVASTAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdError.h; path = TapItVAST/TVASTAdError.h; sourceTree = "<group>"; };
+		5DADA567179077630062EF01 /* TVASTAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAd.h; path = TapItVAST/TVASTAd.h; sourceTree = "<group>"; };
+		5DADA57317907A7F0062EF01 /* libTapItVAST.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapItVAST.a; sourceTree = "<group>"; };
 		5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPad.xib; sourceTree = "<group>"; };
 		5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPhone.xib; sourceTree = "<group>"; };
 		5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenVC.h; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 				5594982615366E4100D6495D /* Foundation.framework in Frameworks */,
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
-				5D9D61FC1775110600E117CA /* libTapItRMA.a in Frameworks */,
+				5DADA57417907A7F0062EF01 /* libTapItVAST.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +421,7 @@
 				55C74F6B15F0836D00981B79 /* README.txt */,
 				5572AABA15997D1000D3E5A6 /* README.md */,
 				5594985F153671A600D6495D /* Lib */,
-				5DB08671172F31EA00D5C8D3 /* TapItRMA */,
+				5DB08671172F31EA00D5C8D3 /* TapItVAST */,
 				5594984E15366E4900D6495D /* TapItSDK */,
 				5594982915366E4100D6495D /* TapIt-iOS-Sample */,
 				5596594515B4C7150002620D /* TapIt */,
@@ -547,7 +547,7 @@
 		5594985F153671A600D6495D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5D9D61FB1775110600E117CA /* libTapItRMA.a */,
+				5DADA57317907A7F0062EF01 /* libTapItVAST.a */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
 				55A64B591537E7F200AFDDFF /* JSONKit */,
@@ -635,18 +635,18 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		5DB08671172F31EA00D5C8D3 /* TapItRMA */ = {
+		5DB08671172F31EA00D5C8D3 /* TapItVAST */ = {
 			isa = PBXGroup;
 			children = (
-				5DB08675172F324200D5C8D3 /* TRMAAd.h */,
-				5DB08674172F324200D5C8D3 /* TRMAAdError.h */,
-				5DB0867B172F324200D5C8D3 /* TRMAAdsRequest.h */,
-				5DB0867C172F324200D5C8D3 /* TRMAAdsLoader.h */,
-				5DB08679172F324200D5C8D3 /* TRMAClickTrackingUIView.h */,
-				5DB0867A172F324200D5C8D3 /* TRMAClickThroughBrowser.h */,
-				5DB08676172F324200D5C8D3 /* TRMAVideoAdsManager.h */,
+				5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */,
+				5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */,
+				5DADA563179077630062EF01 /* TVASTClickThroughBrowser.h */,
+				5DADA564179077630062EF01 /* TVASTAdsRequest.h */,
+				5DADA565179077630062EF01 /* TVASTAdsLoader.h */,
+				5DADA566179077630062EF01 /* TVASTAdError.h */,
+				5DADA567179077630062EF01 /* TVASTAd.h */,
 			);
-			name = TapItRMA;
+			name = TapItVAST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

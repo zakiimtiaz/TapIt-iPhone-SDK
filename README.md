@@ -171,9 +171,9 @@ if( self.interstitialAd.isLoaded ) {
 Video Ads Usage
 ----------------
 
-Make sure you include the static library libTapItRMA.a in the your project.  You can find
-libTapItRMA.a in the Lib folder of the iOS SDK for TapIt package.  You need to also copy 
-the TapItRMA folder, which contains all of the header files for TapIt Video Ads, to your
+Make sure you include the static library libTapItVAST.a in the your project.  You can find
+libTapItVAST.a in the Lib folder of the iOS SDK for TapIt package.  You need to also copy
+the TapItVAST folder, which contains all of the header files for TapIt Video Ads, to your
 project.  
 
 For sample video ads integration code, please see the VideoAdController.m and VideoAdController.h
@@ -195,7 +195,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
     [self setUpAdsLoader];
     [self setUpAdPlayer];
     
-    NSLog(@"SDK Version: %@", [TRMAAd getSDKVersionString]);
+    NSLog(@"SDK Version: %@", [TVASTAd getSDKVersionString]);
 }
 
 - (void)viewDidUnload
@@ -247,7 +247,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
     /***/
     
     // Create a click tracking view
-    self.clickTrackingView = [[TRMAClickTrackingUIView alloc] initWithFrame:frame];
+    self.clickTrackingView = [[TVASTClickTrackingUIView alloc] initWithFrame:frame];
     [_clickTrackingView setDelegate:self];
     [_landscapeAdVC.view addSubview:_clickTrackingView];
     
@@ -257,7 +257,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 
 // set up an ads loader with callbacks delegate.
 - (void)setUpAdsLoader {
-    self.adsLoader = [[TRMAAdsLoader alloc] init];
+    self.adsLoader = [[TVASTAdsLoader alloc] init];
     _adsLoader.delegate = self;
 }
 
@@ -275,7 +275,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
     [self unloadAdsManager];
     
     // Create an adsRequest object and request ads from the ad server with your own zone_id
-    TRMAAdsRequest *request = [TRMAAdsRequest requestWithAdZone: ZONE_ID_VIDEO];
+    TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone: ZONE_ID_VIDEO];
     [request setCustomParameter:@"pre-roll" forKey:@"videotype"];
     [_adsLoader requestAdsWithRequestObject:request];
 }
@@ -297,20 +297,20 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 }
 
 #pragma mark -
-#pragma mark TRMAClickTrackingUIViewDelegate implementation
+#pragma mark TVASTClickTrackingUIViewDelegate implementation
 
-- (void)clickTrackingView:(TRMAClickTrackingUIView *)view didReceiveTouchEvent:(UIEvent *)event {
+- (void)clickTrackingView:(TVASTClickTrackingUIView *)view didReceiveTouchEvent:(UIEvent *)event {
     NSLog(@"Ad view clicked on.\n");
 }
 
 #pragma mark -
-#pragma mark TRMAAdsLoaderDelegate implementation
+#pragma mark TVASTAdsLoaderDelegate implementation
 
 // Sent when ads are successfully loaded from the ad servers
-- (void)adsLoader:(TRMAAdsLoader *)loader adsLoadedWithData:(TRMAAdsLoadedData *)adsLoadedData {
+- (void)adsLoader:(TVASTAdsLoader *)loader adsLoadedWithData:(TVASTAdsLoadedData *)adsLoadedData {
     NSLog(@"Ads have been loaded.\n");
     
-    TRMAVideoAdsManager *adsManager = adsLoadedData.adsManager;
+    TVASTVideoAdsManager *adsManager = adsLoadedData.adsManager;
     
     if (adsManager) {
         self.videoAdsManager = adsManager;
@@ -320,25 +320,25 @@ Note: the following uses Automatic Reference Counting so there will not be any o
         _videoAdsManager.clickTrackingView = _clickTrackingView;
         
         // use in-app browser for view ad's destination url.
-        [TRMAClickThroughBrowser enableInAppBrowserWithViewController:nil delegate:self];
+        [TVASTClickThroughBrowser enableInAppBrowserWithViewController:nil delegate:self];
         // or use mobile safari to view ad's destination url.
-        //[TRMAClickThroughBrowser disableInAppBrowser];
+        //[TVASTClickThroughBrowser disableInAppBrowser];
         
         // set show ad full-screen or not.
         _videoAdsManager.showFullScreenAd = YES;
         
         // Add notification observer for all VAST events.
-        [self addObserverForVastEvent:TRMAVastEventStartNotification];
-        [self addObserverForVastEvent:TRMAVastEventFirstQuartileNotification];
-        [self addObserverForVastEvent:TRMAVastEventMidpointNotification];
-        [self addObserverForVastEvent:TRMAVastEventThirdQuartileNotification];
-        [self addObserverForVastEvent:TRMAVastEventCompleteNotification];
-        [self addObserverForVastEvent:TRMAVastEventClickNotification];
-        [self addObserverForVastEvent:TRMAVastEventLinearErrorNotification];
+        [self addObserverForVastEvent:TVASTVastEventStartNotification];
+        [self addObserverForVastEvent:TVASTVastEventFirstQuartileNotification];
+        [self addObserverForVastEvent:TVASTVastEventMidpointNotification];
+        [self addObserverForVastEvent:TVASTVastEventThirdQuartileNotification];
+        [self addObserverForVastEvent:TVASTVastEventCompleteNotification];
+        [self addObserverForVastEvent:TVASTVastEventClickNotification];
+        [self addObserverForVastEvent:TVASTVastEventLinearErrorNotification];
 		//.... and other VAST tracking events you wish to track.
 
         // Show a few attributes of one of the loaded ads
-        TRMAAd *videoAd = [_videoAdsManager.ads objectAtIndex:0];
+        TVASTAd *videoAd = [_videoAdsManager.ads objectAtIndex:0];
         NSLog(@"VideoAdId: %@\n", videoAd.adId);
         NSLog(@"VideoAdUrl: %@\n", videoAd.mediaUrl);
         NSLog(@"VideoAdDuration: %f\n", videoAd.duration);
@@ -348,13 +348,13 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 }
 
 // Set when ads loading failed.
-- (void)adsLoader:(TRMAAdsLoader *)loader failedWithErrorData:(TRMAAdLoadingErrorData *)errorData {
+- (void)adsLoader:(TVASTAdsLoader *)loader failedWithErrorData:(TVASTAdLoadingErrorData *)errorData {
     NSLog(@"Encountered Error: code:%d,message:%@\n", errorData.adError.code,
      [errorData.adError localizedDescription]);
 }
 
 #pragma mark -
-#pragma mark TRMAClickThroughBrowserDelegate implementation
+#pragma mark TVASTClickThroughBrowserDelegate implementation
 
 - (void)browserDidOpen {
     NSLog(@"In-app browser opened.\n");
@@ -365,11 +365,11 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 }
 
 #pragma mark -
-#pragma mark TRMAVideoAdsManagerDelegate implementation
+#pragma mark TVASTVideoAdsManagerDelegate implementation
 
 // Called when content should be paused. This usually happens right before a
 // an ad is about to cover the content.
-- (void)contentResumeRequested:(TRMAVideoAdsManager *)adsManager {
+- (void)contentResumeRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content resume requested.\n"];
     
     // first, pause the ad player
@@ -387,7 +387,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 
 // Called when content should be resumed. This usually happens when an ad
 // finishes or collapses.
-- (void)contentPauseRequested:(TRMAVideoAdsManager *)adsManager {
+- (void)contentPauseRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content pause requested.\n"];
     
     _landscapeAdVC.view.hidden = NO;
@@ -403,7 +403,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 
 }
 
-- (void)didReportAdError:(TRMAAdError *)error {
+- (void)didReportAdError:(TVASTAdError *)error {
     NSLog(@"Error encountered while playing:%@\n.",
                       [error localizedDescription]);
 }

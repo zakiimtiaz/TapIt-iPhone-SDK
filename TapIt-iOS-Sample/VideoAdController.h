@@ -12,24 +12,24 @@
 #import <CoreMedia/CMTime.h>
 #import <UIKit/UIKit.h>
 
-#import "TRMAAdsRequest.h"
-#import "TRMAVideoAdsManager.h"
-#import "TRMAAdsLoader.h"
-#import "TRMAClickTrackingUIView.h"
-#import "TRMAClickThroughBrowser.h"
+#import "TVASTAdsRequest.h"
+#import "TVASTVideoAdsManager.h"
+#import "TVASTAdsLoader.h"
+#import "TVASTClickTrackingUIView.h"
+#import "TVASTClickThroughBrowser.h"
 
 #import "FullScreenVC.h"
 
-@interface VideoAdController : UIViewController<TRMAAdsLoaderDelegate,
-            TRMAClickTrackingUIViewDelegate, TRMAVideoAdsManagerDelegate,
-            TRMAClickThroughBrowserDelegate>
+@interface VideoAdController : UIViewController<TVASTAdsLoaderDelegate,
+            TVASTClickTrackingUIViewDelegate, TVASTVideoAdsManagerDelegate,
+            TVASTClickThroughBrowserDelegate>
 
 // The loader of ads.
-@property(nonatomic, retain) TRMAAdsLoader *adsLoader;
+@property(nonatomic, retain) TVASTAdsLoader *adsLoader;
 // The manager of video ads.
-@property(nonatomic, retain) TRMAVideoAdsManager *videoAdsManager;
+@property(nonatomic, retain) TVASTVideoAdsManager *videoAdsManager;
 // The invisible view that tracks clicks on the video.
-@property(nonatomic, retain) TRMAClickTrackingUIView *clickTrackingView;
+@property(nonatomic, retain) TVASTClickTrackingUIView *clickTrackingView;
 
 @property (nonatomic, retain) AVPlayer              *contentPlayer;
 @property (nonatomic, retain) AVPlayer              *adPlayer;
