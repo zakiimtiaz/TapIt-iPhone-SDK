@@ -15,7 +15,6 @@
 #import "TapItAdManager.h"
 #import "TapItBannerAdView.h"
 #import "TapItInterstitialAdViewController.h"
-#import "TapItLightboxAdViewController.h"
 #import "TapItBrowserController.h"
 
 @interface TapItInterstitialAdViewController ()
