@@ -171,7 +171,6 @@
 		5D35359B1739AE9E00660408 /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535851739AE9E00660408 /* icon144x144.png */; };
 		5D35359C1739AE9E00660408 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535861739AE9E00660408 /* pause.png */; };
 		5D35359D1739AE9E00660408 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535871739AE9E00660408 /* play.png */; };
-		5D35359E1739AE9E00660408 /* TapIt-iOS-Sample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535881739AE9E00660408 /* TapIt-iOS-Sample-Info.plist */; };
 		5D35359F1739AE9E00660408 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3535891739AE9E00660408 /* third.png */; };
 		5D3535A01739AE9E00660408 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358A1739AE9E00660408 /* first.png */; };
 		5D3535A11739AE9E00660408 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358B1739AE9E00660408 /* first@2x.png */; };
@@ -856,7 +855,6 @@
 				5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */,
 				5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */,
 				5D30D9B21739B38A00A4FADD /* FullScreenVC_iPad.xib in Resources */,
-				5D35359E1739AE9E00660408 /* TapIt-iOS-Sample-Info.plist in Resources */,
 				5D30D9B31739B38A00A4FADD /* InfoPlist.strings in Resources */,
 				55716B0C15C31D1A00075FBE /* TapIt.bundle in Resources */,
 				5528EECC15FFBB51009ED3A4 /* LICENSE in Resources */,
