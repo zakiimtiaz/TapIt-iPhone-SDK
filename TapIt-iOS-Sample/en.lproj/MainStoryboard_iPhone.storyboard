@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
         <development version="4500" identifier="xcode"/>
@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="1172" y="12"/>
         </scene>
-        <!--Alert Ad Demo Controller-->
+        <!--AdPrompt Controller-->
         <scene sceneID="Tjp-Di-eOv">
             <objects>
-                <viewController title="First" id="XET-oZ-vCv" userLabel="Alert Ad Demo Controller" customClass="AdPromptDemoController" sceneMemberID="viewController">
+                <viewController title="First" id="XET-oZ-vCv" userLabel="AdPrompt Controller" customClass="AdPromptDemoController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gku-wM-wrb">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,8 +170,8 @@
                                     <action selector="preLoadAdPrompt:" destination="XET-oZ-vCv" eventType="touchUpInside" id="GXp-gI-rSa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AXG-k1-zTQ">
-                                <rect key="frame" x="90" y="214" width="140" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FXU-Ea-TgA">
+                                <rect key="frame" x="91" y="218" width="140" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Simple Example">
@@ -182,7 +182,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="simpleExample:" destination="XET-oZ-vCv" eventType="touchUpInside" id="koK-9k-yln"/>
+                                    <action selector="simpleExample:" destination="XET-oZ-vCv" eventType="touchUpInside" id="hei-xr-kFC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -253,6 +253,172 @@
             </objects>
             <point key="canvasLocation" x="653" y="498"/>
         </scene>
+        <!--Video Ad Controller - Video Ads-->
+        <scene sceneID="rjt-Aj-RM9">
+            <objects>
+                <viewController id="Mgk-Je-UCb" customClass="VideoAdController" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="EA0-EL-0Nj">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="fGW-lQ-6Pg">
+                                <rect key="frame" x="6" y="7" width="309" height="252"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="VTx-TV-Qa6" userLabel="videoView">
+                                        <rect key="frame" x="1" y="1" width="307" height="208"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </view>
+                                    <toolbar autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="t2P-aj-nY5">
+                                        <rect key="frame" x="1" y="207" width="307" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem style="plain" id="OkF-zP-FJf">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="59B-1W-bEk" userLabel="playHeadButton">
+                                                    <rect key="frame" x="12" y="11" width="17" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <state key="normal" image="play.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onPlayPauseClicked:" destination="Mgk-Je-UCb" eventType="touchUpInside" id="Qxo-dP-89V"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem width="38" style="plain" id="aa1-vh-weZ">
+                                                <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="gD9-Hm-u9N" userLabel="playHeadTimeText">
+                                                    <rect key="frame" x="39" y="10" width="38" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="p7R-zc-T3V">
+                                                <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="bXL-2x-8Vq" userLabel="progressBar">
+                                                    <rect key="frame" x="87" y="11" width="172" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="playHeadValueChanged:" destination="Mgk-Je-UCb" eventType="valueChanged" id="1UB-Vw-3j0"/>
+                                                    </connections>
+                                                </slider>
+                                            </barButtonItem>
+                                            <barButtonItem width="38" style="plain" id="PJL-QF-bct">
+                                                <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="bt8-TB-kic" userLabel="playDurationText">
+                                                    <rect key="frame" x="269" y="10" width="38" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sbM-88-HnE">
+                                <rect key="frame" x="6" y="267" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                                <state key="normal" title="Request Ad">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRequestAds" destination="Mgk-Je-UCb" eventType="touchUpInside" id="QJ7-sU-3rx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F6v-zm-bNQ">
+                                <rect key="frame" x="6" y="302" width="82" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onResetState" destination="Mgk-Je-UCb" eventType="touchUpInside" id="WVt-ap-7wq"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="4pf-eZ-six" userLabel="console">
+                                <rect key="frame" x="-1" y="335" width="322" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="ALE-5v-FSK">
+                                <rect key="frame" x="238" y="302" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="browserSwitchChanged:" destination="Mgk-Je-UCb" eventType="valueChanged" id="ORT-6c-Hja"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In-app Brwsr:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vZh-Ra-c92">
+                                <rect key="frame" x="156" y="302" width="83" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="lDg-p9-58C">
+                                <rect key="frame" x="238" y="267" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="maximizeSwitchChanged:" destination="Mgk-Je-UCb" eventType="valueChanged" id="5xI-mk-XCb"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maximize Ad:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BXW-9R-N27">
+                                <rect key="frame" x="158" y="264" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Video Ads" image="first.png" id="Fpu-DX-CTt"/>
+                    <connections>
+                        <outlet property="adRequestButton" destination="sbM-88-HnE" id="V0I-xJ-QC5"/>
+                        <outlet property="browserSwitch" destination="ALE-5v-FSK" id="w4l-S2-I0g"/>
+                        <outlet property="console" destination="4pf-eZ-six" id="Wse-7K-JII"/>
+                        <outlet property="durationText" destination="bt8-TB-kic" id="u9V-7f-z8s"/>
+                        <outlet property="maximizeSwitch" destination="lDg-p9-58C" id="6XQ-qr-hQF"/>
+                        <outlet property="playHeadButton" destination="59B-1W-bEk" id="kpz-fi-dlg"/>
+                        <outlet property="playTimeText" destination="gD9-Hm-u9N" id="Qe4-wL-J9h"/>
+                        <outlet property="progressBar" destination="bXL-2x-8Vq" id="rku-TA-Eer"/>
+                        <outlet property="resetButton" destination="F6v-zm-bNQ" id="x32-Ef-opx"/>
+                        <outlet property="videoView" destination="VTx-TV-Qa6" id="0qa-Wm-d10"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3K-SK-pM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1172" y="609"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
@@ -264,6 +430,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Mgk-Je-UCb" kind="relationship" relationship="viewControllers" id="auL-RY-JQJ"/>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="26"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="27"/>
                         <segue destination="XET-oZ-vCv" kind="relationship" relationship="viewControllers" id="HKl-Ia-cWH"/>
@@ -278,6 +445,7 @@
     <resources>
         <image name="first.png" width="30" height="30"/>
         <image name="fourth.png" width="24" height="16"/>
+        <image name="play.png" width="23" height="21"/>
         <image name="second.png" width="30" height="30"/>
         <image name="third.png" width="22" height="22"/>
     </resources>
@@ -321,6 +489,28 @@
         </class>
         <class className="TapItBannerAdView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TapItBannerAdView.h"/>
+        </class>
+        <class className="VideoAdController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VideoAdController.h"/>
+            <relationships>
+                <relationship kind="action" name="browserSwitchChanged:"/>
+                <relationship kind="action" name="maximizeSwitchChanged:"/>
+                <relationship kind="action" name="onPlayPauseClicked:"/>
+                <relationship kind="action" name="onRequestAds"/>
+                <relationship kind="action" name="onResetState"/>
+                <relationship kind="action" name="onUnloadAds"/>
+                <relationship kind="action" name="playHeadValueChanged:"/>
+                <relationship kind="outlet" name="adRequestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="browserSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="console" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="durationText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maximizeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="playHeadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playTimeText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

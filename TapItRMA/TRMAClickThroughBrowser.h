@@ -2,6 +2,8 @@
 //  TRMAClickThroughBrowser.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 //  Declares the TRMAClickThroughBrowser interface that is used to display click-
@@ -36,6 +38,5 @@
 
 /// Disables displaying any click through in an in-app browser.
 + (void)disableInAppBrowser;
-
 
 @end

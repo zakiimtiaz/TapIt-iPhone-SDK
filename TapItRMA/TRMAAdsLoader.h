@@ -2,6 +2,8 @@
 //  TRMAAdsLoader.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 
@@ -65,6 +67,5 @@
 /// IMAAdsLoader. Remember to nil the delegate before releasing this
 /// object.
 @property(nonatomic, assign) NSObject<TRMAAdsLoaderDelegate> *delegate;
-
 
 @end

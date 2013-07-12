@@ -19,13 +19,13 @@
 - (void)logMessage:(NSString *)log, ...;
 - (void)clearLog;
 
-// Inits the content player.
-- (void)setUpContentPlayer:(NSString *)contentURL;
+// Init the content player.
+- (void)setUpContentPlayer;
 
-// Inits the ad player.
+// Init the ad player.
 - (void)setUpAdPlayer;
 
-// Switches between the content player and ad player.
+// Switch between the content player and ad player.
 - (void)switchPlayheadObserverTo:(AVPlayer *)toPlayer;
 
 - (void)updatePlayHeadTime:(CMTime)time;
@@ -65,14 +65,12 @@
 @synthesize clickTrackingView=_clickTrackingView;
 @synthesize landscapeVC     = _landscapeVC;
 
+//*************************************
 // Replace with your valid ZoneId here.
-NSString *const kZoneId         = @"22219";     
-NSString *const kTestCreativeId = @"113559";    //@"128681";
+NSString *const kZoneId         = @"22219";     //@"24839";     //@"22219";
 
-// The content URL to play
-NSString *const kTestAppContentUrl_HLS = @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
-
-NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/aws_video.mp4";     //@"http://rmcdn.2mdn.net/Demo/html5/output.mp4";
+// For Testing Purpose Only.
+NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil
 {
@@ -136,17 +134,20 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
     self.pauseButtonImage = [UIImage imageNamed:@"pause.png"];
     
     [_playHeadButton setImage:_playButtonImage forState:UIControlStateNormal];
-    _videoView.backgroundColor = [UIColor lightGrayColor];
+    _videoView.backgroundColor = [UIColor blackColor];
 
-    [self setUpContentPlayer:kTestAppContentUrl_HLS];
+    [self setUpContentPlayer];
     [self setUpAdPlayer];
     [self setUpAdsLoader];
     
+    [self logMessage:@"SDK Version: %@", [TRMAAd getSDKVersionString]];
 }
 
-- (void)setUpContentPlayer:(NSString *)contentURL {
+- (void)setUpContentPlayer {
 
-    NSURL *assetUrl = [NSURL URLWithString:contentURL];
+    NSString *fileURL = [[NSBundle mainBundle] pathForResource:@"disneyplaneslowbitrate" ofType:@"m4v"];
+    NSURL *assetUrl = [NSURL fileURLWithPath:fileURL];
+
     AVAsset *contentAsset = [AVURLAsset URLAssetWithURL:assetUrl options:0];
     AVPlayerItem *contentPlayerItem = [AVPlayerItem playerItemWithAsset:contentAsset];
     self.contentPlayer = [AVPlayer playerWithPlayerItem:contentPlayerItem];
@@ -350,7 +351,10 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
     // Create an adsRequest object and request ads from the ad server.
     TRMAAdsRequest *request = [TRMAAdsRequest requestWithAdZone:kZoneId];
     [request setCustomParameter:kTestCreativeId forKey:@"cid"];
+    [request setCustomParameter:@"preroll" forKey:@"videotype"];
     [_adsLoader requestAdsWithRequestObject:request];
+    
+    
 }
 
 - (void)onUnloadAds {
@@ -444,10 +448,23 @@ NSString *const kTestAppContentUrl_MP4 = @"http://d3dx4osshesryx.cloudfront.net/
         [self addObserverForVastEvent:TRMAVastEventMidpointNotification];
         [self addObserverForVastEvent:TRMAVastEventThirdQuartileNotification];
         [self addObserverForVastEvent:TRMAVastEventCompleteNotification];
+        [self addObserverForVastEvent:TRMAVastEventClickNotification];
         [self addObserverForVastEvent:TRMAVastEventPauseNotification];
         [self addObserverForVastEvent:TRMAVastEventRewindNotification];
         [self addObserverForVastEvent:TRMAVastEventClickNotification];
         [self addObserverForVastEvent:TRMAVastEventSkipNotification];
+        [self addObserverForVastEvent:TRMAVastEventCreativeViewNotification];
+        [self addObserverForVastEvent:TRMAVastEventLinearErrorNotification];
+        [self addObserverForVastEvent:TRMAVastEventMuteNotification];
+        [self addObserverForVastEvent:TRMAVastEventUnmuteNotification];
+        [self addObserverForVastEvent:TRMAVastEventResumeNotification];
+        [self addObserverForVastEvent:TRMAVastEventFullscreenNotification];
+        [self addObserverForVastEvent:TRMAVastEventExpandNotification];
+        [self addObserverForVastEvent:TRMAVastEventCollapseNotification];
+        [self addObserverForVastEvent:TRMAVastEventAcceptInvitationLinearNotification];
+        [self addObserverForVastEvent:TRMAVastEventAcceptInvitationNotification];
+        [self addObserverForVastEvent:TRMAVastEventCloseNotification];
+        [self addObserverForVastEvent:TRMAVastEventCloseLinearNotification];
         
         // Tell the adsManager to play the ad.
         [_videoAdsManager playWithAVPlayer:_adPlayer];

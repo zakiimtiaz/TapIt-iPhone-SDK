@@ -2,6 +2,8 @@
 //  TRMAAdError.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 //  This file provides error codes that are raised internally by the SDK and
@@ -72,6 +74,5 @@ typedef enum {
 /// The |errorType| accessor provides information about whether the error
 /// occured during ad loading or ad playing.
 @property (nonatomic, readonly) TRMAErrorType errorType;
-
 
 @end

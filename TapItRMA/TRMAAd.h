@@ -2,6 +2,8 @@
 //  TRMAAd.h
 //  TapIt Rich Meda Ads SDK
 //
+//  Created by Kevin Truong on 4/30/13.
+//
 //  Copyright 2013 TapIt by Phunware Inc. All rights reserved.
 //
 //  Declares TRMAAd interface that has the general representation of an ad.
@@ -29,6 +31,9 @@ typedef enum {
 /// information is not available.
 @property(readonly, retain) NSString *mediaUrl;
 
+
+// Returns the current version string of this SDK.
++(NSString *) getSDKVersionString;
 
 @end
 
