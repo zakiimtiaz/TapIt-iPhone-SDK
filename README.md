@@ -182,11 +182,6 @@ TapIt! ad units follow the delegate pattern to notify your app of state changes.
 Video Ads Usage
 ----------------
 
-Make sure you include the static library libTapItVAST.a in the your project.  You can find
-libTapItVAST.a in the Lib folder of the iOS SDK for TapIt package.  You need to also copy
-the TapItVAST folder, which contains all of the header files for TapIt Video Ads, to your
-project.  
-
 For sample video ads integration code, please see the VideoAdController.m and VideoAdController.h
 files for working example of video ads in an app.  You can find VideoAdController in the 
 TapIt-iOS-Sample directory of the iOS SDK package.
