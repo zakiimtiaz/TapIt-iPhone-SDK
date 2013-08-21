@@ -8,25 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		551875F117907FEA00B632B9 /* TapItHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875EB17907FEA00B632B9 /* TapItHelpers.h */; };
-		551875F217907FEA00B632B9 /* TapItHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875EB17907FEA00B632B9 /* TapItHelpers.h */; };
 		551875F317907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
 		551875F417907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
 		551875F517907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
-		551875F617907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
 		551875F817907FEA00B632B9 /* TapItMraidCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875ED17907FEA00B632B9 /* TapItMraidCommand.h */; };
-		551875F917907FEA00B632B9 /* TapItMraidCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875ED17907FEA00B632B9 /* TapItMraidCommand.h */; };
 		551875FA17907FEA00B632B9 /* TapItMraidCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EE17907FEA00B632B9 /* TapItMraidCommand.m */; };
 		551875FB17907FEA00B632B9 /* TapItMraidCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EE17907FEA00B632B9 /* TapItMraidCommand.m */; };
 		551875FC17907FEA00B632B9 /* TapItMraidCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EE17907FEA00B632B9 /* TapItMraidCommand.m */; };
-		551875FD17907FEA00B632B9 /* TapItMraidCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EE17907FEA00B632B9 /* TapItMraidCommand.m */; };
 		551875FF17907FEA00B632B9 /* TapItMRAIDDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875EF17907FEA00B632B9 /* TapItMRAIDDelegate.h */; };
-		5518760017907FEA00B632B9 /* TapItMRAIDDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875EF17907FEA00B632B9 /* TapItMRAIDDelegate.h */; };
 		55187601179080A100B632B9 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		551876021790816300B632B9 /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEDF15EC3A6400427E00 /* AdMobController.m */; };
 		551876031790818700B632B9 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		551876051790823900B632B9 /* TapItAdMobStubs.h in Headers */ = {isa = PBXBuildFile; fileRef = 551876041790823900B632B9 /* TapItAdMobStubs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		551876061790823900B632B9 /* TapItAdMobStubs.h in Headers */ = {isa = PBXBuildFile; fileRef = 551876041790823900B632B9 /* TapItAdMobStubs.h */; };
-		551876071790823900B632B9 /* TapItAdMobStubs.h in Headers */ = {isa = PBXBuildFile; fileRef = 551876041790823900B632B9 /* TapItAdMobStubs.h */; };
 		55202BFC1537A04A00B2244E /* TapItAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202BFB1537A04A00B2244E /* TapItAdManager.m */; };
 		55202C031537C59C00B2244E /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		5520DA681632078A0032C3AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -118,35 +112,6 @@
 		55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55CF030F15EFDED600DBB5A5 /* TapItOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* TapItOpenUDID.m */; };
-		55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
-		55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
-		55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
-		55DC8CB9160CE2C800558DC8 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
-		55DC8CBA160CE2C800558DC8 /* TapItOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* TapItOpenUDID.m */; };
-		55DC8CBB160CE2C800558DC8 /* TapItAdPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F1D4E15BA3DB600670940 /* TapItAdPrompt.m */; };
-		55DC8CBC160CE2C800558DC8 /* TapItBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55880AFF15C1B00A00D9381C /* TapItBrowserController.m */; };
-		55DC8CBD160CE2C800558DC8 /* TapItAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594988D1536A35F00D6495D /* TapItAdView.m */; };
-		55DC8CBE160CE2C800558DC8 /* TapItBannerAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594985115366F9300D6495D /* TapItBannerAdView.m */; };
-		55DC8CBF160CE2C800558DC8 /* TapItInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949855153670D900D6495D /* TapItInterstitialAd.m */; };
-		55DC8CC0160CE2C800558DC8 /* TapItAppTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949865153672A200D6495D /* TapItAppTracker.m */; };
-		55DC8CC1160CE2C800558DC8 /* TapItRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 559498861536A2E500D6495D /* TapItRequest.m */; };
-		55DC8CC2160CE2C800558DC8 /* TapItAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202BFB1537A04A00B2244E /* TapItAdManager.m */; };
-		55DC8CC4160CE2C800558DC8 /* TapItInterstitialAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521353315A3CBB00048179D /* TapItInterstitialAdViewController.m */; };
-		55DC8CC7160CE2C800558DC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982315366E4100D6495D /* UIKit.framework */; };
-		55DC8CC8160CE2C800558DC8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
-		55DC8CC9160CE2C800558DC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982715366E4100D6495D /* CoreGraphics.framework */; };
-		55DC8CCA160CE2C800558DC8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55ABC3F815A63AA200B13844 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		55DC8CCB160CE2C800558DC8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
-		55DC8CCC160CE2C800558DC8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */; };
-		55DC8CCD160CE2C800558DC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982515366E4100D6495D /* Foundation.framework */; };
-		55DC8CCF160CE2C800558DC8 /* TapItAdDelegates.h in Headers */ = {isa = PBXBuildFile; fileRef = 559498901536A36F00D6495D /* TapItAdDelegates.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD0160CE2C800558DC8 /* TapItAppTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 559498671536751400D6495D /* TapItAppTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD1160CE2C800558DC8 /* TapItBannerAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 559498681536751400D6495D /* TapItBannerAdView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD2160CE2C800558DC8 /* TapItInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 559498691536751400D6495D /* TapItInterstitialAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD3160CE2C800558DC8 /* TapIt.h in Headers */ = {isa = PBXBuildFile; fileRef = 559498531536705200D6495D /* TapIt.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD4160CE2C800558DC8 /* TapItConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 552E9A711538CDB400FD22C4 /* TapItConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD5160CE2C800558DC8 /* TapItAdPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF615C2204000075FBE /* TapItAdPrompt.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55DC8CD6160CE2C800558DC8 /* TapItRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF715C2204000075FBE /* TapItRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */; };
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
@@ -266,7 +231,7 @@
 		5594988D1536A35F00D6495D /* TapItAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TapItAdView.m; path = TapItSDK/TapItAdView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5594988E1536A36000D6495D /* TapItPrivateConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItPrivateConstants.h; path = TapItSDK/TapItPrivateConstants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		559498901536A36F00D6495D /* TapItAdDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItAdDelegates.h; path = TapItSDK/Headers/TapItAdDelegates.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		5596594315B4C7150002620D /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libTapIt.a; path = libTapIt_without_libs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5596594315B4C7150002620D /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libTapIt.a; path = libTapIt_without_extras.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5596594715B4C7150002620D /* TapIt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TapIt-Prefix.pch"; sourceTree = "<group>"; };
 		5596594815B4C7150002620D /* TapIt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TapIt.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5596594915B4C7150002620D /* TapIt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TapIt.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -283,7 +248,7 @@
 		55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55C74F6B15F0836D00981B79 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_armv6.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DB653517BEAEC400364A77 /* SOURCE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = SOURCE.md; sourceTree = "<group>"; };
 		55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPromptDemoController.m; sourceTree = "<group>"; };
 		5D3535781739AE9E00660408 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -381,20 +346,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55DC8CC5160CE2C800558DC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55DC8CC7160CE2C800558DC8 /* UIKit.framework in Frameworks */,
-				55DC8CC8160CE2C800558DC8 /* CoreTelephony.framework in Frameworks */,
-				55DC8CC9160CE2C800558DC8 /* CoreGraphics.framework in Frameworks */,
-				55DC8CCA160CE2C800558DC8 /* CoreLocation.framework in Frameworks */,
-				55DC8CCB160CE2C800558DC8 /* QuartzCore.framework in Frameworks */,
-				55DC8CCC160CE2C800558DC8 /* SystemConfiguration.framework in Frameworks */,
-				55DC8CCD160CE2C800558DC8 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -444,8 +395,9 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
-				5528EECB15FFBB51009ED3A4 /* LICENSE */,
 				5572AABA15997D1000D3E5A6 /* README.md */,
+				55DB653517BEAEC400364A77 /* SOURCE.md */,
+				5528EECB15FFBB51009ED3A4 /* LICENSE */,
 				5594982915366E4100D6495D /* TapIt-iOS-Sample */,
 				5594984E15366E4900D6495D /* TapItSDK */,
 				5594985F153671A600D6495D /* Lib */,
@@ -461,7 +413,6 @@
 				5594981F15366E4100D6495D /* TapIt-iOS-Sample.app */,
 				5596594315B4C7150002620D /* libTapIt.a */,
 				55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */,
-				55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -491,12 +442,8 @@
 		5594982915366E4100D6495D /* TapIt-iOS-Sample */ = {
 			isa = PBXGroup;
 			children = (
-				5D15DF371735A9E20099986D /* Images */,
-				55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */,
-				55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */,
-				5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */,
-				5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */,
 				5594982A15366E4100D6495D /* Supporting Files */,
+				5D15DF371735A9E20099986D /* Images */,
 				5594983215366E4100D6495D /* AppDelegate.h */,
 				5594983315366E4100D6495D /* AppDelegate.m */,
 				5594983B15366E4200D6495D /* BannerAdController.h */,
@@ -511,6 +458,10 @@
 				5D3E34171725EC3A00A8CA89 /* VideoAdController.m */,
 				5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */,
 				5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */,
+				55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */,
+				55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */,
+				5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */,
+				5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */,
 			);
 			path = "TapIt-iOS-Sample";
 			sourceTree = "<group>";
@@ -726,25 +677,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55DC8CCE160CE2C800558DC8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55DC8CCF160CE2C800558DC8 /* TapItAdDelegates.h in Headers */,
-				55DC8CD0160CE2C800558DC8 /* TapItAppTracker.h in Headers */,
-				55DC8CD1160CE2C800558DC8 /* TapItBannerAdView.h in Headers */,
-				55DC8CD2160CE2C800558DC8 /* TapItInterstitialAd.h in Headers */,
-				55DC8CD3160CE2C800558DC8 /* TapIt.h in Headers */,
-				55DC8CD4160CE2C800558DC8 /* TapItConstants.h in Headers */,
-				55DC8CD5160CE2C800558DC8 /* TapItAdPrompt.h in Headers */,
-				55DC8CD6160CE2C800558DC8 /* TapItRequest.h in Headers */,
-				551875F217907FEA00B632B9 /* TapItHelpers.h in Headers */,
-				551875F917907FEA00B632B9 /* TapItMraidCommand.h in Headers */,
-				5518760017907FEA00B632B9 /* TapItMRAIDDelegate.h in Headers */,
-				551876071790823900B632B9 /* TapItAdMobStubs.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -765,9 +697,9 @@
 			productReference = 5594981F15366E4100D6495D /* TapIt-iOS-Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5596594215B4C7150002620D /* TapIt_without_libs */ = {
+		5596594215B4C7150002620D /* TapIt_without_extras */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5596594B15B4C7150002620D /* Build configuration list for PBXNativeTarget "TapIt_without_libs" */;
+			buildConfigurationList = 5596594B15B4C7150002620D /* Build configuration list for PBXNativeTarget "TapIt_without_extras" */;
 			buildPhases = (
 				5596593F15B4C7150002620D /* Sources */,
 				5596594015B4C7150002620D /* Frameworks */,
@@ -778,7 +710,7 @@
 			);
 			dependencies = (
 			);
-			name = TapIt_without_libs;
+			name = TapIt_without_extras;
 			productName = TapIt;
 			productReference = 5596594315B4C7150002620D /* libTapIt.a */;
 			productType = "com.apple.product-type.library.static";
@@ -799,23 +731,6 @@
 			name = TapIt;
 			productName = TapIt;
 			productReference = 55CF030A15EFDEAC00DBB5A5 /* libTapIt.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		55DC8CB4160CE2C800558DC8 /* TapIt-armv6 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 55DC8CD8160CE2C800558DC8 /* Build configuration list for PBXNativeTarget "TapIt-armv6" */;
-			buildPhases = (
-				55DC8CB5160CE2C800558DC8 /* Sources */,
-				55DC8CC5160CE2C800558DC8 /* Frameworks */,
-				55DC8CCE160CE2C800558DC8 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "TapIt-armv6";
-			productName = TapIt;
-			productReference = 55DC8CDC160CE2C800558DC8 /* libTapIt_armv6.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -840,8 +755,7 @@
 			targets = (
 				5594981E15366E4100D6495D /* TapIt-iOS-Sample */,
 				55CF02D615EFDEAC00DBB5A5 /* TapIt */,
-				5596594215B4C7150002620D /* TapIt_without_libs */,
-				55DC8CB4160CE2C800558DC8 /* TapIt-armv6 */,
+				5596594215B4C7150002620D /* TapIt_without_extras */,
 			);
 		};
 /* End PBXProject section */
@@ -984,29 +898,6 @@
 				55CF02E115EFDEAC00DBB5A5 /* TapItInterstitialAdViewController.m in Sources */,
 				551875F417907FEA00B632B9 /* TapItHelpers.m in Sources */,
 				551875FB17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		55DC8CB5160CE2C800558DC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55DC8CB6160CE2C800558DC8 /* TapItMediationAdMob.m in Sources */,
-				55DC8CB7160CE2C800558DC8 /* TapItReachability.m in Sources */,
-				55DC8CB8160CE2C800558DC8 /* JSONKit.m in Sources */,
-				55DC8CB9160CE2C800558DC8 /* NSDictionary+QueryStringBuilder.m in Sources */,
-				55DC8CBA160CE2C800558DC8 /* TapItOpenUDID.m in Sources */,
-				55DC8CBB160CE2C800558DC8 /* TapItAdPrompt.m in Sources */,
-				55DC8CBC160CE2C800558DC8 /* TapItBrowserController.m in Sources */,
-				55DC8CBD160CE2C800558DC8 /* TapItAdView.m in Sources */,
-				55DC8CBE160CE2C800558DC8 /* TapItBannerAdView.m in Sources */,
-				55DC8CBF160CE2C800558DC8 /* TapItInterstitialAd.m in Sources */,
-				55DC8CC0160CE2C800558DC8 /* TapItAppTracker.m in Sources */,
-				55DC8CC1160CE2C800558DC8 /* TapItRequest.m in Sources */,
-				55DC8CC2160CE2C800558DC8 /* TapItAdManager.m in Sources */,
-				55DC8CC4160CE2C800558DC8 /* TapItInterstitialAdViewController.m in Sources */,
-				551875F617907FEA00B632B9 /* TapItHelpers.m in Sources */,
-				551875FD17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1335,82 +1226,6 @@
 			};
 			name = "Ad Hoc Distrubution";
 		};
-		55DC8CD9160CE2C800558DC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv6;
-				DSTROOT = /tmp/TapIt.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"DISABLE_NEW_FEATURES=1",
-				);
-				GCC_THUMB_SUPPORT = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = TapIt_armv6;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = armv6;
-			};
-			name = Debug;
-		};
-		55DC8CDA160CE2C800558DC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv6;
-				DSTROOT = /tmp/TapIt.dst;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DISABLE_NEW_FEATURES=1";
-				GCC_THUMB_SUPPORT = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = TapIt_armv6;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = armv6;
-			};
-			name = Release;
-		};
-		55DC8CDB160CE2C800558DC8 /* Ad Hoc Distrubution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv6;
-				DSTROOT = /tmp/TapIt.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TapIt/TapIt-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DISABLE_NEW_FEATURES=1";
-				GCC_THUMB_SUPPORT = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Lib/GoogleAdMobAdsSDK\"",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = TapIt_armv6;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = armv6;
-			};
-			name = "Ad Hoc Distrubution";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1434,7 +1249,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5596594B15B4C7150002620D /* Build configuration list for PBXNativeTarget "TapIt_without_libs" */ = {
+		5596594B15B4C7150002620D /* Build configuration list for PBXNativeTarget "TapIt_without_extras" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5596594C15B4C7150002620D /* Debug */,
@@ -1450,16 +1265,6 @@
 				55CF030715EFDEAC00DBB5A5 /* Debug */,
 				55CF030815EFDEAC00DBB5A5 /* Release */,
 				55CF030915EFDEAC00DBB5A5 /* Ad Hoc Distrubution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		55DC8CD8160CE2C800558DC8 /* Build configuration list for PBXNativeTarget "TapIt-armv6" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				55DC8CD9160CE2C800558DC8 /* Debug */,
-				55DC8CDA160CE2C800558DC8 /* Release */,
-				55DC8CDB160CE2C800558DC8 /* Ad Hoc Distrubution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

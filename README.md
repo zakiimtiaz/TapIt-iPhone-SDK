@@ -5,8 +5,6 @@ Version 3.0.2
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
-***Cocos2d users go here: https://github.com/tapit/TapIt-iPhone-SDK/tree/master/cocos2d***
-
 
 Usage:
 ------
@@ -17,34 +15,17 @@ The following frameworks are required:
 SystemConfiguration.framework
 QuartsCore.framework
 CoreTelephony.framework
+AdSupport.framework - enable support for IDFA
+StoreKit.framework - enable use of SKStoreProductViewController, displays app store ads without leaving your app
+
 CoreLocation.framework - Optional *
 ````
 *Note: CoreLocation is optional, and is used for Geo-targeting ads.  Apple mandates that your app have a good reason for enabling Location services... Apple will deny your app if location is not a core feature for your app.
 
-**Xcode 4.5+ users should also include the following frameworks to enable support for new iOS6 features**
-````
-AdSupport.framework - enable support for Apple's IDFA
-StoreKit.framework - enable use of SKStoreProductViewController, displays app store ads without leaving your app
-````
+You're all set!
 
-You're all set!  Scroll down for implementation instructions.
-
-
-Or, get the code:
-=================
-You can also compile the TapIt! SDK directly into your app.  Simply clone this repository(see intructions below), then copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.
-
-This project includes JSONKit and Reachability as a git submodules.  Make sure you pull down submodules when cloning:
-````
-git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
-````
--- or for older versions of git --
-````
-git clone https://github.com/tapit/TapIt-iPhone-SDK.git
-git submodule init
-git submodule update
-````
-
+To build from source, follow these instructions:
+https://github.com/tapit/TapIt-iPhone-SDK/raw/master/SOURCE.md
 
 
 AdPrompt Usage
