@@ -145,7 +145,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 
 - (void)setUpContentPlayer {
 
-    NSString *fileURL = [[NSBundle mainBundle] pathForResource:@"disneyplaneslowbitrate" ofType:@"m4v"];
+    NSString *fileURL = [[NSBundle mainBundle] pathForResource:@"disneyplanestrailer" ofType:@"m4v"];
     NSURL *assetUrl = [NSURL fileURLWithPath:fileURL];
 
     AVAsset *contentAsset = [AVURLAsset URLAssetWithURL:assetUrl options:0];
@@ -155,6 +155,13 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     avPlayerLayer.frame = _videoView.layer.bounds;
     [_videoView.layer addSublayer:avPlayerLayer];
     [self switchPlayheadObserverTo:_contentPlayer];
+    
+    _contentPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:contentPlayerItem];
     
     _isVideoSkippable = YES;
 
@@ -350,6 +357,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 
     // Create an adsRequest object and request ads from the ad server.
     TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone:kZoneId];
+    // For Testing Purpose Only.  The line that follows should not be used in production.
     [request setCustomParameter:kTestCreativeId forKey:@"cid"];
     [request setCustomParameter:@"preroll" forKey:@"videotype"];
     [_adsLoader requestAdsWithRequestObject:request];
@@ -500,8 +508,8 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 #pragma mark -
 #pragma mark TVASTVideoAdsManagerDelegate implementation
 
-// Called when content should be paused. This usually happens right before a
-// an ad is about to cover the content.
+// Called when content should be resumed. This usually happens when an ad
+// finishes or collapses.
 - (void)contentResumeRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content resume requested.\n"];
     
@@ -509,6 +517,11 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [_playingPlayer pause];
     _adView.hidden = YES;
     [self switchPlayheadObserverTo:_contentPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[_contentPlayer currentItem]];
     
     if (![_maximizeSwitch isOn]) {
         [_adView removeFromSuperview];
@@ -531,14 +544,16 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [_maximizeSwitch setEnabled:YES];
 }
 
-// Called when content should be resumed. This usually happens when an ad
-// finishes or collapses.
+// Called when content should be paused. This usually happens right before a
+// an ad is about to cover the content.
 - (void)contentPauseRequested:(TVASTVideoAdsManager *)adsManager {
     [self logMessage:@"Content pause requested.\n"];
     
     // first, pause the content player
     [_playingPlayer pause];
     [self switchPlayheadObserverTo:_adPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:[_contentPlayer currentItem]];
     
     // lock the maximized ad switch state until the content is resumed
     [_maximizeSwitch setEnabled:NO];
@@ -567,6 +582,11 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
                       [error localizedDescription]]];
 }
 
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+    AVPlayerItem *playerItem = [notification object];
+    [playerItem seekToTime:kCMTimeZero];
+}
+
 #pragma mark -
 
 // Override to allow orientations other than the default portrait orientation.
@@ -585,6 +605,8 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
 }
 
 - (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:[self.contentPlayer currentItem]];
+        
     [self.playingPlayer pause];
     [self.clickTrackingView removeFromSuperview];
     [self.playingPlayer removeObserver:self forKeyPath:@"rate"];
