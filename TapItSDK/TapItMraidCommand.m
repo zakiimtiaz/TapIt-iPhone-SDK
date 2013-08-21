@@ -179,7 +179,7 @@
 }
 
 - (void)executeWithParams:(NSDictionary *)params andDelegate:(id<TapItMraidDelegate>)delegate {
-    NSString *msg = [params objectForKey:@"message"];
+    __unused NSString *msg = [params objectForKey:@"message"];
     TILog(@"MRAID LOG: %@", msg);
 }
 
