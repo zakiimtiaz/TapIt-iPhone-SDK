@@ -115,6 +115,7 @@
 		55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */; };
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
+		5D2AEACD17C4F8670055F241 /* disneyplanestrailer.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */; };
 		5D30D9AF1739B38A00A4FADD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
 		5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
 		5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */; };
@@ -144,7 +145,6 @@
 		5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E34171725EC3A00A8CA89 /* VideoAdController.m */; };
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
-		5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */; };
 		5DADA57417907A7F0062EF01 /* libTapItVAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DADA57317907A7F0062EF01 /* libTapItVAST.a */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
 /* End PBXBuildFile section */
@@ -276,7 +276,6 @@
 		5D3E34171725EC3A00A8CA89 /* VideoAdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoAdController.m; sourceTree = "<group>"; };
 		5D3E342D172612F800A8CA89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplaneslowbitrate.m4v; sourceTree = "<group>"; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTVideoAdsManager.h; path = TapItVAST/TVASTVideoAdsManager.h; sourceTree = "<group>"; };
 		5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTClickTrackingUIView.h; path = TapItVAST/TVASTClickTrackingUIView.h; sourceTree = "<group>"; };
@@ -290,6 +289,7 @@
 		5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPhone.xib; sourceTree = "<group>"; };
 		5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenVC.h; sourceTree = "<group>"; };
 		5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenVC.m; sourceTree = "<group>"; };
+		5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplanestrailer.m4v; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,7 +589,7 @@
 		5D15DF371735A9E20099986D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5D401B4017669A2E00B03E3E /* disneyplaneslowbitrate.m4v */,
+				5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */,
 				5D3535781739AE9E00660408 /* Default-568h@2x.png */,
 				5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */,
 				5D35357A1739AE9E00660408 /* Default-Landscape~ipad.png */,
@@ -765,6 +765,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2AEACD17C4F8670055F241 /* disneyplanestrailer.m4v in Resources */,
 				5D30D9AF1739B38A00A4FADD /* MainStoryboard_iPhone.storyboard in Resources */,
 				5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */,
 				5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */,
@@ -793,7 +794,6 @@
 				5D3535A11739AE9E00660408 /* first@2x.png in Resources */,
 				5D3535A21739AE9E00660408 /* second.png in Resources */,
 				5D3535A31739AE9E00660408 /* second@2x.png in Resources */,
-				5D401B4117669A2E00B03E3E /* disneyplaneslowbitrate.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
