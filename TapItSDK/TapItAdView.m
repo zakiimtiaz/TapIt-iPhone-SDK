@@ -62,7 +62,14 @@
 }
 
 - (void)loadData:(NSDictionary *)adData {
-    NSString *adWidth = [NSString stringWithString:[adData objectForKey:@"adWidth"]];
+    id tmp = [adData objectForKey:@"adWidth"];
+    NSString *adWidth;
+    if ([tmp isKindOfClass:[NSNumber class]]) {
+        adWidth = [NSString stringWithFormat:@"%d", [(NSNumber *)tmp intValue]];
+    }
+    else {
+        adWidth = [NSString stringWithString:tmp];
+    }
 
     NSString *width = [NSString stringWithFormat:@"width:%@px; margin:0 auto; text-align:center", adWidth];
     NSMutableString *adHtml = [NSMutableString stringWithString:[adData objectForKey:@"html"]];

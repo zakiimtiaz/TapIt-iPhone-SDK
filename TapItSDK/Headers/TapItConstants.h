@@ -9,7 +9,7 @@
 #ifndef TapIt_iOS_Sample_TapItConstants_h
 #define TapIt_iOS_Sample_TapItConstants_h
 
-#define TAPIT_VERSION @"3.0.2"
+#define TAPIT_VERSION @"3.0.3"
 
 typedef enum {
     TapItBannerAdType       = 0x01,
