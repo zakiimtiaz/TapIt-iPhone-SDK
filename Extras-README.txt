@@ -1,0 +1,1 @@
+libTapIt_without_extras.a is an alternate build of the TapIt iOS SDK, minus support for VAST video and Admob.  Use this static library instead of libTapit.a if you're having trouble with duplicate objects.

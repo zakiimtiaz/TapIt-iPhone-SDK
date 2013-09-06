@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5511323B17D9565A00DB08C9 /* Extras-README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5511323A17D9565A00DB08C9 /* Extras-README.txt */; };
 		551875F117907FEA00B632B9 /* TapItHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 551875EB17907FEA00B632B9 /* TapItHelpers.h */; };
 		551875F317907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
 		551875F417907FEA00B632B9 /* TapItHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 551875EC17907FEA00B632B9 /* TapItHelpers.m */; };
@@ -25,6 +26,10 @@
 		5520DA681632078A0032C3AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5521353415A3CBB10048179D /* TapItInterstitialAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521353315A3CBB00048179D /* TapItInterstitialAdViewController.m */; };
 		552396CC15AC8EF2000E69CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
+		5524C78C17D94E7100F99070 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
+		5524C78D17D94E7D00F99070 /* TapItReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7004D15A767E700818F44 /* TapItReachability.m */; };
+		5524C78E17D94E8600F99070 /* TapItOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55949862153671A600D6495D /* TapItOpenUDID.m */; };
+		5524C78F17D94EA300F99070 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		5528EECC15FFBB51009ED3A4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5528EECB15FFBB51009ED3A4 /* LICENSE */; };
 		552EF86B15A2B572009898D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
 		5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62F815B6389E00570F4A /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -152,6 +157,7 @@
 /* Begin PBXFileReference section */
 		550C62F815B6389E00570F4A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		550C62FA15B638A800570F4A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		5511323A17D9565A00DB08C9 /* Extras-README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Extras-README.txt"; sourceTree = "<group>"; };
 		551875EB17907FEA00B632B9 /* TapItHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItHelpers.h; path = TapItSDK/TapItHelpers.h; sourceTree = "<group>"; };
 		551875EC17907FEA00B632B9 /* TapItHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapItHelpers.m; path = TapItSDK/TapItHelpers.m; sourceTree = "<group>"; };
 		551875ED17907FEA00B632B9 /* TapItMraidCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItMraidCommand.h; path = TapItSDK/TapItMraidCommand.h; sourceTree = "<group>"; };
@@ -520,6 +526,7 @@
 				55880AFF15C1B00A00D9381C /* TapItBrowserController.m */,
 				5532FEB915EC35AB00427E00 /* TapItMediationAdMob.h */,
 				5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */,
+				5511323A17D9565A00DB08C9 /* Extras-README.txt */,
 			);
 			name = TapItSDK;
 			sourceTree = "<group>";
@@ -793,6 +800,7 @@
 				5D3535A11739AE9E00660408 /* first@2x.png in Resources */,
 				5D3535A21739AE9E00660408 /* second.png in Resources */,
 				5D3535A31739AE9E00660408 /* second@2x.png in Resources */,
+				5511323B17D9565A00DB08C9 /* Extras-README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +882,10 @@
 				5596596915B4C7B30002620D /* TapItInterstitialAdViewController.m in Sources */,
 				551875F517907FEA00B632B9 /* TapItHelpers.m in Sources */,
 				551875FC17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
+				5524C78C17D94E7100F99070 /* JSONKit.m in Sources */,
+				5524C78D17D94E7D00F99070 /* TapItReachability.m in Sources */,
+				5524C78E17D94E8600F99070 /* TapItOpenUDID.m in Sources */,
+				5524C78F17D94EA300F99070 /* NSDictionary+QueryStringBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,7 +84,7 @@
                                   @"mode", // == @"test" for test mode, else production
                                   @"lat", // latitude
                                   @"long", // longitude
-                                  @"adtype",
+//                                  @"adtype", // DISABLED Temporarily to work around server issue
                                   @"cid",
                                   @"carrier",
                                   @"carrier_id",
