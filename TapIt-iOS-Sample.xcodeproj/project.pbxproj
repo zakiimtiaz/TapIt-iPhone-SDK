@@ -34,13 +34,6 @@
 		552EF86B15A2B572009898D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
 		5532FEDC15EC37CD00427E00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62F815B6389E00570F4A /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550C62FA15B638A800570F4A /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		554D04BA179084D20070F168 /* TVASTVideoAdsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04BB179084D20070F168 /* TVASTClickTrackingUIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04BC179084D20070F168 /* TVASTClickThroughBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA563179077630062EF01 /* TVASTClickThroughBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04BD179084D20070F168 /* TVASTAdsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA564179077630062EF01 /* TVASTAdsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04BE179084D20070F168 /* TVASTAdsLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA565179077630062EF01 /* TVASTAdsLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04BF179084D20070F168 /* TVASTAdError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA566179077630062EF01 /* TVASTAdError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D04C0179084D20070F168 /* TVASTAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DADA567179077630062EF01 /* TVASTAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55716AF815C311F200075FBE /* TapItAdPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF615C2204000075FBE /* TapItAdPrompt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55716AF915C311F200075FBE /* TapItRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 55716AF715C2204000075FBE /* TapItRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55716B0C15C31D1A00075FBE /* TapIt.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55716B0B15C31D1A00075FBE /* TapIt.bundle */; };
@@ -159,25 +152,7 @@
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
-		5DB8C88117C576D400469B22 /* libTapItVAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DB8C87E17C576C200469B22 /* libTapItVAST.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5DB8C87D17C576C200469B22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5DB8C87917C576C100469B22 /* TapItVAST.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D3E34011725BB8100A8CA89;
-			remoteInfo = TapItVAST;
-		};
-		5DB8C87F17C576CE00469B22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5DB8C87917C576C100469B22 /* TapItVAST.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D3E34001725BB8100A8CA89;
-			remoteInfo = TapItVAST;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		550C62F815B6389E00570F4A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -316,19 +291,11 @@
 		5D3E342D172612F800A8CA89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTVideoAdsManager.h; path = TapItVAST/TVASTVideoAdsManager.h; sourceTree = "<group>"; };
-		5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTClickTrackingUIView.h; path = TapItVAST/TVASTClickTrackingUIView.h; sourceTree = "<group>"; };
-		5DADA563179077630062EF01 /* TVASTClickThroughBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTClickThroughBrowser.h; path = TapItVAST/TVASTClickThroughBrowser.h; sourceTree = "<group>"; };
-		5DADA564179077630062EF01 /* TVASTAdsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdsRequest.h; path = TapItVAST/TVASTAdsRequest.h; sourceTree = "<group>"; };
-		5DADA565179077630062EF01 /* TVASTAdsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdsLoader.h; path = TapItVAST/TVASTAdsLoader.h; sourceTree = "<group>"; };
-		5DADA566179077630062EF01 /* TVASTAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAdError.h; path = TapItVAST/TVASTAdError.h; sourceTree = "<group>"; };
-		5DADA567179077630062EF01 /* TVASTAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVASTAd.h; path = TapItVAST/TVASTAd.h; sourceTree = "<group>"; };
 		5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPad.xib; sourceTree = "<group>"; };
 		5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenVC_iPhone.xib; sourceTree = "<group>"; };
 		5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenVC.h; sourceTree = "<group>"; };
 		5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenVC.m; sourceTree = "<group>"; };
-		5DB3FD4A17BED8DD0081BF56 /* disneyplanestrailer.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplanestrailer.m4v; sourceTree = "<group>"; };
-		5DB8C87917C576C100469B22 /* TapItVAST.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapItVAST.xcodeproj; path = "../../../TRMASDK (Video Ads)/trunk/TapItVAST.xcodeproj"; sourceTree = "<group>"; };
+		5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplanestrailer.m4v; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,7 +303,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DB8C88117C576D400469B22 /* libTapItVAST.a in Frameworks */,
 				5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */,
 				5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */,
 				55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */,
@@ -350,7 +316,8 @@
 				5594982615366E4100D6495D /* Foundation.framework in Frameworks */,
 				5594982815366E4100D6495D /* CoreGraphics.framework in Frameworks */,
 				5532FEDD15EC37ED00427E00 /* MessageUI.framework in Frameworks */,
-				55187601179080A100B632B9 /* libGoogleAdMobAds.a in Frameworks */,
+				557F520E17CC0DF200A881E3 /* libGoogleAdMobAds.a in Frameworks */,
+				557F521B17CD35E700A881E3 /* libTapItVAST.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,20 +348,7 @@
 				55CF02E715EFDEAC00DBB5A5 /* QuartzCore.framework in Frameworks */,
 				55CF02E815EFDEAC00DBB5A5 /* SystemConfiguration.framework in Frameworks */,
 				55CF02E915EFDEAC00DBB5A5 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		55DC8CC5160CE2C800558DC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55DC8CC7160CE2C800558DC8 /* UIKit.framework in Frameworks */,
-				55DC8CC8160CE2C800558DC8 /* CoreTelephony.framework in Frameworks */,
-				55DC8CC9160CE2C800558DC8 /* CoreGraphics.framework in Frameworks */,
-				55DC8CCA160CE2C800558DC8 /* CoreLocation.framework in Frameworks */,
-				55DC8CCB160CE2C800558DC8 /* QuartzCore.framework in Frameworks */,
-				55DC8CCC160CE2C800558DC8 /* SystemConfiguration.framework in Frameworks */,
-				55DC8CCD160CE2C800558DC8 /* Foundation.framework in Frameworks */,
+				557F522417CD55F000A881E3 /* libTapItVAST.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,8 +416,6 @@
 		5594981415366E4100D6495D = {
 			isa = PBXGroup;
 			children = (
-				5DB8C87917C576C100469B22 /* TapItVAST.xcodeproj */,
-				5528EECB15FFBB51009ED3A4 /* LICENSE */,
 				5572AABA15997D1000D3E5A6 /* README.md */,
 				55DB653517BEAEC400364A77 /* SOURCE.md */,
 				5528EECB15FFBB51009ED3A4 /* LICENSE */,
@@ -659,7 +611,7 @@
 		5D15DF371735A9E20099986D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5DB3FD4A17BED8DD0081BF56 /* disneyplanestrailer.m4v */,
+				5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */,
 				5D3535781739AE9E00660408 /* Default-568h@2x.png */,
 				5D3535791739AE9E00660408 /* Default-Landscape@2x~ipad.png */,
 				5D35357A1739AE9E00660408 /* Default-Landscape~ipad.png */,
@@ -684,29 +636,6 @@
 				5D35358D1739AE9E00660408 /* second@2x.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		5DB08671172F31EA00D5C8D3 /* TapItVAST */ = {
-			isa = PBXGroup;
-			children = (
-				5DADA561179077630062EF01 /* TVASTVideoAdsManager.h */,
-				5DADA562179077630062EF01 /* TVASTClickTrackingUIView.h */,
-				5DADA563179077630062EF01 /* TVASTClickThroughBrowser.h */,
-				5DADA564179077630062EF01 /* TVASTAdsRequest.h */,
-				5DADA565179077630062EF01 /* TVASTAdsLoader.h */,
-				5DADA566179077630062EF01 /* TVASTAdError.h */,
-				5DADA567179077630062EF01 /* TVASTAd.h */,
-			);
-			name = TapItVAST;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		5DB8C87A17C576C100469B22 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5DB8C87E17C576C200469B22 /* libTapItVAST.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -768,7 +697,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5DB8C88017C576CE00469B22 /* PBXTargetDependency */,
 			);
 			name = "TapIt-iOS-Sample";
 			productName = "TapIt-iOS-Sample";
@@ -829,12 +757,6 @@
 			mainGroup = 5594981415366E4100D6495D;
 			productRefGroup = 5594982015366E4100D6495D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5DB8C87A17C576C100469B22 /* Products */;
-					ProjectRef = 5DB8C87917C576C100469B22 /* TapItVAST.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5594981E15366E4100D6495D /* TapIt-iOS-Sample */,
@@ -843,16 +765,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5DB8C87E17C576C200469B22 /* libTapItVAST.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTapItVAST.a;
-			remoteRef = 5DB8C87D17C576C200469B22 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5594981D15366E4100D6495D /* Resources */ = {
@@ -888,6 +800,7 @@
 				5D3535A11739AE9E00660408 /* first@2x.png in Resources */,
 				5D3535A21739AE9E00660408 /* second.png in Resources */,
 				5D3535A31739AE9E00660408 /* second@2x.png in Resources */,
+				5511323B17D9565A00DB08C9 /* Extras-README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,14 +913,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5DB8C88017C576CE00469B22 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TapItVAST;
-			targetProxy = 5DB8C87F17C576CE00469B22 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5594982C15366E4100D6495D /* InfoPlist.strings */ = {
