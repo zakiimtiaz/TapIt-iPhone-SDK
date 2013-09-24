@@ -167,6 +167,20 @@ For sample video ads integration code, please see the VideoAdController.m and Vi
 files for working example of video ads in an app.  You can find VideoAdController in the 
 TapIt-iOS-Sample directory of the iOS SDK package.
 
+In requesting for a video ad from the server, a VASTAdsRequest object needs to be instantiated 
+and its zoneId and videotype parameters specified.  These parameters are required for a successful
+retrieval of the ad.  The value of the videotype parameter must match the "type" of the video ad 
+for which the request is making.  Available types are "all", "pre-roll", "mid-roll", and "post-roll"
+and they have to be literally matched. Please see example code below.
+
+
+    // Create an adsRequest object and request ads from the ad server with your own zone_id
+    TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone: ZONE_ID_VIDEO];
+    [request setCustomParameter:@"pre-roll" forKey:@"videotype"];
+    [_adsLoader requestAdsWithRequestObject:request];
+
+
+
 Essentially, what needs to be included in the code are as follows:
 Note: the following uses Automatic Reference Counting so there will not be any object releases shown.
 

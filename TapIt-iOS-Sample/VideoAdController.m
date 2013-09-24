@@ -70,7 +70,7 @@
 NSString *const kZoneId         = @"22219";     //@"24839";     //@"22219";
 
 // For Testing Purpose Only.
-NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
+NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681";     //@"130902";
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil
 {
@@ -157,11 +157,6 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [self switchPlayheadObserverTo:_contentPlayer];
     
     _contentPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(playerItemDidReachEnd:)
-                                                 name:AVPlayerItemDidPlayToEndTimeNotification
-                                               object:contentPlayerItem];
     
     _isVideoSkippable = YES;
 
@@ -553,7 +548,7 @@ NSString *const kTestCreativeId = @"130902";    //@"137902";    //@"128681";
     [_playingPlayer pause];
     [self switchPlayheadObserverTo:_adPlayer];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:[_contentPlayer currentItem]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:AVPlayerItemDidPlayToEndTimeNotification];
     
     // lock the maximized ad switch state until the content is resumed
     [_maximizeSwitch setEnabled:NO];
