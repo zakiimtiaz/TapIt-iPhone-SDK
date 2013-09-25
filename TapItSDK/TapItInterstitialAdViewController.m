@@ -43,6 +43,10 @@
     self.view.backgroundColor = [UIColor blackColor];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    // set status bar text to light so that it shows up against a black baground
+    return UIStatusBarStyleLightContent;
+}
 
 
 
@@ -60,7 +64,14 @@
         self.closeButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
         
         CGRect appFrame = TapItApplicationFrame(TapItInterfaceOrientation());
-        self.closeButton.frame = CGRectMake(appFrame.size.width - 50, 0, 50, 50);
+        
+        NSInteger y = 0;
+        if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+            // push the close button down slightly to clear the statusbar
+            y = 20;
+        }
+        
+        self.closeButton.frame = CGRectMake(appFrame.size.width - 50, y, 50, 50);
     }
     
     [self.adView bringSubviewToFront:self.closeButton];

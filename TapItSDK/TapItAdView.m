@@ -117,12 +117,14 @@
     if(!self.isLoaded || self.interceptPageLoads) {
         [self.tapitDelegate didLoadAdView:self];
     }
-    self.isLoaded = YES;
-    if (self.isMRAID) {
-        [self fireMraidEvent:TAPIT_MRAID_EVENT_READY withParams:nil];
-        self.mraidState = TAPIT_MRAID_STATE_DEFAULT;
-        [self syncMraidState];
-        [self fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.mraidState];
+    if (!self.isLoaded) {
+        self.isLoaded = YES;
+        if (self.isMRAID) {
+            [self fireMraidEvent:TAPIT_MRAID_EVENT_READY withParams:nil];
+            self.mraidState = TAPIT_MRAID_STATE_DEFAULT;
+            [self syncMraidState];
+            [self fireMraidEvent:TAPIT_MRAID_EVENT_STATECHANGE withParams:self.mraidState];
+        }
     }
 }
 
@@ -141,9 +143,16 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (self.isMRAID && [request.URL.absoluteString hasPrefix:@"nativecall://"]) {
-        [self handleNativeCall:request.URL.absoluteURL];
-        return NO;
+    if (self.isMRAID) {
+        if ([request.URL.absoluteString hasPrefix:@"nativecall://"]) {
+            // process native command
+            [self handleNativeCall:request.URL.absoluteURL];
+            return NO;
+        }
+        else {
+            TILog(@"MRAID ad is loading content: %@", request.URL);
+            return YES;
+        }
     }
 
     TILog(@"shouldStartLoadWithRequest: %@", request.URL);
