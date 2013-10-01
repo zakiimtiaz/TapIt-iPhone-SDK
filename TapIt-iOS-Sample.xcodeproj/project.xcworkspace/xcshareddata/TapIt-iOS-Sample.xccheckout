@@ -2,45 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B9CC3ADF-67BA-470C-834D-B203C8A33A85</string>
+	<string>D1CDA5F9-754F-42B7-BDD7-7FB3F1FF80D8</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TapIt-iOS-Sample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>14E5A54D-531E-4ECB-A7D4-F4C108DA4B2D</key>
-		<string>ssh://github.com/tapit/TapIt-iPhone-SDK.git</string>
 		<key>65F39CD3-7E07-43CE-B097-EDD99AE4FFEE</key>
 		<string>https://github.com/tapit/Reachability.git</string>
 		<key>98BB100A-2F51-4106-ABC9-E161C4947BD6</key>
 		<string>https://github.com/tapit/JSONKit.git</string>
+		<key>9BC28703-14EE-48E7-B207-CAB7323AADEC</key>
+		<string>https://github.com/tapit/TapIt-iPhone-SDK</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TapIt-iOS-Sample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>14E5A54D-531E-4ECB-A7D4-F4C108DA4B2D</key>
-		<string>../..</string>
 		<key>65F39CD3-7E07-43CE-B097-EDD99AE4FFEE</key>
 		<string>../../Lib/Reachability</string>
 		<key>98BB100A-2F51-4106-ABC9-E161C4947BD6</key>
 		<string>../../Lib/JSONKit</string>
+		<key>9BC28703-14EE-48E7-B207-CAB7323AADEC</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/tapit/TapIt-iPhone-SDK.git</string>
+	<string>https://github.com/tapit/TapIt-iPhone-SDK</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>14E5A54D-531E-4ECB-A7D4-F4C108DA4B2D</string>
+	<string>9BC28703-14EE-48E7-B207-CAB7323AADEC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>14E5A54D-531E-4ECB-A7D4-F4C108DA4B2D</string>
+			<string>98BB100A-2F51-4106-ABC9-E161C4947BD6</string>
 			<key>IDESourceControlWCCName</key>
-			<string>TapIt-iPhone-SDK</string>
+			<string>JSONKit</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -54,9 +56,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>98BB100A-2F51-4106-ABC9-E161C4947BD6</string>
+			<string>9BC28703-14EE-48E7-B207-CAB7323AADEC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>JSONKit</string>
+			<string>TapIt-iPhone-SDK</string>
 		</dict>
 	</array>
 </dict>

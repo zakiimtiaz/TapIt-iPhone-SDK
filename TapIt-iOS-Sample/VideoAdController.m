@@ -67,10 +67,10 @@
 
 //*************************************
 // Replace with your valid ZoneId here.
-NSString *const kZoneId         = @"22219";     //@"24839";     //@"22219";
+NSString *const kZoneId         = @"22219";     // 24839, 22219
 
 // For Testing Purpose Only.
-NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681";     //@"130902";
+NSString *const kTestCreativeId = @"128681";    // 113559, 128681, 130902
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,11 +115,11 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     if(CGRectGetHeight([UIScreen mainScreen].bounds) == 568) {
         //iphone 5
         CGRect frame = _console.frame;
-        frame.size.height += 88;    
+        frame.size.height += 88;
         _console.frame = frame;
     }
     
@@ -135,7 +135,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     
     [_playHeadButton setImage:_playButtonImage forState:UIControlStateNormal];
     _videoView.backgroundColor = [UIColor blackColor];
-
+    
     [self setUpContentPlayer];
     [self setUpAdPlayer];
     [self setUpAdsLoader];
@@ -144,10 +144,10 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 }
 
 - (void)setUpContentPlayer {
-
+    
     NSString *fileURL = [[NSBundle mainBundle] pathForResource:@"disneyplanestrailer" ofType:@"m4v"];
     NSURL *assetUrl = [NSURL fileURLWithPath:fileURL];
-
+    
     AVAsset *contentAsset = [AVURLAsset URLAssetWithURL:assetUrl options:0];
     AVPlayerItem *contentPlayerItem = [AVPlayerItem playerItemWithAsset:contentAsset];
     self.contentPlayer = [AVPlayer playerWithPlayerItem:contentPlayerItem];
@@ -158,8 +158,13 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     
     _contentPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:contentPlayerItem];
+    
     _isVideoSkippable = YES;
-
+    
     CGRect videoFrame = _videoView.frame;
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(videoFrame), CGRectGetHeight(videoFrame));
     
@@ -171,7 +176,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 // Set up Ad Player but don't add it to the video view.
 - (void)setUpAdPlayer {
     self.adPlayer = [[[AVPlayer alloc] init] autorelease];
-
+    
     AVPlayerLayer *adPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:_adPlayer];
     [adPlayerLayer setName:@"AdPlayerLayer"];
     
@@ -185,7 +190,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
         _adView.hidden = YES;
         adPlayerLayer.frame = _adView.layer.bounds;
         [_adView.layer addSublayer:adPlayerLayer];
-
+        
         _clickTrackingView.frame = frame;
         [_videoView addSubview:_clickTrackingView];
     }
@@ -240,8 +245,8 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     }
     _progressBar.value = currentTime;
     _playTimeText.text = [NSString stringWithFormat:@"%d.%02d",
-                            (int)currentTime / 60,
-                            (int)currentTime % 60];
+                          (int)currentTime / 60,
+                          (int)currentTime % 60];
     [self updatePlayHeadDuration];
 }
 
@@ -274,11 +279,11 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     
     // could only display 19:59 max.
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        duration = (int)duration % 1200;  
+        duration = (int)duration % 1200;
     
     _durationText.text = [NSString stringWithFormat:@"%d.%02d",
-                            (int)duration / 60,
-                            (int)duration % 60];
+                          (int)duration / 60,
+                          (int)duration % 60];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -339,7 +344,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 -(IBAction) browserSwitchChanged:(id)sender {
     if ([_browserSwitch isOn]) {
         [TVASTClickThroughBrowser enableInAppBrowserWithViewController:self
-                                                             delegate:self];
+                                                              delegate:self];
     }
     else {
         [TVASTClickThroughBrowser disableInAppBrowser];
@@ -349,15 +354,12 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 - (void)onRequestAds {
     [self logMessage:@"Requesting ads...\n"];
     [self unloadAdsManager];
-
+    
     // Create an adsRequest object and request ads from the ad server.
     TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone:kZoneId];
-    // For Testing Purpose Only.  The line that follows should not be used in production.
     [request setCustomParameter:kTestCreativeId forKey:@"cid"];
     [request setCustomParameter:@"preroll" forKey:@"videotype"];
     [_adsLoader requestAdsWithRequestObject:request];
-    
-    
 }
 
 - (void)onUnloadAds {
@@ -380,7 +382,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
         return;
     }
     UISlider *slider = (UISlider *)sender;
-
+    
     if (_isVideoSkippable ||
         CMTimeCompare(_playingPlayer.currentTime, CMTimeMake(slider.value, 1)) > 0) {
         // skip to the point of content where the slider has changed to.
@@ -429,19 +431,19 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     [self logMessage:@"Ads have been loaded.\n"];
     
     TVASTVideoAdsManager *adsManager = adsLoadedData.adsManager;
-
+    
     if (adsManager) {
         self.videoAdsManager = adsManager;
         // Set delegate to receive callbacks.
         _videoAdsManager.delegate = self;
         // Set the click tracking view.
         _videoAdsManager.clickTrackingView = _clickTrackingView;
-
+        
         if ([_browserSwitch isOn])
             [TVASTClickThroughBrowser enableInAppBrowserWithViewController:nil delegate:self];
         else
             [TVASTClickThroughBrowser disableInAppBrowser];
-
+        
         // set show ad full-screen or not.
         _videoAdsManager.showFullScreenAd = ([_maximizeSwitch isOn]);
         
@@ -527,7 +529,8 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     }
     
     // after the switch, resume the content player
-    [_playingPlayer play];
+    //[_playingPlayer play];
+    [_contentPlayer play];
     [self updatePlayHeadState:YES];
     
     // The content player is skippable when content is playing.
@@ -548,7 +551,7 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
     [_playingPlayer pause];
     [self switchPlayheadObserverTo:_adPlayer];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:AVPlayerItemDidPlayToEndTimeNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:[_contentPlayer currentItem]];
     
     // lock the maximized ad switch state until the content is resumed
     [_maximizeSwitch setEnabled:NO];
@@ -600,8 +603,9 @@ NSString *const kTestCreativeId = @"128681";       //@"113559";    //@"128681"; 
 }
 
 - (void)viewDidUnload {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:[self.contentPlayer currentItem]];
-        
+    
     [self.playingPlayer pause];
     [self.clickTrackingView removeFromSuperview];
     [self.playingPlayer removeObserver:self forKeyPath:@"rate"];

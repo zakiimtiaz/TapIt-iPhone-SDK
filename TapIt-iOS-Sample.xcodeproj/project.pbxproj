@@ -122,8 +122,6 @@
 		55F775CD160A418D00ADA381 /* TapItMediationAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532FEBA15EC35AB00427E00 /* TapItMediationAdMob.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
 		5D2AEACD17C4F8670055F241 /* disneyplanestrailer.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */; };
-		5D30D9AF1739B38A00A4FADD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
-		5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
 		5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB08691172FAEA500D5C8D3 /* FullScreenVC_iPhone.xib */; };
 		5D30D9B21739B38A00A4FADD /* FullScreenVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0868F172FABB700D5C8D3 /* FullScreenVC_iPad.xib */; };
 		5D30D9B31739B38A00A4FADD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5594982C15366E4100D6495D /* InfoPlist.strings */; };
@@ -152,6 +150,8 @@
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
+		CD974C1B17F5EBC90028A133 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
+		CD974C1C17F5EBC90028A133 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -771,9 +771,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD974C1B17F5EBC90028A133 /* MainStoryboard_iPhone.storyboard in Resources */,
+				CD974C1C17F5EBC90028A133 /* MainStoryboard_iPad.storyboard in Resources */,
 				5D2AEACD17C4F8670055F241 /* disneyplanestrailer.m4v in Resources */,
-				5D30D9AF1739B38A00A4FADD /* MainStoryboard_iPhone.storyboard in Resources */,
-				5D30D9B01739B38A00A4FADD /* MainStoryboard_iPad.storyboard in Resources */,
 				5D30D9B11739B38A00A4FADD /* FullScreenVC_iPhone.xib in Resources */,
 				5D30D9B21739B38A00A4FADD /* FullScreenVC_iPad.xib in Resources */,
 				5D30D9B31739B38A00A4FADD /* InfoPlist.strings in Resources */,
