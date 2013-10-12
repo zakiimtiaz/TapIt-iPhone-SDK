@@ -141,6 +141,19 @@
     x = frame.size.width/2 - self.adView.frame.size.width/2;
     y = frame.size.height/2 - self.adView.frame.size.height/2;
     
+    if(self.adView.isMRAID) {
+        x = 0;
+        y = 0;
+        NSString *reqSysVer = @"7.0";
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        int extraRoom = 0;
+        if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
+            extraRoom = 20;
+        }
+        w = frame.size.width;
+        h = frame.size.height+extraRoom;
+    }
+    
     self.adView.center = self.view.center;
     
     if(self.animated) {

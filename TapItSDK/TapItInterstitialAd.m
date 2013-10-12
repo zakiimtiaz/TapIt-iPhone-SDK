@@ -90,6 +90,16 @@
 
     [controller presentModalViewController:self.adController animated:YES];
     if (self.adView.isMRAID) {
+        CGRect frame = TapItApplicationFrame([UIDevice currentDevice].orientation);
+        
+        NSString *reqSysVer = @"7.0";
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        int extraRoom = 0;
+        if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
+            extraRoom = 20;
+        }
+        self.adView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height+extraRoom);
+        self.adView.center = controller.view.center;
         self.adView.isVisible = YES;
         [self.adView fireMraidEvent:TAPIT_MRAID_EVENT_VIEWABLECHANGE withParams:@"[true]"];
         [self.adView syncMraidState];
