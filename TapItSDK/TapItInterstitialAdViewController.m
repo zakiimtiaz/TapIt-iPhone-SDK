@@ -103,7 +103,7 @@
 }
 
 - (void)showLoading {
-    loadingSpinner.center = self.view.center;
+    loadingSpinner.center = self.adView.center;
     [self.view addSubview:loadingSpinner];
     [loadingSpinner startAnimating];
 }
