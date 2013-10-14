@@ -108,6 +108,7 @@
         }
     }
     else {
+        self.adView.center = controller.view.center;
         [self.adController showCloseButton];
     }
 }
