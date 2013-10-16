@@ -98,7 +98,7 @@
             [adHtml replaceCharactersInRange:range withString:mraidUrlPath];
         }
         else {
-            adHtml = [NSString stringWithFormat:@"<script type=\"text/javascript\" src=%@></script>", mraidUrlPath];
+            adHtml = [NSMutableString stringWithFormat:@"<script type=\"text/javascript\" src=%@></script>", mraidUrlPath];
         }
     }
     TILog(@"MRAID is %@", (self.isMRAID ? @"ON" : @"OFF"));

@@ -35,6 +35,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 //    [self simpleExample];
+    
 }
 
 #pragma mark -
@@ -71,7 +72,7 @@
     
     UIButton *button = (UIButton *)sender;
     if (button.tag == 1) {
-        [tapitAdPrompt showAsActionSheet];
+        //[tapitAdPrompt showAsActionSheet];
     }
     else {
         [tapitAdPrompt showAsAlert];

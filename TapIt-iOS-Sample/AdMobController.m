@@ -33,6 +33,7 @@
     // the user wherever the ad goes and add it to the view hierarchy.
     bannerView_.rootViewController = self;
     bannerView_.delegate = self;
+    bannerView_.center = self.view.center;
     [self.view addSubview:bannerView_];
     
     // Initiate a generic request to load it with an ad.

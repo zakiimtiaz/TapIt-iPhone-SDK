@@ -45,7 +45,11 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     // set status bar text to light so that it shows up against a black baground
-    return UIStatusBarStyleLightContent;
+    UIStatusBarStyle useThisStyle = UIStatusBarStyleDefault;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    useThisStyle = UIStatusBarStyleLightContent;
+#endif
+    return useThisStyle;
 }
 
 
