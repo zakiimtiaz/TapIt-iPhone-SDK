@@ -88,6 +88,9 @@
 - (void)playVideoFromAdsManager {
     [_videoAdsManager playWithAVPlayer:_adPlayer];
     _landscapeVC.view.hidden = NO;
+    if(!_presentingViewController) {
+        _presentingViewController = (UIViewController *)delegate;
+    }
     // use appropriate undepricated method based on the iOS version
     if ([[UIDevice currentDevice].systemVersion floatValue] < 5.0f) {
         [_presentingViewController presentModalViewController:_landscapeVC animated:YES];
@@ -158,6 +161,7 @@
 -(void) setupAdLoader {
     self.adsLoader = [[TVASTAdsLoader alloc] init];
     _adsLoader.delegate = self;
+    _presentingViewController = nil;
 }
 
 /// Called when content should be paused. This usually happens right before a

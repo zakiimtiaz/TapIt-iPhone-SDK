@@ -36,7 +36,9 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
 	// Do any additional setup after loading the view.
     _videoAd = [[TapItVideoInterstitialAd alloc] init];
     _videoAd.delegate = self;
-    _videoAd.presentingViewController = self;
+    
+    //Optional... override the presentingViewController (defaults to the delegate)
+    //_videoAd.presentingViewController = self;
 }
 
 - (void)didReceiveMemoryWarning
