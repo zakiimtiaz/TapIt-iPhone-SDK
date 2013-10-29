@@ -17,10 +17,20 @@
 #import "TVASTClickThroughBrowser.h"
 #import "FullScreenVC.h"
 
+@protocol TapItVideoInterstitialAdDelegate <NSObject>
+@required
+
+/**
+ Called when an the adsLoader receives a video and is ready to play. (required)
+*/
+- (void)didReceiveVideoAd;
+@end
+
 @interface TapItVideoInterstitialAd : NSObject <TVASTAdsLoaderDelegate,
 TVASTClickTrackingUIViewDelegate, TVASTVideoAdsManagerDelegate,
 TVASTClickThroughBrowserDelegate>
 
+@property (assign, nonatomic) id<TapItVideoInterstitialAdDelegate> delegate;
 // The loader of ads.
 @property(nonatomic, retain) TVASTAdsLoader *adsLoader;
 // The manager of video ads.
@@ -29,9 +39,8 @@ TVASTClickThroughBrowserDelegate>
 @property(nonatomic, retain) TVASTClickTrackingUIView *clickTrackingView;
 @property (nonatomic, retain) AVPlayer              *adPlayer;
 @property (nonatomic, retain) FullScreenVC          *landscapeVC;
-@property (nonatomic, retain) IBOutlet UIButton     *adRequestButton;
 @property (nonatomic, retain) UIViewController      *presentingViewController;
 
-- (void)setUpAdPlayer;
 - (void)unloadAdsManager;
+- (void)playVideoFromAdsManager;
 @end

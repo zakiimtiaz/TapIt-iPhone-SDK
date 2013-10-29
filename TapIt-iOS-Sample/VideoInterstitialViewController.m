@@ -13,14 +13,12 @@
 //*************************************
 // Replace with your valid ZoneId here.
 NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
-NSString *const kCreativeVideoID     = @"128681";
 @interface VideoInterstitialViewController ()
 
 @end
 
 @implementation VideoInterstitialViewController
 
-@synthesize adsLoader = _adsLoader;
 @synthesize videoAd = _videoAd;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,9 +35,7 @@ NSString *const kCreativeVideoID     = @"128681";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _videoAd = [[TapItVideoInterstitialAd alloc] init];
-    [_videoAd setUpAdPlayer];
-    self.adsLoader = [[TVASTAdsLoader alloc] init];
-    _adsLoader.delegate = _videoAd;
+    _videoAd.delegate = self;
     _videoAd.presentingViewController = self;
 }
 
@@ -54,9 +50,8 @@ NSString *const kCreativeVideoID     = @"128681";
     
     // Create an adsRequest object and request ads from the ad server with your own zone_id
     TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone: kZoneIdVideo];
-    [request setCustomParameter:kCreativeVideoID forKey:@"cid"];
     [request setCustomParameter:@"preroll" forKey:@"videotype"];
-    [_adsLoader requestAdsWithRequestObject:request];
+    [_videoAd.adsLoader requestAdsWithRequestObject:request];
 }
 
 - (IBAction)onRequestAds {
@@ -65,8 +60,12 @@ NSString *const kCreativeVideoID     = @"128681";
 
 - (void)viewDidUnload {
     [_videoAd unloadAdsManager];
-    self.adsLoader = nil;
     [super viewDidUnload];
+}
+
+- (void)didReceiveVideoAd {
+    NSLog(@"We received an ad... now show it.");
+    [_videoAd playVideoFromAdsManager];
 }
 
 @end

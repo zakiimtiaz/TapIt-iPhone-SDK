@@ -503,6 +503,7 @@
 				55C74F6B15F0836D00981B79 /* README.txt */,
 				55716B0B15C31D1A00075FBE /* TapIt.bundle */,
 				5594984F15366E5500D6495D /* Headers */,
+				CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */,
 				551875EB17907FEA00B632B9 /* TapItHelpers.h */,
 				551875EC17907FEA00B632B9 /* TapItHelpers.m */,
 				551875ED17907FEA00B632B9 /* TapItMraidCommand.h */,
@@ -543,7 +544,6 @@
 				559498691536751400D6495D /* TapItInterstitialAd.h */,
 				552E9A711538CDB400FD22C4 /* TapItConstants.h */,
 				CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */,
-				CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */,
 			);
 			name = Headers;
 			sourceTree = "<group>";

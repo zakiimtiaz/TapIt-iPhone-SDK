@@ -12,6 +12,8 @@
 @implementation TapItVideoInterstitialAd
 
 @synthesize presentingViewController = _presentingViewController;
+@synthesize adsLoader = _adsLoader;
+@synthesize delegate;
 
 -(id)init {
     [self setUpAdPlayer];
@@ -72,23 +74,8 @@
         //        [self addObserverForVastEvent:TVASTVastEventAcceptInvitationNotification];
         //        [self addObserverForVastEvent:TVASTVastEventCloseNotification];
         //        [self addObserverForVastEvent:TVASTVastEventCloseLinearNotification];
-        
-        // Tell the adsManager to play the ad.
-        [_videoAdsManager playWithAVPlayer:_adPlayer];
-        _landscapeVC.view.hidden = NO;
-        // use appropriate undeficated method based on the iOS version
-        if ([[UIDevice currentDevice].systemVersion floatValue] < 5.0f) {
-            [_presentingViewController presentModalViewController:_landscapeVC animated:YES];
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(playerItemDidReachEnd:)
-                                                         name:AVPlayerItemDidPlayToEndTimeNotification
-                                                       object:_adPlayer];
-        } else {
-            [_presentingViewController presentViewController:_landscapeVC animated:YES completion:^(){}];
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(playerItemDidReachEnd:)
-                                                         name:AVPlayerItemDidPlayToEndTimeNotification
-                                                       object:_adPlayer];
+        if ([self.delegate respondsToSelector:@selector(didReceiveVideoAd)]) {
+            [self.delegate didReceiveVideoAd];
         }
         // Show a few attributes of one of the loaded ads
         //TVASTAd *videoAd = [_videoAdsManager.ads objectAtIndex:0];
@@ -97,6 +84,25 @@
         //NSLog(@"Ad URL is %@", videoAd.mediaUrl);
         //NSLog(@"Ad Duration is %2f", videoAd.duration);
     }
+}
+- (void)playVideoFromAdsManager {
+    [_videoAdsManager playWithAVPlayer:_adPlayer];
+    _landscapeVC.view.hidden = NO;
+    // use appropriate undepricated method based on the iOS version
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 5.0f) {
+        [_presentingViewController presentModalViewController:_landscapeVC animated:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(playerItemDidReachEnd:)
+                                                     name:AVPlayerItemDidPlayToEndTimeNotification
+                                                   object:_adPlayer];
+    } else {
+        [_presentingViewController presentViewController:_landscapeVC animated:YES completion:^(){}];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(playerItemDidReachEnd:)
+                                                     name:AVPlayerItemDidPlayToEndTimeNotification
+                                                   object:_adPlayer];
+    }
+
 }
 
 //#pragma mark -
@@ -146,7 +152,12 @@
     self.clickTrackingView = [[TVASTClickTrackingUIView alloc] initWithFrame:frame];
     [_clickTrackingView setDelegate:self];
     [_landscapeVC.view addSubview:_clickTrackingView];
-    
+    [self setupAdLoader];
+}
+
+-(void) setupAdLoader {
+    self.adsLoader = [[TVASTAdsLoader alloc] init];
+    _adsLoader.delegate = self;
 }
 
 /// Called when content should be paused. This usually happens right before a

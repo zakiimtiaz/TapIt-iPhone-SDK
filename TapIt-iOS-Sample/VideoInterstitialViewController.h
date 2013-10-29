@@ -14,11 +14,10 @@
 #import "TVASTAdsLoader.h"
 #import "TapItVideoInterstitialAd.h"
 
-@interface VideoInterstitialViewController : UIViewController
+@interface VideoInterstitialViewController : UIViewController<TapItVideoInterstitialAdDelegate>
 
-// The loader of ads.
-@property(nonatomic, retain) TVASTAdsLoader *adsLoader;
 @property (nonatomic, retain) IBOutlet UIButton     *adRequestButton;
 @property (nonatomic, retain) TapItVideoInterstitialAd *videoAd;
+
 - (IBAction)onRequestAds;
 @end
