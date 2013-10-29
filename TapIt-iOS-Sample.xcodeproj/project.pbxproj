@@ -154,6 +154,11 @@
 		CD73707A181B280600E9126F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; };
 		CD974C1B17F5EBC90028A133 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
 		CD974C1C17F5EBC90028A133 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
+		CDE1024918202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; };
+		CDE1024A18202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; };
+		CDE1024B18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
+		CDE1024C18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
+		CDE1024D18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -300,6 +305,8 @@
 		CD40CE02181B2E26007029AC /* TVASTClickThroughBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVASTClickThroughBrowser.h; sourceTree = "<group>"; };
 		CD40CE03181B2E26007029AC /* TVASTClickTrackingUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVASTClickTrackingUIView.h; sourceTree = "<group>"; };
 		CD40CE04181B2E26007029AC /* TVASTVideoAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVASTVideoAdsManager.h; sourceTree = "<group>"; };
+		CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItVideoInterstitialAd.h; path = TapItSDK/TapItVideoInterstitialAd.h; sourceTree = "<group>"; };
+		CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapItVideoInterstitialAd.m; path = TapItSDK/TapItVideoInterstitialAd.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +542,8 @@
 				559498681536751400D6495D /* TapItBannerAdView.h */,
 				559498691536751400D6495D /* TapItInterstitialAd.h */,
 				552E9A711538CDB400FD22C4 /* TapItConstants.h */,
+				CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */,
+				CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -664,6 +673,7 @@
 				551875F817907FEA00B632B9 /* TapItMraidCommand.h in Headers */,
 				551875FF17907FEA00B632B9 /* TapItMRAIDDelegate.h in Headers */,
 				551876061790823900B632B9 /* TapItAdMobStubs.h in Headers */,
+				CDE1024A18202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +697,7 @@
 				551876051790823900B632B9 /* TapItAdMobStubs.h in Headers */,
 				55CF02F215EFDEAC00DBB5A5 /* TapItRequest.h in Headers */,
 				CD40CE0E181B344C007029AC /* TVASTAd.h in Headers */,
+				CDE1024918202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,6 +883,7 @@
 				551876021790816300B632B9 /* AdMobController.m in Sources */,
 				551876031790818700B632B9 /* TapItMediationAdMob.m in Sources */,
 				CD14CF27181EE5C200940C48 /* VideoInterstitialViewController.m in Sources */,
+				CDE1024B18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +906,7 @@
 				5524C78D17D94E7D00F99070 /* TapItReachability.m in Sources */,
 				5524C78E17D94E8600F99070 /* TapItOpenUDID.m in Sources */,
 				5524C78F17D94EA300F99070 /* NSDictionary+QueryStringBuilder.m in Sources */,
+				CDE1024D18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,6 +930,7 @@
 				55CF02E115EFDEAC00DBB5A5 /* TapItInterstitialAdViewController.m in Sources */,
 				551875F417907FEA00B632B9 /* TapItHelpers.m in Sources */,
 				551875FB17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
+				CDE1024C18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
