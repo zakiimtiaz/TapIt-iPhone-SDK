@@ -140,6 +140,7 @@
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
+		CD14CF27181EE5C200940C48 /* VideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD14CF26181EE5C200940C48 /* VideoInterstitialViewController.m */; };
 		CD40CE05181B2E26007029AC /* libTVAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD40CDFD181B2E26007029AC /* libTVAST.a */; };
 		CD40CE06181B2E26007029AC /* libTVAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD40CDFD181B2E26007029AC /* libTVAST.a */; };
 		CD40CE08181B2E27007029AC /* TVASTAdError.h in Headers */ = {isa = PBXBuildFile; fileRef = CD40CDFF181B2E26007029AC /* TVASTAdError.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -289,6 +290,8 @@
 		5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenVC.h; sourceTree = "<group>"; };
 		5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenVC.m; sourceTree = "<group>"; };
 		5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplanestrailer.m4v; sourceTree = "<group>"; };
+		CD14CF25181EE5C200940C48 /* VideoInterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoInterstitialViewController.h; sourceTree = "<group>"; };
+		CD14CF26181EE5C200940C48 /* VideoInterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoInterstitialViewController.m; sourceTree = "<group>"; };
 		CD40CDFD181B2E26007029AC /* libTVAST.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTVAST.a; sourceTree = "<group>"; };
 		CD40CDFE181B2E26007029AC /* TVASTAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVASTAd.h; sourceTree = "<group>"; };
 		CD40CDFF181B2E26007029AC /* TVASTAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVASTAdError.h; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 				5594983215366E4100D6495D /* AppDelegate.h */,
 				5594983315366E4100D6495D /* AppDelegate.m */,
 				5594983B15366E4200D6495D /* BannerAdController.h */,
+				CD14CF25181EE5C200940C48 /* VideoInterstitialViewController.h */,
+				CD14CF26181EE5C200940C48 /* VideoInterstitialViewController.m */,
 				5594983C15366E4200D6495D /* BannerAdController.m */,
 				5594984215366E4200D6495D /* InterstitialController.h */,
 				5594984315366E4200D6495D /* InterstitialController.m */,
@@ -866,6 +871,7 @@
 				551875FA17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
 				551876021790816300B632B9 /* AdMobController.m in Sources */,
 				551876031790818700B632B9 /* TapItMediationAdMob.m in Sources */,
+				CD14CF27181EE5C200940C48 /* VideoInterstitialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

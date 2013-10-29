@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment version="1280" defaultVersion="1280" identifier="iOS"/>
+        <deployment version="1280" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Banner Ad Controller - Banners-->
@@ -65,6 +65,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3041" y="150"/>
+        </scene>
+        <!--Video Interstitial View Controller - Video-->
+        <scene sceneID="HoP-JD-Vvc">
+            <objects>
+                <viewController id="hMg-ub-Xhq" customClass="VideoInterstitialViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ayx-Ro-oAR">
+                        <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qko-wv-qNe">
+                                <rect key="frame" x="300" y="480" width="169" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Request Ad">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRequestAds" destination="hMg-ub-Xhq" eventType="touchUpInside" id="h4U-tL-HVK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Video" image="second.png" id="iJF-r6-j6l"/>
+                    <connections>
+                        <outlet property="adRequestButton" destination="Qko-wv-qNe" id="mtJ-Qw-rfD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXW-cD-Lqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2034" y="2639"/>
         </scene>
         <!--AdPrompt Controller-->
         <scene sceneID="Juy-nx-HRJ">
@@ -276,7 +311,7 @@
             <objects>
                 <viewController id="dKr-Eh-0fd" customClass="VideoAdController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AwZ-YG-gjT">
-                        <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0ng-fc-SOa">
@@ -455,11 +490,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dKr-Eh-0fd" kind="relationship" relationship="viewControllers" id="TPr-Oq-RGB"/>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="27"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="28"/>
                         <segue destination="wt7-t0-B2c" kind="relationship" relationship="viewControllers" id="ZDk-Tq-HOU"/>
                         <segue destination="XMr-KD-gbP" kind="relationship" relationship="viewControllers" id="SCF-hC-7zv"/>
+                        <segue destination="hMg-ub-Xhq" kind="relationship" relationship="viewControllers" id="h39-NP-cq5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -474,6 +509,77 @@
         <image name="second.png" width="30" height="30"/>
         <image name="third.png" width="22" height="22"/>
     </resources>
+    <classes>
+        <class className="AdMobController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AdMobController.h"/>
+            <relationships>
+                <relationship kind="action" name="loadInterstitial:"/>
+                <relationship kind="action" name="showInterstital:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="showButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="AdPromptDemoController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AdPromptDemoController.h"/>
+            <relationships>
+                <relationship kind="action" name="preLoadAdPrompt:"/>
+                <relationship kind="action" name="showAdPrompt:"/>
+                <relationship kind="action" name="simpleExample:"/>
+                <relationship kind="outlet" name="preloadButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="BannerAdController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BannerAdController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelLoad:"/>
+                <relationship kind="action" name="hideBanner:"/>
+                <relationship kind="outlet" name="tapitAd" candidateClass="TapItBannerAdView"/>
+            </relationships>
+        </class>
+        <class className="InterstitialController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InterstitialController.h"/>
+            <relationships>
+                <relationship kind="action" name="loadInterstitial:"/>
+                <relationship kind="action" name="showInterstitial:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="showButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TapItBannerAdView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TapItBannerAdView.h"/>
+        </class>
+        <class className="VideoAdController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VideoAdController.h"/>
+            <relationships>
+                <relationship kind="action" name="browserSwitchChanged:"/>
+                <relationship kind="action" name="maximizeSwitchChanged:"/>
+                <relationship kind="action" name="onPlayPauseClicked:"/>
+                <relationship kind="action" name="onRequestAds"/>
+                <relationship kind="action" name="onResetState"/>
+                <relationship kind="action" name="onUnloadAds"/>
+                <relationship kind="action" name="playHeadValueChanged:"/>
+                <relationship kind="outlet" name="adRequestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="browserSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="console" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="durationText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maximizeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="playHeadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playTimeText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="VideoInterstitialViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VideoInterstitialViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onRequestAds"/>
+                <relationship kind="outlet" name="adRequestButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
