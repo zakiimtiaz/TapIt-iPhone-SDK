@@ -240,8 +240,6 @@
 		559498901536A36F00D6495D /* TapItAdDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TapItAdDelegates.h; path = TapItSDK/Headers/TapItAdDelegates.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5596594315B4C7150002620D /* libTapIt_without_extras.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_without_extras.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5596594715B4C7150002620D /* TapIt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TapIt-Prefix.pch"; sourceTree = "<group>"; };
-		5596594815B4C7150002620D /* TapIt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TapIt.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		5596594915B4C7150002620D /* TapIt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TapIt.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		55A26459160D12D4009DFA5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		55A2645B160D12D4009DFA5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		55A64B5A1537E7F200AFDDFF /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -560,8 +558,6 @@
 		5596594515B4C7150002620D /* TapIt */ = {
 			isa = PBXGroup;
 			children = (
-				5596594815B4C7150002620D /* TapIt.h */,
-				5596594915B4C7150002620D /* TapIt.m */,
 				5596594615B4C7150002620D /* Supporting Files */,
 			);
 			path = TapIt;
