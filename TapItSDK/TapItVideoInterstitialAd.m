@@ -141,7 +141,7 @@
 
 // Set when ads loading failed.
 - (void)adsLoader:(TVASTAdsLoader *)loader failedWithErrorData:(TVASTAdLoadingErrorData *)errorData {
-    NSLog(@"Encountered Error: code:%d,message:%@\n", errorData.adError.code, [errorData.adError localizedDescription]);
+    [delegate tapitVideoInterstitialAdDidFail:self];
 }
 
 #pragma mark -

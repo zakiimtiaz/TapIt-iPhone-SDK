@@ -37,6 +37,10 @@
  */
 - (void)tapitVideoInterstitialAdDidFinish:(id)interstitialAd;
 
+/**
+ Gets called if there are no ads to display
+ */
+- (void)tapitVideoInterstitialAdDidFail:(id)interstitialAd;
 @end
 
 @interface TapItVideoInterstitialAd : NSObject <TVASTAdsLoaderDelegate,
