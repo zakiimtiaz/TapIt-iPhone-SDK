@@ -47,17 +47,20 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
     // Dispose of any resources that can be recreated.
 }
 
-- (void)requestAds {
-    [_videoAd unloadAdsManager];
-    
+- (void)requestAds {    
     // Create an adsRequest object and request ads from the ad server with your own zone_id
     TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone: kZoneIdVideo];
     [request setCustomParameter:@"preroll" forKey:@"videotype"];
-    [_videoAd.adsLoader requestAdsWithRequestObject:request];
+    //[request setCustomParameter:@"215133" forKey:@"cid"];
+    [_videoAd requestAdsWithRequestObject:request];
 }
 
 - (IBAction)onRequestAds {
     [self requestAds];
+}
+
+- (void)tapitVideoInterstitialAdDidFinish:(id)interstitialAd {
+    NSLog(@"Override point for resuming your app's content.");
 }
 
 - (void)viewDidUnload {
@@ -65,9 +68,9 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
     [super viewDidUnload];
 }
 
-- (void)didReceiveVideoAd {
+- (void)tapitVideoInterstitialAdDidLoad:(TapItVideoInterstitialAd *)videoAd {
     NSLog(@"We received an ad... now show it.");
-    [_videoAd playVideoFromAdsManager];
+    [videoAd playVideoFromAdsManager];
 }
 
 @end
