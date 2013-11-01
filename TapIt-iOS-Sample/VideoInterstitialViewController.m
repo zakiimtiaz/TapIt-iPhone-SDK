@@ -58,7 +58,7 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
     [self requestAds];
 }
 
-- (void)tapitVideoInterstitialAdDidFinish:(id)interstitialAd {
+- (void)tapitVideoInterstitialAdDidFinish:(TapItVideoInterstitialAd *)videoAd {
     NSLog(@"Override point for resuming your app's content.");
 }
 
@@ -72,7 +72,7 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
     [videoAd playVideoFromAdsManager];
 }
 
-- (void)tapitVideoInterstitialAdDidFail:(id)interstitialAd {
+- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd {
     NSLog(@"No creatives are available to display. Please check you zone and creative id settings.");
 }
 @end

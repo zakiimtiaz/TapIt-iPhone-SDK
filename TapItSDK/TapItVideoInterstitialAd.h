@@ -35,12 +35,12 @@
 /**
  Gets called when the video ad has finished playing and the screen returns to your app.
  */
-- (void)tapitVideoInterstitialAdDidFinish:(id)interstitialAd;
+- (void)tapitVideoInterstitialAdDidFinish:(TapItVideoInterstitialAd *)videoAd;
 
 /**
  Gets called if there are no ads to display
  */
-- (void)tapitVideoInterstitialAdDidFail:(id)interstitialAd;
+- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd;
 @end
 
 @interface TapItVideoInterstitialAd : NSObject <TVASTAdsLoaderDelegate,
