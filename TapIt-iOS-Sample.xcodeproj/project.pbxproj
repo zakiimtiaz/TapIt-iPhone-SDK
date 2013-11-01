@@ -136,7 +136,6 @@
 		5D3535A11739AE9E00660408 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358B1739AE9E00660408 /* first@2x.png */; };
 		5D3535A21739AE9E00660408 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358C1739AE9E00660408 /* second.png */; };
 		5D3535A31739AE9E00660408 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358D1739AE9E00660408 /* second@2x.png */; };
-		5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E34171725EC3A00A8CA89 /* VideoAdController.m */; };
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
 		5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */; };
@@ -283,8 +282,6 @@
 		5D35358B1739AE9E00660408 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		5D35358C1739AE9E00660408 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		5D35358D1739AE9E00660408 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		5D3E34161725EC3A00A8CA89 /* VideoAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoAdController.h; sourceTree = "<group>"; };
-		5D3E34171725EC3A00A8CA89 /* VideoAdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoAdController.m; sourceTree = "<group>"; };
 		5D3E342D172612F800A8CA89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -463,17 +460,15 @@
 				5594983215366E4100D6495D /* AppDelegate.h */,
 				5594983315366E4100D6495D /* AppDelegate.m */,
 				5594983B15366E4200D6495D /* BannerAdController.h */,
+				5594983C15366E4200D6495D /* BannerAdController.m */,
 				CD14CF25181EE5C200940C48 /* VideoInterstitialViewController.h */,
 				CD14CF26181EE5C200940C48 /* VideoInterstitialViewController.m */,
-				5594983C15366E4200D6495D /* BannerAdController.m */,
 				5594984215366E4200D6495D /* InterstitialController.h */,
 				5594984315366E4200D6495D /* InterstitialController.m */,
 				55880A1E15C0707600D9381C /* AdPromptDemoController.h */,
 				55E0DB8815F95BA600FB8421 /* AdPromptDemoController.m */,
 				5532FEDE15EC3A6400427E00 /* AdMobController.h */,
 				5532FEDF15EC3A6400427E00 /* AdMobController.m */,
-				5D3E34161725EC3A00A8CA89 /* VideoAdController.h */,
-				5D3E34171725EC3A00A8CA89 /* VideoAdController.m */,
 				5DB0869317304B9E00D5C8D3 /* FullScreenVC.h */,
 				5DB0869417304B9E00D5C8D3 /* FullScreenVC.m */,
 				55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */,
@@ -872,7 +867,6 @@
 				558F1D4F15BA3DB600670940 /* TapItAdPrompt.m in Sources */,
 				55880B0015C1B00A00D9381C /* TapItBrowserController.m in Sources */,
 				55E0DB8915F95BA600FB8421 /* AdPromptDemoController.m in Sources */,
-				5D3E34181725EC3A00A8CA89 /* VideoAdController.m in Sources */,
 				5DB0869517304B9E00D5C8D3 /* FullScreenVC.m in Sources */,
 				551875F317907FEA00B632B9 /* TapItHelpers.m in Sources */,
 				551875FA17907FEA00B632B9 /* TapItMraidCommand.m in Sources */,
