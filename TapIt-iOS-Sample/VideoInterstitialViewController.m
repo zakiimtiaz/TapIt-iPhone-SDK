@@ -48,8 +48,8 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
 }
 
 - (void)requestAds {    
-    // Create an adsRequest object and request ads from the ad server with your own zone_id
-    TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone: kZoneIdVideo];
+    // Create an adsRequest object and request ads from the ad server with your own kZoneIdVideo
+    TVASTAdsRequest *request = [TVASTAdsRequest requestWithAdZone:kZoneIdVideo];
     [_videoAd requestAdsWithRequestObject:request];
     
     //If you want to specify the type of video ad you are requesting, use the call below.
