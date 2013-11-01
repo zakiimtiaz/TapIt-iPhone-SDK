@@ -27,6 +27,14 @@ typedef enum {
     TapItBannerHideDown,
 } TapItBannerHideDirection;
 
+typedef enum {
+    TapItVideoTypeAll,
+    TapItVideoTypePreroll,
+    TapItVideoTypeMidroll,
+    TapItVideoTypePostroll,
+} TapItVideoType;
+
+
 #define TAPIT_PARAM_KEY_BANNER_ROTATE_INTERVAL @"RotateBannerInterval"
 #define TAPIT_PARAM_KEY_BANNER_ERROR_TIMEOUT_INTERVAL @"ErrorRetryInterval"
 

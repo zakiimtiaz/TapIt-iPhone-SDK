@@ -16,6 +16,7 @@
 #import "TVASTClickTrackingUIView.h"
 #import "TVASTClickThroughBrowser.h"
 #import "FullScreenVC.h"
+#import "TapItConstants.h"
 
 @class TapItVideoInterstitialAd;
 
@@ -69,6 +70,15 @@ TVASTClickThroughBrowserDelegate>
  Instantiantes the `TVASTAdsRequest`.
  */
 -(void)requestAdsWithRequestObject:(TVASTAdsRequest *)request;
+
+///-----------------------
+/// @name Optional
+///-----------------------
+
+/**
+ Instantiantes the `TVASTAdsRequest` with a specified `TapItVideoType`.
+ */
+-(void)requestAdsWithRequestObject:(TVASTAdsRequest *)request andVideoType:(TapItVideoType)videoType;
 
 /**
  An `id` that is used to identify the 'TapItVideoInterstitialAdDelegate' delegate.

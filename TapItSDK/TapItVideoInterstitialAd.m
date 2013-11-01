@@ -35,6 +35,34 @@
     [self.adsLoader requestAdsWithRequestObject:request];
 }
 
+-(void)requestAdsWithRequestObject:(TVASTAdsRequest *)request andVideoType:(TapItVideoType)videoType {
+    NSString *newKey;
+    switch (videoType) {
+        case TapItVideoTypeAll:
+            newKey = @"all";
+            break;
+            
+        case TapItVideoTypePreroll:
+            newKey = @"preroll";
+            break;
+            
+        case TapItVideoTypeMidroll:
+            newKey = @"midroll";
+            break;
+            
+        case TapItVideoTypePostroll:
+            newKey = @"postroll";
+            break;
+            
+        default:
+            newKey = @"all";
+            break;
+    }
+
+    [request setCustomParameter:newKey forKey:@"videotype"];
+    [self.adsLoader requestAdsWithRequestObject:request];
+}
+
 // unload the ad manager after use.
 - (void)unloadAdsManager {
     if (_videoAdsManager != nil) {
