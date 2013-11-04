@@ -9,9 +9,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
-#import "TVASTAdsRequest.h"
-#import "TVASTVideoAdsManager.h"
-#import "TVASTAdsLoader.h"
 #import "TapItVideoInterstitialAd.h"
 
 @interface VideoInterstitialViewController : UIViewController<TapItVideoInterstitialAdDelegate>
