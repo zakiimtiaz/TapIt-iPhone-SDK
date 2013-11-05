@@ -153,11 +153,10 @@
 		CD73707A181B280600E9126F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; };
 		CD974C1B17F5EBC90028A133 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
 		CD974C1C17F5EBC90028A133 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
-		CDE1024918202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; };
-		CDE1024A18202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; };
+		CDE1024918202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDE1024A18202CC600DB20F9 /* TapItVideoInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1024718202CC600DB20F9 /* TapItVideoInterstitialAd.h */; settings = {ATTRIBUTES = (); }; };
 		CDE1024B18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
 		CDE1024C18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
-		CDE1024D18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1024818202CC600DB20F9 /* TapItVideoInterstitialAd.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -896,7 +895,6 @@
 				5524C78D17D94E7D00F99070 /* TapItReachability.m in Sources */,
 				5524C78E17D94E8600F99070 /* TapItOpenUDID.m in Sources */,
 				5524C78F17D94EA300F99070 /* NSDictionary+QueryStringBuilder.m in Sources */,
-				CDE1024D18202CC600DB20F9 /* TapItVideoInterstitialAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
