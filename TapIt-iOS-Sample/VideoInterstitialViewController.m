@@ -74,7 +74,7 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
     [videoAd playVideoFromAdsManager];
 }
 
-- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd {
-    NSLog(@"No creatives are available to display. Please check you zone and creative id settings.");
+- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd withErrorString:(NSString *)error {
+    NSLog(@"%@", error);
 }
 @end

@@ -41,7 +41,7 @@
 /**
  Gets called if there are no ads to display
  */
-- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd;
+- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd withErrorString:(NSString *)error;
 @end
 
 @interface TapItVideoInterstitialAd : NSObject <TVASTAdsLoaderDelegate,

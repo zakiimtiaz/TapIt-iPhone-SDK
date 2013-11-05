@@ -169,7 +169,7 @@
 
 // Set when ads loading failed.
 - (void)adsLoader:(TVASTAdsLoader *)loader failedWithErrorData:(TVASTAdLoadingErrorData *)errorData {
-    [delegate tapitVideoInterstitialAdDidFail:self];
+    [delegate tapitVideoInterstitialAdDidFail:self withErrorString:@"Could not load creative."];
 }
 
 #pragma mark -

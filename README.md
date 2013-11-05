@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 3.0.8
+Version 3.0.9
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -228,7 +228,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
     [videoAd playVideoFromAdsManager];
 }
 
-- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd {
-    NSLog(@"No creatives are available to display. Please check you zone and creative id settings.");
+- (void)tapitVideoInterstitialAdDidFail:(TapItVideoInterstitialAd *)videoAd withErrorString:(NSString *)error {
+    NSLog(@"%@", error);
 }
 ````
