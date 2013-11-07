@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "AdPromptDemoController.h"
 #import "TapIt.h"
-#import "TapItAdPrompt.h"
 
 // This is the zone id for the AdPrompt Example
 // go to http://ads.tapit.com/ to get your's

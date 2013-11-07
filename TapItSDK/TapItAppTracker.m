@@ -1,6 +1,6 @@
 //
 //  TapItAppTracker.m
-//  TapIt-iOS-Sample
+//  TapIt iOS SDK
 //
 //  Created by Nick Penteado on 4/11/12.
 //  Copyright (c) 2012 TapIt!. All rights reserved.
@@ -8,10 +8,19 @@
 
 #import "TapItPrivateConstants.h"
 #import "TapItAppTracker.h"
+#import "TapItAppTracker_Private.h"
 #import "TapItOpenUDID.h"
 #import "TapItReachability.h"
+#import "TapItDefines.h"
+//#import <MaaSCore/MaaSCore.h>
+//#import "MaaSCoreLogger.h"
+//#import "MaaSCore_Private.h"
+//#import "MaaSCoreDevice_Private.h"
 
 @interface TapItAppTracker ()
+{
+    //id<MaaSCoreLogger> _log;
+}
     - (void)reportApplicationOpenInBackground;
 @end
 
@@ -27,6 +36,35 @@
 		return sharedAppTracker;
 	}
 }
+
+//-(id)init
+//{
+//    if(self = [super init])
+//    {
+//        [self commonSetup];
+//    }
+//    
+//    return self;
+//}
+//
+//- (void)commonSetup
+//{
+//    // Dependency checking
+//    [self moduleDependencyCheck];
+//    
+//    _log = [MaaSCore loggerForService:[TapItAppTracker serviceName]];
+//    
+//    [MaaSCore registerModule:[TapItAppTracker serviceName]];
+//    
+//}
+//
+//- (void)moduleDependencyCheck
+//{
+//    BOOL dependencyOK = [MaaSCore coreDependencyCheck:kMaaSAdvertisingMaaSCoreVersionMinimum];
+//    
+//    NSString *assertionMessage = [NSString stringWithFormat:@"[MaaSAdvertising] Unable to load MaaSAdvertising. MaaSAdvertising has a dependency on MaaSCore v%@", kMaaSAdvertisingMaaSCoreVersionMinimum];
+//    NSAssert(dependencyOK, assertionMessage);
+//}
 
 - (NSString *)deviceIFA {
 #ifndef DISABLE_NEW_FEATURES
@@ -157,6 +195,9 @@
     } // end @autoreleasepool
 }
 
-
+//+ (NSString *)serviceName
+//{
+//    return @"MaaSAdvertising";
+//}
 
 @end

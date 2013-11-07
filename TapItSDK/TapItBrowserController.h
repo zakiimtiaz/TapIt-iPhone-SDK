@@ -13,7 +13,7 @@
     #import <StoreKit/StoreKit.h>
 #endif
 
-#import "TapItAdDelegates.h"
+#import "TapItBrowserControllerDelegate.h"
 
 @protocol TapItBrowserControllerDelegate;
 

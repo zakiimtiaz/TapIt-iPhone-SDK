@@ -1,7 +1,7 @@
 TapIt iOS SDK
 =============
 
-Version 3.0.9
+Version 3.0.10
 
 This is the iOS SDK for the TapIt! mobile ad network.  Go to http://tapit.com/ for more details and to sign up.
 
@@ -156,7 +156,7 @@ if( self.interstitialAd.isLoaded ) {
 
 Delegate Callbacks
 ------------------
-TapIt! ad units follow the delegate pattern to notify your app of state changes.  For details on the delegate methods called by the TapIt! iOS SDK, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapItSDK/Headers/TapItAdDelegates.h
+TapIt! ad units follow the delegate pattern to notify your app of state changes.
 
 
 
@@ -216,6 +216,7 @@ Note: the following uses Automatic Reference Counting so there will not be any o
 
 - (void)tapitVideoInterstitialAdDidFinish:(TapItVideoInterstitialAd *)videoAd {
     NSLog(@"Override point for resuming your app's content.");
+    [_videoAd unloadAdsManager];
 }
 
 - (void)viewDidUnload {

@@ -10,6 +10,7 @@
 #import "TapItPrivateConstants.h"
 #import "NSDictionary+QueryStringBuilder.h"
 #import "TapItAppTracker.h"
+#import "TapItAppTracker_Private.h"
 
 
 @interface TapItRequest () 

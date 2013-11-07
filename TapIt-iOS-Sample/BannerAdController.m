@@ -25,7 +25,11 @@
     // init banner and add to your view
     if (!tapitAd) {
         // don't re-define if we used IB to init the banner...
-        tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(20, 89, 728, 90)];
+        } else {
+            tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 20, 320, 50)];
+        }
         [self.view addSubview:self.tapitAd];
     }
 
@@ -43,7 +47,12 @@
     // init banner and add to your view
     if (!tapitAd) {
         // don't re-define if we used IB to init the banner...
-        tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(20, 89, 728, 90)];
+        } else {
+            tapitAd = [[TapItBannerAdView alloc] initWithFrame:CGRectMake(0, 20, 320, 50)];
+        }
+        
         [self.view addSubview:self.tapitAd];
     }
     

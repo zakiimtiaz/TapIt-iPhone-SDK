@@ -11,7 +11,6 @@
 
 #import "TapItConstants.h"
 #import "TapItAppTracker.h"
-#import "TapItAdDelegates.h"
 #import "TapItRequest.h"
 #import "TapItBannerAdView.h"
 #import "TapItInterstitialAd.h"

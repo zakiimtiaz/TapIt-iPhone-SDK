@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "TapItAdDelegates.h"
-
-@class TapItBannerAdView;
+#import "TapItBannerAdView.h"
 
 @interface BannerAdController : UIViewController <TapItBannerAdViewDelegate>
 

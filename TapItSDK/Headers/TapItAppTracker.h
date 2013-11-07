@@ -1,29 +1,41 @@
 //
 //  TapItAppTracker.h
-//  TapIt-iOS-Sample
+//  TapIt iOS SDK
 //
 //  Created by Nick Penteado on 4/11/12.
-//  Copyright (c) 2012 TapIt!. All rights reserved.
+//  Updated by Carl Zornes on 10/24/13.
+//  Copyright (c) 2013 TapIt!. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCarrier.h>
+#import <Foundation/Foundation.h>
+
+/**
+ `TapItAppTracker` implements a standard `TapItAppTracker` into your app. This is required for all ad requests.
+ */
 
 @interface TapItAppTracker : NSObject
 
+///-----------------------
+/// @name Required Methods
+///-----------------------
+
+/**
+ This method creates the shared app tracker.
+ */
 + (TapItAppTracker *)sharedAppTracker;
 
-- (NSString *)deviceIFA;
-- (NSInteger)advertisingTrackingEnabled;
-- (NSString *)deviceUDID;
-- (NSString *)userAgent;
-- (CLLocation *)location;
-- (NSInteger)networkConnectionType;
-- (NSString *)carrier;
-- (NSString *)carrierId;
-
+/**
+ This method registers your application with the ad server.
+ */
 - (void)reportApplicationOpen;
+
+///---------------
+/// @name Other Methods
+///---------------
+
+///**
+// Returns 'MaaSAdvertising'
+// */
+//+ (NSString *)serviceName;
 
 @end

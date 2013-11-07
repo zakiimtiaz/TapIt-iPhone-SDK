@@ -9,7 +9,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TapItBannerAdView.h"
-#import "TapitAdView.h"
 #import "TapItAppTracker.h"
 #import "TapItAdManager.h"
 #import "TapItPrivateConstants.h"

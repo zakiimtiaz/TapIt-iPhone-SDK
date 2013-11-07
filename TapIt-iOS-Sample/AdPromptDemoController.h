@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "TapItAdDelegates.h"
+#import "TapItAdPrompt.h"
 
 @class TapItAdPrompt;
 

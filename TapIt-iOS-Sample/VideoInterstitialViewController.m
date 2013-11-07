@@ -62,6 +62,7 @@ NSString *const kZoneIdVideo         = @"22219";     // 24839, 22219
 
 - (void)tapitVideoInterstitialAdDidFinish:(TapItVideoInterstitialAd *)videoAd {
     NSLog(@"Override point for resuming your app's content.");
+    [_videoAd unloadAdsManager];
 }
 
 - (void)viewDidUnload {

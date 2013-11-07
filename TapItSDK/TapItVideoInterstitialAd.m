@@ -1,6 +1,6 @@
 //
 //  TapItVideoInterstitialAd.m
-//  TapIt-iOS-Sample
+//  TapIt iOS SDK
 //
 //  Created by Carl Zornes on 10/29/13.
 //
@@ -9,6 +9,7 @@
 #import "TapItVideoInterstitialAd.h"
 #import "TVASTAd.h"
 #import "TapItHelpers.h"
+#import "FullScreenVC.h"
 
 @interface TapItVideoInterstitialAd ()
 
@@ -180,11 +181,7 @@
     AVPlayerLayer *adPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:_adPlayer];
     [adPlayerLayer setName:@"AdPlayerLayer"];
     
-    // This is the setup for display the ad fullscreen landscape.  Your code can be different.
-    /***/
-    NSString *nibName = [NSString stringWithFormat:@"FullScreenVC_%@",
-                         (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?@"iPad":@"iPhone"];
-    self.landscapeVC = [[FullScreenVC alloc] initWithNibName:nibName bundle:nil];
+    _landscapeVC = [[FullScreenVC alloc] init];
     [_landscapeVC.view setHidden:YES];
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -210,17 +207,19 @@
         [_landscapeVC.view addSubview:self.closeButton];
         self.closeButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
         
-        CGRect appFrame = TapItApplicationFrame(TapItInterfaceOrientation());
+        //CGRect appFrame = TapItApplicationFrame(TapItInterfaceOrientation());
         
         NSInteger y = 0;
         if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
             // push the close button down slightly to clear the statusbar
             y = 20;
         }
-        
-        self.closeButton.frame = CGRectMake(appFrame.size.height - 50, y, 50, 50);
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            self.closeButton.frame = CGRectMake(700, y, 50, 50);
+        } else {
+            self.closeButton.frame = CGRectMake(250, y, 50, 50);
+        }
     }
-    
     [_landscapeVC.view bringSubviewToFront:self.closeButton];
     [self setupAdLoader];
 }
@@ -276,13 +275,12 @@
 }
 
 - (void)closeTapped:(id)sender {
+    [_adPlayer pause];
     if(delegate) {
         if ([[UIDevice currentDevice].systemVersion floatValue] < 5.0f) {
-            [_adPlayer pause];
             [_landscapeVC dismissModalViewControllerAnimated:TRUE];
             [delegate tapitVideoInterstitialAdDidFinish:self];
         } else {
-            [_adPlayer pause];
             [_landscapeVC dismissViewControllerAnimated:TRUE completion:^(){
                 [delegate tapitVideoInterstitialAdDidFinish:self];
             }];

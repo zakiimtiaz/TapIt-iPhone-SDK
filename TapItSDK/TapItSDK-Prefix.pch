@@ -1,0 +1,15 @@
+//
+//  TapItSDK-Prefix.pch
+//  TapIt iOS SDK
+//
+//  Created by Carl Zornes on 10/25/13.
+//
+//
+
+#ifndef TapIt_iOS_Sample_TapItSDK_Prefix_pch
+#define TapIt_iOS_Sample_TapItSDK_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
