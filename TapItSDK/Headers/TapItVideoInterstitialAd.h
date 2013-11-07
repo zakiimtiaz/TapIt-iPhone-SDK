@@ -3,7 +3,7 @@
 //  TapIt iOS SDK
 //
 //  Created by Carl Zornes on 10/29/13.
-//  Copyright (c) 2013 _TI_!. All rights reserved.
+//  Copyright (c) 2013 TapIt!. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,10 +15,9 @@
 #import "TVASTAdsLoader.h"
 #import "TVASTClickTrackingUIView.h"
 #import "TVASTClickThroughBrowser.h"
-#import "FullScreenVC.h"
 #import "TapItConstants.h"
 
-@class TapItVideoInterstitialAd;
+@class TapItVideoInterstitialAd, FullScreenVC;
 
 @protocol TapItVideoInterstitialAdDelegate <NSObject>
 
