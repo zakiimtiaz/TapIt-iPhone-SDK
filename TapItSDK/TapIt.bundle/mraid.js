@@ -68,7 +68,7 @@ var mraid = {
 
     mraid.open = function(url) {
         console.debug("open");
-        nativeExecute("open", {url: url});
+        nativeExecute("open", {url: encodeURIComponent(url).replace(/%20/g,'+')});
     };
 
     mraid.setExpandProperties = function(props) {
