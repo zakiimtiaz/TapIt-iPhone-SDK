@@ -45,6 +45,19 @@ TapItAdPrompt *prompt = [[[TapItAdPrompt alloc] initWithRequest:request] autorel
 For a complete example, see https://github.com/tapit/TapIt-iPhone-SDK/blob/master/TapIt-iOS-Sample/AdPromptDemoController.m
 
 
+Initialization
+------------
+
+````objective-c
+//In your AppDelegate.m file:
+#import "TapItAppTracker.h"
+...
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    TapItAppTracker *appTracker = [TapItAppTracker sharedAppTracker];
+    [appTracker reportApplicationOpen];
+    return YES;
+}
+````
 
 Banner Usage
 ------------
