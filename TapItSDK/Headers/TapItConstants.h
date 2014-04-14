@@ -10,7 +10,7 @@
 #ifndef TapIt_iOS_Sample_TapItConstants_h
 #define TapIt_iOS_Sample_TapItConstants_h
 
-#define TAPIT_VERSION @"3.0.10"
+#define TAPIT_VERSION @"3.0.11"
 
 /**
  `TapItAdType` defines the available ad types for interstitial ads.
