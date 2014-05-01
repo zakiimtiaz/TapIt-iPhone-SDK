@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment version="1280" defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Banner Ad Controller - Banners-->
@@ -77,77 +77,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXW-cD-Lqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2034" y="2639"/>
-        </scene>
-        <!--AdPrompt Controller-->
-        <scene sceneID="Juy-nx-HRJ">
-            <objects>
-                <viewController id="wt7-t0-B2c" userLabel="AdPrompt Controller" customClass="AdPromptDemoController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LQb-9x-jNi">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Cls-6w-9Ij">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items/>
-                            </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rDr-Mi-pOy">
-                                <rect key="frame" x="348" y="459" width="72" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Popup">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showAdPrompt:" destination="wt7-t0-B2c" eventType="touchUpInside" id="en7-Rp-r3N"/>
-                                    <action selector="showDialogAd:" destination="zmN-hb-C0i" eventType="touchUpInside" id="HPc-uS-a4g"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4tm-si-oc2">
-                                <rect key="frame" x="328" y="504" width="112" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ActionSheet">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showAdPrompt:" destination="wt7-t0-B2c" eventType="touchUpInside" id="gmd-Sy-hKl"/>
-                                    <action selector="showDialogAd:" destination="10" eventType="touchUpInside" id="dI2-HQ-EG5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mpU-te-sMk">
-                                <rect key="frame" x="342" y="408" width="85" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Pre-load">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="preLoadAdPrompt:" destination="wt7-t0-B2c" eventType="touchUpInside" id="Fnb-Tt-DKF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l8r-Qj-edy">
-                                <rect key="frame" x="314" y="562" width="140" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Simple Example">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="simpleExample:" destination="wt7-t0-B2c" eventType="touchUpInside" id="7kw-Dz-djp"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="AdPrompts" image="fourth.png" id="daL-fI-ttC"/>
-                    <navigationItem key="navigationItem" id="o9d-n9-nGK"/>
-                    <connections>
-                        <outlet property="preloadButton" destination="mpU-te-sMk" id="wwh-Pc-Ggf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zmN-hb-C0i" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3049" y="2438"/>
         </scene>
         <!--Ad Mob Controller - Ad Mob-->
         <scene sceneID="hFr-b6-XMf">
@@ -256,7 +185,6 @@
                     <connections>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="27"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="28"/>
-                        <segue destination="wt7-t0-B2c" kind="relationship" relationship="viewControllers" id="ZDk-Tq-HOU"/>
                         <segue destination="XMr-KD-gbP" kind="relationship" relationship="viewControllers" id="SCF-hC-7zv"/>
                         <segue destination="hMg-ub-Xhq" kind="relationship" relationship="viewControllers" id="h39-NP-cq5"/>
                     </connections>
@@ -268,7 +196,6 @@
     </scenes>
     <resources>
         <image name="first.png" width="30" height="30"/>
-        <image name="fourth.png" width="24" height="16"/>
         <image name="second.png" width="30" height="30"/>
         <image name="third.png" width="22" height="22"/>
     </resources>
