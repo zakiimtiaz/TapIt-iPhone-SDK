@@ -227,36 +227,40 @@
 
 - (void)didLoadAdView:(TapItAdView *)theAdView {
     TapItAdView *oldAd = [self.adView retain];
-    self.alpha = 1.0;
-    self.adView = theAdView;
-    self.adView.mraidDelegate = self;
-    [self.adView setIsVisible:YES];
+    //Doing this to replace old ad with new ad; but if called more than once on the same ad, we need to not replace. Z
     
-    if (self.animated) {
-        UIViewAnimationTransition trans = (nil != self.adView ? [self getRandomTransition] : UIViewAnimationTransitionCurlDown);
-        [UIView animateWithDuration:2
-                              delay:0.0
-                            options:UIViewAnimationOptionTransitionNone
-                         animations:^{
-                            [UIView setAnimationTransition:trans forView:self cache:YES];
-                            [self addSubview:self.adView];
-                         }
-                         completion:^(BOOL finished){ 
-                             [oldAd removeFromSuperview];
-                         }
-         ];
-    }
-    else {
-        [self addSubview:self.adView];
-        [self addSubview:loadingSpinner];
-        [oldAd removeFromSuperview];
-    }
-    
-    isLoading = NO;
-    [self startBannerRotationTimerForNormalOrError:NO];
-    
-    if ([self.delegate respondsToSelector:@selector(tapitBannerAdViewDidLoadAd:)]) {
-        [self.delegate tapitBannerAdViewDidLoadAd:self];
+    if(oldAd != theAdView) {
+        self.alpha = 1.0;
+        self.adView = theAdView;
+        self.adView.mraidDelegate = self;
+        [self.adView setIsVisible:YES];
+        
+        if (self.animated) {
+            UIViewAnimationTransition trans = (nil != self.adView ? [self getRandomTransition] : UIViewAnimationTransitionCurlDown);
+            [UIView animateWithDuration:2
+                                  delay:0.0
+                                options:UIViewAnimationOptionTransitionNone
+                             animations:^{
+                                [UIView setAnimationTransition:trans forView:self cache:YES];
+                                [self addSubview:self.adView];
+                             }
+                             completion:^(BOOL finished){ 
+                                 [oldAd removeFromSuperview];
+                             }
+             ];
+        }
+        else {
+            [self addSubview:self.adView];
+            [self addSubview:loadingSpinner];
+            [oldAd removeFromSuperview];
+        }
+        
+        isLoading = NO;
+        [self startBannerRotationTimerForNormalOrError:NO];
+        
+        if ([self.delegate respondsToSelector:@selector(tapitBannerAdViewDidLoadAd:)]) {
+            [self.delegate tapitBannerAdViewDidLoadAd:self];
+        }
     }
     
     [oldAd release];
