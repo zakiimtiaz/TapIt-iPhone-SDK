@@ -71,6 +71,8 @@
 		5D3535A31739AE9E00660408 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D35358D1739AE9E00660408 /* second@2x.png */; };
 		5D3E342E172612F800A8CA89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E342D172612F800A8CA89 /* AVFoundation.framework */; };
 		5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3E34311726169700A8CA89 /* CoreMedia.framework */; };
+		CD040ADF194F936D00E70F68 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD040ADD194F936D00E70F68 /* EventKit.framework */; };
+		CD040AE0194F936D00E70F68 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD040ADE194F936D00E70F68 /* EventKitUI.framework */; };
 		CD19F116181B3E5E0057F47F /* TapIt.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD19F0FC181B3E5E0057F47F /* TapIt.bundle */; };
 		CD19F117181B3E5E0057F47F /* TapItAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19F0FD181B3E5E0057F47F /* TapItAdManager.h */; };
 		CD19F118181B3E5E0057F47F /* TapItAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19F0FD181B3E5E0057F47F /* TapItAdManager.h */; };
@@ -265,6 +267,8 @@
 		5D3E34311726169700A8CA89 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5DFD38CF17C4F66F0095E170 /* disneyplanestrailer.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = disneyplanestrailer.m4v; sourceTree = "<group>"; };
+		CD040ADD194F936D00E70F68 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		CD040ADE194F936D00E70F68 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		CD19F0FC181B3E5E0057F47F /* TapIt.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapIt.bundle; path = TapItSDK/TapIt.bundle; sourceTree = "<group>"; };
 		CD19F0FD181B3E5E0057F47F /* TapItAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapItAdManager.h; path = TapItSDK/TapItAdManager.h; sourceTree = "<group>"; };
 		CD19F0FE181B3E5E0057F47F /* TapItAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapItAdManager.m; path = TapItSDK/TapItAdManager.m; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD040ADF194F936D00E70F68 /* EventKit.framework in Frameworks */,
+				CD040AE0194F936D00E70F68 /* EventKitUI.framework in Frameworks */,
 				CD19F1A8181B422D0057F47F /* Security.framework in Frameworks */,
 				CD19F1A6181B42270057F47F /* MobileCoreServices.framework in Frameworks */,
 				5D3E34321726169700A8CA89 /* CoreMedia.framework in Frameworks */,
@@ -429,6 +435,8 @@
 		5594982215366E4100D6495D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD040ADD194F936D00E70F68 /* EventKit.framework */,
+				CD040ADE194F936D00E70F68 /* EventKitUI.framework */,
 				CD19F1A7181B422D0057F47F /* Security.framework */,
 				CD19F1A5181B42270057F47F /* MobileCoreServices.framework */,
 				5D8E68C117729CDB00BDE967 /* MediaPlayer.framework */,
