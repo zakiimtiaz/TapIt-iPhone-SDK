@@ -68,14 +68,20 @@ var mraid = {
 
     mraid.open = function(url) {
         console.debug("open");
-        nativeExecute("open", {url: encodeURIComponent(url).replace(/%20/g,'+')});
+        nativeExecute("open", {url: url});
     };
 
     mraid.setExpandProperties = function(props) {
         var propsStr = "{";
+        var counter = 0;
         for(var p in props) {
             if(props.hasOwnProperty(p)) {
-                propsStr += ", " + p + ": " + props[p];
+                if(counter == 0) {
+                    propsStr += p + ": " + props[p];
+                    counter++;
+                } else {
+                    propsStr += ", " + p + ": " + props[p];
+                }
             }
         }
         propsStr += "}";
@@ -153,7 +159,7 @@ var mraid = {
                     }
                     else if(param == "_fire_event_") {
                         var evt = data[param];
-                        console.debug("trying to fire event: " + evt);
+                        console.debug("trying to fire event named: " + evt.name + " with props " + evt.props);
                         fireEvent(evt.name, evt.props);
                     }
                 }
@@ -204,7 +210,7 @@ var mraid = {
                     else {
                         url += "&";
                     }
-                    url += p + "=" + props[p];
+                    url += p + "=" + encodeURIComponent(props[p]);
                 }
             }
         }
