@@ -2,7 +2,7 @@ Get the code:
 =================
 You can compile the TapIt! SDK directly into your app.  Clone this repository(see intructions below), then copy the ```/Lib``` and ```/TapItSDK``` folders into your Xcode project.
 
-This project includes JSONKit and Reachability as a git submodules.  **Make sure you pull down submodules when cloning:**
+This project includes Reachability as a git submodule.  **Make sure you pull down the submodule when cloning:**
 ````
 git clone --recursive https://github.com/tapit/TapIt-iPhone-SDK.git
 ````

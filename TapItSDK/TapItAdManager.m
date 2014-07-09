@@ -13,7 +13,6 @@
 #import "TapItAdManager.h"
 #import "TapItRequest.h"
 #import "TapItAppTracker.h"
-#import "JSONKit.h"
 
 @interface TapItRequest () 
 @property (retain, nonatomic) NSString *rawResults;
@@ -97,11 +96,10 @@
     NSString *jsonString = self.currentRequest.rawResults;
     NSLog(@"TapIt response: %@", jsonString);
     
-    TapItJSONDecoder *decoder = [[TapItJSONDecoder alloc] initWithParseOptions:JKParseOptionStrict];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *deserializedData = [decoder objectWithData:jsonData error:&error];
-    [decoder release];
-
+    
+    NSDictionary *deserializedData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    NSLog(@"%@", deserializedData);
     if (error) {
         NSString *errStr;
         if (!self.currentRequest.rawResults) {

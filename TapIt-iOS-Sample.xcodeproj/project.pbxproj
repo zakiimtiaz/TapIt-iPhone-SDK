@@ -12,7 +12,6 @@
 		55202C031537C59C00B2244E /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		5520DA681632078A0032C3AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		552396CC15AC8EF2000E69CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
-		5524C78C17D94E7100F99070 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		5524C78F17D94EA300F99070 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		5528EECC15FFBB51009ED3A4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5528EECB15FFBB51009ED3A4 /* LICENSE */; };
 		552EF86B15A2B572009898D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
@@ -33,7 +32,6 @@
 		5596595915B4C7610002620D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982715366E4100D6495D /* CoreGraphics.framework */; };
 		5596595A15B4C76D0002620D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552396CB15AC8EF2000E69CC /* CoreTelephony.framework */; };
 		5596595B15B4C7850002620D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982315366E4100D6495D /* UIKit.framework */; };
-		55A64B5F1537E7F200AFDDFF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55ABC3F915A63AA200B13844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55ABC3F815A63AA200B13844 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55BEBE5B160A8CD500072ECD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEBE5A160A8CD500072ECD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55C7005015A76AEB00818F44 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */; };
@@ -44,7 +42,6 @@
 		55CF02E715EFDEAC00DBB5A5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EF86A15A2B572009898D4 /* QuartzCore.framework */; };
 		55CF02E815EFDEAC00DBB5A5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */; };
 		55CF02E915EFDEAC00DBB5A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5594982515366E4100D6495D /* Foundation.framework */; };
-		55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A64B5C1537E7F200AFDDFF /* JSONKit.m */; };
 		55CF030E15EFDED600DBB5A5 /* NSDictionary+QueryStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */; };
 		55FB5C641644975E00104B13 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5520DA65163207600032C3AD /* StoreKit.framework */; };
 		5D30D9B31739B38A00A4FADD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5594982C15366E4100D6495D /* InfoPlist.strings */; };
@@ -231,10 +228,6 @@
 		5596594315B4C7150002620D /* libTapIt_without_extras.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTapIt_without_extras.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A26459160D12D4009DFA5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		55A2645B160D12D4009DFA5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		55A64B5A1537E7F200AFDDFF /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = CHANGELOG.md; sourceTree = "<group>"; };
-		55A64B5B1537E7F200AFDDFF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		55A64B5C1537E7F200AFDDFF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		55A64B5D1537E7F200AFDDFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		55ABC3F815A63AA200B13844 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		55BEBE5A160A8CD500072ECD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		55C7004F15A76AEB00818F44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -535,7 +528,6 @@
 				CD40CDFC181B2E26007029AC /* TVAST */,
 				558F50FF161DFF6900A2A4FE /* GoogleAdMobAdsSDK */,
 				55C7004A15A765EB00818F44 /* Reachability */,
-				55A64B591537E7F200AFDDFF /* JSONKit */,
 				55202C011537C59C00B2244E /* NSDictionary+QueryStringBuilder.h */,
 				55202C021537C59C00B2244E /* NSDictionary+QueryStringBuilder.m */,
 				55949860153671A600D6495D /* OpenUDID */,
@@ -550,17 +542,6 @@
 				CD19F15E181B3E820057F47F /* TapItOpenUDID.m */,
 			);
 			path = OpenUDID;
-			sourceTree = "<group>";
-		};
-		55A64B591537E7F200AFDDFF /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				55A64B5A1537E7F200AFDDFF /* CHANGELOG.md */,
-				55A64B5B1537E7F200AFDDFF /* JSONKit.h */,
-				55A64B5C1537E7F200AFDDFF /* JSONKit.m */,
-				55A64B5D1537E7F200AFDDFF /* README.md */,
-			);
-			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		55C7004A15A765EB00818F44 /* Reachability */ = {
@@ -875,7 +856,6 @@
 				CD2BAA9D182C21E600F69359 /* FullScreenVC.m in Sources */,
 				CD19F135181B3E5E0057F47F /* TapItDefines.m in Sources */,
 				55202C031537C59C00B2244E /* NSDictionary+QueryStringBuilder.m in Sources */,
-				55A64B5F1537E7F200AFDDFF /* JSONKit.m in Sources */,
 				CDE7BC7518297A2400FF6DB1 /* VideoInterstitialViewController.m in Sources */,
 				CD19F130181B3E5E0057F47F /* TapItBrowserController.m in Sources */,
 				CD19F153181B3E5E0057F47F /* TapItRequest.m in Sources */,
@@ -891,7 +871,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5524C78C17D94E7100F99070 /* JSONKit.m in Sources */,
 				CD19F149181B3E5E0057F47F /* TapItMediationAdMob.m in Sources */,
 				CD19F13C181B3E5E0057F47F /* TapItHelpers.m in Sources */,
 				CD19F14E181B3E5E0057F47F /* TapItMraidCommand.m in Sources */,
@@ -920,7 +899,6 @@
 				CD19F14D181B3E5E0057F47F /* TapItMraidCommand.m in Sources */,
 				CD19F136181B3E5E0057F47F /* TapItDefines.m in Sources */,
 				CD19F154181B3E5E0057F47F /* TapItRequest.m in Sources */,
-				55CF030D15EFDED600DBB5A5 /* JSONKit.m in Sources */,
 				CD19F129181B3E5E0057F47F /* TapItAppTracker.m in Sources */,
 				CD19F13E181B3E5E0057F47F /* TapItInterstitialAd.m in Sources */,
 				CD19F124181B3E5E0057F47F /* TapItAdView.m in Sources */,
