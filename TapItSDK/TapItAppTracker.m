@@ -164,6 +164,7 @@
             NSString *appId = [[NSBundle mainBundle] bundleIdentifier];
             NSString *udid = [self deviceUDID];
             NSString *ua = [self userAgent];
+            NSString *deviceIFA = [self deviceIFA];
             
             NSMutableString *reportUrlString = [NSMutableString stringWithFormat:@"%@/adconvert.php?appid=%@&udid=%@",
                                                 TAPIT_REPORTING_SERVER_URL,
@@ -172,6 +173,10 @@
                                                 ];
             if (ua && [ua length] > 0) {
                 [reportUrlString appendFormat:@"&ua=%@",ua];
+            }
+            
+            if (deviceIFA && [deviceIFA length] > 0) {
+                [reportUrlString appendFormat:@"&ifa=%@", deviceIFA];
             }
             
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[reportUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
