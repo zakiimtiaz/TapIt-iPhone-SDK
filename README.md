@@ -16,6 +16,12 @@ SystemConfiguration.framework
 QuartsCore.framework
 CoreTelephony.framework
 MessageUI.framework
+EventKit.framework
+EventKitUI.framework
+CoreMedia.framework
+AVFoundation.framework
+MediaPlayer.framework
+AudioToolbox.framework
 AdSupport.framework - enable support for IDFA
 StoreKit.framework - enable use of SKStoreProductViewController, displays app store ads without leaving your app
 

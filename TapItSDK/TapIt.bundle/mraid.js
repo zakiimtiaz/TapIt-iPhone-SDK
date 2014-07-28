@@ -33,7 +33,7 @@ var mraid = {
         width: false
     };
 
-    mraid.getVersion = function() { console.debug("getVersion"); return "1.0"; };
+    mraid.getVersion = function() { console.debug("getVersion"); return "2.0"; };
 
     mraid.getPlacementType = function() { console.debug("getPlacement"); return nativeExecute("getPlacementType"); };
 
@@ -76,12 +76,12 @@ var mraid = {
         var counter = 0;
         for(var p in props) {
             if(props.hasOwnProperty(p)) {
-                if(counter == 0) {
+                 if(counter == 0) {
                     propsStr += p + ": " + props[p];
                     counter++;
-                } else {
+                 } else {
                     propsStr += ", " + p + ": " + props[p];
-                }
+                 }
             }
         }
         propsStr += "}";
@@ -273,6 +273,34 @@ var mraid = {
             height: currentPosition.height
         };
     };
+ 
+     mraid.setCurrentPosition = function(position) {
+        var previousSize = mraid.getScreenSize();
+        console.debug("setCurrentPosition");
+        console.debug(previousSize.height);
+        console.debug(previousSize.width);
+        currentPosition = position;
+        screenSize = { width:currentPosition.width, height:currentPosition.height };
+        var currentSize = mraid.getScreenSize();
+        console.debug(currentSize.height);
+        console.debug(currentSize.width);
+         // Only send the size changed event if the size in the position
+         // was different from the previous position
+         if ((previousSize.width === currentSize.width) && (previousSize.height === currentSize.height)) {
+            return;
+         }
+         
+         var handlers = listeners["sizeChange"];
+         if (handlers) {
+            var width = currentPosition.width;
+            var height = currentPosition.height;
+         
+            for (var i = 0; i < handlers.length; ++i) {
+                handlers[i](width, height);
+            }
+         }
+     };
+ 
     mraid.getDefaultPosition = function() {
         console.debug("getDefaultPosition: " + defaultPosition);
         return {
@@ -302,13 +330,79 @@ var mraid = {
         nativeExecute("setOrientationProperties", orientationProperties, undefined);
     };
 
-    mraid.createCalendarEvent = function() { console.debug("createCalendarEvent"); };
-    mraid.getMaxSize = function() { console.debug("getMaxSize"); };
-    mraid.getResizeProperties = function() { console.debug("getResizeProperties"); };
-    mraid.playVideo = function() { console.debug("playVideo"); };
+    mraid.createCalendarEvent = function(props) {
+        nativeExecute("createCalendarEvent", props, undefined);
+    };
+ 
+    var maxSize = mraid.maxSize = {
+        width:0,
+        height:0
+    }
+ 
+    mraid.getMaxSize = function() {
+        console.debug("getMaxSize: width:" + maxSize.width + " height:" + maxSize.height);
+        return maxSize;
+    };
+ 
+    mraid.setMaxSize = function(props) {
+        maxSize.height = props.height;
+        maxSize.width = props.width;
+        console.debug("setMaxSize " + maxSize.width + " " + maxSize.height);
+    }
+    mraid.getResizeProperties = function() {
+        console.debug("getResizeProperties");
+        return resizeProperties;
+    };
+    mraid.playVideo = function(url) {
+        console.debug("playVideo");
+        nativeExecute("playVideo", {url:url}, undefined);
+    };
     mraid.resize = function() { console.debug("resize"); };
-    mraid.setResizeProperties = function() { console.debug("setResizeProperties"); };
-    mraid.storePicture = function() { console.debug("storePicture"); };
-    mraid.supports = function(feature) { console.debug("supports"); return false; };
+    mraid.setResizeProperties = function(props) {
+        console.debug("setResizeProperties");
+        resizeProperties = {
+            width : props.width,
+            height : props.height,
+            offsetX : props.offsetX,
+            offsetY : props.offsetY,
+            customClosePosition : props.customClosePosition,
+            allowOffscreen : props.allowOffscreen
+         };
+ 
+    };
+    mraid.storePicture = function(url) {
+        console.debug("storePicture");
+        nativeExecute("storePicture", {url:url}, undefined);
+    };
 
+     var FEATURES = mraid.FEATURES = {
+     SMS             :"sms",
+     PHONE           :"phone",
+     CALENDAR        :"calendar",
+     STORE_PICTURE   :"storePicture",
+     INLINE_VIDEO    :"inlineVideo"
+     };
+     
+     var supportedFeatures = {};
+     
+     mraid.setSupports = function(feature, supported) {
+        supportedFeatures[feature] = supported;
+        console.debug(feature + " is being set to " + supported);
+     };
+     
+     mraid.supports = function(feature) {
+        console.debug("supports");
+     
+        return supportedFeatures[feature];
+     };
+ 
+     mraid.fireErrorEvent = function(message, action) {
+        console.log("fireErrorEvent handler:" + message + " action:" + action);
+         var handlers = listeners[EVENTS.ERROR];
+        if (handlers) {
+            for (var i = 0; i < handlers.length; ++i) {
+                handlers[i](message, action);
+            }
+        }
+     };
 } (window.mraid));
