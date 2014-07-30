@@ -177,7 +177,6 @@
 		CD5BEAA21829A6A4003E498D /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5BEAA11829A6A4003E498D /* TapItVideoInterstitialAd.m */; };
 		CD5BEAA31829A6A4003E498D /* TapItVideoInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5BEAA11829A6A4003E498D /* TapItVideoInterstitialAd.m */; };
 		CD737079181B280600E9126F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; };
-		CD73707A181B280600E9126F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F5161161DFF6900A2A4FE /* libGoogleAdMobAds.a */; };
 		CD974C1B17F5EBC90028A133 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A26458160D12D4009DFA5F /* MainStoryboard_iPhone.storyboard */; };
 		CD974C1C17F5EBC90028A133 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2645A160D12D4009DFA5F /* MainStoryboard_iPad.storyboard */; };
 		CDE7BC7518297A2400FF6DB1 /* VideoInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BC7418297A2400FF6DB1 /* VideoInterstitialViewController.m */; };
@@ -373,7 +372,6 @@
 				CD40CE06181B2E26007029AC /* libTVAST.a in Frameworks */,
 				55CF02E815EFDEAC00DBB5A5 /* SystemConfiguration.framework in Frameworks */,
 				55CF02E915EFDEAC00DBB5A5 /* Foundation.framework in Frameworks */,
-				CD73707A181B280600E9126F /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
