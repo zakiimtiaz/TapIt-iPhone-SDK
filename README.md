@@ -1,5 +1,13 @@
-This is the old version of the TapIt! SDK. For the latest version, visit https://github.com/tapit/TapIt-iOS-SDK
+This is the old version of the TapIt! SDK. 
 =============
+
+For the latest version, visit https://github.com/tapit/TapIt-iOS-SDK
+------
+
+
+
+
+
 
 TapIt iOS SDK
 ------
