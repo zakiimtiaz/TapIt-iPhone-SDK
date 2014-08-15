@@ -9,7 +9,7 @@ For the latest version, visit https://github.com/tapit/TapIt-iOS-SDK
 
 
 
-TapIt iOS SDK
+LEGACY TapIt iOS SDK Installation Instructions
 ------
 
 Version 3.0.13
